@@ -12,9 +12,6 @@
             xmlns:local="clr-namespace:GoPOS.Views" 
             xmlns:common1="clr-namespace:GoPOS.Common.Views.Controls;assembly=GoPOS.Common"
              Width="1024" Height="768">
-    <views:UCViewBase.Resources>
-        <views:ZeroToVisibilityConverter x:Key="ZeroToVisibilityConverter"/>
-    </views:UCViewBase.Resources>
 
     <Grid Style="{DynamicResource baseGrid}">
         <Grid.RowDefinitions>
