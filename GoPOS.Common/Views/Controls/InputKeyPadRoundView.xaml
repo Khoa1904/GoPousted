@@ -1,0 +1,112 @@
+﻿<views:UCViewBase  xmlns:views="clr-namespace:GoPOS.Common.Views"
+             x:Class="GoPOS.Common.Views.Controls.InputKeyPadRoundView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:viewModel="clr-namespace:GoPOS.Common.ViewModels"
+             d:DataContext="{d:DesignInstance viewModel:InputKeyPadRoundViewModel}"             
+             xmlns:cal="http://www.caliburnproject.org"
+             mc:Ignorable="d" Margin="0">
+    
+    <Grid Margin="0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <DockPanel Margin="0" Grid.Column="1" Background="White">
+            <!--<DockPanel.Background>
+                <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/Resource/Images/Login/KeypadBg.png" />
+            </DockPanel.Background>-->
+
+            <Grid Margin="0">
+                <Grid.RowDefinitions>
+                    <!--<RowDefinition Height="58"/>-->
+                    <RowDefinition Height="57"/>
+                    <RowDefinition Height="52"/>
+                    <RowDefinition Height="52"/>
+                    <RowDefinition Height="52"/>
+                    <RowDefinition Height="52"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2.7"/>
+                    <ColumnDefinition Width="84"/>
+                    <ColumnDefinition Width="3" />
+                    <ColumnDefinition Width="84"/>
+                    <ColumnDefinition Width="3" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Margin="0,0,0,0">
+                    <views:GoButton Background="White" Click="KeyClicked" Style="{StaticResource RoundCute}"  Focusable="False" Tag="D7" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="8,7,0,0" VerticalAlignment="Top" Width="51" Height="48" Padding="0,0,0,0" BorderThickness="1">
+                        <TextBlock Text="7" FontFamily="{StaticResource Pretendard}" FontSize="20" FontStyle="Normal" FontWeight="Regular" Foreground="Black" LineHeight="14" TextAlignment="Left" />
+                    </views:GoButton>
+                    <views:GoButton Background="White" Click="KeyClicked" Style="{StaticResource RoundCute}"  Focusable="False" Tag="D8" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="4,7,0,0" VerticalAlignment="Top" Width="51" Height="48" Padding="0,0,0,0" BorderThickness="1">
+
+                        <TextBlock Text="8" FontFamily="{StaticResource Pretendard}" FontSize="20" FontStyle="Normal" FontWeight="Regular" Foreground="Black" LineHeight="14" TextAlignment="Left" />
+                    </views:GoButton>
+                    <views:GoButton Background="White" Click="KeyClicked" Style="{StaticResource RoundCute}"  Focusable="False" Tag="D9" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="4,7,0,0" VerticalAlignment="Top" Width="51" Height="48" Padding="0,0,0,0" BorderThickness="1">
+
+                        <TextBlock Text="9" FontFamily="{StaticResource Pretendard}" FontSize="20" FontStyle="Normal" FontWeight="Regular" Foreground="Black" LineHeight="14" TextAlignment="Left" />
+                    </views:GoButton>
+
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" Margin="0,0,0,0">
+                    <views:GoButton Background="White" Click="KeyClicked" Style="{StaticResource RoundCute}"  Focusable="False" Tag="D4" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="8,1,0,0" VerticalAlignment="Top" Width="51" Height="48" Padding="0,0,0,0" BorderThickness="1">
+
+                        <TextBlock Text="4" FontFamily="{StaticResource Pretendard}" FontSize="20" FontStyle="Normal" FontWeight="Regular" Foreground="Black" LineHeight="14" TextAlignment="Left" />
+                    </views:GoButton>
+                    <views:GoButton Background="White" Click="KeyClicked" Style="{StaticResource RoundCute}"  Focusable="False" Tag="D5" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="4,1,0,0" VerticalAlignment="Top" Width="51" Height="48" Padding="0,0,0,0" BorderThickness="1">
+
+                        <TextBlock Text="5" FontFamily="{StaticResource Pretendard}" FontSize="20" FontStyle="Normal" FontWeight="Regular" Foreground="Black" LineHeight="14" TextAlignment="Left" />
+                    </views:GoButton>
+                    <views:GoButton Background="White" Click="KeyClicked" Style="{StaticResource RoundCute}"  Focusable="False" Tag="D6" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="4,1,0,0" VerticalAlignment="Top" Width="51" Height="48" Padding="0,0,0,0" BorderThickness="1">
+
+                        <TextBlock Text="6" FontFamily="{StaticResource Pretendard}" FontSize="20" FontStyle="Normal" FontWeight="Regular" Foreground="Black" LineHeight="14" TextAlignment="Left" />
+                    </views:GoButton>
+
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="5" Margin="0,0,0,0">
+                    <views:GoButton Background="White" Click="KeyClicked" Style="{StaticResource RoundCute}"  Focusable="False" Tag="D1" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="8,1,0,0" VerticalAlignment="Top" Width="51" Height="48" Padding="0,0,0,0" BorderThickness="1">
+
+                        <TextBlock Text="1" FontFamily="{StaticResource Pretendard}" FontSize="20" FontStyle="Normal" FontWeight="Regular" Foreground="Black" LineHeight="14" TextAlignment="Left" />
+                    </views:GoButton>
+                    <views:GoButton Background="White" Click="KeyClicked" Style="{StaticResource RoundCute}"  Focusable="False" Tag="D2" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="4,1,0,0" VerticalAlignment="Top" Width="51" Height="48" Padding="0,0,0,0" BorderThickness="1">
+
+                        <TextBlock Text="2" FontFamily="{StaticResource Pretendard}" FontSize="20" FontStyle="Normal" FontWeight="Regular" Foreground="Black" LineHeight="14" TextAlignment="Left" />
+                    </views:GoButton>
+                    <views:GoButton Background="White" Click="KeyClicked" Style="{StaticResource RoundCute}"  Focusable="False" Tag="D3" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="4,1,0,0" VerticalAlignment="Top" Width="51" Height="48" Padding="0,0,0,0" BorderThickness="1">
+
+                        <TextBlock Text="3" FontFamily="{StaticResource Pretendard}" FontSize="20" FontStyle="Normal" FontWeight="Regular" Foreground="Black" LineHeight="14" TextAlignment="Left" />
+                    </views:GoButton>
+
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5" Margin="0,0,0,0">
+                    <views:GoButton Background="White" Click="KeyClicked" Style="{StaticResource RoundCute}"  Focusable="False" Tag="D0" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="8,1,0,0" VerticalAlignment="Top" Width="51" Height="48" Padding="0,0,0,0" BorderThickness="1">
+
+                        <TextBlock Text="0" FontFamily="{StaticResource Pretendard}" FontSize="20" FontStyle="Normal" FontWeight="Regular" Foreground="Black" LineHeight="14" TextAlignment="Left" />
+                    </views:GoButton>
+                    <views:GoButton Background="White" Click="KeyClicked" Style="{StaticResource RoundCute}"  Focusable="False" Tag="00" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="4,1,0,0" VerticalAlignment="Top" Width="51" Height="48" Padding="0,0,0,0" BorderThickness="1">
+
+                        <TextBlock Text="00" FontFamily="{StaticResource Pretendard}" FontSize="20" FontStyle="Normal" FontWeight="Regular" Foreground="Black" LineHeight="14" TextAlignment="Left" />
+                    </views:GoButton>
+                    <views:GoButton Background="White" Click="KeyClicked" Style="{StaticResource RoundCute}"  Focusable="False" Tag="Clear" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="4,1,0,0" VerticalAlignment="Top" Width="51" Height="48" Padding="0,0,0,0" BorderThickness="1">
+
+                        <TextBlock Text="C" FontFamily="{StaticResource Pretendard}" FontSize="20" FontStyle="Normal" FontWeight="Regular" Foreground="Black" LineHeight="14" TextAlignment="Left" />
+                    </views:GoButton>
+
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="5" Margin="0,0,0,0">
+                    <views:GoButton Background="White" Click="KeyClicked" Style="{StaticResource RoundCute}"  Focusable="False" Tag="Back" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="8,1,0,0" VerticalAlignment="Top" Width="51" Height="48" Padding="0,0,0,0" BorderThickness="1">
+
+                        <TextBlock Text="&lt;" FontFamily="{StaticResource Pretendard}" FontSize="20" FontStyle="Normal" FontWeight="Regular" Foreground="Black" LineHeight="14" TextAlignment="Left" />
+                    </views:GoButton>
+                    <views:GoButton Background="White" Click="KeyClicked" Style="{StaticResource RoundCute}"  Focusable="False" Tag="Enter" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="4,1,0,0" VerticalAlignment="Top" Width="106" Height="48" Padding="0,0,0,0" BorderThickness="1">
+
+                        <TextBlock Text="Enter" FontFamily="{StaticResource Pretendard}" FontSize="20" FontStyle="Normal" FontWeight="Regular" Foreground="Black" LineHeight="14" TextAlignment="Left" />
+                    </views:GoButton>
+                </StackPanel>
+            </Grid>
+        </DockPanel>
+    </Grid>
+</views:UCViewBase>

@@ -1,0 +1,125 @@
+<UserControl x:Class="GoPOS.Views.OrderPayElctrnGcctView" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:viewModel="clr-namespace:GoPOS.ViewModels" d:DataContext="{d:DesignInstance viewModel:OrderPayMainViewModel}" xmlns:cal="http://www.caliburnproject.org" mc:Ignorable="d" d:DesignHeight="670" d:DesignWidth="490">
+  <UserControl.Resources>
+    <Style TargetType="{x:Type CheckBox}" x:Key="myCheckboxStyle">
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="{x:Type CheckBox}">
+            <StackPanel Orientation="Horizontal">
+              <Image x:Name="checkboxImage" Source="pack://application:,,,/GoPOS.Resources;component/resource/images/chk_off.png" Width="27" />
+              <ContentPresenter />
+            </StackPanel>
+            <ControlTemplate.Triggers>
+              <Trigger Property="IsChecked" Value="True">
+                <Setter TargetName="checkboxImage" Property="Source" Value="../../images/chk_on.png" />
+              </Trigger>
+              <MultiTrigger>
+                <MultiTrigger.Conditions>
+                  <!--<Condition Property="IsMouseOver" Value="True"/>-->
+                  <Condition Property="IsChecked" Value="False" />
+                </MultiTrigger.Conditions>
+                <Setter TargetName="checkboxImage" Property="Source" Value="../../images/chk_off.png" />
+              </MultiTrigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+  </UserControl.Resources>
+  <Grid>
+    <!--#dcdcdc #313637-->
+    <Grid.RowDefinitions>
+      <RowDefinition Height="40" />
+      <RowDefinition Height="81" />
+      <RowDefinition Height="39" />
+      <RowDefinition Height="30" />
+      <RowDefinition Height="37" />
+      <RowDefinition Height="31" />
+      <RowDefinition Height="31" />
+      <RowDefinition Height="25" />
+      <RowDefinition Height="40" />
+      <RowDefinition Height="31" />
+      <RowDefinition Height="31" />
+      <RowDefinition Height="50" />
+      <RowDefinition Height="45" />
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="50" />
+      <ColumnDefinition Width="130" />
+      <ColumnDefinition Width="146" />
+      <ColumnDefinition Width="36" />
+      <ColumnDefinition Width="*" />
+      <ColumnDefinition Width="49" />
+    </Grid.ColumnDefinitions>
+    <Grid.Background>
+      <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/resource/images/OrderPayRightPopBack.png" />
+    </Grid.Background>
+    <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Margin="0,0,0,0">
+      <TextBlock Text="{StaticResource 0202}" FontFamily="{StaticResource Pretendard}" FontSize="20" Height="23" Margin="40,0,0,0" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" LineHeight="14" TextAlignment="Left" />
+    </StackPanel>
+    <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="6" Margin="3,0,0,0">
+      <Button cal:Message.Attach="[Event Click] = [Action ButtonClose($source, $eventArgs)]" Tag="btnClose" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="10,0,0,0" Width="31" Height="29" Padding="0,0,0,0" BorderThickness="0,0,0,0">
+        <Button.Background>
+          <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/resource/images/btn_pop_close.png" />
+        </Button.Background>
+      </Button>
+    </StackPanel>
+    <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" Margin="0,0,0,0">
+      <TextBlock VerticalAlignment="Center" Text="{StaticResource 0203}" FontFamily="{StaticResource Pretendard}" FontSize="12" FontStyle="Normal" FontWeight="Light" Foreground="#999999" LineHeight="14" TextAlignment="Left" Margin="35,-40,0,0" />
+    </StackPanel>
+    <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" Margin="0,0,0,0">
+      <Image VerticalAlignment="Center" Width="11" Height="11" Source="pack://application:,,,/GoPOS.Resources;component/resource/images/pr.png" Margin="43,0,0,0" />
+      <TextBlock VerticalAlignment="Center" Text="상품권번호 : " FontFamily="{StaticResource Pretendard}" FontSize="16" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" LineHeight="14" TextAlignment="Left" Margin="10,0,0,0" />
+      <TextBox x:Name="txtElctrnGcctNo" Text="" Style="{StaticResource txtBox}" FontStyle="Normal" TextAlignment="Center" FontWeight="Bold" Width="150" FontSize="16" Height="25" Margin="0,0,0,0" />
+      <Button cal:Message.Attach="[Event Click] = [Action ButtonMenu($source, $eventArgs)]" Tag="btnGetBalance" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="10,-3,0,0" Width="71" Height="35" Padding="0,0,0,0" BorderThickness="0,0,0,0">
+        <Button.Background>
+          <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/resource/images/btn_base_orange.png" />
+        </Button.Background>
+        <TextBlock Text="{StaticResource 0205}" FontFamily="{StaticResource Pretendard}" FontSize="13" FontStyle="Normal" FontWeight="Bold" Foreground="#FFFFFFFF" LineHeight="13" TextAlignment="Center" />
+      </Button>
+    </StackPanel>
+    <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" Margin="0,0,0,0">
+      <TextBlock VerticalAlignment="Center" Text="{StaticResource 0203}" FontFamily="{StaticResource Pretendard}" FontSize="12" FontStyle="Normal" FontWeight="Light" Foreground="#999999" LineHeight="14" TextAlignment="Left" Margin="35,23,0,0" />
+    </StackPanel>
+    <!--카드정보-->
+    <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,0,0,0">
+      <Image VerticalAlignment="Center" Width="11" Height="11" Source="pack://application:,,,/GoPOS.Resources;component/resource/images/pr.png" Margin="43,0,0,0" />
+      <TextBlock VerticalAlignment="Center" Text="{StaticResource 0069}" FontFamily="{StaticResource Pretendard}" FontSize="16" FontStyle="Normal" FontWeight="Bold" Foreground="#000000" LineHeight="14" TextAlignment="Left" Margin="10,0,0,0" />
+    </StackPanel>
+    <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="4" Margin="0,0,0,0">
+      <TextBlock VerticalAlignment="Center" Text="{StaticResource 0206}" FontFamily="{StaticResource Pretendard}" FontSize="12" FontStyle="Normal" FontWeight="Light" Foreground="#999999" LineHeight="14" TextAlignment="Left" Margin="35,29,0,0" />
+    </StackPanel>
+    <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="4" Margin="0,0,0,0">
+      <TextBlock VerticalAlignment="Center" Text="*       잔액 : " FontFamily="{StaticResource Pretendard}" FontSize="14" FontStyle="Normal" FontWeight="Bold" Foreground="#000000" LineHeight="14" TextAlignment="Left" Margin="84,0,0,0" />
+      <TextBox x:Name="txtBalance" Text="0" Style="{StaticResource txtBox}" FontStyle="Normal" TextAlignment="Right" FontWeight="Bold" Width="150" FontSize="16" Foreground="#FFFA7514" Height="25" Margin="0,0,0,0" />
+    </StackPanel>
+    <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="4" Margin="0,0,0,0">
+      <TextBlock VerticalAlignment="Center" Text="{StaticResource 0206}" FontFamily="{StaticResource Pretendard}" FontSize="12" FontStyle="Normal" FontWeight="Light" Foreground="#999999" LineHeight="14" TextAlignment="Left" Margin="35,23,0,0" />
+    </StackPanel>
+    <!--결제대상금액-->
+    <StackPanel Orientation="Horizontal" Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="4" Margin="0,0,0,0">
+      <TextBlock VerticalAlignment="Center" Text="{StaticResource 0203}" FontFamily="{StaticResource Pretendard}" FontSize="12" FontStyle="Normal" FontWeight="Light" Foreground="#999999" LineHeight="14" TextAlignment="Left" Margin="35,-40,0,0" />
+    </StackPanel>
+    <StackPanel Orientation="Horizontal" Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="4" Margin="0,0,0,0">
+      <Image VerticalAlignment="Center" Width="11" Height="11" Source="pack://application:,,,/GoPOS.Resources;component/resource/images/pr.png" Margin="43,0,0,0" />
+      <TextBlock VerticalAlignment="Center" Text="결제대상금액 : " FontFamily="{StaticResource Pretendard}" FontSize="16" FontStyle="Normal" FontWeight="Bold" Foreground="#FFFA7514" LineHeight="14" TextAlignment="Left" Margin="10,0,0,0" />
+      <TextBox x:Name="txtPayTargetMoney" Text="" Style="{StaticResource txtBox}" FontStyle="Normal" TextAlignment="Right" FontWeight="Bold" Width="134" FontSize="16" Height="25" Foreground="#FFFA7514" Margin="0,0,0,0" />
+    </StackPanel>
+    <StackPanel Orientation="Horizontal" Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="4" Margin="0,0,0,0">
+      <TextBlock VerticalAlignment="Center" Text="{StaticResource 0203}" FontFamily="{StaticResource Pretendard}" FontSize="12" FontStyle="Normal" FontWeight="Light" Foreground="#999999" LineHeight="14" TextAlignment="Left" Margin="35,23,0,0" />
+    </StackPanel>
+    <StackPanel Orientation="Horizontal" Grid.Row="9" Grid.Column="4" Grid.RowSpan="3" Margin="0,0,0,0" VerticalAlignment="Top">
+      <Button cal:Message.Attach="[Event Click] = [Action ButtonMenu($source, $eventArgs)]" Tag="btnApprReq" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="5,0,0,0" Width="71" Height="95" Padding="0,0,0,0" BorderThickness="0,0,0,0">
+        <Button.Background>
+          <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/resource/images/btn_base_orange_91x95.png" />
+        </Button.Background>
+        <TextBlock Text="{StaticResource 0075}" FontFamily="{StaticResource Pretendard}" FontSize="13" FontStyle="Normal" FontWeight="ExtraBold" Foreground="#FFFFFFFF" LineHeight="14" TextAlignment="Left" />
+      </Button>
+    </StackPanel>
+    <StackPanel Orientation="Horizontal" Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="2" Margin="0,0,0,0" VerticalAlignment="Top">
+      <CheckBox Style="{StaticResource CheckboxStyle}" IsChecked="True" FontFamily="{StaticResource Pretendard}" Margin="70,10,0,0" FontSize="16" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000">
+        <TextBlock VerticalAlignment="Center" Text="{StaticResource 0209}" FontFamily="{StaticResource Pretendard}" FontSize="16" FontStyle="Normal" FontWeight="Bold" Foreground="#000000" LineHeight="14" TextAlignment="Left" Margin="5,0,0,0" />
+      </CheckBox>
+    </StackPanel>
+  </Grid>
+</UserControl>

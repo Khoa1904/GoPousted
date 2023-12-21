@@ -1,0 +1,37 @@
+<Application x:Class="GoPOS.App" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="clr-namespace:GoPOS">
+  <Application.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary>
+          <!-- 기존 Samples -->
+          <!--
+                    <local:SamplesBootstrapper x:Key="Bootstrapper" />
+                    -->
+          <!-- GOPOS -->
+          <local:Bootstrapper x:Key="Bootstrapper" />
+          <FontFamily x:Key="Pretendard-Black">applicaton:,,,/Fonts/#Pretendard Black</FontFamily>
+          <FontFamily x:Key="Pretendard">applicaton:,,,/Fonts/#Pretendard</FontFamily>
+          <FontFamily x:Key="Pretendard-ExtraBold">applicaton:,,,/Fonts/#Pretendard ExtraBold</FontFamily>
+          <FontFamily x:Key="Pretendard-ExtraLight">applicaton:,,,/Fonts/#Pretendard ExtraLight</FontFamily>
+          <FontFamily x:Key="Pretendard-Light">applicaton:,,,/Fonts/#Pretendard Light</FontFamily>
+          <FontFamily x:Key="Pretendard-Medium">applicaton:,,,/Fonts/#Pretendard Medium</FontFamily>
+          <FontFamily x:Key="Pretendard-Regular">applicaton:,,,/Fonts/#Pretendard Regular</FontFamily>
+          <FontFamily x:Key="Pretendard-SemiBold">applicaton:,,,/Fonts/#Pretendard SemiBold</FontFamily>
+          <FontFamily x:Key="Pretendard-Thin">applicaton:,,,/Fonts/#Pretendard Thin</FontFamily>
+          <Style x:Key="MainView" TargetType="{x:Type Window}">
+            <Setter Property="FontFamily" Value="Malgun Gothic" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="Background" Value="#ECECEC" />
+          </Style>
+          <ResourceDictionary.MergedDictionaries>
+            <ResourceDictionary Source="/GoPOS.Common;component/Helpers/ThemeHelper/GoControl.xaml" />
+            <ResourceDictionary Source="/GoPOS.Common;component/Style/Common_Style.xaml" />
+          </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+        <ResourceDictionary Source="pack://application:,,,/GoPOS.Resources;component/Resource/StringResources.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="pack://application:,,,/GoPOS.Resources;component/Resource/SystemResources.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+  </Application.Resources>
+</Application>

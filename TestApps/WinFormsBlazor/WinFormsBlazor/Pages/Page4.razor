@@ -1,0 +1,21 @@
+﻿@page "/page4"
+
+<h1>Page4</h1>
+
+
+<p>
+	<input class="form-control" type="text" value="@qrValue" @onchange="GetQrCode" />
+</p>
+<p>data: @qrcode</p>
+
+@code {
+	private string? qrcode { get; set; }
+	private string? qrValue { get; set; }
+
+	private void GetQrCode(ChangeEventArgs e)
+	{
+		qrcode = (string?)e.Value;
+		qrValue = string.Empty;
+		//MessageBox.Show(qrcode);
+	}
+}

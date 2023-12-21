@@ -1,0 +1,102 @@
+﻿<views:UCViewBase  xmlns:views="clr-namespace:GoPOS.Common.Views;assembly=GoPOS.Common"
+                   x:Class="GoPOS.OrderPay.Views.Controls.PaymentDetailsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GoPOS.OrderPay.Views.Controls"
+             mc:Ignorable="d" Background="Transparent"
+             xmlns:viewModel="clr-namespace:GoPOS.OrderPay.ViewModels.Controls"              
+             d:DataContext="{d:DesignInstance viewModel:PaymentDetailsViewModel}" 
+             d:DesignHeight="259" d:DesignWidth="238">
+    <views:UCViewBase.Resources>
+        <views:IndexConverter x:Key="IndexConverter" />
+    </views:UCViewBase.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="58" />
+            <ColumnDefinition Width="90" />
+            <ColumnDefinition Width="79" />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1" Margin="5,0,0,0">
+            <TextBlock x:Name="title" Margin="10,0,0,0"  Text="No" 
+                       FontFamily="{StaticResource Pretendard}"  FontStyle="Normal" FontWeight="Bold" Foreground="#fa7514" 
+                        VerticalAlignment="Center" TextAlignment="Right" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="1" Margin="10,0,0,0">
+            <TextBlock Margin="0,0,0,0"  Text="결제수단명" 
+                       FontFamily="{StaticResource Pretendard}" FontStyle="Normal" FontWeight="Bold" Foreground="#fa7514" 
+                       LineHeight="14" VerticalAlignment="Center" TextAlignment="Right" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="1" Margin="15,0,0,0">
+            <TextBlock  Margin="0,0,0,0" Text="결제금액" 
+                       FontFamily="{StaticResource Pretendard}" FontStyle="Normal" FontWeight="Bold" Foreground="#fa7514" 
+                        VerticalAlignment="Center" TextAlignment="Right" />
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" Margin="0,0,2,0">
+            <ListView ScrollViewer.HorizontalScrollBarVisibility="Hidden" Name="ListOrder" Grid.Row="0" FontSize="13" Width="221" Padding="1"
+                       Background="#303235" ItemsSource="{Binding TENDER}" VerticalAlignment="Top" Height="228">
+                <ListView.Resources>
+                    <Style TargetType="GridViewColumnHeader">
+                        <Setter Property="Visibility" Value="Collapsed" />
+                    </Style>
+                </ListView.Resources>
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListViewItem}">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        <Setter Property="Foreground" Value="GhostWhite" />
+                        <Setter Property="Margin" Value="5,2,-1,0" />
+                        <Setter Property="Background" Value="#303235" />
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Width="50" DisplayMemberBinding="{Binding RelativeSource={RelativeSource FindAncestor, 
+                                         AncestorType={x:Type ListViewItem}},
+                                         Converter={StaticResource IndexConverter}}" >
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <TextBlock  HorizontalAlignment="Center" Height="22"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Width="95">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock  x:Name="txtPRD_Flag" FontWeight="Normal" 
+                                                     Height="22" Margin="0,0,0,0" Text="{Binding PAY_TYPE_NAME}">
+                                        </TextBlock>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        
+                        <GridViewColumn  Width="81">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                            <TextBlock Text="{Binding APPR_AMT, StringFormat={}{0:N0}}" TextAlignment="Right"  Margin="0 0 25 0"  Height="22">
+                                            </TextBlock>
+                                        </StackPanel>
+
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+        </StackPanel>
+    </Grid>
+</views:UCViewBase>

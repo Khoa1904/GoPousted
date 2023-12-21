@@ -1,0 +1,73 @@
+﻿@using System.ComponentModel;
+@using System.Runtime.InteropServices;
+@page "/settime"
+
+<h3>시스템 시간 변경</h3>
+
+<table class="table" border="1" colspacing="5" cellpadding="10">
+    <tbody>
+        <tr>
+            <td>
+                <div class="input-group">
+                    <input type="text" class="form-control" value="@chgTime" @oninput="@((e) => { chgTime=(string?)e.Value; })">
+                    <button type="button" class="btn btn-success" @onclick="ChangeSystemTime">시스템 시간 변경</button>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+@code {
+    private string? chgTime = DateTime.Now.AddHours(-1).ToString("yyyy-MM-dd hh:mm:ss");
+    private string? inputValue { get; set; }
+
+    [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
+    public static extern int SetSystemTime([In] SystemTime st);
+
+    public struct SystemTime
+    {
+        public ushort wYear;
+        public ushort wMonth;
+        public ushort wDayOfWeek;
+        public ushort wDay;
+        public ushort wHour;
+        public ushort wMinute;
+        public ushort wSecond;
+        public ushort wMilliseconds;
+    }
+
+    private void ChangeSystemTime()
+    {
+        try
+        {
+            DateTime dtDateTime = Convert.ToDateTime(chgTime);
+            dtDateTime = dtDateTime.AddHours(-9);                                                               //  우리나라의 표준 시간대로 변경하기 위해서
+
+            // 컴퓨터의 시간을 변경한다.
+            SystemTime ServerTime = new()
+            {
+                wYear = (ushort)dtDateTime.Year,
+                wMonth = (ushort)dtDateTime.Month,
+                wDay = (ushort)dtDateTime.Day,
+                wHour = (ushort)dtDateTime.Hour,
+                wMinute = (ushort)dtDateTime.Minute,
+                wSecond = (ushort)dtDateTime.Second
+            };
+
+            if (SetSystemTime(ServerTime) != 0)
+            {
+                MessageBox.Show(string.Format("{0}년{1}월{2}일 {3}시{4}분{5}초", ServerTime.wYear, ServerTime.wMonth, ServerTime.wDay, ServerTime.wHour, ServerTime.wMinute, ServerTime.wSecond));
+            }
+            else
+            {
+                MessageBox.Show(string.Format("{0}", new Win32Exception(Marshal.GetLastWin32Error())));
+            }
+        }
+        catch (FormatException ex)
+        {
+            MessageBox.Show(ex.Message);
+            return;
+        }
+    }
+}

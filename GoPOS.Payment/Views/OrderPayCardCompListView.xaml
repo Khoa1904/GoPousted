@@ -1,0 +1,214 @@
+<views:UCViewBase  xmlns:views="clr-namespace:GoPOS.Common.Views;assembly=GoPOS.Common"
+                   x:Class="GoPOS.Views.OrderPayCardCompListView" 
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+                   xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                   xmlns:viewModel="clr-namespace:GoPOS.ViewModels" 
+                   xmlns:helpers="clr-namespace:GoPOS.Common.Helpers.Controls;assembly=GoPOS.Common" 
+                   d:DataContext="{d:DesignInstance viewModel:OrderPayCardCompListViewModel}" 
+                   xmlns:cal="http://www.caliburnproject.org" mc:Ignorable="d" d:DesignHeight="670" d:DesignWidth="490">
+    <UserControl.Resources>
+        <Style TargetType="{x:Type CheckBox}" x:Key="myCheckboxStyle">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type CheckBox}">
+                        <StackPanel Orientation="Horizontal">
+                            <Image x:Name="checkboxImage" Source="pack://application:,,,/GoPOS.Resources;component/resource/images/chk_off.png" Width="27" />
+                            <ContentPresenter />
+                        </StackPanel>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="checkboxImage" Property="Source" Value="pack://application:,,,/GoPOS.Resources;component/resource/images/chk_on.png" />
+                            </Trigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <!--<Condition Property="IsMouseOver" Value="True"/>-->
+                                    <Condition Property="IsChecked" Value="False" />
+                                </MultiTrigger.Conditions>
+                                <Setter TargetName="checkboxImage" Property="Source" Value="pack://application:,,,/GoPOS.Resources;component/resource/images/chk_off.png" />
+                            </MultiTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid Margin="0,0,0,0" Background="#e9e9e9">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="630"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Margin="0,0,0,0">
+            <Image Source="/GoPOS.Resources;component/resource/Images/pinwheel.png" Margin="20,0,0,0" Height="18" Width="18" />
+            <TextBlock Text="{StaticResource 0066}" FontFamily="{StaticResource Pretendard}" FontSize="20" Height="23" Margin="10,0,0,0" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" LineHeight="14" TextAlignment="Left" />
+            <StackPanel.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" >
+                    <GradientStop Offset="0" Color="#fefefe" />
+                    <GradientStop Offset="1" Color="#e9e9e9" />
+                </LinearGradientBrush>
+            </StackPanel.Background>
+        </StackPanel>
+        <StackPanel Grid.Row="0" Grid.Column="5" >
+            <views:GoButton Command="{Binding CloseCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" Tag="ButtonClose"
+                   BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="0,5,10,0" Width="30" Height="30" Padding="0,0,0,0" BorderThickness="0,0,0,0"
+                   HorizontalAlignment="Right" Style="{StaticResource ClozeBtn}"        >
+            </views:GoButton>
+        </StackPanel>
+
+        <Grid Margin="10,0,10,10" Background="white" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="80" />
+                <RowDefinition Height="90" />
+                <RowDefinition Height="90" />
+                <RowDefinition Height="25" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="15" />
+                <ColumnDefinition Width="40" />
+                <ColumnDefinition Width="40" />
+                <ColumnDefinition Width="130" />
+                <ColumnDefinition Width="110" />
+                <ColumnDefinition Width="120" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Row="1" Grid.Column="2" VerticalAlignment="Center">
+                <Image Source="/GoPOS.Resources;component/resource/Images/pr.png" Margin="0,0,0,0" Height="12" Width="15" />
+            </StackPanel>
+            <StackPanel Grid.Row="1" Grid.Column="3" VerticalAlignment="Center" Margin="0,0,0,3">
+                <TextBlock Text="임의등록" Foreground="#555151" FontWeight="Bold" FontSize="16" />
+            </StackPanel>
+            
+            <StackPanel Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="4" Margin="-35 0 0 0" Grid.RowSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Border BorderBrush="DarkGray" BorderThickness="1,1,1,1" CornerRadius="1">
+                <Grid Background="#f0f0f0" x:Name="Cardlist">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="75" />
+                        <RowDefinition Height="75" />
+                        <RowDefinition Height="75" />
+                    </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2" />
+                            <ColumnDefinition Width="120" />
+                            <ColumnDefinition Width="120" />
+                            <ColumnDefinition Width="120" />
+                            <ColumnDefinition Width="2" />
+                        </Grid.ColumnDefinitions>
+
+                        <Border Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Background="White">
+                            <views:GoButton 
+                                            Command="{Binding ChooseCardComp}"
+                                            CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}"                                             
+                                            x:Name="BtnIcon1" 
+                                            Style="{StaticResource BtnIcon}" Tag="KBCARD-002">
+                                <Button.Background>
+                                    <ImageBrush Stretch="None" ImageSource="/GoPOS.Resources;component/resource/Images/CrCard/card1.png"/>
+                                </Button.Background>
+                            </views:GoButton>
+                        </Border>
+                        <Border Background="White" Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <views:GoButton 
+                                Command="{Binding ChooseCardComp}"
+                                CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}"                                             
+                                x:Name="BtnIcon2" Style="{StaticResource BtnIcon}" Tag="HANACARD-003">
+                                <Button.Background>
+                                    <ImageBrush Stretch="None" ImageSource="/GoPOS.Resources;component/resource/Images/CrCard/card2.png"/>
+                                </Button.Background>
+                            </views:GoButton>
+                        </Border>
+                        <Border Background="White" Grid.Row="0" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <views:GoButton 
+                                Command="{Binding ChooseCardComp}"
+                                CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}"                                             
+                                x:Name="BtnIcon3" Style="{StaticResource BtnIcon}" Tag="SHINHANCARD-004">
+                                <Button.Background>
+                                    <ImageBrush Stretch="None" ImageSource="/GoPOS.Resources;component/resource/Images/CrCard/card3.png"/>
+                                </Button.Background>
+                            </views:GoButton>
+                        </Border>
+                    
+                        <Border Background="White" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"  >
+                            <views:GoButton 
+                                Command="{Binding ChooseCardComp}"
+                                CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}"                                             
+                                x:Name="BtnIcon4" Style="{StaticResource BtnIcon}" Tag="SAMSUNGCARD-005">
+                                <Button.Background>
+                                    <ImageBrush Stretch="None" ImageSource="/GoPOS.Resources;component/resource/Images/CrCard/card4.png"/>
+                                </Button.Background>
+                            </views:GoButton>
+                        </Border>
+                        <Border Background="White" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"  >
+                            <views:GoButton 
+                                Command="{Binding ChooseCardComp}"
+                                CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}"                                             
+                                x:Name="BtnIcon5" Style="{StaticResource BtnIcon}" Tag="HYUNDAICARD-006">
+                                <Button.Background>
+                                    <ImageBrush Stretch="None" ImageSource="/GoPOS.Resources;component/resource/Images/CrCard/card8.png"/>
+                                </Button.Background>
+                            </views:GoButton>
+                        </Border>
+                        <Border Background="White" Grid.Row="1" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center"  >
+                            <views:GoButton 
+                                Command="{Binding ChooseCardComp}"
+                                CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}"                                             
+                                x:Name="BtnIcon6" Style="{StaticResource BtnIcon}" Tag="BCCARD-001">
+                                <Button.Background>
+                                    <ImageBrush Stretch="None" ImageSource="/GoPOS.Resources;component/resource/Images/CrCard/card5.png"/>
+                                </Button.Background>
+                            </views:GoButton>
+                        </Border>
+                                                             
+                        <Border Background="White" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"  >
+                            <views:GoButton 
+                                Command="{Binding ChooseCardComp}"
+                                CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}"                                             
+                                x:Name="BtnIcon7" Style="{StaticResource BtnIcon}" Tag="LOTTECARD-007">
+                                <Button.Background>
+                                    <ImageBrush Stretch="None" ImageSource="/GoPOS.Resources;component/resource/Images/CrCard/card6.png"/>
+                                </Button.Background>
+                            </views:GoButton>
+                        </Border>
+                        <Border Background="White" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"  >
+                            <views:GoButton 
+                                Command="{Binding ChooseCardComp}"
+                                CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}"                                             
+                                x:Name="BtnIcon8" Style="{StaticResource BtnIcon}" Tag="NONGHYUPCARD-008">
+                                <Button.Background>
+                                    <ImageBrush Stretch="None" ImageSource="/GoPOS.Resources;component/resource/Images/CrCard/card7.png"/>
+                                </Button.Background>
+                            </views:GoButton>
+                        </Border>
+                        <Border Background="White" Grid.Row="2" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center"  >
+                            <views:GoButton 
+                                Command="{Binding ChooseCardComp}"
+                                CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}"                                             
+                                x:Name="BtnIcon9" Style="{StaticResource BtnIcon}" Tag="OTHERCARD-009">
+                                <TextBlock Text="기타카드" FontSize="16" FontWeight="Bold" />
+                            </views:GoButton>
+                        </Border>
+                    </Grid>
+                </Border>
+            </StackPanel>
+
+            <Border Grid.Row="6" Style="{StaticResource Dotted3}" Grid.Column="1" Grid.ColumnSpan="5" BorderThickness="0,1,0,1" ></Border>
+            <StackPanel Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center">
+                <TextBlock Text="* 카드번호 :" FontSize="14" LineHeight="20" FontWeight="Bold" Foreground="#000000"/>                
+            </StackPanel>
+            <StackPanel Grid.Row="6" Grid.Column="3" Grid.ColumnSpan="1" VerticalAlignment="Center" Margin="0,0,2,0">
+                <TextBox helpers:TextBoxHelpers.IsNumeric="True" FontSize="14" Style="{StaticResource RoundedTB}" Text="{Binding CARD_NO}" Background="#fafafa" Height="25"/>
+            </StackPanel>
+            <StackPanel Grid.Row="6" Grid.Column="4" Grid.ColumnSpan="1" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,5,0">
+                <TextBlock Text="* 승인번호 :" FontSize="14" LineHeight="20" FontWeight="Bold" Foreground="#000000"/>
+            </StackPanel>
+            <StackPanel Grid.Row="6" Grid.Column="5" Grid.ColumnSpan="1" VerticalAlignment="Center" Margin="0,0,2,0">
+                <TextBox helpers:TextBoxHelpers.IsNumeric="True" FontSize="14" Style="{StaticResource RoundedTB}" Text="{Binding APPR_NO}" Background="#fafafa" Height="25"/>
+            </StackPanel>
+
+        </Grid>
+    </Grid>
+</views:UCViewBase>

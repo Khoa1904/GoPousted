@@ -1,0 +1,103 @@
+﻿@using WinFormsBlazor.Model;
+@using WinFormsBlazor.Service;
+@page "/cart"
+
+<h3>CartPage</h3>
+
+@if (cartList == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    @if (cartList.Count > 0)
+    {
+        <button type="button" class="btn btn-success" @onclick="@(e => DelCart())">장바구니 비우기</button>
+        <br />
+    }
+    <table class="table" border="1" colspacing="5" cellpadding="10">
+        <thead>
+            <tr>
+                <th>BlogId</th>
+                <th>Title</th>
+                <th>SubTitle</th>
+                <th>Num</th>
+                <th>Price</th>
+                <th>삭제</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var cart in cartList)
+            {
+            <tr>
+                <td>@cart.BlogId</td>
+                <td><a href="/cartview/@cart.BlogId">@cart.Title</a></td>
+                <td>@cart.SubTitle</td>
+                <td>
+                    <div class="input-group">
+                        @if (@cart.BlogNum > 1)
+                        {
+                            <button type="button" class="btn btn-secondary" @onclick="@(e => CalPrice(@cart.BlogId, @cart.BlogNum, "minus"))">-</button>
+                        }
+                        else
+                        {
+                            <button type="button" class="btn btn-secondary">-</button>
+                        }
+                        <input type="text" class="form-control" id="cnt" name="cnt" value="@cart.BlogNum" readonly>
+                        <button type="button" class="btn btn-success" @onclick="@(e => CalPrice(@cart.BlogId, @cart.BlogNum, "plus"))">+</button>
+                    </div>
+                </td>
+                <td>
+                    @{
+                        var Price = String.Format("{0:#,0}", @cart.BlogNum * @cart.BlogPrice);
+                    }
+                    @Price
+                </td>
+                <td><button type="button" class="btn btn-danger" @onclick="@(e => OneDelCart(@cart.BlogId))">-</button></td>
+            </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<Cart>? cartList { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await ShowCart();
+    }
+
+    public async Task ShowCart()
+    {
+        cartList = await CartService.CartItemsAsync();
+    }
+
+    private async Task CalPrice(int id, int num, string gubun)
+    {
+        int cnt;
+        if (gubun == "minus")
+        {
+            cnt = num - 1;
+        }
+        else
+        {
+            cnt = num + 1;
+        }
+
+        CartService.CartUpdate(id, cnt);
+        await ShowCart();
+    }
+
+    public async Task DelCart()
+    {
+        CartService.CartAllDelItem();
+        await ShowCart();
+    }
+
+    public async Task OneDelCart(int id)
+    {
+        CartService.CartOneDelItem(id);
+        await ShowCart();
+    }
+}

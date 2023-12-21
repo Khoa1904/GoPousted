@@ -1,0 +1,260 @@
+﻿<GetCommonCode>
+SELECT *
+FROM	MST_COMM_CODE                          
+WHERE	COM_CODE_FLAG   = @COM_CODE_FLAG
+AND		USE_YN    = 'Y'
+ORDER BY COM_CODE 
+</GetCommonCode>
+
+<GetCommonPos>
+SELECT distinct POS_NO 
+FROM			MST_INFO_POS                          
+WHERE			USE_YN			= 'Y' and SHOP_CODE = @SHOPCODE
+ORDER BY		POS_NO 
+</GetCommonPos>
+
+<GetSellingStatusByCategory>
+SELECT  TP.SHOP_CODE,  SALE_DATE,  POS_NO, SALE_YN, MC.MCLASS_CODE
+FROM TRN_PRDT TP
+INNER JOIN MST_INFO_PRODUCT PR ON TP.SHOP_CODE = PR.SHOP_CODE AND TP.PRD_CODE = PR.PRD_CODE
+INNER JOIN  MST_INFO_MCLASS MC ON TP.SHOP_CODE = MC.SHOP_CODE  AND MC.MCLASS_CODE = PR.MCLASS_CODE 
+WHERE  SHOP_CODE = @SHOP_CODE AND POS_NO = @POS_NO AND  SALE_YN = 'Y' 
+AND SALE_DATE BETWEEN @F_DATE AND @T_DATE
+GROUP BY  MCLASS_CODE
+</GetSellingStatusByCategory>
+
+<GetSettPosAccount>
+SELECT  POS_READY_AMT, EMP.SHOP_CODE, EMP.EMP_NO, EMP.EMP_NAME, POS.SALE_DATE, POS_NO, REGI_SEQ, CLOSE_FLAG
+	FROM MST_INFO_EMP EMP
+	INNER JOIN SETT_POSACCOUNT POS ON POS.SHOP_CODE = EMP.SHOP_CODE  
+	WHERE EMP.SHOP_CODE = @SHOP_CODE
+	AND POS.POS_NO = @POS_NO
+    AND SALE_DATE = @SALE_DATE
+	AND REGI_SEQ = @REGI_SEQ 
+</GetSettPosAccount>
+<SalesMiddleSettItems>
+
+SELECT FIRST 1	SP.REM_CHECK_AMT,
+				SP.REM_W100000_CNT,
+				SP.REM_W50000_CNT,
+				SP.REM_W10000_CNT,
+				SP.REM_W5000_CNT,
+				SP.REM_W1000_CNT,
+				SP.REM_W500_CNT,
+				SP.REM_W100_CNT,
+				SP.REM_W50_CNT,
+				SP.REM_W10_CNT,
+				SP.POS_READY_AMT,
+				SP.CASH_AMT,
+				SP.WEA_IN_CSH_AMT,
+				SP.TK_GFT_SALE_CSH_AMT,
+				SP.TK_FOD_SALE_CSH_AMT,
+				SP.POS_CSH_IN_AMT,
+				SP.POS_CSH_OUT_AMT,
+				SP.REPAY_CASH_AMT,
+				SP.CRD_CARD_AMT,
+				SP.TK_GFT_CNT,
+				SP.TK_GFT_UAMT,
+				SP.REPAY_TK_GFT_CNT,
+				SP.REPAY_TK_GFT_AMT,
+				SP.REM_TK_GFT_AMT,
+				SP.TK_GFT_AMT,
+				SP.TK_FOD_AMT,
+				SP.REM_TK_GFT_CNT ,
+				SP.TK_GFT_AMT,
+				SP.TK_FOD_AMT,
+				SP.TOT_SALE_AMT,
+				SP.RET_BILL_AMT,
+				SP.TOT_DC_AMT,
+				SP.NO_TAX_SALE_AMT,
+				SP.NO_VAT_SALE_AMT,
+				SP.CST_POINTUSE_AMT,
+				SP.VAT_AMT,
+				SP.VAT_SALE_AMT,
+				SP.DCM_SALE_AMT,				
+				CARD.CARD_S_CNT,
+				CARD.CARD_S_AMT,
+				CARD.CARD_C_CNT,
+				CARD.CARD_C_AMT
+FROM	SETT_POSACCOUNT AS SP
+		LEFT JOIN (
+		SELECT 	SHOP_CODE, POS_NO, SALE_DATE, REGI_SEQ,
+				(SELECT COUNT (*) FROM TRN_CARD WHERE SALE_YN = 'Y'	AND SALE_DATE  = @SALE_DATE  
+																	AND POS_NO	   = @POS_NO	
+																	AND REGI_SEQ   = @REGI_SEQ)		AS CARD_S_CNT,
+				SUM(CASE WHEN card.SALE_YN = 'Y' THEN card.APPR_AMT ELSE 0 END) AS CARD_S_AMT,
+				(SELECT COUNT (*) FROM TRN_CARD WHERE SALE_YN = 'N' AND SALE_DATE  = @SALE_DATE  
+																	AND POS_NO	   = @POS_NO	
+																	AND REGI_SEQ   = @REGI_SEQ)		AS CARD_C_CNT,
+				SUM(CASE WHEN card.SALE_YN = 'N' THEN card.APPR_AMT ELSE 0 END) AS CARD_C_AMT					
+		FROM TRN_CARD card 
+		WHERE CARD.SHOP_CODE = @SHOP_CODE AND CARD.SALE_DATE = @SALE_DATE AND CARD.POS_NO = @POS_NO AND CARD.REGI_SEQ = @REGI_SEQ
+		GROUP BY SHOP_CODE, POS_NO, SALE_DATE, REGI_SEQ)		
+		CARD ON CARD.SHOP_CODE = SP.SHOP_CODE AND CARD.POS_NO  = SP.POS_NO  AND CARD.SALE_DATE = SP.SALE_DATE AND CARD.REGI_SEQ = SP.REGI_SEQ 
+WHERE	SP.SHOP_CODE = @SHOP_CODE 
+  AND	SP.SALE_DATE = @SALE_DATE 
+  AND	SP.POS_NO = @POS_NO 
+  AND	SP.REGI_SEQ = @REGI_SEQ;
+
+</SalesMiddleSettItems>
+
+<GetMiddleGiftCard1>
+select  
+		 G.SALE_YN
+		,G.BILL_NO
+		,G.TK_GFT_UAMT
+		,G.TK_GFT_AMT
+		,M.TK_GFT_NAME
+		,COUNT(G.TK_GFT_CODE) AS TK_GFT_CNT
+		,G.TK_GFT_SALE_FLAG
+from	SETT_POSACCOUNT S left join TRN_GIFT G on	S.SHOP_CODE = G.SHOP_CODE
+											   and  S.SALE_DATE = G.SALE_DATE
+											   and  S.POS_NO	  = G.POS_NO	 
+											   and  S.REGI_SEQ  = G.REGI_SEQ 
+						  left join MST_INFO_TICKET M on G.SHOP_CODE     = M.SHOP_CODE
+													  and	 G.TK_GFT_CODE   = M.TK_GFT_CODE
+													  AND M.TK_CLASS_FLAG = 'G'
+
+where	 S.SHOP_CODE  = @SHOP_CODE  and
+		 S.SALE_DATE  = @SALE_DATE  and
+		 S.POS_NO	  = @POS_NO	   and
+		 S.REGI_SEQ	  = @REGI_SEQ  and  	
+		 (@SALE_YN IS NULL OR G.SALE_YN = @SALE_YN)
+ GROUP  BY 
+ G.SALE_YN
+,G.BILL_NO
+,G.TK_GFT_UAMT
+,G.TK_GFT_AMT
+,M.TK_GFT_NAME
+,G.TK_GFT_SALE_FLAG
+
+</GetMiddleGiftCard1>
+
+<GetMiddleGiftCard2>
+select 
+		 G.SALE_YN
+		,G.BILL_NO
+		,S.TK_GFT_AMT
+		,G.APPR_AMT
+		,M.TK_GFT_NAME
+		,COUNT(G.TK_GFT_CODE) AS TK_GFT_CNT 
+		,G.PPC_PROC_FLAG
+from	SETT_POSACCOUNT S left join TRN_EGIFT G on	  S.SHOP_CODE = G.SHOP_CODE
+												and   S.SALE_DATE = G.SALE_DATE
+												and   S.POS_NO	   = G.POS_NO	 
+												and   S.REGI_SEQ  = G.REGI_SEQ 
+						  left join MST_INFO_TICKET M on G.SHOP_CODE     = M.SHOP_CODE
+where	 S.SHOP_CODE  = @SHOP_CODE  and
+		 S.SALE_DATE  = @SALE_DATE  and
+		 S.POS_NO	  = @POS_NO	   and
+		 S.REGI_SEQ	  = @REGI_SEQ   and
+		 (@SALE_YN IS NULL OR G.SALE_YN = @SALE_YN)
+ GROUP  BY 
+ G.SALE_YN
+,G.BILL_NO
+,S.TK_GFT_AMT
+,G.APPR_AMT
+,M.TK_GFT_NAME
+,G.PPC_PROC_FLAG
+
+</GetMiddleGiftCard2>
+
+<GetMiddleCardAppr>
+select       K.BILL_NO 
+			,'POS' as EQM_TYPE 
+			,K.APPR_PROC_FLAG as "APPR_IDT_TYPE"
+			,K.APPR_LOG_NO as "APPR_IDT_NO"
+			,K.SALE_YN 
+			,K.APPR_NO 
+			,CASE WHEN K.SALE_YN = 'N' THEN K.APPR_AMT * -1 ELSE K.APPR_AMT END AS  APPR_AMT 
+from	SETT_POSACCOUNT S inner join TRN_CARD K on	S.SHOP_CODE = K.SHOP_CODE and 
+													S.SALE_DATE	= K.SALE_DATE and
+													S.POS_NO	= K.POS_NO	  and
+													S.REGI_SEQ  = K.REGI_SEQ
+where	S.SHOP_CODE  = @SHOP_CODE  and
+		S.SALE_DATE  = @SALE_DATE  and
+		S.POS_NO	  = @POS_NO	   and
+		S.REGI_SEQ	  = @REGI_SEQ  and
+		(@SALE_YN IS NULL OR K.SALE_YN = @SALE_YN)
+
+
+</GetMiddleCardAppr>
+
+<GetMiddleCashAppr>
+select       BILL_NO 
+			,'POS' as EQM_TYPE  
+			,APPR_IDT_TYPE
+			,APPR_IDT_NO
+			,SALE_YN 
+			,APPR_NO 
+			,CASE WHEN SALE_YN = 'N' THEN APPR_AMT * -1 ELSE APPR_AMT END AS  APPR_AMT 
+from	SETT_POSACCOUNT S inner join TRN_CASHREC	 C on	S.SHOP_CODE = C.SHOP_CODE and 
+														S.SALE_DATE	= C.SALE_DATE and
+														S.POS_NO	= C.POS_NO	  and
+														S.REGI_SEQ  = C.REGI_SEQ
+where	S.SHOP_CODE  = @SHOP_CODE  and
+		S.SALE_DATE  = @SALE_DATE  and
+		S.POS_NO	  = @POS_NO	   and
+		S.REGI_SEQ	  = @REGI_SEQ  
+
+
+</GetMiddleCashAppr>
+
+<GetTodaySettle>
+		 select 
+			 SUM(RET_BILL_AMT     ) AS RET_BILL_AMT
+			,SUM(TOT_SALE_AMT     ) AS TOT_SALE_AMT  
+			,SUM(TOT_DC_AMT       ) AS TOT_DC_AMT    
+			,SUM(S.DCM_SALE_AMT   ) AS DCM_SALE_AMT 
+			,SUM(VAT_SALE_AMT     ) AS VAT_SALE_AMT  
+			,SUM(NO_VAT_SALE_AMT  ) AS NO_VAT_SALE_AMT  
+			,SUM(S.VAT_AMT        ) AS VAT_AMT      
+			,SUM(TOT_BILL_CNT     ) AS TOT_BILL_CNT  
+			,SUM(VISIT_CST_CNT    ) AS VISIT_CST_CNT 
+			,SUM(RET_BILL_CNT     ) AS RET_BILL_CNT  
+			,SUM(CASH_AMT         ) AS CASH_AMT      
+			,SUM(CASH_CNT         ) AS CASH_CNT      
+			,SUM(CRD_CARD_AMT     ) AS CRD_CARD_AMT
+			,SUM(CRD_CARD_CNT     ) AS CRD_CARD_CNT 			
+			,SUM(WES_AMT          ) AS WES_AMT       
+			,SUM(TK_GFT_AMT       ) AS TK_GFT_AMT
+			,SUM(TK_GFT_CNT       ) AS TK_GFT_CNT    
+			,SUM(JCD_CARD_AMT     ) AS JCD_CARD_AMT
+			,SUM(JCD_CARD_CNT     ) AS JCD_CARD_CNT  			
+			,SUM(TK_FOD_AMT       ) AS TK_FOD_AMT
+			,SUM(TK_FOD_CNT       ) AS TK_FOD_CNT   
+			,SUM(RFC_AMT          ) AS RFC_AMT       
+			,SUM(SP_PAY_AMT       ) AS SP_PAY_AMT    
+			,SUM(EGIFT_AMT        ) AS EGIFT_AMT     
+            ,SUM(S.PPC_CARD_AMT   )	AS PPC_CARD_AMT	
+			,SUM(DC_GEN_AMT       ) AS DC_GEN_AMT    
+			,SUM(DC_SVC_AMT       ) AS DC_SVC_AMT    
+			,SUM(DC_JCD_AMT       ) AS DC_JCD_AMT    
+			,SUM(DC_CPN_AMT       ) AS DC_CPN_AMT    
+			,SUM(DC_CST_AMT       ) AS DC_CST_AMT    
+			,SUM(DC_TFD_AMT       ) AS DC_TFD_AMT    
+			,SUM(DC_PRM_AMT       ) AS DC_PRM_AMT    
+			,SUM(DC_CRD_AMT       ) AS DC_CRD_AMT    
+			,SUM(DC_PACK_AMT      ) AS DC_PACK_AMT   
+			,SUM(CST_POINTUSE_AMT ) AS CST_POINT_AMT 
+			,SUM(CST_POINTUSE_CNT ) AS CST_POINT_CNT
+			,SUM(PRE_PNT_SALE_CRD_AMT ) AS PRE_PNT_SALE_CRD_AMT 
+from	SETT_POSACCOUNT S 	
+where	S.SHOP_CODE  = @SHOP_CODE  and
+		S.SALE_DATE  = @SALE_DATE  and
+		S.POS_NO	 = @POS_NO	  and
+		S.REGI_SEQ <> '00'		
+</GetTodaySettle>
+
+<GetCardDistinct>
+select	ISS_CRDCP_NAME as "CompanyName"
+		,count (*) as "SaleCount"
+		,sum (APPR_AMT) as "amount"
+		from TRN_CARD C inner join SETT_POSACCOUNT S on C.SHOP_CODE = S.SHOP_CODE
+													and	C.POS_NO    = S.POS_NO
+													and	C.SALE_DATE = S.SALE_DATE
+where	S.SHOP_CODE  = @SHOP_CODE  and
+		S.SALE_DATE  = @SALE_DATE  and
+		S.POS_NO	 = @POS_NO
+GROUP BY ISS_CRDCP_NAME
+</GetCardDistinct>

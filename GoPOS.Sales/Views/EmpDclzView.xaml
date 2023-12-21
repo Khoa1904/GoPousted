@@ -1,0 +1,136 @@
+<UserControl x:Class="GoPOS.Views.EmpDclzView" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro.Platform" xmlns:local="clr-namespace:GoPOS.Views" mc:Ignorable="d" Width="1024" Height="768">
+  <Grid Style="{DynamicResource baseGrid}">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="25" />
+      <RowDefinition Height="73" />
+      <RowDefinition Height="12" />
+      <RowDefinition Height="618" />
+      <RowDefinition Height="17" />
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="27" />
+      <ColumnDefinition Width="15" />
+      <ColumnDefinition Width="737" />
+      <ColumnDefinition Width="13" />
+      <ColumnDefinition Width="9" />
+      <ColumnDefinition Width="199" />
+      <ColumnDefinition Width="24" />
+    </Grid.ColumnDefinitions>
+    <Grid.Background>
+      <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/Resource/Images/SalesMngMain.png" />
+    </Grid.Background>
+    <DockPanel Grid.Row="1" Grid.Column="1" Background="{x:Null}" Grid.ColumnSpan="3">
+      <ContentControl cal:View.Model="{Binding SalesMngHaeder}" Margin="0, 0, 0, 0" />
+    </DockPanel>
+    <DockPanel Grid.Row="3" Grid.Column="2" Background="#ffffff">
+      <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="37" />
+          <RowDefinition Height="104" />
+          <RowDefinition Height="18" />
+          <RowDefinition Height="180" />
+          <RowDefinition Height="52" />
+          <RowDefinition Height="242" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="253" />
+          <ColumnDefinition Width="261" />
+          <ColumnDefinition Width="243" />
+        </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Margin="0,0,0,0" Background="#f5f5f5">
+          <Image VerticalAlignment="Center" Width="11" Height="11" Source="pack://application:,,,/GoPOS.Resources;component/Resource/Images/pr.png" Margin="19,0,10,0" />
+          <TextBlock Text="{StaticResource 0412}" FontFamily="{StaticResource Pretendard}" FontSize="18" FontStyle="Normal" FontWeight="Bold" Foreground="#FF455881" LineHeight="14" VerticalAlignment="Center" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" Margin="0,0,0,0">
+          <Image VerticalAlignment="Center" Width="10" Height="10" Source="pack://application:,,,/GoPOS.Resources;component/Resource/Images/pr.png" Margin="20,0,0,0" />
+          <TextBlock VerticalAlignment="Center" Text="{StaticResource 0413}" FontFamily="{StaticResource Pretendard}" FontSize="16" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" LineHeight="14" TextAlignment="Left" Margin="10,0,0,0" />
+        </StackPanel>
+        <StackPanel Grid.Row="3" Grid.Column="1">
+          <Grid>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="5" />
+              <RowDefinition Height="3" />
+              <RowDefinition Height="30" />
+              <RowDefinition Height="3" />
+              <RowDefinition Height="30" />
+              <RowDefinition Height="3" />
+              <RowDefinition Height="30" />
+              <RowDefinition Height="3" />
+              <RowDefinition Height="30" />
+              <RowDefinition Height="3" />
+              <RowDefinition Height="30" />
+              <RowDefinition Height="3" />
+              <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="2" />
+              <ColumnDefinition Width="261" />
+              <ColumnDefinition Width="2" />
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="6" Margin="0,-28,0,0">
+              <TextBlock VerticalAlignment="Center" Text="{StaticResource 0414}" FontFamily="{StaticResource Pretendard}" FontSize="12" FontStyle="Normal" FontWeight="Light" Foreground="#979797" LineHeight="14" TextAlignment="Left" Margin="15,20,0,0" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" Margin="0,0,0,0">
+              <TextBlock VerticalAlignment="Center" Text="{StaticResource 0013}" FontFamily="{StaticResource Pretendard}" FontSize="14" FontStyle="Normal" FontWeight="Bold" Foreground="#000000" LineHeight="14" TextAlignment="Left" Margin="18,0,0,0" />
+              <TextBlock Width="70" VerticalAlignment="Center" Text="{StaticResource 0415}" FontFamily="{StaticResource Pretendard}" FontSize="14" FontStyle="Normal" FontWeight="Bold" Foreground="#000000" LineHeight="14" TextAlignment="Right" Margin="5,0,0,0" />
+              <TextBox Text="" Width="141" Background="#fbb818" BorderThickness="1" BorderBrush="#a15b20" FontFamily="{StaticResource Pretendard}" FontStyle="Normal" TextAlignment="Center" VerticalContentAlignment="Center" FontWeight="Normal" FontSize="14px" Height="25" Margin="10,0,0,0" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="6" Margin="0,-28,0,0">
+              <TextBlock VerticalAlignment="Center" Text="{StaticResource 0414}" FontFamily="{StaticResource Pretendard}" FontSize="12" FontStyle="Normal" FontWeight="Light" Foreground="#979797" LineHeight="14" TextAlignment="Left" Margin="15,20,0,0" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="1" Margin="0,0,0,0">
+              <TextBlock VerticalAlignment="Center" Text="{StaticResource 0013}" FontFamily="{StaticResource Pretendard}" FontSize="14" FontStyle="Normal" FontWeight="Bold" Foreground="#000000" LineHeight="14" TextAlignment="Left" Margin="18,0,0,0" />
+              <TextBlock Width="70" VerticalAlignment="Center" Text="{StaticResource 0416}" FontFamily="{StaticResource Pretendard}" FontSize="14" FontStyle="Normal" FontWeight="Bold" Foreground="#000000" LineHeight="14" TextAlignment="Right" Margin="5,0,0,0" />
+              <TextBox x:Name="EMP_NO" Text="{Binding EMP_NO}" Width="141" Background="#fbb818" BorderThickness="1" BorderBrush="#a15b20" FontFamily="{StaticResource Pretendard}" FontStyle="Normal" TextAlignment="Center" VerticalContentAlignment="Center" FontWeight="Normal" FontSize="14px" Height="25" Margin="10,0,0,0" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="6" Margin="0,-28,0,0">
+              <TextBlock VerticalAlignment="Center" Text="{StaticResource 0414}" FontFamily="{StaticResource Pretendard}" FontSize="12" FontStyle="Normal" FontWeight="Light" Foreground="#979797" LineHeight="14" TextAlignment="Left" Margin="15,20,0,0" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="1" Margin="0,0,0,0">
+              <TextBlock VerticalAlignment="Center" Text="{StaticResource 0013}" FontFamily="{StaticResource Pretendard}" FontSize="14" FontStyle="Normal" FontWeight="Bold" Foreground="#000000" LineHeight="14" TextAlignment="Left" Margin="18,0,0,0" />
+              <TextBlock Width="70" VerticalAlignment="Center" Text="{StaticResource 0130}" FontFamily="{StaticResource Pretendard}" FontSize="14" FontStyle="Normal" FontWeight="Bold" Foreground="#000000" LineHeight="14" TextAlignment="Right" Margin="5,0,0,0" />
+              <TextBox x:Name="EMP_PWD" Text="{Binding EMP_PWD}" Width="141" Background="#fbb818" BorderThickness="1" BorderBrush="#a15b20" FontFamily="{StaticResource Pretendard}" FontStyle="Normal" TextAlignment="Center" VerticalContentAlignment="Center" FontWeight="Normal" FontSize="14px" Height="25" Margin="10,0,0,0" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="6" Margin="0,-28,0,0">
+              <TextBlock VerticalAlignment="Center" Text="{StaticResource 0414}" FontFamily="{StaticResource Pretendard}" FontSize="12" FontStyle="Normal" FontWeight="Light" Foreground="#979797" LineHeight="14" TextAlignment="Left" Margin="15,20,0,0" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Row="8" Grid.Column="1" Margin="0,0,0,0">
+              <TextBlock VerticalAlignment="Center" Text="{StaticResource 0013}" FontFamily="{StaticResource Pretendard}" FontSize="14" FontStyle="Normal" FontWeight="Bold" Foreground="#000000" LineHeight="14" TextAlignment="Left" Margin="18,0,0,0" />
+              <TextBlock Width="70" VerticalAlignment="Center" Text="{StaticResource 0417}" FontFamily="{StaticResource Pretendard}" FontSize="14" FontStyle="Normal" FontWeight="Bold" Foreground="#000000" LineHeight="14" TextAlignment="Right" Margin="5,0,0,0" />
+              <TextBox Text="{Binding EMP_NAME}" Width="141" Style="{StaticResource txtBox}" FontFamily="{StaticResource Pretendard}" FontStyle="Normal" TextAlignment="Center" VerticalContentAlignment="Center" FontWeight="Normal" FontSize="14px" Height="25" Margin="10,0,0,0" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="6" Margin="0,-28,0,0">
+              <TextBlock VerticalAlignment="Center" Text="{StaticResource 0414}" FontFamily="{StaticResource Pretendard}" FontSize="12" FontStyle="Normal" FontWeight="Light" Foreground="#979797" LineHeight="14" TextAlignment="Left" Margin="15,20,0,0" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Row="10" Grid.Column="1" Margin="0,0,0,0">
+              <TextBlock VerticalAlignment="Center" Text="{StaticResource 0013}" FontFamily="{StaticResource Pretendard}" FontSize="14" FontStyle="Normal" FontWeight="Bold" Foreground="#000000" LineHeight="14" TextAlignment="Left" Margin="18,0,0,0" />
+              <TextBlock Width="70" VerticalAlignment="Center" Text="{StaticResource 0418}" FontFamily="{StaticResource Pretendard}" FontSize="14" FontStyle="Normal" FontWeight="Bold" Foreground="#000000" LineHeight="14" TextAlignment="Right" Margin="5,0,0,0" />
+              <TextBox Text="{Binding EMP_IO}" Width="141" Style="{StaticResource txtBox}" FontFamily="{StaticResource Pretendard}" FontStyle="Normal" TextAlignment="Center" VerticalContentAlignment="Center" FontWeight="Normal" FontSize="14px" Height="25" Margin="10,0,0,0" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Row="11" Grid.Column="1" Grid.ColumnSpan="6" Margin="0,-28,0,0">
+              <TextBlock VerticalAlignment="Center" Text="{StaticResource 0414}" FontFamily="{StaticResource Pretendard}" FontSize="12" FontStyle="Normal" FontWeight="Light" Foreground="#979797" LineHeight="14" TextAlignment="Left" Margin="15,20,0,0" />
+            </StackPanel>
+          </Grid>
+        </StackPanel>
+        <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal" Margin="97,0,0,0">
+          <Button cal:Message.Attach="[Event Click]=[Action EmployeeCheckIn(EMP_NO,EMP_PWD)]" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="10,0,0,0" Width="70" Height="36" Padding="0,0,0,0" BorderThickness="0,0,0,0">
+            <Button.Background>
+              <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/Resource/Images/btn_base_orange.png" />
+            </Button.Background>
+            <TextBlock Text="{StaticResource 0419}" FontFamily="{StaticResource Pretendard}" FontSize="13" FontStyle="Normal" FontWeight="ExtraBold" Foreground="#FFFFFFFF" LineHeight="14" TextAlignment="Left" />
+          </Button>
+          <Button cal:Message.Attach="[Event Click]=[Action EmployeeCheckOut(EMP_NO,EMP_PWD)]" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="10,0,0,0" Width="70" Height="36" Padding="0,0,0,0" BorderThickness="0,0,0,0">
+            <Button.Background>
+              <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/Resource/Images/btn_base_green_71x36.png" />
+            </Button.Background>
+            <TextBlock Text="{StaticResource 0420}" FontFamily="{StaticResource Pretendard}" FontSize="13" FontStyle="Normal" FontWeight="ExtraBold" Foreground="#FFFFFFFF" LineHeight="14" TextAlignment="Left" />
+          </Button>
+        </StackPanel>
+      </Grid>
+    </DockPanel>
+    <DockPanel Grid.Row="1" Grid.Column="5" Background="{x:Null}" Grid.RowSpan="4">
+      <local:SalesMngRightView Width="199" />
+    </DockPanel>
+  </Grid>
+</UserControl>

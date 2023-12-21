@@ -1,0 +1,73 @@
+﻿@using WinFormsBlazor.Model;
+@using WinFormsBlazor.Service;
+@page "/cartview/{Cartid}"
+
+<h3>CartView</h3>
+
+@if (cartList == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <a href="cart">리스트</a>
+    <br />
+    <table class="table" border="1" colspacing="5" cellpadding="10">
+        <tbody>
+            @foreach (var cart in cartList)
+            {
+                <tr>
+                    <td>Cartid</td>
+                    <td>@Cartid</td>
+                </tr>
+                <tr>
+                    <td>Title</td>
+                    <td>@cart.Title</td>
+                </tr>
+                <tr>
+                    <td>SubTitle</td>
+                    <td>@cart.SubTitle</td>
+                </tr>
+                <tr>
+                    <td>Num</td>
+                    <td>@cart.BlogNum</td>
+                </tr>
+                <tr>
+                    <td>Price</td>
+                    <td>
+                        @{
+                            var Price = String.Format("{0:#,0}", @cart.BlogNum * @cart.BlogPrice);
+                        }
+                        @Price
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    [Parameter]
+    public string? Cartid { get; set; }
+
+    private List<Cart>? cartList { get; set; }
+
+    protected override void OnParametersSet()
+    {
+        Cartid = Cartid;
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await ShowCart();
+    }
+
+    public async Task ShowCart()
+    {
+        if (Cartid != null)
+        {
+            int id = int.Parse(Cartid);
+            cartList = await CartService.CartItemsInfo(id);
+        }
+    }
+}

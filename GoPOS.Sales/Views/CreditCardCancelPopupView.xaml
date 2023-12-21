@@ -1,0 +1,193 @@
+﻿<views:UCViewBase  xmlns:views="clr-namespace:GoPOS.Common.Views;assembly=GoPOS.Common"
+                   x:Class="GoPOS.Views.CreditCardCancelPopupView" 
+                   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+                   xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                   xmlns:viewModel="clr-namespace:GoPOS.ViewModels" 
+                   xmlns:helpers="clr-namespace:GoPOS.Common.Helpers.Controls;assembly=GoPOS.Common" 
+                   d:DataContext="{d:DesignInstance viewModel:CreditCardCancelPopupViewModel}" 
+                   xmlns:cal="http://www.caliburnproject.org" mc:Ignorable="d" d:DesignHeight="522" d:DesignWidth="613">
+    <UserControl.Resources>
+        <Style TargetType="{x:Type CheckBox}" x:Key="myCheckboxStyle">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type CheckBox}">
+                        <StackPanel Orientation="Horizontal">
+                            <Image x:Name="checkboxImage" Source="pack://application:,,,/GoPOS.Resources;component/resource/images/chk_off.png" Width="27" />
+                            <ContentPresenter />
+                        </StackPanel>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="checkboxImage" Property="Source" Value="pack://application:,,,/GoPOS.Resources;component/resource/images/chk_on.png" />
+                            </Trigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <!--<Condition Property="IsMouseOver" Value="True"/>-->
+                                    <Condition Property="IsChecked" Value="False" />
+                                </MultiTrigger.Conditions>
+                                <Setter TargetName="checkboxImage" Property="Source" Value="pack://application:,,,/GoPOS.Resources;component/resource/images/chk_off.png" />
+                            </MultiTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <Border BorderBrush="#000" BorderThickness="2" >
+        <Grid Background="#fff">
+            <Grid Background="#b4b4b4" Margin="3 0 3 3">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="51" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="50" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Orientation="Horizontal" Height="50" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Grid.ColumnSpan="3" Margin="3,0,3,0">
+                    <StackPanel.Background>
+                        <LinearGradientBrush StartPoint="0 ,0" EndPoint="0,1">
+                            <GradientStop Offset="0.48" Color="#3f4e6d"/>
+                            <GradientStop Offset="0.52" Color="#2c3b5b"/>
+                        </LinearGradientBrush>
+                    </StackPanel.Background>
+                    <TextBlock Text="신용카드 취소" FontFamily="{StaticResource Pretendard}" FontSize="20" Height="23" Margin="40,0,0,0" FontStyle="Normal" FontWeight="Bold" Foreground="#fff" LineHeight="14" TextAlignment="Left" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" Margin="0,0,0,0">
+                    <Button Tag="" Command="{Binding CloseCommand}" Style="{StaticResource ClozeBtn2}" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="0,0,0,0" Width="31" Height="29" Padding="0,0,0,0" BorderThickness="0,0,0,0">
+                        <Button.Background>
+                            <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/resource/images/btn_pop_close.png" />
+                        </Button.Background>
+                    </Button>
+                </StackPanel>
+                
+                <Grid Background="#fff" Margin="6" Grid.Row="1" Grid.ColumnSpan="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="10" />
+                        <RowDefinition Height="61" />
+                        <RowDefinition Height="39" />
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="35" />
+                        <RowDefinition Height="35" />
+                        <RowDefinition Height="25" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="31" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50" />
+                        <ColumnDefinition Width="130" />
+                        <ColumnDefinition Width="146" />
+                        <ColumnDefinition Width="17" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="49" />
+                    </Grid.ColumnDefinitions>
+
+
+                    <!--BORDER STYLE-->
+                    <Border Style="{StaticResource Dotted3}" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="4" Margin="0 0 25 0" BorderThickness="0 1 0 1"  />
+                    <Border Style="{StaticResource Dotted3}" Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="3" Margin="0 0 0 0" BorderThickness="0 1 0 1"  />
+                    <Border Style="{StaticResource Dotted3}" Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="3" Margin="0 0 0 0" BorderThickness="0 1 0 0"  />
+
+                    <!--<StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Margin="0,0,0,0">
+                        <TextBlock Text="신용카드 취소" FontFamily="{StaticResource Pretendard}" FontSize="20" Height="23" Margin="40,0,0,0" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" LineHeight="14" TextAlignment="Left" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="6" Margin="3,0,0,0">
+                        <views:GoButton 
+                Command="{Binding CloseCommand}"
+                BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="10,0,0,0" Width="31" Height="29" Padding="0,0,0,0" BorderThickness="0,0,0,0">
+                            <Button.Background>
+                                <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/resource/images/btn_pop_close.png" />
+                            </Button.Background>
+                        </views:GoButton>
+                    </StackPanel>-->
+                    
+                    <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" Margin="0,0,0,0"/>
+                    <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" Margin="0,0,0,0">
+                        <Image VerticalAlignment="Center" Width="10" Height="10" Source="pack://application:,,,/GoPOS.Resources;component/resource/images/pr.png" Margin="43,0,0,0" />
+                        <TextBlock VerticalAlignment="Center" Text="{StaticResource 0068}" FontFamily="{StaticResource Pretendard}" FontSize="16" FontStyle="Normal" FontWeight="Bold" Foreground="#FFFA7514" LineHeight="14" TextAlignment="Left" Margin="10,0,0,0" />
+                        <TextBox IsReadOnly="True" helpers:TextBoxHelpers.IsNumeric="True" Text="{Binding PAY_AMT, Mode=TwoWay, StringFormat={}{0:N0},UpdateSourceTrigger=PropertyChanged}" FontFamily="{StaticResource Pretendard}" FontStyle="Normal" TextAlignment="Right" VerticalContentAlignment="Center" FontWeight="Bold" Foreground="#FFFA7514" Width="174" FontSize="16px" Height="25" Margin="10,0,0,0">
+                            <TextBox.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="2" />
+                                </Style>
+                            </TextBox.Resources>
+                            <TextBox.Background>
+                                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                                    <GradientStop Color="#FFF4F4F4" Offset="0" />
+                                    <GradientStop Color="#FFE5E5E5" Offset="1" />
+                                </LinearGradientBrush>
+                            </TextBox.Background>
+                        </TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" Margin="0,0,0,0"/>
+                    <!--카드정보-->
+                    <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,0,0,0">
+                        <Image VerticalAlignment="Center" Width="10" Height="10" Source="pack://application:,,,/GoPOS.Resources;component/resource/images/pr.png" Margin="43,0,0,0" />
+                        <TextBlock VerticalAlignment="Center" Text="{StaticResource 0069}" FontFamily="{StaticResource Pretendard}" FontSize="16" FontStyle="Normal" FontWeight="Bold" Foreground="#000000" LineHeight="14" TextAlignment="Left" Margin="10,0,0,0" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,0,0"/>
+                    <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="1" Margin="0,0,0,0">
+                        <TextBlock VerticalAlignment="Center" Text="{StaticResource 0071}" FontFamily="{StaticResource Pretendard}" FontSize="14" FontStyle="Normal" FontWeight="Bold" Foreground="#000000" LineHeight="14" TextAlignment="Left" Margin="55,0,0,0" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="2" Margin="5,0,0,0">
+                        <TextBox helpers:TextBoxHelpers.IsNumeric="True" Text="{Binding CARD_NO, Mode=TwoWay}" FontFamily="{StaticResource Pretendard}" FontStyle="Normal" TextAlignment="Right" VerticalContentAlignment="Center" FontWeight="Bold" Width="156" FontSize="16px" Height="25" Margin="0,0,0,0">
+                            <TextBox.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="2" />
+                                </Style>
+                            </TextBox.Resources>
+                            <TextBox.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="0,0">
+                                    <GradientStop Color="#FFE5E5E5" Offset="0.005859375" />
+                                    <GradientStop Color="#FFEDEDED" Offset="1" />
+                                </LinearGradientBrush>
+                            </TextBox.Background>
+                        </TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="4" Margin="0,0,0,0"/>
+                    <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="1" Margin="0,0,0,0">
+                        <TextBlock VerticalAlignment="Center" Text="{StaticResource 0072}" FontFamily="{StaticResource Pretendard}" FontSize="14" FontStyle="Normal" FontWeight="Bold" Foreground="#000000" LineHeight="14" TextAlignment="Left" Margin="55,0,0,0" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="2" Margin="5,0,0,0">
+                        <TextBox helpers:TextBoxHelpers.IsNumeric="True" Text="{Binding INSTALL_MONTH, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontFamily="{StaticResource Pretendard}" FontStyle="Normal" TextAlignment="Right" VerticalContentAlignment="Center" FontWeight="Bold" Width="65" FontSize="16px" Height="25" Margin="0,0,0,0">
+                            <TextBox.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="2" />
+                                </Style>
+                            </TextBox.Resources>
+                            <TextBox.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="0,0">
+                                    <GradientStop Color="#FFE5E5E5" Offset="0.005859375" />
+                                    <GradientStop Color="#FFEDEDED" Offset="1" />
+                                </LinearGradientBrush>
+                            </TextBox.Background>
+                        </TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,0,0,0" HorizontalAlignment="Center">
+                        <Button Command="{Binding ButtonCommand}" CommandParameter="{Binding RelativeSource ={RelativeSource Mode=Self} }" Tag="JstCard"
+                Style="{StaticResource BtnDarkMist}" BorderBrush="#999" BorderThickness="1" Height="35" Width="80" >
+                            <TextBlock Text="임의등록" />
+                        </Button>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="8" Grid.Column="4" Grid.ColumnSpan="3" Margin="0,0,0,0"/>
+                    <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="4" Grid.RowSpan="3" Margin="0,0,0,0" HorizontalAlignment="Center">
+                        <views:GoButton Style="{StaticResource GrayPress}" BorderThickness="2" BorderBrush="#d54c10"
+                Command="{Binding ButtonCommand}" 
+                CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" 
+                Tag="ReqAppr" Width="78" Height="96" Padding="0,0,0,0">
+                            <TextBlock Text="승인요청" 
+                           FontFamily="{StaticResource Pretendard}" FontSize="13" FontStyle="Normal" FontWeight="ExtraBold" Foreground="#FFFFFFFF" LineHeight="14" TextAlignment="Left"
+                           TextWrapping="Wrap" Width="58"/>
+                        </views:GoButton>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Border>
+</views:UCViewBase>

@@ -1,0 +1,116 @@
+﻿@using GoPosVanAPI.Api;
+@using GoPosVanAPI.Msg;
+@using GoPosVanAPI.Van;
+
+@page "/vantest"
+@inject IJSRuntime JSRuntime
+
+<h3>Gopos Van Test</h3>
+<br />
+<button type="button" class="btn btn-primary" @onclick="@(e => GetSign())">결제</button>
+
+<canvas id="signature" width="150" height="60" style="border: 1px solid black;"></canvas>
+<button type="button" class="btn btn-success" @onclick="@(e => SignClear())">사인 지우기</button>
+<br />
+<br />
+<textarea class="form-control" name="" rows="18" cols="115">@VanResultTxt</textarea>
+
+@code {
+	private static readonly ILog logger = LogManager.GetLogger(typeof(Form1));                                  //	Log Level(ALL, DEBUG, INFO, WARN, ERROR, FATAL)
+	string? SignImgData = "";
+	string? VanResultTxt = "";
+
+	protected override async Task OnAfterRenderAsync(bool firstRender)
+	{
+		if (firstRender)
+		{
+			await JSRuntime.InvokeAsync<IJSObjectReference>("import", "../js/canvas.js");
+		}
+	}
+
+	private async Task SignClear()
+	{
+		await JSRuntime.InvokeVoidAsync("ClearSign");
+	}
+
+	private async Task GetSign()
+	{
+		string SignData = await JSRuntime.InvokeAsync<string>("GetSign");
+		if (SignData == "NO")
+		{
+			MessageBox.Show("사인을 하셔야 합니다.");
+			return;
+		}
+		SignImgData = SignData.Replace("data:image/png;base64,", "");
+		SaveImage(SignImgData);
+		GoPay();
+	}
+
+	private void GoPay()
+	{
+		VanResultTxt = "";
+		VanAPI vanAPI = new();
+		VanRequestMsg msg = new KocesRequestMsg()
+		{
+			MER_DATA = "KOCES POS TEST",
+			TRAN_AMT = "1000000000",
+			TAX_AMT = "100000000",
+			SVC_AMT = "0",
+			DUTY_AMT = "0",
+			INS_MON = "00"
+		};
+
+		try
+		{
+			VanResponseMsg result = vanAPI.ApprovalCreditCard(msg);
+			string? resultTxt = result.ToString();
+			string? APPR_VER = result.APPR_VER;																	//   전문버전
+			string? SVC_TYPE = result.SVC_TYPE;																	//   서비스종류
+			string? TRD_TYPE = result.TRD_TYPE;																	//   업무 구분 (신용승인:F1, 신용취소:F2, 현금승인:H3, 현금취소:H4, DDC승인:DD)
+			string? SND_TYPE = result.SND_TYPE;																	//   전송 구분
+			string? CAT_ID = result.CAT_ID;																		//   단말기 번호
+			string? TRAN_DATE = result.TRAN_DATE;																//   거래일시
+			string? TRAN_UNIQ_NO = result.TRAN_UNIQ_NO;															//   거래일련번호
+			string? MER_DATA = result.MER_DATA;																	//   가맹점 사용영역
+			string? RESPONSE_CODE = result.RESPONSE_CODE;														//   응답 코드 (정상승인:0000, 이외 코드 승인 오류)
+			string? VAN_TRAN_UNIQ_NO = result.VAN_TRAN_UNIQ_NO;													//   VAN에서 부여하는 거래고유번호
+			string? AUTH_NO = result.AUTH_NO;																	//   승인번호
+			string? AUTH_DATE = result.AUTH_DATE;																//   승인일시 (YYYYMMDDhhmmss)
+			string? RESPONSE_MSG = result.RESPONSE_MSG;															//   응답메시지 (정상 처리시 전표에 출력)
+			string? CARD_NO = result.CARD_NO;																	//   카드번호
+			string? CARD_KIND_NM = result.CARD_KIND_NM;															//   카드종류명
+
+			VanResultTxt = resultTxt;
+		}
+		catch (Exception e)
+		{
+			logger.Error(e.Message);
+		}
+	}
+
+	private static void SaveImage(string base64)
+	{
+		try
+		{
+			using (MemoryStream ms = new MemoryStream(Convert.FromBase64String(base64)))
+			{
+				using (Bitmap bm2 = new Bitmap(ms))
+				{
+					string folderPath = Application.StartupPath + "SignImg";
+					DirectoryInfo di = new DirectoryInfo(folderPath);
+					if (di.Exists == false)
+					{
+						di.Create();
+					}
+
+					string filename = DateTime.Now.ToString("yyyyMMddhhmmss") + ".png";
+					bm2.Save(folderPath + "/" + filename);
+				}
+			}
+		}
+		catch (Exception e)
+		{
+			logger.Error(e.Message);
+		}
+	}
+}

@@ -1,0 +1,48 @@
+<UserControl x:Class="GoPOS.Views.Controls.SalesManagerHeaderControlView" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro.Platform" xmlns:local="clr-namespace:GoPOS.Views.Controls" mc:Ignorable="d" d:DesignHeight="73" d:DesignWidth="766">
+  <Grid>
+    <!--#dcdcdc #313637-->
+    <Grid.RowDefinitions>
+      <RowDefinition Height="15" />
+      <RowDefinition Height="8.5" />
+      <RowDefinition Height="14" />
+      <RowDefinition Height="14" />
+      <RowDefinition Height="8.5" />
+      <RowDefinition Height="14" />
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="19" />
+      <ColumnDefinition Width="36" />
+      <ColumnDefinition Width="*" />
+      <ColumnDefinition Width="*" />
+      <ColumnDefinition Width="172" />
+      <ColumnDefinition Width="11" />
+      <ColumnDefinition Width="42" />
+      <ColumnDefinition Width="11" />
+    </Grid.ColumnDefinitions>
+    <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="2">
+      <TextBlock Text="* 매장원  :  " FontFamily="{StaticResource Pretendard}" FontSize="13" FontStyle="Normal" FontWeight="Normal" Foreground="#FFAAAAAA" LineHeight="14" HorizontalAlignment="Left" />
+      <TextBlock x:Name="ShopName" FontFamily="{StaticResource Pretendard}" FontSize="13" FontStyle="Normal" FontWeight="Normal" Foreground="#ffffff" LineHeight="14" HorizontalAlignment="Left" />
+    </StackPanel>
+    <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="3">
+      <TextBlock Text="* 통신상태  :  " FontFamily="{StaticResource Pretendard}" FontSize="13" FontStyle="Normal" FontWeight="Normal" Foreground="#FFAAAAAA" LineHeight="14" />
+      <TextBlock x:Name="CommunicationStatus" FontFamily="{StaticResource Pretendard}" FontSize="13" FontStyle="Normal" FontWeight="Normal" Foreground="#ffffff" LineHeight="14" HorizontalAlignment="Left" />
+    </StackPanel>
+    <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="2">
+      <TextBlock Text="* 사원명  :  " FontFamily="{StaticResource Pretendard}" FontSize="13" FontStyle="Normal" FontWeight="Normal" Foreground="#FFAAAAAA" LineHeight="14" />
+      <TextBlock x:Name="EmployeeName" FontFamily="{StaticResource Pretendard}" FontSize="13" FontStyle="Normal" FontWeight="Normal" Foreground="#ffffff" LineHeight="14" HorizontalAlignment="Left" />
+    </StackPanel>
+    <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="3">
+      <TextBlock Text="* 영업일자  :  " FontFamily="{StaticResource Pretendard}" FontSize="13" FontStyle="Normal" FontWeight="Normal" Foreground="#FFAAAAAA" LineHeight="14" />
+      <TextBlock x:Name="SalesDateString" FontFamily="{StaticResource Pretendard}" FontSize="12" FontStyle="Normal" FontWeight="Normal" Foreground="#fa7514" LineHeight="13" HorizontalAlignment="Left" />
+    </StackPanel>
+    <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="4" Grid.RowSpan="2">
+      <TextBlock x:Name="CurrentDateString" FontFamily="{StaticResource Pretendard}" FontSize="12" FontStyle="Normal" FontWeight="Normal" Foreground="#ffffff" LineHeight="12" HorizontalAlignment="Left" Width="65" Height="35" />
+      <TextBlock x:Name="CurrentTimeString" FontFamily="{StaticResource Pretendard}" FontSize="30" FontStyle="Normal" FontWeight="Normal" Foreground="#fa7514" LineHeight="14" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" />
+    </StackPanel>
+    <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="5" Grid.RowSpan="6" Grid.ColumnSpan="3">
+      <Button x:Name="Close" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="0,3,0,0">
+        <Image VerticalAlignment="Center" Stretch="Fill" Width="50" Height="50" Source="pack://application:,,,/GoPOS.Resources;component/resource/images/close.png" />
+      </Button>
+    </StackPanel>
+  </Grid>
+</UserControl>

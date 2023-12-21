@@ -1,0 +1,73 @@
+﻿@using WinFormsBlazor.Model;
+@using WinFormsBlazor.Service;
+@inject NavigationManager Navigation
+
+@page "/blogview/{Category}/{Blogid}"
+
+<h1>Blog View</h1>
+
+@if (blogs == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <button type="button" @onclick="@(e => GoList(@Category))">리스트 @Category</button>
+    <br />
+    <table class="table" border="1" colspacing="5" cellpadding="10">
+        <tbody>
+            @foreach (var blog in blogs)
+            {
+            <tr>
+                <td>BlogId</td>
+                <td>@Blogid</td>
+            </tr>
+            <tr>
+                <td>Title</td>
+                <td>@blog.Title</td>
+            </tr>
+            <tr>
+                <td>SubTitle</td>
+                <td>@blog.SubTitle</td>
+            </tr>
+            <tr>
+                <td>Date</td>
+                <td>@blog.DateTimeAdd.ToShortDateString()</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    [Parameter] public string? Category { get; set; }
+    [Parameter] public string? Blogid { get; set; }
+
+    private List<Blog>? blogs { get; set; }
+
+    protected override void OnParametersSet()
+    {
+        Category = Category ?? "All";
+        Blogid = Blogid;
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await ShowBlogDetail();
+    }
+
+    public async Task ShowBlogDetail()
+    {
+        if (Blogid != null)
+        {
+            int id = int.Parse(Blogid);
+            blogs = await BlogService.GetBlogInfo(id);
+        }
+    }
+
+    public void GoList(string Category)
+    {
+        string? GoUri = "/blog/" + Category;
+        Navigation.NavigateTo(GoUri);
+    }
+}

@@ -1,0 +1,280 @@
+<views:UCViewBase  xmlns:views="clr-namespace:GoPOS.Common.Views;assembly=GoPOS.Common" 
+                   x:Class="GoPOS.Views.SellingStatusApprDetailsView" 
+                   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+                   xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                   xmlns:viewModel="clr-namespace:GoPOS.ViewModels"
+                   d:DataContext="{d:DesignInstance viewModel:SellingStatusApprDetailsViewModel}"
+                   xmlns:cal="http://www.caliburnproject.org" 
+                   xmlns:local="clr-namespace:GoPOS.Views" 
+                   xmlns:common1="clr-namespace:GoPOS.Common.Views.Controls;assembly=GoPOS.Common"
+                   d:DesignHeight="500" d:DesignWidth="650" mc:Ignorable="d" >
+
+    <!--VIEW STYLE-->
+    <views:UCViewBase.Resources>
+        <Style x:Key="bordered" TargetType="{x:Type Border}">
+            <Setter Property="TextBlock.TextWrapping" Value="Wrap"/>
+            <Setter Property="TextBlock.FontSize" Value="14"/>
+            <Setter Property="TextBlock.FontWeight" Value="Bold"/>
+            <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+            <Setter Property="TextBlock.Foreground" Value="#000"/>
+            <Setter Property="TextBlock.HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        </Style>
+        <views:IndexConverter x:Key="IndexConverter" />
+    </views:UCViewBase.Resources>
+
+    <Border BorderBrush="#263043" BorderThickness="1">
+        <Grid Background="#fff">
+            <Grid Background="#cccccc" Margin="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Border BorderBrush="#263043" BorderThickness="1" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Margin="5" CornerRadius="2">
+                    <StackPanel Orientation="Horizontal"  Margin="0,0,0,0">
+                        <StackPanel.Background>
+                            <LinearGradientBrush StartPoint="0 ,0" EndPoint="0,1">
+                                <GradientStop Offset="0.45" Color="#3f4e6d"/>
+                                <GradientStop Offset="0.55" Color="#2c3b5b"/>
+                            </LinearGradientBrush>
+                        </StackPanel.Background>
+                        <Image Source="pack://application:,,,/GoPOS.Resources;component/resource/images/pinwheel.png" Width="23" Height="23" Margin="30 0 0 0" />
+                        <TextBlock Text="승인 내역" FontFamily="{StaticResource Pretendard}" FontSize="20" Height="23" Margin="10,0,0,0" FontStyle="Normal" FontWeight="Bold" Foreground="#FFFFFFFF" LineHeight="14" TextAlignment="Left" />
+                        <Button Command="{Binding CloseCommand}" Tag="btnClose" Margin="415,0,0,0" Width="35" Height="35" Padding="0,0,0,0" Style="{StaticResource ClozeBtn}"
+                                HorizontalAlignment="Right">
+                        </Button>
+                    </StackPanel>
+                </Border>
+
+
+                <Grid Margin="5"  Grid.Row="1" Background="#fff">
+                    <Border BorderBrush="#afafaf" BorderThickness="0.7" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Margin="5">
+                        <Grid Margin="5" Background="#fff">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50" />
+                                <RowDefinition Height="1" />
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="110" />
+                                <RowDefinition Height="105" />
+                                <RowDefinition Height="92" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0" />
+                                <ColumnDefinition Width="60" />
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="200"/>
+                                <ColumnDefinition Width="40" />
+                                <ColumnDefinition Width="65"/>
+                                <ColumnDefinition Width="65"/>
+                                <ColumnDefinition Width="65*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Border Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="2" BorderBrush="#dfdfdf" BorderThickness="1" CornerRadius="2" Margin="-6 7 0 7"/>
+                            <StackPanel Grid.Column="2" Grid.ColumnSpan="1" VerticalAlignment="Center">
+                                <CheckBox x:Name="Radio1" Style="{StaticResource CheckboxStyle}" Checked="Radiotic_Checkbox2" Unchecked="NotNull_Checkbox2"
+                                          Tag="Credit"  Command="{Binding RadioCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}">
+                                    <TextBlock Text="신용카드" FontSize="13" FontWeight="Bold" VerticalAlignment="Center" Margin="2 0 0 0"/>
+                                </CheckBox>
+                            </StackPanel>
+                            <StackPanel Grid.Column="3" Grid.ColumnSpan="1" VerticalAlignment="Center">
+                                <CheckBox x:Name="Radio2" Style="{StaticResource CheckboxStyle}" Checked="Radiotic_Checkbox2" Tag="Cash"
+                                          Unchecked="NotNull_Checkbox2"  Command="{Binding RadioCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}">
+                                    <TextBlock Text="현금영수증" FontSize="13" FontWeight="Bold" VerticalAlignment="Center" Margin="2 0 0 0"/>
+                                </CheckBox>
+                            </StackPanel>
+
+                            <Border Grid.Column="5" Grid.Row="0" Grid.ColumnSpan="3" BorderBrush="#dfdfdf" BorderThickness="1" CornerRadius="2" Margin="-6 7 10 7"/>
+                            <StackPanel Grid.Column="5" Grid.ColumnSpan="1" VerticalAlignment="Center">
+                                <CheckBox x:Name="check1" Style="{StaticResource CheckboxStyle}" Checked="Radiotic_Checkbox3" Unchecked="NotNull_Checkbox3"
+                                     Tag="A"      Command="{Binding CheckboxCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}">
+                                    <TextBlock Text="전체" FontSize="13" FontWeight="Bold" VerticalAlignment="Center" Margin="2 0 0 0"/>
+                                </CheckBox>
+                            </StackPanel>
+                            <StackPanel Grid.Column="6" Grid.ColumnSpan="1" VerticalAlignment="Center">
+                                <CheckBox x:Name="check2" Style="{StaticResource CheckboxStyle}" Checked="Radiotic_Checkbox3" Unchecked="NotNull_Checkbox3"
+                                        Tag="Y"   Command="{Binding CheckboxCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}">
+                                    <TextBlock Text="매출" FontSize="13" FontWeight="Bold" VerticalAlignment="Center" Margin="2 0 0 0"/>
+                                </CheckBox>
+                            </StackPanel>
+                            <StackPanel Grid.Column="7" Grid.ColumnSpan="1" VerticalAlignment="Center">
+                                <CheckBox x:Name="check3" Style="{StaticResource CheckboxStyle}" Checked="Radiotic_Checkbox3" Unchecked="NotNull_Checkbox3"
+                                      Tag="N"     Command="{Binding CheckboxCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}">
+                                    <TextBlock Text="반품" FontSize="13" FontWeight="Bold" VerticalAlignment="Center" Margin="2 0 0 0"/>
+                                </CheckBox>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="7" Grid.RowSpan="5" Margin="0,0,5,0"  VerticalAlignment="Top" Height="330">
+                                <Border CornerRadius="3" BorderThickness="0" BorderBrush="#b4b4b4" Margin="0,0,0,0" Padding="0,0,0,0">
+                                    <ListView ScrollViewer.HorizontalScrollBarVisibility="Hidden" Name="WhateverList" Grid.Row="0" FontSize="13"  Padding="1"
+                                   ItemsSource="{Binding CollectionAPPR}" VerticalAlignment="Center" HorizontalAlignment="Center" Height="330" Width="600" >
+                                        <ListView.Resources>
+                                            <Style TargetType="{x:Type ScrollBar}">
+                                                <Setter Property="Width" Value="5"/>
+                                            </Style>
+                                        </ListView.Resources>
+                                        <ListView.ItemContainerStyle>
+                                            <Style TargetType="{x:Type ListViewItem}">
+                                                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                                <Setter Property="BorderBrush" Value="#bababa" />
+                                                <Setter Property="Foreground" Value="#000" />
+                                                <Setter Property="BorderThickness" Value="0,0,1,1" />
+                                                <Setter Property="Margin" Value="0,2,-1,0" />
+                                                <Style.Triggers>
+                                                    <Trigger Property="IsSelected" Value="True">
+                                                        <Setter Property="Background" Value="#316ac5" />
+                                                        <Setter Property="Foreground" Value="#fff"/>
+                                                    </Trigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </ListView.ItemContainerStyle>
+                                        <ListView.View>
+                                            <GridView >
+                                                <GridViewColumn Width="30" DisplayMemberBinding="{Binding RelativeSource={RelativeSource FindAncestor, 
+                                                 AncestorType={x:Type ListViewItem}},Converter={StaticResource IndexConverter}}" Header="No"
+                                                        HeaderContainerStyle="{StaticResource listViewHeaderStyle}"        >
+                                                    <GridViewColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <Border BorderBrush="#bababa" BorderThickness="0,0,1,1">
+                                                                <DockPanel>
+                                                                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Height="22"/>
+                                                                </DockPanel>
+                                                            </Border>
+                                                        </DataTemplate>
+                                                    </GridViewColumn.CellTemplate>
+                                                </GridViewColumn>
+                                                <GridViewColumn HeaderContainerStyle="{StaticResource listViewHeaderStyle}" Width="60">
+                                                    <GridViewColumnHeader Tag="posNo"  Command="{Binding HeaderCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" >
+                                                        포스번호
+                                                    </GridViewColumnHeader>
+                                                    <GridViewColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <Border BorderBrush="#bababa" BorderThickness="1,0,1,1" Margin="-6,-2,-7,-2">
+                                                                <StackPanel Margin="6,2,6,2" Orientation="Horizontal" HorizontalAlignment="Center" >
+                                                                    <TextBlock   FontWeight="Normal" 
+                                                                       Height="22" Margin="3,0,0,0" Text="{Binding POS_NO}">
+                                                                    </TextBlock>
+                                                                </StackPanel>
+                                                            </Border>
+                                                        </DataTemplate>
+                                                    </GridViewColumn.CellTemplate>
+                                                </GridViewColumn>
+                                                <GridViewColumn HeaderContainerStyle="{StaticResource listViewHeaderStyle}" Width="75">
+                                                    <GridViewColumnHeader Tag="billNo"  Command="{Binding HeaderCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" >
+                                                        영수증번호
+                                                    </GridViewColumnHeader>
+                                                    <GridViewColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <Border BorderBrush="#bababa" BorderThickness="0,0,1,1" Margin="-7,-2,-7,-2">
+                                                                <DockPanel Margin="6,2,6,2" HorizontalAlignment="Center" >
+                                                                    <TextBlock Text="{Binding BILL_NO}"  HorizontalAlignment="Right"  Height="22">
+                                                                    </TextBlock>
+                                                                </DockPanel>
+                                                            </Border>
+                                                        </DataTemplate>
+                                                    </GridViewColumn.CellTemplate>
+                                                </GridViewColumn>
+                                                <GridViewColumn  HeaderContainerStyle="{StaticResource listViewHeaderStyle}" Width="65">
+                                                    <GridViewColumnHeader Tag="eqmType"  Command="{Binding HeaderCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" >
+                                                        장비구분
+                                                    </GridViewColumnHeader>
+                                                    <GridViewColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <Border BorderBrush="#bababa" BorderThickness="0,0,1,1" Margin="-7,-2,-7,-2">
+                                                                <DockPanel Margin="6,2,6,2" HorizontalAlignment="Center" >
+                                                                    <TextBlock Text="{Binding EQM_TYPE}"  Height="22"  HorizontalAlignment="Right" Padding="0 0 0 0" />
+
+                                                                </DockPanel>
+                                                            </Border>
+                                                        </DataTemplate>
+                                                    </GridViewColumn.CellTemplate>
+                                                </GridViewColumn>
+                                                <GridViewColumn  HeaderContainerStyle="{StaticResource listViewHeaderStyle}" Width="65">
+                                                    <GridViewColumnHeader Tag="apprIDTNAME"  Command="{Binding HeaderCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" >
+                                                        거래유형
+                                                    </GridViewColumnHeader>
+                                                    <GridViewColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <Border BorderBrush="#bababa" BorderThickness="0,0,1,1" Margin="-7,-2,-7,-2">
+                                                                <DockPanel Margin="6,2,6,2" HorizontalAlignment="Center" >
+                                                                    <TextBlock  HorizontalAlignment="Right" Height="22" Text="{Binding APPR_IDT_NAME}" />
+                                                                </DockPanel>
+                                                            </Border>
+                                                        </DataTemplate>
+                                                    </GridViewColumn.CellTemplate>
+                                                </GridViewColumn>
+                                                <GridViewColumn  HeaderContainerStyle="{StaticResource listViewHeaderStyle}" Width="85">
+                                                    <GridViewColumnHeader Tag="apprIDTNO"  Command="{Binding HeaderCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" >
+                                                        인식번호
+                                                    </GridViewColumnHeader>
+                                                    <GridViewColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <Border BorderBrush="#bababa" BorderThickness="0,0,1,1" Margin="-7,-2,-7,-2">
+                                                                <DockPanel Margin="6,2,6,2" HorizontalAlignment="Center" >
+                                                                    <TextBlock   HorizontalAlignment="Right" Height="22"
+                                                                                 Text="{Binding APPR_IDT_NO}"/>
+                                                                </DockPanel>
+                                                            </Border>
+                                                        </DataTemplate>
+                                                    </GridViewColumn.CellTemplate>
+                                                </GridViewColumn>
+                                                <GridViewColumn  HeaderContainerStyle="{StaticResource listViewHeaderStyle}" Width="65" >
+                                                    <GridViewColumnHeader Tag="apprAMT"  Command="{Binding HeaderCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" >
+                                                        승인금액
+                                                    </GridViewColumnHeader>
+                                                    <GridViewColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <Border BorderBrush="#bababa" BorderThickness="0,0,1,1" Margin="-7,-2,-7,-2">
+                                                                <DockPanel Margin="6,2,6,2" HorizontalAlignment="Right" >
+                                                                    <TextBlock  Height="22" Text="{Binding APPR_AMT, StringFormat={}{0:N0}}" >
+                                                                    </TextBlock>
+                                                                </DockPanel>
+                                                            </Border>
+                                                        </DataTemplate>
+                                                    </GridViewColumn.CellTemplate>
+                                                </GridViewColumn>
+                                                <GridViewColumn  HeaderContainerStyle="{StaticResource listViewHeaderStyle}" Width="75" >
+                                                    <GridViewColumnHeader Tag="apprNo"  Command="{Binding HeaderCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" >
+                                                        승인번호
+                                                    </GridViewColumnHeader>
+                                                    <GridViewColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <Border BorderBrush="#bababa" BorderThickness="0,0,1,1" Margin="-7,-2,-7,-2">
+                                                                <DockPanel Margin="6,2,6,2" HorizontalAlignment="Center" >
+                                                                    <TextBlock  Height="22" Text="{Binding APPR_NO}" />
+                                                                </DockPanel>
+                                                            </Border>
+                                                        </DataTemplate>
+                                                    </GridViewColumn.CellTemplate>
+                                                </GridViewColumn>
+                                                <GridViewColumn HeaderContainerStyle="{StaticResource listViewHeaderStyle}" Width="72" >
+                                                    <GridViewColumnHeader Tag="apprPROCNAME"  Command="{Binding HeaderCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" >
+                                                        매출구분
+                                                    </GridViewColumnHeader>
+                                                    <GridViewColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <Border BorderBrush="#bababa" BorderThickness="0,0,1,1" Margin="-7,-2,-7,-2">
+                                                                <DockPanel Margin="6,2,6,2" HorizontalAlignment="Center" >
+                                                                    <TextBlock  Height="22" Text="{Binding APPR_PROC_NAME}" />
+                                                                </DockPanel>
+                                                            </Border>
+                                                        </DataTemplate>
+                                                    </GridViewColumn.CellTemplate>
+                                                </GridViewColumn>
+                                            </GridView>
+                                        </ListView.View>
+                                    </ListView>
+                                </Border>
+                            </StackPanel>
+
+                        </Grid>
+                    </Border>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Border>
+</views:UCViewBase>

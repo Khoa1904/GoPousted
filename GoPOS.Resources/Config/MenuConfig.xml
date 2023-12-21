@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfMenuConfigInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <MenuConfigInfo>
+    <ParentMenu />
+    <MenuCode>OrderPayMainViewModel</MenuCode>
+    <ViewModelNm>OrderPayMainViewModel</ViewModelNm>
+    <MenuName>OrderPayMainViewModel</MenuName>
+    <MenuDescription />
+    <MenuType>Main</MenuType>
+    <MenuIcon />
+    <MenuIconUrl />
+    <MenuTitle />
+    <Module />
+    <ModelName>OrderPayMainViewModel</ModelName>
+    <Assembly>GoPOS.Payment</Assembly>
+    <ModelNamespace>GoPOS.ViewModels</ModelNamespace>
+    <Sort>0</Sort>
+    <IsVisible>true</IsVisible>
+    <IsEnable>true</IsEnable>
+    <IsUse>true</IsUse>
+  </MenuConfigInfo>
+</ArrayOfMenuConfigInfo>

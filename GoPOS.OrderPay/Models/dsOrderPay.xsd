@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsOrderPay" targetNamespace="http://tempuri.org/dsOrderPay.xsd" xmlns:mstns="http://tempuri.org/dsOrderPay.xsd" xmlns="http://tempuri.org/dsOrderPay.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsOrderPay" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_UserDSName="dsOrderPay" msprop:Generator_DataSetName="dsOrderPay">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ORDER_ITEMS" msprop:Generator_RowEvHandlerName="ORDER_ITEMSRowChangeEventHandler" msprop:Generator_RowDeletedName="ORDER_ITEMSRowDeleted" msprop:Generator_RowDeletingName="ORDER_ITEMSRowDeleting" msprop:Generator_RowEvArgName="ORDER_ITEMSRowChangeEvent" msprop:Generator_TablePropName="ORDER_ITEMS" msprop:Generator_RowChangedName="ORDER_ITEMSRowChanged" msprop:Generator_RowChangingName="ORDER_ITEMSRowChanging" msprop:Generator_TableClassName="ORDER_ITEMSDataTable" msprop:Generator_RowClassName="ORDER_ITEMSRow" msprop:Generator_TableVarName="tableORDER_ITEMS" msprop:Generator_UserTableName="ORDER_ITEMS">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="NO" msprop:Generator_ColumnPropNameInRow="NO" msprop:Generator_ColumnPropNameInTable="NOColumn" msprop:Generator_ColumnVarNameInTable="columnNO" msprop:Generator_UserColumnName="NO" type="xs:string" minOccurs="0" />
+              <xs:element name="PRD_CODE" msprop:Generator_ColumnPropNameInRow="PRD_CODE" msprop:Generator_ColumnPropNameInTable="PRD_CODEColumn" msprop:Generator_ColumnVarNameInTable="columnPRD_CODE" msprop:Generator_UserColumnName="PRD_CODE" type="xs:string" minOccurs="0" />
+              <xs:element name="PRD_NAME" msprop:Generator_ColumnPropNameInRow="PRD_NAME" msprop:Generator_ColumnPropNameInTable="PRD_NAMEColumn" msprop:Generator_ColumnVarNameInTable="columnPRD_NAME" msprop:Generator_UserColumnName="PRD_NAME" type="xs:string" minOccurs="0" />
+              <xs:element name="SALE_QTY" msprop:Generator_ColumnPropNameInRow="SALE_QTY" msprop:Generator_ColumnPropNameInTable="SALE_QTYColumn" msprop:Generator_ColumnVarNameInTable="columnSALE_QTY" msprop:Generator_UserColumnName="SALE_QTY" type="xs:string" minOccurs="0" />
+              <xs:element name="NORMAL_UPRC" msprop:Generator_ColumnPropNameInRow="NORMAL_UPRC" msprop:Generator_ColumnPropNameInTable="NORMAL_UPRCColumn" msprop:Generator_ColumnVarNameInTable="columnNORMAL_UPRC" msprop:Generator_UserColumnName="NORMAL_UPRC" type="xs:string" minOccurs="0" />
+              <xs:element name="DC_AMT" msprop:Generator_ColumnPropNameInRow="DC_AMT" msprop:Generator_ColumnPropNameInTable="DC_AMTColumn" msprop:Generator_ColumnVarNameInTable="columnDC_AMT" msprop:Generator_UserColumnName="DC_AMT" type="xs:string" minOccurs="0" />
+              <xs:element name="DCM_SALE_AMT" msprop:Generator_ColumnPropNameInRow="DCM_SALE_AMT" msprop:Generator_ColumnPropNameInTable="DCM_SALE_AMTColumn" msprop:Generator_ColumnVarNameInTable="columnDCM_SALE_AMT" msprop:Generator_UserColumnName="DCM_SALE_AMT" type="xs:string" minOccurs="0" />
+              <xs:element name="SIDE_MENU_YN" msprop:Generator_ColumnPropNameInRow="SIDE_MENU_YN" msprop:Generator_ColumnPropNameInTable="SIDE_MENU_YNColumn" msprop:Generator_ColumnVarNameInTable="columnSIDE_MENU_YN" msprop:Generator_UserColumnName="SIDE_MENU_YN" type="xs:string" minOccurs="0" />
+              <xs:element name="PRD_TYPE_FLAG" msprop:Generator_ColumnPropNameInRow="PRD_TYPE_FLAG" msprop:Generator_ColumnPropNameInTable="PRD_TYPE_FLAGColumn" msprop:Generator_ColumnVarNameInTable="columnPRD_TYPE_FLAG" msprop:Generator_UserColumnName="PRD_TYPE_FLAG" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

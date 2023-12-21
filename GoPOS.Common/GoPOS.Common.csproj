@@ -1,0 +1,51 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<TargetFramework>net6.0-windows</TargetFramework>
+		<UseWPF>true</UseWPF>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Remove="Helpers\Menu.cs" />
+	  <Compile Remove="Views\GoButton.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Caliburn.Micro" Version="4.0.212" />
+		<PackageReference Include="ESCPOS_NET" Version="3.0.0" />
+		<PackageReference Include="FontAwesome6.Fonts" Version="2.4.2" />
+		<PackageReference Include="FontAwesome6.Svg" Version="2.4.2" />
+		<PackageReference Include="Microsoft.Web.WebView2" Version="1.0.1518.46" />
+		<PackageReference Include="Microsoft.AspNetCore.Owin" Version="6.0.9" />
+		<PackageReference Include="NLog" Version="5.0.4" />
+		<PackageReference Include="NLog.OutputDebugString" Version="5.0.4" />
+		<PackageReference Include="FirebirdSql.Data.FirebirdClient" Version="9.1.1" />
+		<PackageReference Include="Dapper" Version="2.0.123" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\GoPOS.Models\GoPOS.Models.csproj" />
+		<ProjectReference Include="..\GoPOS.Service\GoPOS.Service.csproj" />
+		<ProjectReference Include="..\GoPOS.Resources\GoPOS.Resources.csproj" />
+		<ProjectReference Include="..\GoShared\GoShared.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Compile Update="Views\Common\OrderPayCashReceiptPopupView.xaml.cs">
+	    <SubType>Code</SubType>
+	  </Compile>
+	  <Compile Update="Views\Controls\InputBoxKeyPadView.xaml.cs">
+	    <SubType>Code</SubType>
+	  </Compile>
+	  <Compile Update="Views\Controls\NumericKeyPadView.xaml.cs">
+	    <SubType>Code</SubType>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="GoPosVanAPI">
+			<HintPath>..\lib\GoPosVanAPI.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+
+</Project>

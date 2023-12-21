@@ -1,0 +1,200 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net6.0-windows</TargetFramework>
+		<Nullable>enable</Nullable>
+		<UseWPF>true</UseWPF>
+		<!--<UseWindowsForms>true</UseWindowsForms>-->
+		<ApplicationIcon>Images/logo.ico</ApplicationIcon>
+		<ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
+		<ApplicationManifest>app.manifest</ApplicationManifest>
+		<Version>1.0.0.0</Version>
+		<IsPublishable>False</IsPublishable>
+		<ProduceReferenceAssembly>False</ProduceReferenceAssembly>
+		<BaseOutputPath>bin\</BaseOutputPath>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+		<PackageOutputPath>$(OutputPath)\bin</PackageOutputPath>
+		<RunPostBuildEvent>Always</RunPostBuildEvent>
+		<PlatformTarget>x64</PlatformTarget>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<Deterministic>true</Deterministic>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<Deterministic>true</Deterministic>
+	</PropertyGroup>
+	<Choose>
+		<When Condition=" '$(Configuration)'=='Debug' ">
+			<PropertyGroup>
+				<DebugSymbols>true</DebugSymbols>
+				<DebugType>full</DebugType>
+				<Optimize>false</Optimize>
+				<OutputPath>..\..\Deployment\Debug\bin</OutputPath>
+				<DefineConstants>DEBUG;TRACE</DefineConstants>
+				<PackageOutputPath>..\..\Deployment\Debug</PackageOutputPath>
+			</PropertyGroup>
+		</When>
+		<When Condition=" '$(Configuration)'=='Release' ">
+			<PropertyGroup>
+				<DebugSymbols>false</DebugSymbols>
+				<Optimize>true</Optimize>
+				<OutputPath>..\..\Deployment\Release\bin</OutputPath>
+				<DefineConstants>TRACE</DefineConstants>
+				<PackageOutputPath>..\..\Deployment\Release</PackageOutputPath>
+			</PropertyGroup>
+		</When>
+		<Otherwise>
+			<PropertyGroup>
+				<DebugSymbols>true</DebugSymbols>
+				<Optimize>false</Optimize>
+				<OutputPath>...\..\Deployment\Release\bin</OutputPath>
+				<DefineConstants>Release;TRACE</DefineConstants>
+			</PropertyGroup>
+		</Otherwise>
+	</Choose>
+	<ItemGroup>
+		<_Resource Include="$(SolutionDir)Resource\**" />
+		<_Config Include="$(SolutionDir)Config\**" />
+		<_data Include="$(SolutionDir)Data\**" />
+	</ItemGroup>
+
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+		<Copy SourceFiles="@(_Resource)" DestinationFolder="$(PackageOutputPath)\Resource\%(RecursiveDir)" SkipUnchangedFiles="true" OverwriteReadOnlyFiles="true" Retries="3" RetryDelayMilliseconds="300" />
+		<Copy SourceFiles="@(_Config)" DestinationFolder="$(PackageOutputPath)\Config\%(RecursiveDir)" SkipUnchangedFiles="true" OverwriteReadOnlyFiles="true" Retries="3" RetryDelayMilliseconds="300" />
+		<Copy SourceFiles="@(_data)" DestinationFolder="$(PackageOutputPath)\Data\%(RecursiveDir)" SkipUnchangedFiles="true" OverwriteReadOnlyFiles="true" Retries="3" RetryDelayMilliseconds="300" />
+	</Target>
+
+
+	<ItemGroup>
+		<Reference Include="GoPosVanAPI">
+			<HintPath>..\lib\GoPosVanAPI.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+
+
+	<ItemGroup>
+		<Compile Remove="Config\**" />
+		<Compile Remove="Deployment\**" />
+		<Compile Remove="ExtDLL\**" />
+		<Compile Remove="Firebird4\**" />
+		<Compile Remove="Fonts\**" />
+		<Compile Remove="Resource\**" />
+		<EmbeddedResource Remove="Config\**" />
+		<EmbeddedResource Remove="Deployment\**" />
+		<EmbeddedResource Remove="ExtDLL\**" />
+		<EmbeddedResource Remove="Firebird4\**" />
+		<EmbeddedResource Remove="Fonts\**" />
+		<EmbeddedResource Remove="Resource\**" />
+		<None Remove="Config\**" />
+		<None Remove="Deployment\**" />
+		<None Remove="ExtDLL\**" />
+		<None Remove="Firebird4\**" />
+		<None Remove="Fonts\**" />
+		<None Remove="Resource\**" />
+		<Page Remove="Config\**" />
+		<Page Remove="Deployment\**" />
+		<Page Remove="ExtDLL\**" />
+		<Page Remove="Firebird4\**" />
+		<Page Remove="Fonts\**" />
+		<Page Remove="Resource\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="EntityFrameworkCore.FirebirdSQL" Version="2.1.2.2" />
+		<PackageReference Include="FirebirdSql.Data.FirebirdClient" Version="9.1.1" />
+		<PackageReference Include="FirebirdSql.EntityFrameworkCore.Firebird" Version="9.0.2" />
+		<PackageReference Include="Caliburn.Micro" Version="4.0.212" />
+		<PackageReference Include="CoreWCF.Http" Version="1.2.0" />
+		<PackageReference Include="CoreWCF.NetTcp" Version="1.2.0" />
+		<PackageReference Include="CoreWCF.Primitives" Version="1.2.0" />
+		<PackageReference Include="Dapper" Version="2.0.123" />
+		<PackageReference Include="FontAwesome6.Fonts" Version="2.4.2" />
+		<PackageReference Include="FontAwesome6.Svg" Version="2.4.2" />
+		<PackageReference Include="MassTransit.SerilogIntegration" Version="5.5.6" />
+		<PackageReference Include="Microsoft.AspNetCore.Owin" Version="6.0.9" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="7.0.1" />
+		<PackageReference Include="NPOI" Version="2.6.0" />
+		<PackageReference Include="Serilog.Extensions.Logging" Version="7.0.0" />
+		<PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
+		<PackageReference Include="System.Data.SQLite" Version="1.0.116" />
+		<PackageReference Include="System.IO.Ports" Version="6.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\GoPOS.Common\GoPOS.Common.csproj" />
+		<ProjectReference Include="..\GoPOS.Models\GoPOS.Models.csproj" />
+		<ProjectReference Include="..\GoPOS.OrderPay\GoPOS.OrderPay.csproj" />
+		<ProjectReference Include="..\GoPOS.Payment\GoPOS.Payment.csproj" />
+		<ProjectReference Include="..\GoPOS.Service\GoPOS.Service.csproj" />
+		<ProjectReference Include="..\GoPOS.Sales\GoPOS.Sales.csproj" />
+		<ProjectReference Include="..\GoPOS.ConfigSetup\GoPOS.ConfigSetup.csproj" />
+		<ProjectReference Include="..\GoPOS.SellingStatus\GoPOS.SellingStatus.csproj" />
+		<ProjectReference Include="..\GoPOS.Resources\GoPOS.Resources.csproj" />
+		<ProjectReference Include="..\GoShared\GoShared.csproj" />
+	</ItemGroup>
+
+
+
+	<ItemGroup>
+		<None Update="Properties\Settings.settings">
+			<Generator>PublicSettingsSingleFileGenerator</Generator>
+			<LastGenOutput>Settings.Designer.cs</LastGenOutput>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Update="Properties\Resources.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Resources.resx</DependentUpon>
+		</Compile>
+		<Compile Update="Properties\Settings.Designer.cs">
+			<DesignTimeSharedInput>True</DesignTimeSharedInput>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Settings.settings</DependentUpon>
+		</Compile>
+		<Compile Update="Views\POSopeningView.xaml.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Update="Views\POSinterimView.xaml.cs">
+			<SubType>Code</SubType>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Update="Properties\Resources.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="Helpers\" />
+	</ItemGroup>
+	<Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+		<Exec Command="TASKKILL  /FI &quot;STATUS eq RUNNING&quot; /IM OllStarPOS.exe /F /T" />
+	</Target>
+
+	<ItemGroup>
+		<Compile Remove="Helpers\WindowHelper.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Include="Images\logo.ico" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="System.Windows.Forms">
+			<HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.Windows.Forms.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+	</Target>
+
+</Project>

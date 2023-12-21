@@ -1,0 +1,261 @@
+﻿<views:UCViewBase  xmlns:views="clr-namespace:GoPOS.Common.Views;assembly=GoPOS.Common"
+                   x:Class="GoPOS.Views.AuthenticProcessingView" 
+                   xmlns:controls="clr-namespace:GoPOS.Common.Helpers.Controls;assembly=GoPOS.Common"
+                   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+                   xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                   xmlns:viewModel="clr-namespace:GoPOS.ViewModels" 
+                   d:DataContext="{d:DesignInstance viewModel:AuthenticProcessingViewModel}" 
+                   xmlns:cal="http://www.caliburnproject.org" 
+                   mc:Ignorable="d" d:DesignHeight="750" d:DesignWidth="500">
+
+    <Grid controls:EnableDragHelper.EnableDrag="True">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="35" />
+            <RowDefinition Height="180" />
+            <RowDefinition Height="5" />
+            <RowDefinition Height="175" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40" />
+            <ColumnDefinition Width="120" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="40" />
+        </Grid.ColumnDefinitions>
+        <Grid.Background>
+            <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/resource/images/AuthenticBG.png" />
+        </Grid.Background>
+
+        <views:GoButton Tag ="Close"  Command="{Binding ButtonCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" Style="{StaticResource ClozeBtn}" Grid.Column="3" Height="35" Width="35" Margin="-15 0 0 0" />
+        <TextBlock Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="1" HorizontalAlignment="Left" VerticalAlignment="Center" >
+            <TextBlock Text="인증 처리" Foreground="#fff" FontSize="17" FontWeight="Bold" />
+        </TextBlock>
+        <views:GoButton Tag="demo" Command="{Binding ButtonCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" 
+                        Style="{StaticResource TealBtn}" Grid.Column="1" Grid.Row="2" Height="25" Width="70" Margin="5 0 0 0" HorizontalAlignment="Left" >
+            <TextBlock Text="데모용" FontSize="12" Foreground="#fff" FontWeight="Bold" />
+        </views:GoButton>
+        <views:GoButton Tag="general" Command="{Binding ButtonCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" 
+                        Style="{StaticResource TealBtn}" Grid.Column="2" Grid.Row="2" Height="25" Width="70" Margin="-40 0 0 0" HorizontalAlignment="Left">
+            <TextBlock Text="일반용" FontSize="12" Foreground="#fff" FontWeight="Bold" />
+        </views:GoButton>
+        <StackPanel  Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Row="3" Margin="5 15 0 0" Panel.ZIndex="3" Width="150" Height="40"  HorizontalAlignment="Left" VerticalAlignment="Top" >
+            <TextBox Text="설치매장리스트" IsReadOnly="True"  Width="150" Height="40" TextAlignment="Center" Padding="0 8 0 0" FontWeight="Bold" Foreground="#fff" FontSize="16" >
+                <TextBox.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="2"/>
+                    </Style>
+                </TextBox.Resources>
+                <TextBox.Background>
+                    <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/resource/images/1.png" />
+                </TextBox.Background>
+            </TextBox>
+        </StackPanel>
+        <StackPanel Background="#fff" Height="175" Width="420" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Panel.ZIndex="1">
+            <ListView Height="140" Width="400" Margin="0 25 0 0" Name="StoreListview"   SelectedIndex="{Binding Index}" SelectedItem="{Binding SelectedItem}" ItemsSource="{Binding SelectedItem}" 
+                      ScrollViewer.HorizontalScrollBarVisibility="Hidden" VerticalContentAlignment="Top"
+          ScrollViewer.CanContentScroll="False">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListViewItem}">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        <Setter Property="BorderBrush" Value="#bababa" />
+                        <Setter Property="BorderThickness" Value="0,0,1,0" />
+                        <Setter Property="Margin" Value="0,2,-1,0" />
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="#0078d7" />
+                                <Setter Property="Foreground" Value="#fff"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="No" HeaderContainerStyle="{StaticResource listViewHeaderStyle5}" Width="35">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Border BorderBrush="#bababa" BorderThickness="0,0,1,1" Margin="-9,-2,-7,-2">
+                                        <DockPanel Margin="6,2,6,2">
+                                            <TextBlock Foreground="#FF000000" HorizontalAlignment="Center" Height="22" >
+                                                <TextBlock.Text>
+                                                    <Binding Path="NO">
+                                                    </Binding>
+                                                </TextBlock.Text>
+                                            </TextBlock>
+                                        </DockPanel>
+                                    </Border>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="매장코드" HeaderContainerStyle="{StaticResource listViewHeaderStyle5}" Width="70">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Border BorderBrush="#bababa" BorderThickness="0,0,1,1" Margin="-7,-2,-7,-2">
+                                        <DockPanel Margin="6,2,6,2">
+                                            <TextBlock Foreground="#FF000000" HorizontalAlignment="Center" Height="22">
+                                                <TextBlock.Text>
+                                                    <Binding Path="StoreCode">
+                                                    </Binding>
+                                                </TextBlock.Text>
+                                            </TextBlock>
+                                        </DockPanel>
+                                    </Border>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="매장명" HeaderContainerStyle="{StaticResource listViewHeaderStyle5}" Width="145">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Border BorderBrush="#bababa" BorderThickness="0,0,1,1" Margin="-7,-2,-7,-2">
+                                        <DockPanel Margin="6,2,6,2">
+                                            <TextBlock Foreground="#FF000000" HorizontalAlignment="Center" Height="22" FontSize="13">
+                                                <TextBlock.Text>
+                                                    <Binding Path="StoreNm">
+                                                    </Binding>
+                                                </TextBlock.Text>
+                                            </TextBlock>
+                                        </DockPanel>
+                                    </Border>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        
+                        <GridViewColumn Header="포스" HeaderContainerStyle="{StaticResource listViewHeaderStyle5}" Width="46">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Border BorderBrush="#bababa" BorderThickness="0,0,1,1" Margin="-7,-2,-7,-2">
+                                        <DockPanel Margin="6,2,6,2">
+                                            <TextBlock Foreground="#FF000000" HorizontalAlignment="Center" Height="22">
+                                                <TextBlock.Text>
+                                                    <Binding Path="PosNo">
+                                                    </Binding>
+                                                </TextBlock.Text>
+                                            </TextBlock>
+                                        </DockPanel>
+                                    </Border>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Header="구분" HeaderContainerStyle="{StaticResource listViewHeaderStyle5}" Width="45">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Border BorderBrush="#bababa" BorderThickness="0,0,1,1" Margin="-7,-2,-7,-2">
+                                        <DockPanel Margin="6,2,6,2">
+                                            <TextBlock Foreground="#FF000000" HorizontalAlignment="Center" Height="22">
+                                                <TextBlock.Text>
+                                                    <Binding Path="posGb">
+                                                    </Binding>
+                                                </TextBlock.Text>
+                                            </TextBlock>
+                                        </DockPanel>
+                                    </Border>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Header="로컬" HeaderContainerStyle="{StaticResource listViewHeaderStyle5}" Width="50">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Border BorderBrush="#bababa" BorderThickness="0,0,1,1" Margin="-7,-2,-7,-2">
+                                        <DockPanel Margin="6,2,6,2">
+                                            <TextBlock Foreground="#FF000000" HorizontalAlignment="Center" Height="22">
+                                                <TextBlock.Text>
+                                                    <Binding Path="localPosAt">
+                                                    </Binding>
+                                                </TextBlock.Text>
+                                            </TextBlock>
+                                        </DockPanel>
+                                    </Border>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </StackPanel>
+
+        <StackPanel  Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Row="5" Margin="5 15 0 0" Panel.ZIndex="3" Width="150" Height="40"  HorizontalAlignment="Left" VerticalAlignment="Top" >
+            <TextBox Text="설정정보" IsReadOnly="True"  Width="150" Height="40" TextAlignment="Center" Padding="0 8 0 0" FontWeight="Bold" Foreground="#fff" FontSize="16" >
+                <TextBox.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="2"/>
+                    </Style>
+                </TextBox.Resources>
+                <TextBox.Background>
+                    <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/resource/images/1.png" />
+                </TextBox.Background>
+            </TextBox>
+        </StackPanel>
+        <StackPanel Background="#fff" Width="420" Height="120" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="6" VerticalAlignment="Center" >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="60"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" Orientation="Horizontal" >
+                    <TextBlock Text="매장" Foreground="#000" VerticalAlignment="Bottom" Margin="55 0 0 8" FontSize="14" />
+                    <TextBox Style="{StaticResource GrayTB}" Text="{Binding SelectedItem.storeCode}" IsReadOnly="True"   Foreground="#000" VerticalAlignment="Bottom" Margin="5 0 0 5" FontSize="14" Width="80" Height="25" >
+                        <TextBox.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="2"/>
+                            </Style>
+                        </TextBox.Resources>
+                    </TextBox>
+                    <TextBox Style="{StaticResource GrayTB}" Text="{Binding SelectedItem.storeNm}" IsReadOnly="True" Foreground="#000" VerticalAlignment="Bottom" Margin="5 0 0 5" FontSize="14" Width="160" Height="25" >
+                        <TextBox.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="2"/>
+                            </Style>
+                        </TextBox.Resources>
+                    </TextBox>
+                    <TextBox Style="{StaticResource GrayTB}" Text="{Binding SelectedItem.posNo}" Foreground="#000" VerticalAlignment="Bottom" Margin="5 0 0 5" FontSize="14" Width="60" Height="25" IsReadOnly="True"  >
+                        <TextBox.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="2"/>
+                            </Style>
+                        </TextBox.Resources>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Top" Margin="0 3 0 0" >
+                    <TextBlock Name="posIPLabel" Text="로컬서버명" Foreground="#000" VerticalAlignment="Bottom" Margin="13 0 0 8" FontSize="14" />
+                    <TextBox Name="posIP"  Style="{StaticResource GrayTB}" Text="{Binding SelectedItem.MainPosId,UpdateSourceTrigger=PropertyChanged}" Foreground="#000" VerticalAlignment="Bottom" Margin="5 0 0 5" FontSize="14" Width="160" Height="25" >
+                        <TextBox.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="2"/>
+                            </Style>
+                        </TextBox.Resources>
+                    </TextBox>
+
+                    <TextBox Visibility="Hidden" Style="{StaticResource GrayTB}" Text="{Binding SelectedItem.PosGb,UpdateSourceTrigger=PropertyChanged}" Foreground="#000" VerticalAlignment="Bottom" Margin="5 0 0 5" FontSize="14" Width="160" Height="25" >
+                        <TextBox.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="2"/>
+                            </Style>
+                        </TextBox.Resources>
+                    </TextBox>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+        <StackPanel Background="#fff" Width="420" Height="90" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="7" VerticalAlignment="Top" Margin="0 -15 0 0" >
+            <TextBlock  Text="설치대상 매장과 포스번호를 재확인하여 주십시오." Foreground="#000" FontWeight="SemiBold" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2"
+                   TextAlignment="Center" Padding="0 15 0 0" FontSize="16" />
+        </StackPanel>
+        <TextBlock Background="#000f33" Text="COPYRIGHT(C)2023 GOPOS CO.LTD ALL RIGHT RESSRVED." Foreground="#838ca3" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2"
+                   TextAlignment="Center" Padding="0 9 0 0" FontSize="8" />
+        <views:GoButton Tag="Confirm" Background="#3173af" Command="{Binding ButtonCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}"
+                        Height="40" Width="120" Grid.Row="7" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 20 0 0" >
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="3"/>
+                </Style>
+            </Button.Resources>
+            <TextBlock Text="확인" Tag="check" Foreground="#fff" FontSize="16" FontWeight="SemiBold" />
+        </views:GoButton>
+    </Grid>
+</views:UCViewBase>

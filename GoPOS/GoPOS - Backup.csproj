@@ -1,0 +1,317 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <!--<UseWindowsForms>true</UseWindowsForms>-->
+    <ApplicationIcon>Resource\Images\logo.ico</ApplicationIcon>
+    <ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <Version>1.0.0.0</Version>
+    <IsPublishable>False</IsPublishable>
+    <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
+    <BaseOutputPath>bin\</BaseOutputPath>
+	<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+	<AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+	<PackageOutputPath>$(OutputPath)\bin</PackageOutputPath>
+	<RunPostBuildEvent>Always</RunPostBuildEvent>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+	<Choose>
+		<When Condition=" '$(Configuration)'=='Debug' ">
+			<PropertyGroup>
+				<DebugSymbols>true</DebugSymbols>
+				<DebugType>full</DebugType>
+				<Optimize>false</Optimize>
+				<OutputPath>..\..\Deployment\Debug\bin</OutputPath>
+				<DefineConstants>DEBUG;TRACE</DefineConstants>
+				<PackageOutputPath>..\..\Deployment\Debug</PackageOutputPath>
+			</PropertyGroup>
+		</When>
+		<When Condition=" '$(Configuration)'=='Release' ">
+			<PropertyGroup>
+				<DebugSymbols>false</DebugSymbols>
+				<Optimize>true</Optimize>
+				<OutputPath>...\..\Deployment\Release\bin</OutputPath>
+				<DefineConstants>TRACE</DefineConstants>
+				<PackageOutputPath>..\..\Deployment\Release</PackageOutputPath>
+			</PropertyGroup>
+		</When>
+	</Choose>
+	
+	
+	<ItemGroup>
+    <Compile Remove="Config\**" />
+    <Compile Remove="ExtDLL\**" />
+    <Compile Remove="Firebird4\**" />
+    <Compile Remove="Fonts\**" />
+    <EmbeddedResource Remove="Config\**" />
+    <EmbeddedResource Remove="ExtDLL\**" />
+    <EmbeddedResource Remove="Firebird4\**" />
+    <EmbeddedResource Remove="Fonts\**" />
+    <None Remove="Config\**" />
+    <None Remove="ExtDLL\**" />
+    <None Remove="Firebird4\**" />
+    <None Remove="Fonts\**" />
+    <Page Remove="Config\**" />
+    <Page Remove="ExtDLL\**" />
+    <Page Remove="Firebird4\**" />
+    <Page Remove="Fonts\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+	  <PackageReference Include="EntityFrameworkCore.FirebirdSQL" Version="2.1.2.2" />
+	  <PackageReference Include="FirebirdSql.Data.FirebirdClient" Version="9.0.2" />
+	  <PackageReference Include="FirebirdSql.EntityFrameworkCore.Firebird" Version="9.0.2" />
+	  <PackageReference Include="Caliburn.Micro" Version="4.0.212" />
+	  <PackageReference Include="CoreWCF.Http" Version="1.2.0" />
+	  <PackageReference Include="CoreWCF.NetTcp" Version="1.2.0" />
+	  <PackageReference Include="CoreWCF.Primitives" Version="1.2.0" />
+	  <PackageReference Include="Dapper" Version="2.0.123" />
+	  <PackageReference Include="FirebirdSql.Data.FirebirdClient" Version="9.0.2" />
+	  <PackageReference Include="FontAwesome6.Fonts" Version="2.4.2" />
+	  <PackageReference Include="FontAwesome6.Svg" Version="2.4.2" />
+	  <PackageReference Include="Microsoft.AspNetCore.Owin" Version="6.0.9" />
+	  <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.1518.46" />
+	  <PackageReference Include="NLog" Version="5.0.4" />
+	  <PackageReference Include="NLog.OutputDebugString" Version="5.0.4" />
+	  <PackageReference Include="System.Data.SQLite" Version="1.0.116" />
+	  <PackageReference Include="System.IO.Ports" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GoPOS.Common\GoPOS.Common.csproj" />
+    <ProjectReference Include="..\GoPOS.Models\GoPOS.Models.csproj" />
+    <ProjectReference Include="..\GoPOS.Payment\GoPOS.Payment.csproj" />
+    <ProjectReference Include="..\GoPOS.Sales\GoPOS.Sales.csproj" />
+    <ProjectReference Include="..\GoPOS.Service\GoPOS.Service.csproj" />
+    <ProjectReference Include="..\GoShared\GoShared.csproj" />
+  </ItemGroup>
+
+<ItemGroup>
+  <None Remove="Resource\Images\biz_mng_btn.png" />
+  <None Remove="Resource\Images\biz_mng_logo.png" />
+  <None Remove="Resource\Images\btn_add.png" />
+  <None Remove="Resource\Images\btn_base_blue_70x60.png" />
+  <None Remove="Resource\Images\btn_base_gray_71x36.png" />
+  <None Remove="Resource\Images\btn_base_green.png" />
+  <None Remove="Resource\Images\btn_base_green_71x36.png" />
+  <None Remove="Resource\Images\btn_base_orange.png" />
+  <None Remove="Resource\Images\btn_base_orange_91x95.png" />
+  <None Remove="Resource\Images\btn_cal.png" />
+  <None Remove="Resource\Images\btn_complex.png" />
+  <None Remove="Resource\Images\btn_duch_d.png" />
+  <None Remove="Resource\Images\btn_duch_u.png" />
+  <None Remove="Resource\Images\btn_main_arrow_dw.png" />
+  <None Remove="Resource\Images\btn_main_arrow_up.png" />
+  <None Remove="Resource\Images\btn_main_cal.png" />
+  <None Remove="Resource\Images\btn_main_cal2.png" />
+  <None Remove="Resource\Images\btn_main_cal_left.png" />
+  <None Remove="Resource\Images\btn_main_close.png" />
+  <None Remove="Resource\Images\btn_main_right.png" />
+  <None Remove="Resource\Images\btn_main_right_on.png" />
+  <None Remove="Resource\Images\btn_MenuEnvSetting.png" />
+  <None Remove="Resource\Images\btn_MenuOrderMng.png" />
+  <None Remove="Resource\Images\btn_MenuOrderPayMng.png" />
+  <None Remove="Resource\Images\btn_MenuSalesMng.png" />
+  <None Remove="Resource\Images\btn_MenuSalesStatus.png" />
+  <None Remove="Resource\Images\btn_MenuShutdown.png" />
+  <None Remove="Resource\Images\btn_ord_pay_base.png" />
+  <None Remove="Resource\Images\btn_ord_pay_cal.png" />
+  <None Remove="Resource\Images\btn_ord_pay_card.png" />
+  <None Remove="Resource\Images\btn_ord_pay_cash.png" />
+  <None Remove="Resource\Images\btn_ord_pay_grid_g.png" />
+  <None Remove="Resource\Images\btn_ord_pay_grid_o.png" />
+  <None Remove="Resource\Images\btn_ord_pay_grid_w.png" />
+  <None Remove="Resource\Images\btn_ord_pay_left.png" />
+  <None Remove="Resource\Images\btn_ord_pay_left_d.png" />
+  <None Remove="Resource\Images\btn_ord_pay_left_d_off.png" />
+  <None Remove="Resource\Images\btn_ord_pay_left_m.png" />
+  <None Remove="Resource\Images\btn_ord_pay_left_m_off.png" />
+  <None Remove="Resource\Images\btn_ord_pay_left_p.png" />
+  <None Remove="Resource\Images\btn_ord_pay_left_p_off.png" />
+  <None Remove="Resource\Images\btn_ord_pay_left_u.png" />
+  <None Remove="Resource\Images\btn_ord_pay_left_u_off.png" />
+  <None Remove="Resource\Images\btn_ord_pay_order.png" />
+  <None Remove="Resource\Images\btn_ord_pay_right.png" />
+  <None Remove="Resource\Images\btn_pop_close.png" />
+  <None Remove="Resource\Images\btn_search.png" />
+  <None Remove="Resource\Images\btn_tab_off.png" />
+  <None Remove="Resource\Images\btn_tab_on.png" />
+  <None Remove="Resource\Images\chk_off.png" />
+  <None Remove="Resource\Images\chk_on.png" />
+  <None Remove="Resource\Images\close.png" />
+  <None Remove="Resource\Images\ClosingSettle.png" />
+  <None Remove="Resource\Images\Controls\KeyPadBtnBg.png" />
+  <None Remove="Resource\Images\Controls\KeyPadBtnBg2.png" />
+  <None Remove="Resource\Images\Controls\KeyPadBtnBg3.png" />
+  <None Remove="Resource\Images\end.png" />
+  <None Remove="Resource\Images\end2.png" />
+  <None Remove="Resource\Images\Login\Close.png" />
+  <None Remove="Resource\Images\Login\CloseBg.png" />
+  <None Remove="Resource\Images\Login\KeypadBg.png" />
+  <None Remove="Resource\Images\Login\LoginCheckBoxBg.png" />
+  <None Remove="Resource\Images\Login\LoginNameIcon.png" />
+  <None Remove="Resource\Images\Login\LoginPWDIcon.png" />
+  <None Remove="Resource\Images\Login\LoginRightBack.png" />
+  <None Remove="Resource\Images\Login\LoginRightBackBack.png" />
+  <None Remove="Resource\Images\Login\LoginTopBanner.png" />
+  <None Remove="Resource\Images\logo.ico" />
+  <None Remove="Resource\Images\MainRightBack.png" />
+  <None Remove="Resource\Images\MainRightBack2.png" />
+  <None Remove="Resource\Images\OrderPayLeftPopBack.png" />
+  <None Remove="Resource\Images\OrderPayMain - 복사본.png" />
+  <None Remove="Resource\Images\OrderPayMain.png" />
+  <None Remove="Resource\Images\OrderPayMainCalBack.png" />
+  <None Remove="Resource\Images\OrderPayMainCalH.png" />
+  <None Remove="Resource\Images\OrderPayMainGridSample.png" />
+  <None Remove="Resource\Images\OrderPayMainTotSum.png" />
+  <None Remove="Resource\Images\OrderPayRightPopBack.png" />
+  <None Remove="Resource\Images\pr.png" />
+  <None Remove="Resource\Images\SalesMngCalBack.png" />
+  <None Remove="Resource\Images\SalesMngMain.png" />
+  <None Remove="Resource\Images\SalesMngRight.png" />
+</ItemGroup>
+
+
+	<ItemGroup>
+    <None Update="Properties\Settings.settings">
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+	<ItemGroup>
+	<EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Resource Include="Resource\Images\biz_mng_btn.png" />
+	  <Resource Include="Resource\Images\biz_mng_logo.png" />
+	  <Resource Include="Resource\Images\btn_add.png" />
+	  <Resource Include="Resource\Images\btn_base_blue_70x60.png" />
+	  <Resource Include="Resource\Images\btn_base_gray_71x36.png" />
+	  <Resource Include="Resource\Images\btn_base_green.png" />
+	  <Resource Include="Resource\Images\btn_base_green_71x36.png" />
+	  <Resource Include="Resource\Images\btn_base_orange.png" />
+	  <Resource Include="Resource\Images\btn_base_orange_91x95.png" />
+	  <Resource Include="Resource\Images\btn_cal.png" />
+	  <Resource Include="Resource\Images\btn_complex.png" />
+	  <Resource Include="Resource\Images\btn_duch_d.png" />
+	  <Resource Include="Resource\Images\btn_duch_u.png" />
+	  <Resource Include="Resource\Images\btn_main_arrow_dw.png" />
+	  <Resource Include="Resource\Images\btn_main_arrow_up.png" />
+	  <Resource Include="Resource\Images\btn_main_cal.png" />
+	  <Resource Include="Resource\Images\btn_main_cal2.png" />
+	  <Resource Include="Resource\Images\btn_main_cal_left.png" />
+	  <Resource Include="Resource\Images\btn_main_close.png" />
+	  <Resource Include="Resource\Images\btn_main_right.png" />
+	  <Resource Include="Resource\Images\btn_main_right_on.png" />
+	  <Resource Include="Resource\Images\btn_MenuEnvSetting.png" />
+	  <Resource Include="Resource\Images\btn_MenuOrderMng.png" />
+	  <Resource Include="Resource\Images\btn_MenuOrderPayMng.png" />
+	  <Resource Include="Resource\Images\btn_MenuSalesMng.png" />
+	  <Resource Include="Resource\Images\btn_MenuSalesStatus.png" />
+	  <Resource Include="Resource\Images\btn_MenuShutdown.png" />
+	  <Resource Include="Resource\Images\btn_ord_pay_base.png" />
+	  <Resource Include="Resource\Images\btn_ord_pay_cal.png" />
+	  <Resource Include="Resource\Images\btn_ord_pay_card.png" />
+	  <Resource Include="Resource\Images\btn_ord_pay_cash.png" />
+	  <Resource Include="Resource\Images\btn_ord_pay_grid_g.png" />
+	  <Resource Include="Resource\Images\btn_ord_pay_grid_o.png" />
+	  <Resource Include="Resource\Images\btn_ord_pay_grid_w.png" />
+	  <Resource Include="Resource\Images\btn_ord_pay_left.png" />
+	  <Resource Include="Resource\Images\btn_ord_pay_left_d.png" />
+	  <Resource Include="Resource\Images\btn_ord_pay_left_d_off.png" />
+	  <Resource Include="Resource\Images\btn_ord_pay_left_m.png" />
+	  <Resource Include="Resource\Images\btn_ord_pay_left_m_off.png" />
+	  <Resource Include="Resource\Images\btn_ord_pay_left_p.png" />
+	  <Resource Include="Resource\Images\btn_ord_pay_left_p_off.png" />
+	  <Resource Include="Resource\Images\btn_ord_pay_left_u.png" />
+	  <Resource Include="Resource\Images\btn_ord_pay_left_u_off.png" />
+	  <Resource Include="Resource\Images\btn_ord_pay_order.png" />
+	  <Resource Include="Resource\Images\btn_ord_pay_right.png" />
+	  <Resource Include="Resource\Images\btn_pop_close.png" />
+	  <Resource Include="Resource\Images\btn_search.png" />
+	  <Resource Include="Resource\Images\btn_tab_off.png" />
+	  <Resource Include="Resource\Images\btn_tab_on.png" />
+	  <Resource Include="Resource\Images\chk_off.png" />
+	  <Resource Include="Resource\Images\chk_on.png" />
+	  <Resource Include="Resource\Images\close.png" />
+	  <Resource Include="Resource\Images\ClosingSettle.png" />
+	  <Resource Include="Resource\Images\Controls\KeyPadBtnBg.png" />
+	  <Resource Include="Resource\Images\Controls\KeyPadBtnBg2.png" />
+	  <Resource Include="Resource\Images\Controls\KeyPadBtnBg3.png" />
+	  <Resource Include="Resource\Images\end.png" />
+	  <Resource Include="Resource\Images\end2.png" />
+	  <Resource Include="Resource\Images\Login\Close.png" />
+	  <Resource Include="Resource\Images\Login\CloseBg.png" />
+	  <Resource Include="Resource\Images\Login\KeypadBg.png" />
+	  <Resource Include="Resource\Images\Login\LoginCheckBoxBg.png" />
+	  <Resource Include="Resource\Images\Login\LoginNameIcon.png" />
+	  <Resource Include="Resource\Images\Login\LoginPWDIcon.png" />
+	  <Resource Include="Resource\Images\Login\LoginRightBack.png" />
+	  <Resource Include="Resource\Images\Login\LoginRightBackBack.png" />
+	  <Resource Include="Resource\Images\Login\LoginTopBanner.png" />
+	  <Resource Include="Resource\Images\logo.ico" />
+	  <Resource Include="Resource\Images\MainRightBack.png" />
+	  <Resource Include="Resource\Images\MainRightBack2.png" />
+	  <Resource Include="Resource\Images\OrderPayLeftPopBack.png" />
+	  <Resource Include="Resource\Images\OrderPayMain - 복사본.png" />
+	  <Resource Include="Resource\Images\OrderPayMain.png" />
+	  <Resource Include="Resource\Images\OrderPayMainCalBack.png" />
+	  <Resource Include="Resource\Images\OrderPayMainCalH.png" />
+	  <Resource Include="Resource\Images\OrderPayMainGridSample.png" />
+	  <Resource Include="Resource\Images\OrderPayMainTotSum.png" />
+	  <Resource Include="Resource\Images\OrderPayRightPopBack.png" />
+	  <Resource Include="Resource\Images\pr.png" />
+	  <Resource Include="Resource\Images\SalesMngCalBack.png" />
+	  <Resource Include="Resource\Images\SalesMngMain.png" />
+	  <Resource Include="Resource\Images\SalesMngRight.png" />
+	</ItemGroup>
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="TASKKILL  /FI &quot;STATUS eq RUNNING&quot; /IM GoPos.exe /F /T" />
+  </Target>
+	
+<ItemGroup>
+	<_Resource Include="$(SolutionDir)Resource\**" />
+</ItemGroup>
+	
+<ItemGroup>
+  <Compile Remove="Helpers\WindowHelper.cs" />
+</ItemGroup>
+	
+<ItemGroup>
+  <Folder Include="Helpers\" />
+</ItemGroup>
+	
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+	  <Copy SourceFiles="@(_Resource)" DestinationFolder="$(PackageOutputPath)\Resource\%(RecursiveDir)" SkipUnchangedFiles="true" OverwriteReadOnlyFiles="true" Retries="3" RetryDelayMilliseconds="300" />
+  </Target>
+
+</Project>

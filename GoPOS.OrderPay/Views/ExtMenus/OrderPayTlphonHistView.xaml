@@ -1,0 +1,178 @@
+<UserControl x:Class="GoPOS.Views.OrderPayTlphonHistView" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:viewModel="clr-namespace:GoPOS.ViewModels" d:DataContext="{d:DesignInstance viewModel:OrderPayMainViewModel}" mc:Ignorable="d" xmlns:cal="http://www.caliburnproject.org" xmlns:local="clr-namespace:GoPOS.Views" d:DesignHeight="653" d:DesignWidth="979">
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="63" />
+      <RowDefinition Height="10" />
+      <RowDefinition Height="40" />
+      <RowDefinition Height="*" />
+      <RowDefinition Height="40" />
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="53" />
+      <ColumnDefinition Width="500" />
+      <ColumnDefinition Width="*" />
+      <ColumnDefinition Width="47" />
+    </Grid.ColumnDefinitions>
+    <Grid.Background>
+      <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/resource/images/PopUp_979x653.png" />
+    </Grid.Background>
+    <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Margin="0,0,0,0">
+      <TextBlock Text="{StaticResource 0388}" FontFamily="{StaticResource Pretendard}" FontSize="22" Height="23" Margin="70,3,0,0" FontStyle="Normal" FontWeight="Bold" Foreground="#FFFFFFFF" LineHeight="14" TextAlignment="Left" />
+    </StackPanel>
+    <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Margin="0,0,30,0" HorizontalAlignment="Right">
+      <Button Tag="OrderPayRightViewModel" cal:Message.Attach="[Event Click] = [Action ButtonClose($source, $eventArgs)]" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="10,0,0,0" Width="43" Height="43" Padding="0,0,0,0" BorderThickness="0,0,0,0">
+        <Button.Background>
+          <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/resource/images/btn_Delivery_close.png" />
+        </Button.Background>
+      </Button>
+    </StackPanel>
+    <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" Margin="0,0,0,0">
+      <TextBlock VerticalAlignment="Center" Text="*   영업일자 : " FontFamily="{StaticResource Pretendard}" FontSize="16" FontStyle="Normal" FontWeight="Bold" Foreground="#FF455881" LineHeight="14" TextAlignment="Left" Margin="0,2,0,0" />
+      <TextBox Text="2023-01-07" Style="{StaticResource txtBox}" FontFamily="{StaticResource Pretendard}" FontStyle="Normal" TextAlignment="Center" VerticalContentAlignment="Center" FontWeight="Normal" Width="110" FontSize="14px" Height="25" Margin="10,0,0,0" />
+      <Button Command="{Binding ButtonClose}" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="5,0,0,0" Width="31" Height="31" Padding="0,0,0,0" BorderThickness="0,0,0,0">
+        <Button.Background>
+          <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/resource/images/btn_cal.png" />
+        </Button.Background>
+      </Button>
+      <TextBlock VerticalAlignment="Center" Text="{StaticResource 0346}" FontFamily="{StaticResource Pretendard}" FontSize="18" FontStyle="Normal" FontWeight="Bold" Foreground="#FF455881" LineHeight="14" TextAlignment="Left" Margin="10,2,0,0" />
+      <TextBox Text="2023-01-07" Style="{StaticResource txtBox}" FontFamily="{StaticResource Pretendard}" FontStyle="Normal" TextAlignment="Center" VerticalContentAlignment="Center" FontWeight="Normal" Width="110" FontSize="14px" Height="25" Margin="10,0,0,0" />
+      <Button Command="{Binding ButtonClose}" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="5,0,0,0" Width="31" Height="31" Padding="0,0,0,0" BorderThickness="0,0,0,0">
+        <Button.Background>
+          <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/resource/images/btn_cal.png" />
+        </Button.Background>
+      </Button>
+    </StackPanel>
+    <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="2" Grid.RowSpan="2" Grid.ColumnSpan="2" Margin="0,0,40,5" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+      <Button Tag="엑셀" cal:Message.Attach="[Event Click] = [Action ButtonMenu($source, $eventArgs)]" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="0,0,0,0" Width="83" Height="31" Padding="0,0,0,0" BorderThickness="0,0,0,0">
+        <Button.Background>
+          <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/resource/images/btn_base_green.png" />
+        </Button.Background>
+        <TextBlock Text="{StaticResource 0390}" FontFamily="{StaticResource Pretendard}" FontSize="13" FontStyle="Normal" FontWeight="Bold" Foreground="#FFFFFFFF" LineHeight="13" TextAlignment="Center" />
+      </Button>
+      <Button Tag="조회" cal:Message.Attach="[Event Click] = [Action ButtonMenu($source, $eventArgs)]" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="5,0,0,0" Width="83" Height="31" Padding="0,0,0,0" BorderThickness="0,0,0,0">
+        <Button.Background>
+          <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/resource/images/btn_base_orange.png" />
+        </Button.Background>
+        <TextBlock Text="{StaticResource 0022}" FontFamily="{StaticResource Pretendard}" FontSize="13" FontStyle="Normal" FontWeight="Bold" Foreground="#FFFFFFFF" LineHeight="13" TextAlignment="Center" />
+      </Button>
+      <Button Tag="인쇄" cal:Message.Attach="[Event Click] = [Action ButtonMenu($source, $eventArgs)]" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="5,0,0,0" Width="83" Height="31" Padding="0,0,0,0" BorderThickness="0,0,0,0">
+        <Button.Background>
+          <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/resource/images/btn_base_green.png" />
+        </Button.Background>
+        <TextBlock Text="{StaticResource 0190}" FontFamily="{StaticResource Pretendard}" FontSize="13" FontStyle="Normal" FontWeight="Bold" Foreground="#FFFFFFFF" LineHeight="13" TextAlignment="Center" />
+      </Button>
+    </StackPanel>
+    <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" Margin="40,0,40,7">
+      <ListView Name="TehListView" Grid.Row="0" FontSize="14" Width="899" BorderBrush="#bababa" Padding="-1,-1,-1,0" BorderThickness="1" SelectedItem="{Binding SelectedItemDeliveryList}">
+        <ListView.ItemContainerStyle>
+          <Style TargetType="{x:Type ListViewItem}">
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            <Setter Property="BorderBrush" Value="#bababa" />
+            <Setter Property="BorderThickness" Value="0,0,1,0" />
+            <Setter Property="Margin" Value="0,2,-1,0" />
+          </Style>
+        </ListView.ItemContainerStyle>
+        <ListView.View>
+          <GridView>
+            <GridViewColumn Header="No" HeaderContainerStyle="{StaticResource listViewHeaderStyle}" Width="30">
+              <GridViewColumn.CellTemplate>
+                <DataTemplate>
+                  <Border BorderBrush="#bababa" BorderThickness="0,0,1,1" Margin="-9,-2,-7,-2">
+                    <DockPanel Margin="6,2,6,2">
+                      <TextBlock Foreground="#FF000000" HorizontalAlignment="Center" Height="22">
+                        <TextBlock.Text>
+                          <Binding Path="NO">
+                          </Binding>
+                        </TextBlock.Text>
+                      </TextBlock>
+                    </DockPanel>
+                  </Border>
+                </DataTemplate>
+              </GridViewColumn.CellTemplate>
+            </GridViewColumn>
+            <GridViewColumn Header="CALL시간" HeaderContainerStyle="{StaticResource listViewHeaderStyle}" Width="130">
+              <GridViewColumn.CellTemplate>
+                <DataTemplate>
+                  <Border BorderBrush="#bababa" BorderThickness="0,0,1,1" Margin="-7,-2,-7,-2">
+                    <DockPanel Margin="6,2,6,2">
+                      <TextBlock Foreground="#FF000000" HorizontalAlignment="Center" Height="22">
+                        <TextBlock.Text>
+                          <Binding Path="INSERT_DT">
+                          </Binding>
+                        </TextBlock.Text>
+                      </TextBlock>
+                    </DockPanel>
+                  </Border>
+                </DataTemplate>
+              </GridViewColumn.CellTemplate>
+            </GridViewColumn>
+            <GridViewColumn Header="전화구분" HeaderContainerStyle="{StaticResource listViewHeaderStyle}" Width="100">
+              <GridViewColumn.CellTemplate>
+                <DataTemplate>
+                  <Border BorderBrush="#bababa" BorderThickness="0,0,1,1" Margin="-7,-2,-7,-2">
+                    <DockPanel Margin="6,2,6,2">
+                      <TextBlock Foreground="#FF000000" HorizontalAlignment="Center" Height="22">
+                        <TextBlock.Text>
+                          <Binding Path="CID_TEL_FLAG">
+                          </Binding>
+                        </TextBlock.Text>
+                      </TextBlock>
+                    </DockPanel>
+                  </Border>
+                </DataTemplate>
+              </GridViewColumn.CellTemplate>
+            </GridViewColumn>
+            <GridViewColumn Header="전화번호" HeaderContainerStyle="{StaticResource listViewHeaderStyle}" Width="110">
+              <GridViewColumn.CellTemplate>
+                <DataTemplate>
+                  <Border BorderBrush="#bababa" BorderThickness="0,0,1,1" Margin="-7,-2,-7,-2">
+                    <DockPanel Margin="6,2,6,2">
+                      <TextBlock Foreground="#FF000000" HorizontalAlignment="Center" Height="22">
+                        <TextBlock.Text>
+                          <Binding Path="CID_TEL_NO">
+                          </Binding>
+                        </TextBlock.Text>
+                      </TextBlock>
+                    </DockPanel>
+                  </Border>
+                </DataTemplate>
+              </GridViewColumn.CellTemplate>
+            </GridViewColumn>
+            <GridViewColumn Header="주소" HeaderContainerStyle="{StaticResource listViewHeaderStyle}" Width="370">
+              <GridViewColumn.CellTemplate>
+                <DataTemplate>
+                  <Border BorderBrush="#bababa" BorderThickness="0,0,1,1" Margin="-7,-2,-7,-2">
+                    <DockPanel Margin="6,2,6,2">
+                      <TextBlock Foreground="#FF000000" HorizontalAlignment="Left" Height="22">
+                        <TextBlock.Text>
+                          <Binding Path="ADDR">
+                          </Binding>
+                        </TextBlock.Text>
+                      </TextBlock>
+                    </DockPanel>
+                  </Border>
+                </DataTemplate>
+              </GridViewColumn.CellTemplate>
+            </GridViewColumn>
+            <GridViewColumn Header="비고" HeaderContainerStyle="{StaticResource listViewHeaderStyle}" Width="153">
+              <GridViewColumn.CellTemplate>
+                <DataTemplate>
+                  <Border BorderBrush="#bababa" BorderThickness="0,0,1,1" Margin="-7,-2,-7,-2">
+                    <DockPanel Margin="6,2,6,2">
+                      <TextBlock Foreground="#FF000000" HorizontalAlignment="Left" Height="22">
+                        <TextBlock.Text>
+                          <Binding Path="REMARK">
+                          </Binding>
+                        </TextBlock.Text>
+                      </TextBlock>
+                    </DockPanel>
+                  </Border>
+                </DataTemplate>
+              </GridViewColumn.CellTemplate>
+            </GridViewColumn>
+          </GridView>
+        </ListView.View>
+      </ListView>
+    </StackPanel>
+  </Grid>
+</UserControl>

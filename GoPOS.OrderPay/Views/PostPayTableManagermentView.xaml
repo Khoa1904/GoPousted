@@ -1,0 +1,1185 @@
+﻿<views:UCViewBase xmlns:views="clr-namespace:GoPOS.Common.Views;assembly=GoPOS.Common"
+    x:Class="GoPOS.Views.PostPayTableManagermentView"
+      xmlns:controls="clr-namespace:GoPOS.Common.Helpers.Controls;assembly=GoPOS.Common" 
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:viewModel="clr-namespace:GoPOS.ViewModels" mc:Ignorable="d" 
+      d:DataContext="{d:DesignInstance viewModel:PostPayTableManagermentViewModel}" 
+      xmlns:common1="clr-namespace:GoPOS.Common.Views.Controls;assembly=GoPOS.Common"
+      Height="768" Width="1024">
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="69"/>
+            <RowDefinition Height="699"/>
+        </Grid.RowDefinitions>
+
+        <DockPanel Margin="0 -5 0 0" Grid.Row="0" Grid.Column="0" 
+                    Grid.ColumnSpan="5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="17" />
+                    <RowDefinition Height="15" />
+                    <RowDefinition Height="15" />
+                    <RowDefinition Height="11" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="203" />
+                    <ColumnDefinition Width="44" />
+                    <ColumnDefinition Width="12" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="9" />
+                    <ColumnDefinition Width="43" />
+                    <ColumnDefinition Width="18" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" Margin="10,0,10,0" Height="35" >
+                    <Button Tag="" Width="182" Height="40" >
+                        <Button.Background>
+                            <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/resource/images/icon/logo_L.png" />
+                        </Button.Background>
+                    </Button>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" >
+                    <Button Tag="openlink" Width="45" Height="40" Command="{Binding ButtonCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}">
+                        <Button.Background>
+                            <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/resource/images/logo2.png" />
+                        </Button.Background>
+                    </Button>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="3" Grid.RowSpan="2" Grid.ColumnSpan="3" Background="#313637">
+                    <TextBlock Text="* 매장명 :" FontFamily="{StaticResource Pretendard}" Height="14" FontSize="13" FontStyle="Normal" FontWeight="Normal" Foreground="#aaaaaa" LineHeight="14" VerticalAlignment="Top" Margin="29,4,0,0" />
+                    <TextBlock Text="{Binding ShopName}" FontFamily="{StaticResource Pretendard}" Height="14" FontSize="13" FontStyle="Normal" FontWeight="Normal" Foreground="#FFFFFFFF" LineHeight="14" VerticalAlignment="Top" Margin="4,4,0,0" HorizontalAlignment="Left" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="3">
+                    <TextBlock Text="* 사원명 : " FontFamily="{StaticResource Pretendard}" FontSize="13" FontStyle="Normal" FontWeight="Normal" Foreground="#aaaaaa" LineHeight="14" Margin="29,0,0,0" />
+                    <TextBlock Text="{Binding EmployeeName}" FontFamily="{StaticResource Pretendard}" FontSize="13" FontStyle="Normal" FontWeight="Normal" Foreground="#FFFFFFFF" LineHeight="14" HorizontalAlignment="Left" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="4">
+                    <TextBlock Text="{DynamicResource 0389}" FontFamily="{StaticResource Pretendard}" FontSize="13" FontStyle="Normal" FontWeight="Normal" Foreground="#aaaaaa" LineHeight="14" Margin="5,4,0,0" />
+                    <TextBlock Text="{Binding SalesDateString}" FontFamily="{StaticResource Pretendard}" FontSize="13" FontStyle="Normal" FontWeight="Normal" Foreground="#fa7514" LineHeight="14" Margin="4,4,0,0" HorizontalAlignment="Left" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="4">
+                    <TextBlock Text="* 통신상태 :" FontFamily="{StaticResource Pretendard}" FontSize="13" FontStyle="Normal" FontWeight="Normal" Foreground="#aaaaaa" LineHeight="14" Margin="5,4,0,0" />
+                    <TextBlock Text="정상" FontFamily="{StaticResource Pretendard}" FontSize="13" FontStyle="Normal" FontWeight="Normal" Foreground="#FFFFFFFF" LineHeight="14" Margin="4,4,0,0" HorizontalAlignment="Left" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="5" HorizontalAlignment="Right" Margin="0 0 15 0"
+                            Grid.RowSpan="2" Grid.ColumnSpan="1" VerticalAlignment="Center">
+                    <TextBlock TextWrapping="Wrap" Text="{Binding CurrentDateWithDayTextLong}" FontFamily="{StaticResource Pretendard}" FontSize="13" FontStyle="Normal" FontWeight="Normal" VerticalAlignment="Center"
+                       Foreground="#ffffff" LineHeight="14" Width="70" />
+
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="7" Grid.RowSpan="2" Margin="0,0,0,0">
+                    <views:GoButton Command="{Binding ButtonCommand}" Style="{StaticResource ClozeBtn}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" 
+                                    Tag="ButtonClose" Margin="0,0,0,0" VerticalAlignment="Top" Width="43" Height="43" Padding="0,0,0,0"  >
+
+                    </views:GoButton>
+                </StackPanel>
+            </Grid>
+        </DockPanel>
+
+        <!--Bottom 메뉴-->
+        <DockPanel Panel.ZIndex="1" Grid.Row="1">
+            <Grid Background="#b4b4b4"  >
+                <StackPanel Panel.ZIndex="1" Margin="0 0 940 0" >
+                    <ToggleButton Grid.Column="0" Margin="0 45 10 0" HorizontalAlignment="Right" 
+                      Height="60" Width="70" Command="{Binding ToggleCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" 
+                        Tag="MenuNote">
+                        <TextBlock Text="메뉴표기" FontFamily="{StaticResource Pretendard}" FontStyle="Normal" 
+                        Foreground="#FFFFFFFF"  VerticalAlignment="Center" FontSize="16"
+                        TextAlignment="Center" />
+                    </ToggleButton>
+                </StackPanel>
+                <StackPanel Panel.ZIndex="1" Margin="650 -652 0 0" Width="180" Height="50" Grid.Row="0" Grid.Column="9" Grid.ColumnSpan="2">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <views:GoButton Grid.Column="0" Margin="-5 0 5 0" HorizontalAlignment="Right" Height="50" Width="88" Command="{Binding ButtonCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" 
+                            Tag="Basic" Click="Btn_Click" x:Name="basicBtn">
+                            <TextBlock Text="기본" FontFamily="{StaticResource Pretendard}" FontStyle="Normal" 
+                                Foreground="#FFFFFFFF"  VerticalAlignment="Center" FontSize="16"
+                               TextAlignment="Center" />
+                        </views:GoButton>
+                        <views:GoButton Grid.Column="1" Height="50" Width="88" Command="{Binding ButtonCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" 
+                           Tag="Deliver" x:Name="deliverBtn" Click="Btn_Click" HorizontalAlignment="Left">
+                            <TextBlock  Text="배달" FontFamily="{StaticResource Pretendard}" FontStyle="Normal" 
+                           Foreground="#FFFFFFFF"  VerticalAlignment="Center" FontSize="16"
+                           TextAlignment="Center" />
+                        </views:GoButton>
+
+                    </Grid>
+
+                </StackPanel>
+
+                <StackPanel Margin="930 52 0 0" Panel.ZIndex="1" Width="76">
+                    <views:GoButton Grid.Row="0" Opacity="0.8" Margin="0 0 0 7" Height="12" Width="48" Command="{Binding ButtonCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" 
+                            Tag="Prev" HorizontalAlignment="Center" Style="{StaticResource ArrowUp}" >
+                        <TextBlock Text="" FontFamily="{StaticResource Pretendard}" FontStyle="Normal" 
+                            Foreground="#FFFFFFFF"  VerticalAlignment="Center" FontSize="15"
+                            TextAlignment="Center" />
+                    </views:GoButton>
+                    <Grid x:Name="FunctionButton">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <views:GoButton Grid.Row="1" Opacity="0.9" Margin="0 0 0 7" Height="50" Width="60" Command="{Binding FunctionCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" 
+                            Tag="" HorizontalAlignment="Center" Style="{StaticResource BtnSeabed}" >
+                            <TextBlock Text="" FontFamily="{StaticResource Pretendard}" FontStyle="Normal" 
+                            Foreground="#FFFFFFFF"  VerticalAlignment="Center" FontSize="15"
+                            TextAlignment="Center" />
+                        </views:GoButton>
+                        <views:GoButton Grid.Row="2" Opacity="0.9" Margin="0 0 0 7" Height="50" Width="60" Command="{Binding FunctionCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" 
+                            Tag="" HorizontalAlignment="Center" Style="{StaticResource BtnSeabed}" >
+                            <TextBlock Text="" FontFamily="{StaticResource Pretendard}" FontStyle="Normal" 
+                            Foreground="#FFFFFFFF" VerticalAlignment="Center" FontSize="15"
+                            TextAlignment="Center"/>
+                        </views:GoButton>
+                        <views:GoButton Grid.Row="3" Opacity="0.9" Margin="0 0 0 7" Height="50" Width="60" Command="{Binding FunctionCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" 
+                            Tag="" HorizontalAlignment="Center" Style="{StaticResource BtnSeabed}" >
+                            <TextBlock  Text="" FontFamily="{StaticResource Pretendard}" FontStyle="Normal" 
+                            Foreground="#FFFFFFFF" VerticalAlignment="Center" FontSize="15"
+                            TextAlignment="Center"/>
+                        </views:GoButton>
+                        <views:GoButton Grid.Row="4" Opacity="0.9" Margin="0 0 0 7" Height="50" Width="60" Command="{Binding FunctionCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" 
+                            Tag="" HorizontalAlignment="Center" Style="{StaticResource BtnSeabed}" >
+                            <TextBlock  Text="" FontFamily="{StaticResource Pretendard}" FontStyle="Normal" 
+                            Foreground="#FFFFFFFF" VerticalAlignment="Center" FontSize="15"
+                            TextAlignment="Center"/>
+                        </views:GoButton>
+                        <views:GoButton Grid.Row="5" Opacity="0.9" Margin="0 0 0 7" Height="50" Width="60" Command="{Binding FunctionCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" 
+                            Tag="" HorizontalAlignment="Center" Style="{StaticResource BtnSeabed}">
+                            <TextBlock Height="40" Width="50" TextAlignment="Center" TextWrapping="Wrap"
+                              Text="" FontFamily="{StaticResource Pretendard}" FontStyle="Normal" 
+                            Foreground="#FFFFFFFF" VerticalAlignment="Center" FontSize="15"
+                           />
+                        </views:GoButton>
+                        <views:GoButton Grid.Row="6" Opacity="0.9" Margin="0 0 0 7" Height="50" Width="60" Command="{Binding FunctionCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" 
+                            Tag="" HorizontalAlignment="Center" Style="{StaticResource BtnSeabed}" >
+                            <TextBlock Text="" FontFamily="{StaticResource Pretendard}" FontStyle="Normal" 
+                            Foreground="#FFFFFFFF" VerticalAlignment="Center" FontSize="15"
+                            TextAlignment="Center"/>
+                        </views:GoButton>
+                        <views:GoButton Grid.Row="7" Opacity="0.9" Margin="0 0 0 7" Height="50" Width="60" Command="{Binding FunctionCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" 
+                            Tag="" HorizontalAlignment="Center" Style="{StaticResource BtnSeabed}" >
+                            <TextBlock  Text="" FontFamily="{StaticResource Pretendard}" FontStyle="Normal" 
+                            Foreground="#FFFFFFFF" VerticalAlignment="Center" FontSize="15"
+                            TextAlignment="Center"/>
+                        </views:GoButton>
+                        <views:GoButton Grid.Row="8" Opacity="0.9" Margin="0 0 0 7" Height="50" Width="60" Command="{Binding FunctionCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" 
+                            Tag="" HorizontalAlignment="Center" Style="{StaticResource BtnSeabed}" >
+                            <TextBlock  Text="" FontFamily="{StaticResource Pretendard}" FontStyle="Normal" 
+                            Foreground="#FFFFFFFF" VerticalAlignment="Center" FontSize="15"
+                            TextAlignment="Center"/>
+                        </views:GoButton>
+                        <views:GoButton Grid.Row="9" Opacity="0.9" Margin="0 0 0 7" Height="50" Width="60" Command="{Binding FunctionCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" 
+                           Tag="" HorizontalAlignment="Center" Style="{StaticResource BtnSeabed}" >
+                            <TextBlock Width="50" TextWrapping="Wrap" Text="" FontFamily="{StaticResource Pretendard}" FontStyle="Normal" 
+                            Foreground="#FFFFFFFF" VerticalAlignment="Center" FontSize="15"
+                            TextAlignment="Center"/>
+                        </views:GoButton>
+                        <views:GoButton Grid.Row="10" Opacity="0.9" Margin="0 0 0 7" Height="50" Width="60" Command="{Binding FunctionCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" 
+                           Tag="" HorizontalAlignment="Center" Style="{StaticResource BtnSeabed}" >
+                            <TextBlock Width="50" TextWrapping="Wrap" Text="" FontFamily="{StaticResource Pretendard}" FontStyle="Normal" 
+                            Foreground="#FFFFFFFF" VerticalAlignment="Center" FontSize="15"
+                            TextAlignment="Center"/>
+                        </views:GoButton>
+                    </Grid>
+                    <views:GoButton Grid.Row="11" Opacity="0.8"  Height="12" Width="48" Command="{Binding ButtonCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" 
+                            Tag="Next" HorizontalAlignment="Center" Style="{StaticResource ArrowDown}" >
+                        <TextBlock Text="" FontFamily="{StaticResource Pretendard}" FontStyle="Normal"
+                            Foreground="#FFFFFFFF"  VerticalAlignment="Center" FontSize="15" TextAlignment="Center" />
+                    </views:GoButton>
+                </StackPanel>
+
+
+                <Grid x:Name="TableGround" Margin="33 21 33 28" Width="957" Height="650" >
+                    <Grid.Background >
+                        <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/Resource/Images/wood_background.png"/>
+                    </Grid.Background>
+
+                    <!--Table Area-->
+                    <Grid HorizontalAlignment="Left" VerticalAlignment="Top" x:Name="Table0"   MinWidth="170" MinHeight="125" MouseLeftButtonDown="BeginOrder" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.Background>
+                            <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/Resource/Images/dining_table_bg.png"/>
+                        </Grid.Background>
+
+                        <Border Grid.RowSpan="3" BorderBrush="#299ad9" CornerRadius="4" BorderThickness="2.5"/>
+                        <TextBlock Name="Title0" Text="" Grid.Row="0" HorizontalAlignment="Left" Margin="5 0 0 0"  FontSize="18" FontWeight="Bold" Foreground="#299ad9"/>
+
+                        <ListView Grid.Row="1"  Opacity="0.7" Background="#299ad9" BorderThickness="0" Visibility="Visible" Margin="4 0 4 4" >
+                            <ListView.Resources>
+                                <Style TargetType="GridViewColumnHeader">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </Style>
+                            </ListView.Resources>
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="{x:Type ListViewItem}">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                    <Setter Property="Margin" Value="0,1,0,0" />
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Width="150">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Border  Margin="-9,-2,-7,-2">
+                                                    <DockPanel Margin="5,0,5,0">
+                                                        <TextBlock Foreground="#fff" HorizontalAlignment="Left" Height="15">
+                                                            <TextBlock.Text>
+                                                                <Binding Path="PRD_NAME">
+                                                                </Binding>
+                                                            </TextBlock.Text>
+                                                        </TextBlock>
+                                                    </DockPanel>
+                                                </Border>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn  Width="20">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Border  Margin="-7,-2,-7,-2">
+                                                    <DockPanel Margin="5,0,5,0">
+                                                        <TextBlock Foreground="#fff" HorizontalAlignment="Right" Height="15">
+                                                            <TextBlock.Text>
+                                                                <Binding Path="SALE_QTY">
+                                                                </Binding>
+                                                            </TextBlock.Text>
+                                                        </TextBlock>
+                                                    </DockPanel>
+                                                </Border>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                        <TextBlock Name="Total0" FontWeight="SemiBold" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 0 8 5" Foreground="White"/>
+                    </Grid>
+
+                    <Grid HorizontalAlignment="Left" VerticalAlignment="Top" x:Name="Table1"    MinWidth="170" MinHeight="125" MouseLeftButtonDown="BeginOrder" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.Background>
+                            <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/Resource/Images/dining_table_bg.png"/>
+                        </Grid.Background>
+
+                        <Border Grid.RowSpan="3" BorderBrush="#299ad9" CornerRadius="4" BorderThickness="2.5"/>
+                        <TextBlock Name="Title1" Text="" Grid.Row="0" Margin="5 0 0 0"  HorizontalAlignment="Left"   FontSize="18" FontWeight="Bold" Foreground="#299ad9"/>
+
+                        <ListView Grid.Row="1"  Opacity="0.7" Background="#299ad9" BorderThickness="0" Visibility="Visible" Margin="4 0 4 4">
+                            <ListView.Resources>
+                                <Style TargetType="GridViewColumnHeader">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </Style>
+                            </ListView.Resources>
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="{x:Type ListViewItem}">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                    <Setter Property="Margin" Value="0,1,0,0" />
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Width="150">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Border  Margin="-9,-2,-7,-2">
+                                                    <DockPanel Margin="6,0,6,0">
+                                                        <TextBlock Foreground="#fff" HorizontalAlignment="Left" Height="15">
+                                                            <TextBlock.Text>
+                                                                <Binding Path="PRD_NAME">
+                                                                </Binding>
+                                                            </TextBlock.Text>
+                                                        </TextBlock>
+                                                    </DockPanel>
+                                                </Border>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn  Width="20">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Border  Margin="-7,-2,-7,-2">
+                                                    <DockPanel Margin="6,0,6,0">
+                                                        <TextBlock Foreground="#fff" HorizontalAlignment="Right" Height="15">
+                                                            <TextBlock.Text>
+                                                                <Binding Path="SALE_QTY">
+                                                                </Binding>
+                                                            </TextBlock.Text>
+                                                        </TextBlock>
+                                                    </DockPanel>
+                                                </Border>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                        <TextBlock Name="Total1" FontWeight="SemiBold" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 0 8 5" Foreground="White"/>
+                    </Grid>
+
+                    <Grid HorizontalAlignment="Left" VerticalAlignment="Top" x:Name="Table2"    MinWidth="170" MinHeight="125" MouseLeftButtonDown="BeginOrder">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.Background>
+                            <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/Resource/Images/dining_table_bg.png"/>
+                        </Grid.Background>
+
+                        <Border Grid.RowSpan="3" BorderBrush="#299ad9" CornerRadius="4" BorderThickness="2.5"/>
+                        <TextBlock Name="Title2" Text="" Grid.Row="0" Margin="5 0 0 0"  HorizontalAlignment="Left"   FontSize="18" FontWeight="Bold" Foreground="#299ad9"/>
+
+                        <ListView Grid.Row="1"  Opacity="0.7" Background="#299ad9" BorderThickness="0" Visibility="Visible" Margin="4 0 4 4">
+                            <ListView.Resources>
+                                <Style TargetType="GridViewColumnHeader">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </Style>
+                            </ListView.Resources>
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="{x:Type ListViewItem}">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                    <Setter Property="Margin" Value="0,1,0,0" />
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Width="150">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Border  Margin="-9,-2,-7,-2">
+                                                    <DockPanel Margin="6,0,6,0">
+                                                        <TextBlock Foreground="#fff" HorizontalAlignment="Left" Height="15">
+                                                            <TextBlock.Text>
+                                                                <Binding Path="PRD_NAME">
+                                                                </Binding>
+                                                            </TextBlock.Text>
+                                                        </TextBlock>
+                                                    </DockPanel>
+                                                </Border>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn  Width="20">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Border  Margin="-7,-2,-7,-2">
+                                                    <DockPanel Margin="6,0,6,0">
+                                                        <TextBlock Foreground="#fff" HorizontalAlignment="Right" Height="15">
+                                                            <TextBlock.Text>
+                                                                <Binding Path="SALE_QTY">
+                                                                </Binding>
+                                                            </TextBlock.Text>
+                                                        </TextBlock>
+                                                    </DockPanel>
+                                                </Border>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                        <TextBlock Name="Total2" FontWeight="SemiBold" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 0 8 5" Foreground="White"/>
+                    </Grid>
+
+                    <Grid HorizontalAlignment="Left" VerticalAlignment="Top" x:Name="Table3"    MinWidth="170" MinHeight="125" MouseLeftButtonDown="BeginOrder">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.Background>
+                            <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/Resource/Images/dining_table_bg.png"/>
+                        </Grid.Background>
+
+                        <Border Grid.RowSpan="3" BorderBrush="#299ad9" CornerRadius="4" BorderThickness="2.5"/>
+                        <TextBlock Name="Title3" Text="" Grid.Row="0" Margin="5 0 0 0"  HorizontalAlignment="Left"   FontSize="18" FontWeight="Bold" Foreground="#299ad9"/>
+
+                        <ListView Grid.Row="1"  Opacity="0.7" Background="#299ad9" BorderThickness="0" Visibility="Visible" Margin="4 0 4 4">
+                            <ListView.Resources>
+                                <Style TargetType="GridViewColumnHeader">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </Style>
+                            </ListView.Resources>
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="{x:Type ListViewItem}">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                    <Setter Property="Margin" Value="0,1,0,0" />
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Width="150">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Border  Margin="-9,-2,-7,-2">
+                                                    <DockPanel Margin="6,0,6,0">
+                                                        <TextBlock Foreground="#fff" HorizontalAlignment="Left" Height="15">
+                                                            <TextBlock.Text>
+                                                                <Binding Path="PRD_NAME">
+                                                                </Binding>
+                                                            </TextBlock.Text>
+                                                        </TextBlock>
+                                                    </DockPanel>
+                                                </Border>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn  Width="20">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Border  Margin="-7,-2,-7,-2">
+                                                    <DockPanel Margin="6,0,6,0">
+                                                        <TextBlock Foreground="#fff" HorizontalAlignment="Right" Height="15">
+                                                            <TextBlock.Text>
+                                                                <Binding Path="SALE_QTY">
+                                                                </Binding>
+                                                            </TextBlock.Text>
+                                                        </TextBlock>
+                                                    </DockPanel>
+                                                </Border>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                        <TextBlock Name="Total3" FontWeight="SemiBold" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 0 8 5" Foreground="White"/>
+                    </Grid>
+
+                    <Grid HorizontalAlignment="Left" VerticalAlignment="Top"  x:Name="Table4"   MinWidth="170" MinHeight="125" MouseLeftButtonDown="BeginOrder">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.Background>
+                            <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/Resource/Images/dining_table_bg.png"/>
+                        </Grid.Background>
+
+                        <Border Grid.RowSpan="3" BorderBrush="#299ad9" CornerRadius="4" BorderThickness="2.5"/>
+                        <TextBlock Name="Title4" Text="" Grid.Row="0" Margin="5 0 0 0"  HorizontalAlignment="Left"   FontSize="18" FontWeight="Bold" Foreground="#299ad9"/>
+
+                        <ListView Grid.Row="1"  Opacity="0.7" Background="#299ad9" BorderThickness="0" Visibility="Visible" Margin="4 0 4 4">
+                            <ListView.Resources>
+                                <Style TargetType="GridViewColumnHeader">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </Style>
+                            </ListView.Resources>
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="{x:Type ListViewItem}">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                    <Setter Property="Margin" Value="0,1,0,0" />
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Width="150">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Border  Margin="-9,-2,-7,-2">
+                                                    <DockPanel Margin="6,0,6,0">
+                                                        <TextBlock Foreground="#fff" HorizontalAlignment="Left" Height="15">
+                                                            <TextBlock.Text>
+                                                                <Binding Path="PRD_NAME">
+                                                                </Binding>
+                                                            </TextBlock.Text>
+                                                        </TextBlock>
+                                                    </DockPanel>
+                                                </Border>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn  Width="20">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Border  Margin="-7,-2,-7,-2">
+                                                    <DockPanel Margin="6,0,6,0">
+                                                        <TextBlock Foreground="#fff" HorizontalAlignment="Right" Height="15">
+                                                            <TextBlock.Text>
+                                                                <Binding Path="SALE_QTY">
+                                                                </Binding>
+                                                            </TextBlock.Text>
+                                                        </TextBlock>
+                                                    </DockPanel>
+                                                </Border>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                        <TextBlock Name="Total4" FontWeight="SemiBold" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 0 8 5" Foreground="White"/>
+                    </Grid>
+
+                    <Grid HorizontalAlignment="Left" VerticalAlignment="Top" x:Name="Table5"    MinWidth="170" MinHeight="125" MouseLeftButtonDown="BeginOrder">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.Background>
+                            <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/Resource/Images/dining_table_bg.png"/>
+                        </Grid.Background>
+
+                        <Border Grid.RowSpan="3" BorderBrush="#299ad9" CornerRadius="4" BorderThickness="2.5"/>
+                        <TextBlock Name="Title5" Text="" Grid.Row="0" Margin="5 0 0 0"  HorizontalAlignment="Left"   FontSize="18" FontWeight="Bold" Foreground="#299ad9"/>
+
+                        <ListView Grid.Row="1"  Opacity="0.7" Background="#299ad9" BorderThickness="0" Visibility="Visible" Margin="4 0 4 4">
+                            <ListView.Resources>
+                                <Style TargetType="GridViewColumnHeader">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </Style>
+                            </ListView.Resources>
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="{x:Type ListViewItem}">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                    <Setter Property="Margin" Value="0,1,0,0" />
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Width="150">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Border  Margin="-9,-2,-7,-2">
+                                                    <DockPanel Margin="6,0,6,0">
+                                                        <TextBlock Foreground="#fff" HorizontalAlignment="Left" Height="15">
+                                                            <TextBlock.Text>
+                                                                <Binding Path="PRD_NAME">
+                                                                </Binding>
+                                                            </TextBlock.Text>
+                                                        </TextBlock>
+                                                    </DockPanel>
+                                                </Border>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn  Width="20">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Border  Margin="-7,-2,-7,-2">
+                                                    <DockPanel Margin="6,0,6,0">
+                                                        <TextBlock Foreground="#fff" HorizontalAlignment="Right" Height="15">
+                                                            <TextBlock.Text>
+                                                                <Binding Path="SALE_QTY">
+                                                                </Binding>
+                                                            </TextBlock.Text>
+                                                        </TextBlock>
+                                                    </DockPanel>
+                                                </Border>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                        <TextBlock Name="Total5" FontWeight="SemiBold" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 0 8 5" Foreground="White"/>
+                    </Grid>
+
+                    <Grid HorizontalAlignment="Left" VerticalAlignment="Top" x:Name="Table6"    MinWidth="170" MinHeight="125" MouseLeftButtonDown="BeginOrder">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.Background>
+                            <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/Resource/Images/dining_table_bg.png"/>
+                        </Grid.Background>
+
+                        <Border Grid.RowSpan="3" BorderBrush="#299ad9" CornerRadius="4" BorderThickness="2.5"/>
+                        <TextBlock Name="Title6" Margin="5 0 0 0"  Text="" Grid.Row="0" HorizontalAlignment="Left"   FontSize="18" FontWeight="Bold" Foreground="#299ad9"/>
+
+                        <ListView Grid.Row="1"  Opacity="0.7" Background="#299ad9" BorderThickness="0" Visibility="Visible" Margin="4 0 4 4">
+                            <ListView.Resources>
+                                <Style TargetType="GridViewColumnHeader">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </Style>
+                            </ListView.Resources>
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="{x:Type ListViewItem}">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                    <Setter Property="Margin" Value="0,1,0,0" />
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Width="150">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Border  Margin="-9,-2,-7,-2">
+                                                    <DockPanel Margin="6,0,6,0">
+                                                        <TextBlock Foreground="#fff" HorizontalAlignment="Left" Height="15">
+                                                            <TextBlock.Text>
+                                                                <Binding Path="PRD_NAME">
+                                                                </Binding>
+                                                            </TextBlock.Text>
+                                                        </TextBlock>
+                                                    </DockPanel>
+                                                </Border>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn  Width="20">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Border  Margin="-7,-2,-7,-2">
+                                                    <DockPanel Margin="6,0,6,0">
+                                                        <TextBlock Foreground="#fff" HorizontalAlignment="Right" Height="15">
+                                                            <TextBlock.Text>
+                                                                <Binding Path="SALE_QTY">
+                                                                </Binding>
+                                                            </TextBlock.Text>
+                                                        </TextBlock>
+                                                    </DockPanel>
+                                                </Border>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                        <TextBlock Name="Total6" FontWeight="SemiBold" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 0 8 5" Foreground="White"/>
+                    </Grid>
+
+                    <Grid HorizontalAlignment="Left" VerticalAlignment="Top" x:Name="Table7"    MinWidth="170" MinHeight="125" MouseLeftButtonDown="BeginOrder">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.Background>
+                            <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/Resource/Images/dining_table_bg.png"/>
+                        </Grid.Background>
+
+                        <Border Grid.RowSpan="3" BorderBrush="#299ad9" CornerRadius="4" BorderThickness="2.5"/>
+                        <TextBlock Name="Title7" Margin="5 0 0 0"  Text="" Grid.Row="0" HorizontalAlignment="Left"   FontSize="18" FontWeight="Bold" Foreground="#299ad9"/>
+
+                        <ListView Grid.Row="1"  Opacity="0.7" Background="#299ad9" BorderThickness="0" Visibility="Visible" Margin="4 0 4 4">
+                            <ListView.Resources>
+                                <Style TargetType="GridViewColumnHeader">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </Style>
+                            </ListView.Resources>
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="{x:Type ListViewItem}">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                    <Setter Property="Margin" Value="0,1,0,0" />
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Width="150">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Border  Margin="-9,-2,-7,-2">
+                                                    <DockPanel Margin="6,0,6,0">
+                                                        <TextBlock Foreground="#fff" HorizontalAlignment="Left" Height="15">
+                                                            <TextBlock.Text>
+                                                                <Binding Path="PRD_NAME">
+                                                                </Binding>
+                                                            </TextBlock.Text>
+                                                        </TextBlock>
+                                                    </DockPanel>
+                                                </Border>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn  Width="20">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Border  Margin="-7,-2,-7,-2">
+                                                    <DockPanel Margin="6,0,6,0">
+                                                        <TextBlock Foreground="#fff" HorizontalAlignment="Right" Height="15">
+                                                            <TextBlock.Text>
+                                                                <Binding Path="SALE_QTY">
+                                                                </Binding>
+                                                            </TextBlock.Text>
+                                                        </TextBlock>
+                                                    </DockPanel>
+                                                </Border>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                        <TextBlock Name="Total7" FontWeight="SemiBold" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 0 8 5" Foreground="White"/>
+                    </Grid>
+
+                    <Grid HorizontalAlignment="Left" VerticalAlignment="Top" x:Name="Table8"    MinWidth="170" MinHeight="125" MouseLeftButtonDown="BeginOrder">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.Background>
+                            <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/Resource/Images/dining_table_bg.png"/>
+                        </Grid.Background>
+
+                        <Border Grid.RowSpan="3" BorderBrush="#299ad9" CornerRadius="4" BorderThickness="2.5"/>
+                        <TextBlock Name="Title8" Margin="5 0 0 0"  Text="" Grid.Row="0" HorizontalAlignment="Left"   FontSize="18" FontWeight="Bold" Foreground="#299ad9"/>
+
+                        <ListView Grid.Row="1"  Opacity="0.7" Background="#299ad9" BorderThickness="0" Visibility="Visible" Margin="4 0 4 4">
+                            <ListView.Resources>
+                                <Style TargetType="GridViewColumnHeader">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </Style>
+                            </ListView.Resources>
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="{x:Type ListViewItem}">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                    <Setter Property="Margin" Value="0,1,0,0" />
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Width="150">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Border  Margin="-9,-2,-7,-2">
+                                                    <DockPanel Margin="6,0,6,0">
+                                                        <TextBlock Foreground="#fff" HorizontalAlignment="Left" Height="15">
+                                                            <TextBlock.Text>
+                                                                <Binding Path="PRD_NAME">
+                                                                </Binding>
+                                                            </TextBlock.Text>
+                                                        </TextBlock>
+                                                    </DockPanel>
+                                                </Border>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn  Width="20">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Border  Margin="-7,-2,-7,-2">
+                                                    <DockPanel Margin="6,0,6,0">
+                                                        <TextBlock Foreground="#fff" HorizontalAlignment="Right" Height="15">
+                                                            <TextBlock.Text>
+                                                                <Binding Path="SALE_QTY">
+                                                                </Binding>
+                                                            </TextBlock.Text>
+                                                        </TextBlock>
+                                                    </DockPanel>
+                                                </Border>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                        <TextBlock Name="Total8" FontWeight="SemiBold" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 0 8 5" Foreground="White"/>
+                    </Grid>
+
+                    <Grid HorizontalAlignment="Left" VerticalAlignment="Top"  x:Name="Table9"   MinWidth="170" MinHeight="125" MouseLeftButtonDown="BeginOrder">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.Background>
+                            <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/Resource/Images/dining_table_bg.png"/>
+                        </Grid.Background>
+
+                        <Border Grid.RowSpan="3" BorderBrush="#299ad9" CornerRadius="4" BorderThickness="2.5"/>
+                        <TextBlock Name="Title9" Margin="5 0 0 0"  Text="" Grid.Row="0" HorizontalAlignment="Left"   FontSize="18" FontWeight="Bold" Foreground="#299ad9"/>
+
+                        <ListView Grid.Row="1"  Opacity="0.7" Background="#299ad9" BorderThickness="0" Visibility="Visible" Margin="4 0 4 4">
+                            <ListView.Resources>
+                                <Style TargetType="GridViewColumnHeader">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </Style>
+                            </ListView.Resources>
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="{x:Type ListViewItem}">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                    <Setter Property="Margin" Value="0,1,0,0" />
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Width="150">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Border  Margin="-9,-2,-7,-2">
+                                                    <DockPanel Margin="6,0,6,0">
+                                                        <TextBlock Foreground="#fff" HorizontalAlignment="Left" Height="15">
+                                                            <TextBlock.Text>
+                                                                <Binding Path="PRD_NAME">
+                                                                </Binding>
+                                                            </TextBlock.Text>
+                                                        </TextBlock>
+                                                    </DockPanel>
+                                                </Border>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn  Width="20">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Border  Margin="-7,-2,-7,-2">
+                                                    <DockPanel Margin="6,0,6,0">
+                                                        <TextBlock Foreground="#fff" HorizontalAlignment="Right" Height="15">
+                                                            <TextBlock.Text>
+                                                                <Binding Path="SALE_QTY">
+                                                                </Binding>
+                                                            </TextBlock.Text>
+                                                        </TextBlock>
+                                                    </DockPanel>
+                                                </Border>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                        <TextBlock Name="Total9" FontWeight="SemiBold" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 0 8 5" Foreground="White"/>
+                    </Grid>
+
+                    <Grid HorizontalAlignment="Left" VerticalAlignment="Top" x:Name="Table10"    MinWidth="170" MinHeight="125" MouseLeftButtonDown="BeginOrder">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.Background>
+                            <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/Resource/Images/dining_table_bg.png"/>
+                        </Grid.Background>
+
+                        <Border Grid.RowSpan="3" BorderBrush="#299ad9" CornerRadius="4" BorderThickness="2.5"/>
+                        <TextBlock Name="Title10" Margin="5 0 0 0"  Text="" Grid.Row="0" HorizontalAlignment="Left"   FontSize="18" FontWeight="Bold" Foreground="#299ad9"/>
+
+                        <ListView Grid.Row="1"  Opacity="0.7" Background="#299ad9" BorderThickness="0" Visibility="Visible" Margin="4 0 4 4">
+                            <ListView.Resources>
+                                <Style TargetType="GridViewColumnHeader">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </Style>
+                            </ListView.Resources>
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="{x:Type ListViewItem}">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                    <Setter Property="Margin" Value="0,1,0,0" />
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Width="150">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Border  Margin="-9,-2,-7,-2">
+                                                    <DockPanel Margin="6,0,6,0">
+                                                        <TextBlock Foreground="#fff" HorizontalAlignment="Left" Height="15">
+                                                            <TextBlock.Text>
+                                                                <Binding Path="PRD_NAME">
+                                                                </Binding>
+                                                            </TextBlock.Text>
+                                                        </TextBlock>
+                                                    </DockPanel>
+                                                </Border>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn  Width="20">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Border  Margin="-7,-2,-7,-2">
+                                                    <DockPanel Margin="6,0,6,0">
+                                                        <TextBlock Foreground="#fff" HorizontalAlignment="Right" Height="15">
+                                                            <TextBlock.Text>
+                                                                <Binding Path="SALE_QTY">
+                                                                </Binding>
+                                                            </TextBlock.Text>
+                                                        </TextBlock>
+                                                    </DockPanel>
+                                                </Border>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                        <TextBlock Name="Total10" FontWeight="SemiBold" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 0 8 5" Foreground="White"/>
+                    </Grid>
+
+                    <Grid HorizontalAlignment="Left" VerticalAlignment="Top"  x:Name="Table11"   MinWidth="170" MinHeight="125" MouseLeftButtonDown="BeginOrder">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.Background>
+                            <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/Resource/Images/dining_table_bg.png"/>
+                        </Grid.Background>
+
+                        <Border Grid.RowSpan="3" BorderBrush="#299ad9" CornerRadius="4" BorderThickness="2.5"/>
+                        <TextBlock Name="Title11" Margin="5 0 0 0"  Text="" Grid.Row="0" HorizontalAlignment="Left"   FontSize="18" FontWeight="Bold" Foreground="#299ad9"/>
+
+                        <ListView Grid.Row="1"  Opacity="0.7" Background="#299ad9" BorderThickness="0" Visibility="Visible" Margin="4 0 4 4">
+                            <ListView.Resources>
+                                <Style TargetType="GridViewColumnHeader">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </Style>
+                            </ListView.Resources>
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="{x:Type ListViewItem}">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                    <Setter Property="Margin" Value="0,1,0,0" />
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Width="150">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Border  Margin="-9,-2,-7,-2">
+                                                    <DockPanel Margin="6,0,6,0">
+                                                        <TextBlock Foreground="#fff" HorizontalAlignment="Left" Height="15">
+                                                            <TextBlock.Text>
+                                                                <Binding Path="PRD_NAME">
+                                                                </Binding>
+                                                            </TextBlock.Text>
+                                                        </TextBlock>
+                                                    </DockPanel>
+                                                </Border>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn  Width="20">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Border  Margin="-7,-2,-7,-2">
+                                                    <DockPanel Margin="6,0,6,0">
+                                                        <TextBlock Foreground="#fff" HorizontalAlignment="Right" Height="15">
+                                                            <TextBlock.Text>
+                                                                <Binding Path="SALE_QTY">
+                                                                </Binding>
+                                                            </TextBlock.Text>
+                                                        </TextBlock>
+                                                    </DockPanel>
+                                                </Border>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                        <TextBlock Name="Total11" FontWeight="SemiBold" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 0 8 5" Foreground="White"/>
+                    </Grid>
+
+                    <Grid HorizontalAlignment="Left" VerticalAlignment="Top"  x:Name="Table12"   MinWidth="170" MinHeight="125" MouseLeftButtonDown="BeginOrder">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.Background>
+                            <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/Resource/Images/dining_table_bg.png"/>
+                        </Grid.Background>
+
+                        <Border Grid.RowSpan="3" BorderBrush="#299ad9" CornerRadius="4" BorderThickness="2.5"/>
+                        <TextBlock Name="Title12" Margin="5 0 0 0"  Text="" Grid.Row="0" HorizontalAlignment="Left"   FontSize="18" FontWeight="Bold" Foreground="#299ad9"/>
+
+                        <ListView Grid.Row="1"  Opacity="0.7" Background="#299ad9" BorderThickness="0" Visibility="Visible" Margin="4 0 4 4">
+                            <ListView.Resources>
+                                <Style TargetType="GridViewColumnHeader">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </Style>
+                            </ListView.Resources>
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="{x:Type ListViewItem}">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                    <Setter Property="Margin" Value="0,1,0,0" />
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Width="150">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Border  Margin="-9,-2,-7,-2">
+                                                    <DockPanel Margin="6,0,6,0">
+                                                        <TextBlock Foreground="#fff" HorizontalAlignment="Left" Height="15">
+                                                            <TextBlock.Text>
+                                                                <Binding Path="PRD_NAME">
+                                                                </Binding>
+                                                            </TextBlock.Text>
+                                                        </TextBlock>
+                                                    </DockPanel>
+                                                </Border>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn  Width="20">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Border  Margin="-7,-2,-7,-2">
+                                                    <DockPanel Margin="6,0,6,0">
+                                                        <TextBlock Foreground="#fff" HorizontalAlignment="Right" Height="15">
+                                                            <TextBlock.Text>
+                                                                <Binding Path="SALE_QTY">
+                                                                </Binding>
+                                                            </TextBlock.Text>
+                                                        </TextBlock>
+                                                    </DockPanel>
+                                                </Border>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                        <TextBlock Name="Total12" FontWeight="SemiBold" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 0 8 5" Foreground="White"/>
+                    </Grid>
+
+                    <Grid HorizontalAlignment="Left" VerticalAlignment="Top"  x:Name="Table13"   MinWidth="170" MinHeight="125" MouseLeftButtonDown="BeginOrder">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.Background>
+                            <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/Resource/Images/dining_table_bg.png"/>
+                        </Grid.Background>
+
+                        <Border Grid.RowSpan="3" BorderBrush="#299ad9" CornerRadius="4" BorderThickness="2.5"/>
+                        <TextBlock Name="Title13" Margin="5 0 0 0"  Text="" Grid.Row="0" HorizontalAlignment="Left"   FontSize="18" FontWeight="Bold" Foreground="#299ad9"/>
+
+                        <ListView Grid.Row="1"  Opacity="0.7" Background="#299ad9" BorderThickness="0" Visibility="Visible" Margin="4 0 4 4">
+                            <ListView.Resources>
+                                <Style TargetType="GridViewColumnHeader">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </Style>
+                            </ListView.Resources>
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="{x:Type ListViewItem}">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                    <Setter Property="Margin" Value="0,1,0,0" />
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Width="150">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Border  Margin="-9,-2,-7,-2">
+                                                    <DockPanel Margin="6,0,6,0">
+                                                        <TextBlock Foreground="#fff" HorizontalAlignment="Left" Height="15">
+                                                            <TextBlock.Text>
+                                                                <Binding Path="PRD_NAME">
+                                                                </Binding>
+                                                            </TextBlock.Text>
+                                                        </TextBlock>
+                                                    </DockPanel>
+                                                </Border>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn  Width="20">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Border  Margin="-7,-2,-7,-2">
+                                                    <DockPanel Margin="6,0,6,0">
+                                                        <TextBlock Foreground="#fff" HorizontalAlignment="Right" Height="15">
+                                                            <TextBlock.Text>
+                                                                <Binding Path="SALE_QTY">
+                                                                </Binding>
+                                                            </TextBlock.Text>
+                                                        </TextBlock>
+                                                    </DockPanel>
+                                                </Border>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                        <TextBlock Name="Total13" FontWeight="SemiBold" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 0 8 5" Foreground="White"/>
+                    </Grid>
+
+                    <Grid HorizontalAlignment="Left" VerticalAlignment="Top" x:Name="Table14"   MinWidth="170" MinHeight="125"  MouseLeftButtonDown="BeginOrder">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.Background>
+                            <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/Resource/Images/dining_table_bg.png"/>
+                        </Grid.Background>
+
+                        <Border Grid.RowSpan="3" BorderBrush="#299ad9" CornerRadius="4" BorderThickness="2.5"/>
+                        <TextBlock Name="Title14" Margin="5 0 0 0"  Text="" Grid.Row="0" HorizontalAlignment="Left"   FontSize="18" FontWeight="Bold" Foreground="#299ad9"/>
+
+                        <ListView Grid.Row="1"  Opacity="0.7" Background="#299ad9"  BorderThickness="0" Visibility="Visible" Margin="4 0 4 4">
+                            <ListView.Resources>
+                                <Style TargetType="GridViewColumnHeader">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </Style>
+                            </ListView.Resources>
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="{x:Type ListViewItem}">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                    <Setter Property="Margin" Value="0,1,0,0" />
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Width="150">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Border  Margin="-9,-2,-7,-2">
+                                                    <DockPanel Margin="6,0,6,0">
+                                                        <TextBlock Foreground="#fff" HorizontalAlignment="Left" Height="15">
+                                                            <TextBlock.Text>
+                                                                <Binding Path="PRD_NAME">
+                                                                </Binding>
+                                                            </TextBlock.Text>
+                                                        </TextBlock>
+                                                    </DockPanel>
+                                                </Border>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn  Width="20">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Border  Margin="-7,-2,-7,-2">
+                                                    <DockPanel Margin="6,0,6,0">
+                                                        <TextBlock Foreground="#fff" HorizontalAlignment="Right" Height="15">
+                                                            <TextBlock.Text>
+                                                                <Binding Path="SALE_QTY">
+                                                                </Binding>
+                                                            </TextBlock.Text>
+                                                        </TextBlock>
+                                                    </DockPanel>
+                                                </Border>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                        <TextBlock Name="Total14" FontWeight="SemiBold" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 0 8 5" Foreground="White"/>
+                    </Grid>
+
+
+                </Grid>
+
+            </Grid>
+        </DockPanel>
+
+    </Grid>
+</views:UCViewBase>

@@ -1,0 +1,71 @@
+﻿@page "/signtest"
+@inject IJSRuntime JSRuntime
+
+<h3>SignPage</h3>
+
+<canvas id="signature" width="150" height="60" style="border: 1px solid black;"></canvas>
+
+<br />
+<br />
+
+<button type="button" class="btn btn-success" @onclick="@(e => SignClear())">사인 지우기</button>
+<button type="button" class="btn btn-primary" @onclick="@(e => GetSign())">사인 확인</button>
+
+<br />
+<br />
+<img id="signImage" src="../img/photo_2023-04-27_06-40-02.jpg" width="150" height="60">
+
+<textarea class="form-control" name="" rows="13" cols="115">@SignImgData</textarea>
+
+@code {
+	private static readonly ILog logger = LogManager.GetLogger(typeof(Form1));																//	Log Level(ALL, DEBUG, INFO, WARN, ERROR, FATAL)
+	string? SignImgData = "";
+
+	protected override async Task OnAfterRenderAsync(bool firstRender)
+	{
+		if (firstRender)
+		{
+			await JSRuntime.InvokeAsync<IJSObjectReference>("import", "../js/canvas.js");
+		}
+	}
+
+	private async Task SignClear()
+	{
+		await JSRuntime.InvokeVoidAsync("ClearSign");
+	}
+
+	private async Task GetSign()
+	{
+		string SignData = await JSRuntime.InvokeAsync<string>("GetSign");
+		SignImgData = SignData.Replace("data:image/png;base64,", "");
+		SaveImage(SignImgData);
+	}
+
+	private static void SaveImage(string base64)
+	{
+		try
+		{
+			using (MemoryStream ms = new MemoryStream(Convert.FromBase64String(base64)))
+			{
+				using (Bitmap bm2 = new Bitmap(ms))
+				{
+					string folderPath = Application.StartupPath + "SignImg";
+					DirectoryInfo di = new DirectoryInfo(folderPath);
+					if (di.Exists == false)
+					{
+						di.Create();
+					}
+
+					string filename = DateTime.Now.ToString("yyyyMMddhhmmss") + ".png";
+					bm2.Save(folderPath + "/" + filename);
+
+					logger.Info(folderPath + "/" + filename);
+				}
+			}
+		}
+		catch (Exception e)
+		{
+			logger.Error(e.Message);
+		}
+	}
+}

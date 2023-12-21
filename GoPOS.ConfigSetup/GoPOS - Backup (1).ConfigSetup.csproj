@@ -1,0 +1,173 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0-windows</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Update="Views\ClSelngSttusView.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</None>
+		<None Update="Views\CrnSelngSttusView.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</None>
+		<None Update="Views\DscntSelngSttusView.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</None>
+		<None Update="Views\ExcclcSttusConfirmDetailView.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</None>
+		<None Update="Views\ExcclcSttusView.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</None>
+		<None Update="Views\ExcclcSttusVoucherDetailView.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</None>
+		<None Update="Views\GoodsOrderCanclSttusView.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</None>
+		<None Update="Views\GoodsSelngSttusView.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</None>
+		<None Update="Views\MtSelngSttusGrphView.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</None>
+		<None Update="Views\MtSelngSttusView.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</None>
+		<None Update="Views\PaymntSelngSttusView.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</None>
+		<None Update="Views\RciptSelngSttusView.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</None>
+		<None Update="Views\SellingStatusMainView.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</None>
+		<None Update="Views\SellingStatusRightView.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</None>
+		<None Update="Views\SellingStatusTopView.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</None>
+		<None Update="Views\TableGroupSelngSttusView.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</None>
+		<None Update="Views\TimeSelngSttusView.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</None>
+		<None Update="Views\TmPrRcppaySttusView.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Caliburn.Micro" Version="4.0.212" />
+		<PackageReference Include="Microsoft.AspNetCore.Owin" Version="6.0.9" />
+		<PackageReference Include="Microsoft.Web.WebView2" Version="1.0.1518.46" />
+		<PackageReference Include="Microsoft.Web.WebView2" Version="1.0.1518.46" />
+		<PackageReference Include="Microsoft.AspNetCore.Owin" Version="6.0.9" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\GoPOS.Common\GoPOS.Common.csproj" />
+		<ProjectReference Include="..\GoPOS.Models\GoPOS.Models.csproj" />
+		<ProjectReference Include="..\GoPOS.Service\GoPOS.Service.csproj" />
+		<ProjectReference Include="..\GoShared\GoShared.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="ViewModels\" />
+		<Folder Include="Views\" />
+		<Folder Include="Resource\Images\" />
+		<Folder Include="Resource\Images\" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="..\Resource\\Images\biz_mng_btn.png" Link="Resource\\Images\biz_mng_btn.png" />
+		<Content Include="..\Resource\\Images\biz_mng_logo.png" Link="Resource\\Images\biz_mng_logo.png" />
+		<Content Include="..\Resource\\Images\btn_base_blue_70x60.png" Link="Resource\\Images\btn_base_blue_70x60.png" />
+		<Content Include="..\Resource\\Images\btn_add.png" Link="Resource\\Images\btn_add.png" />
+		<Content Include="..\Resource\\Images\btn_base_gray_71x36.png" Link="Resource\\Images\btn_base_gray_71x36.png" />
+		<Content Include="..\Resource\\Images\btn_base_green.png" Link="Resource\\Images\btn_base_green.png" />
+		<Content Include="..\Resource\\Images\btn_base_green_71x36.png" Link="Resource\\Images\btn_base_green_71x36.png" />
+		<Content Include="..\Resource\\Images\btn_base_orange.png" Link="Resource\\Images\btn_base_orange.png" />
+		<Content Include="..\Resource\\Images\btn_cal.png" Link="Resource\\Images\btn_cal.png" />
+		<Content Include="..\Resource\\Images\btn_base_orange_91x95.png" Link="Resource\\Images\btn_base_orange_91x95.png" />
+		<Content Include="..\Resource\\Images\btn_complex.png" Link="Resource\\Images\btn_complex.png" />
+		<Content Include="..\Resource\\Images\btn_duch_d.png" Link="Resource\\Images\btn_duch_d.png" />
+		<Content Include="..\Resource\\Images\btn_duch_u.png" Link="Resource\\Images\btn_duch_u.png" />
+		<Content Include="..\Resource\\Images\btn_main_arrow_dw.png" Link="Resource\\Images\btn_main_arrow_dw.png" />
+		<Content Include="..\Resource\\Images\btn_main_arrow_up.png" Link="Resource\\Images\btn_main_arrow_up.png" />
+		<Content Include="..\Resource\\Images\btn_main_cal.png" Link="Resource\\Images\btn_main_cal.png" />
+		<Content Include="..\Resource\\Images\btn_main_cal2.png" Link="Resource\\Images\btn_main_cal2.png" />
+		<Content Include="..\Resource\\Images\btn_main_cal_left.png" Link="Resource\\Images\btn_main_cal_left.png" />
+		<Content Include="..\Resource\\Images\btn_main_right.png" Link="Resource\\Images\btn_main_right.png" />
+		<Content Include="..\Resource\\Images\btn_main_close.png" Link="Resource\\Images\btn_main_close.png" />
+		<Content Include="..\Resource\\Images\btn_main_right_on.png" Link="Resource\\Images\btn_main_right_on.png" />
+		<Content Include="..\Resource\\Images\btn_MenuEnvSetting.png" Link="Resource\\Images\btn_MenuEnvSetting.png" />
+		<Content Include="..\Resource\\Images\btn_MenuOrderMng.png" Link="Resource\\Images\btn_MenuOrderMng.png" />
+		<Content Include="..\Resource\\Images\btn_MenuOrderPayMng.png" Link="Resource\\Images\btn_MenuOrderPayMng.png" />
+		<Content Include="..\Resource\\Images\btn_MenuSalesMng.png" Link="Resource\\Images\btn_MenuSalesMng.png" />
+		<Content Include="..\Resource\\Images\btn_MenuSalesStatus.png" Link="Resource\\Images\btn_MenuSalesStatus.png" />
+		<Content Include="..\Resource\\Images\btn_MenuShutdown.png" Link="Resource\\Images\btn_MenuShutdown.png" />
+		<Content Include="..\Resource\\Images\btn_ord_pay_base.png" Link="Resource\\Images\btn_ord_pay_base.png" />
+		<Content Include="..\Resource\\Images\btn_ord_pay_cal.png" Link="Resource\\Images\btn_ord_pay_cal.png" />
+		<Content Include="..\Resource\\Images\btn_ord_pay_card.png" Link="Resource\\Images\btn_ord_pay_card.png" />
+		<Content Include="..\Resource\\Images\btn_ord_pay_cash.png" Link="Resource\\Images\btn_ord_pay_cash.png" />
+		<Content Include="..\Resource\\Images\btn_ord_pay_grid_g.png" Link="Resource\\Images\btn_ord_pay_grid_g.png" />
+		<Content Include="..\Resource\\Images\btn_ord_pay_grid_o.png" Link="Resource\\Images\btn_ord_pay_grid_o.png" />
+		<Content Include="..\Resource\\Images\btn_ord_pay_grid_w.png" Link="Resource\\Images\btn_ord_pay_grid_w.png" />
+		<Content Include="..\Resource\\Images\btn_ord_pay_left.png" Link="Resource\\Images\btn_ord_pay_left.png" />
+		<Content Include="..\Resource\\Images\btn_ord_pay_left_d.png" Link="Resource\\Images\btn_ord_pay_left_d.png" />
+		<Content Include="..\Resource\\Images\btn_ord_pay_left_m.png" Link="Resource\\Images\btn_ord_pay_left_m.png" />
+		<Content Include="..\Resource\\Images\btn_ord_pay_left_d_off.png" Link="Resource\\Images\btn_ord_pay_left_d_off.png" />
+		<Content Include="..\Resource\\Images\btn_ord_pay_left_m_off.png" Link="Resource\\Images\btn_ord_pay_left_m_off.png" />
+		<Content Include="..\Resource\\Images\btn_ord_pay_left_p.png" Link="Resource\\Images\btn_ord_pay_left_p.png" />
+		<Content Include="..\Resource\\Images\btn_ord_pay_left_p_off.png" Link="Resource\\Images\btn_ord_pay_left_p_off.png" />
+		<Content Include="..\Resource\\Images\btn_ord_pay_left_u_off.png" Link="Resource\\Images\btn_ord_pay_left_u_off.png" />
+		<Content Include="..\Resource\\Images\btn_ord_pay_left_u.png" Link="Resource\\Images\btn_ord_pay_left_u.png" />
+		<Content Include="..\Resource\\Images\btn_ord_pay_order.png" Link="Resource\\Images\btn_ord_pay_order.png" />
+		<Content Include="..\Resource\\Images\btn_ord_pay_right.png" Link="Resource\\Images\btn_ord_pay_right.png" />
+		<Content Include="..\Resource\\Images\btn_pop_close.png" Link="Resource\\Images\btn_pop_close.png" />
+		<Content Include="..\Resource\\Images\btn_search.png" Link="Resource\\Images\btn_search.png" />
+		<Content Include="..\Resource\\Images\btn_tab_off.png" Link="Resource\\Images\btn_tab_off.png" />
+		<Content Include="..\Resource\\Images\btn_tab_on.png" Link="Resource\\Images\btn_tab_on.png" />
+		<Content Include="..\Resource\\Images\chk_off.png" Link="Resource\\Images\chk_off.png" />
+		<Content Include="..\Resource\\Images\chk_on.png" Link="Resource\\Images\chk_on.png" />
+		<Content Include="..\Resource\\Images\close.png" Link="Resource\\Images\close.png" />
+		<Content Include="..\Resource\\Images\ClosingSettle.png" Link="Resource\\Images\ClosingSettle.png" />
+		<Content Include="..\Resource\\Images\end.png" Link="Resource\\Images\end.png" />
+		<Content Include="..\Resource\\Images\end2.png" Link="Resource\\Images\end2.png" />
+		<Content Include="..\Resource\\Images\logo.ico" Link="Resource\\Images\logo.ico" />
+		<Content Include="..\Resource\\Images\MainRightBack.png" Link="Resource\\Images\MainRightBack.png" />
+		<Content Include="..\Resource\\Images\MainRightBack2.png" Link="Resource\\Images\MainRightBack2.png" />
+		<Content Include="..\Resource\\Images\OrderPayMain - 복사본.png" Link="Resource\\Images\OrderPayMain - 복사본.png" />
+		<Content Include="..\Resource\\Images\OrderPayLeftPopBack.png" Link="Resource\\Images\OrderPayLeftPopBack.png" />
+		<Content Include="..\Resource\\Images\OrderPayMain.png" Link="Resource\\Images\OrderPayMain.png" />
+		<Content Include="..\Resource\\Images\OrderPayMainCalBack.png" Link="Resource\\Images\OrderPayMainCalBack.png" />
+		<Content Include="..\Resource\\Images\OrderPayMainCalH.png" Link="Resource\\Images\OrderPayMainCalH.png" />
+		<Content Include="..\Resource\\Images\OrderPayMainGridSample.png" Link="Resource\\Images\OrderPayMainGridSample.png" />
+		<Content Include="..\Resource\\Images\OrderPayMainTotSum.png" Link="Resource\\Images\OrderPayMainTotSum.png" />
+		<Content Include="..\Resource\\Images\OrderPayRightPopBack.png" Link="Resource\\Images\OrderPayRightPopBack.png" />
+		<Content Include="..\Resource\\Images\pr.png" Link="Resource\\Images\pr.png" />
+		<Content Include="..\Resource\\Images\SalesMngCalBack.png" Link="Resource\\Images\SalesMngCalBack.png" />
+		<Content Include="..\Resource\\Images\SalesMngMain.png" Link="Resource\\Images\SalesMngMain.png" />
+		<Content Include="..\Resource\\Images\SalesMngRight.png" Link="Resource\\Images\SalesMngRight.png" />
+		<Content Include="..\Resource\\Images\Controls\KeyPadBtnBg2.png" Link="Resource\\Images\Controls\KeyPadBtnBg2.png" />
+		<Content Include="..\Resource\\Images\Controls\KeyPadBtnBg3.png" Link="Resource\\Images\Controls\KeyPadBtnBg3.png" />
+		<Content Include="..\Resource\\Images\Controls\KeyPadBtnBg.png" Link="Resource\\Images\Controls\KeyPadBtnBg.png" />
+		<Content Include="..\Resource\\Images\Login\KeypadBg.png" Link="Resource\\Images\Login\KeypadBg.png" />
+		<Content Include="..\Resource\\Images\Login\CloseBg.png" Link="Resource\\Images\Login\CloseBg.png" />
+		<Content Include="..\Resource\\Images\Login\Close.png" Link="Resource\\Images\Login\Close.png" />
+		<Content Include="..\Resource\\Images\Login\LoginCheckBoxBg.png" Link="Resource\\Images\Login\LoginCheckBoxBg.png" />
+		<Content Include="..\Resource\\Images\Login\LoginPWDIcon.png" Link="Resource\\Images\Login\LoginPWDIcon.png" />
+		<Content Include="..\Resource\\Images\Login\LoginNameIcon.png" Link="Resource\\Images\Login\LoginNameIcon.png" />
+		<Content Include="..\Resource\\Images\Login\LoginTopBanner.png" Link="Resource\\Images\Login\LoginTopBanner.png" />
+		<Content Include="..\Resource\\Images\Login\LoginRightBackBack.png" Link="Resource\\Images\Login\LoginRightBackBack.png" />
+		<Content Include="..\Resource\\Images\Login\LoginRightBack.png" Link="Resource\\Images\Login\LoginRightBack.png" />
+	</ItemGroup>
+
+</Project>

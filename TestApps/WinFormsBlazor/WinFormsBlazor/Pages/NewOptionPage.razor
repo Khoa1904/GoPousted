@@ -1,0 +1,134 @@
+﻿@using WinFormsBlazor.Model;
+@using WinFormsBlazor.Service;
+@page "/newoption"
+
+<h3>Split</h3>
+
+<table class="table" border="0" colspacing="5" cellpadding="10">
+    <tr>
+        <td valign="top">
+            <table class="table" border="1" colspacing="5" cellpadding="10">
+                <thead>
+                    <tr>
+                        <th colspan="3">Options</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <input type="radio" class="form-check-input" name="taste" id="taste1" Checked @oninput="@((e) => { selOption1="고소한 산미"; })" @onchange="onchange">
+                            <label for="taste1">고소한 산미 <span class="option_price">+500</span></label>
+                        </td>
+                        <td>
+                            <input type="radio" class="form-check-input" name="taste" id="taste2" @oninput="@((e) => { selOption1="다크초코"; })" @onchange="onchange">
+                            <label for="taste2">다크초코 <span class="option_price">+500</span></label>
+                        </td>
+                        <td>
+                            <input type="radio" class="form-check-input" name="taste" id="taste3" @oninput="@((e) => { selOption1="강한 산미"; })" @onchange="onchange">
+                            <label for="taste3">강한 산미 <span class="option_price">+500</span></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="radio" class="form-check-input" name="temperature" id="temperature1" Checked @oninput="@((e) => { selOption2="HOT"; })" @onchange="onchange">
+                            <label for="temperature1">HOT <span class="option_price">+500</span></label>
+                        </td>
+                        <td>
+                            <input type="radio" class="form-check-input" name="temperature" id="temperature2" @oninput="@((e) => { selOption2="MIDDLE"; })" @onchange="onchange">
+                            <label for="temperature2">MIDDLE <span class="option_price">+0</span></label>
+                        </td>
+                        <td>
+                            <input type="radio" class="form-check-input" name="temperature" id="temperature3" @oninput="@((e) => { selOption2="ICE"; })" @onchange="onchange">
+                            <label for="temperature3">ICE <spanp class="option_price">+500</spanp></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="radio" class="form-check-input" name="size" id="size1" Checked @oninput="@((e) => { selOption3="작은컵"; })" @onchange="onchange">
+                            <label for="size1">작은컵 <span class="option_price">+500</span></label>
+                        </td>
+                        <td>
+                            <input type="radio" class="form-check-input" name="size" id="size2" @oninput="@((e) => { selOption3="중간컵"; })" @onchange="onchange">
+                            <label for="size2">중간컵 <span class="option_price">+0</span></label>
+                        </td>
+                        <td>
+                            <input type="radio" class="form-check-input" name="size" id="size3" @oninput="@((e) => { selOption3="큰컵"; })" @onchange="onchange">
+                            <label for="size3">큰컵 <span class="option_price">+500</span></label>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        @{
+            if (selOption1 == "")
+            {
+                InitOption("고소한 산미", "HOT", "작은컵");
+            }
+        }
+        <td valign="top">
+            <table class="table" border="1" colspacing="5" cellpadding="10">
+                <thead>
+                    <tr>
+                        <th colspan="2">Selected Options</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>옵션</td>
+                        <td>@selOption</td>
+                    </tr>
+                    <tr>
+                        <td>1번 옵션</td>
+                        <td>@selOption1</td>
+                    </tr>
+                    <tr>
+                        <td>2번 옵션</td>
+                        <td>@selOption2</td>
+                    </tr>
+                    <tr>
+                        <td>3번 옵션</td>
+                        <td>@selOption3</td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+    </tr>
+</table>
+
+<input type="text" class="form-control" @bind="@inputValue" @oninput="OnInputEvent" />
+<br />
+<br />
+@inputValue
+<br />
+<br />
+<br />
+<br />
+<br />
+
+
+@code {
+    private static string? selOption { get; set; } = "";
+    private static string? selOption1 { get; set; } = "";
+    private static string? selOption2 { get; set; } = "";
+    private static string? selOption3 { get; set; } = "";
+    private static string? inputValue = "Hello, world";
+
+    private void onchange(ChangeEventArgs e)
+    {
+        selOption = selOption1 + "/" + selOption2 + "/" + selOption3;
+    }
+
+    private void InitOption(string option1, string option2, string option3)
+    {
+        selOption1 = option1;
+        selOption2 = option2;
+        selOption3 = option3;
+        selOption = option1 + "/" + option2 + "/" + option3;
+    }
+
+    private void OnInputEvent(ChangeEventArgs changeEvent)
+    {
+        changeEvent.Value ??= "";
+        inputValue = (string)changeEvent.Value;
+    }
+}

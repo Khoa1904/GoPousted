@@ -1,0 +1,861 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<TargetFramework>net6.0-windows</TargetFramework>
+		<UseWPF>true</UseWPF>
+		<BaseOutputPath>\bin</BaseOutputPath>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+		<PackageOutputPath>$(OutputPath)\bin</PackageOutputPath>
+		<RunPostBuildEvent>Always</RunPostBuildEvent>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<Deterministic>true</Deterministic>
+	</PropertyGroup>
+	<Choose>
+		<When Condition=" '$(Configuration)'=='Debug' ">
+			<PropertyGroup>
+				<DebugSymbols>true</DebugSymbols>
+				<DebugType>full</DebugType>
+				<Optimize>false</Optimize>
+				<OutputPath>..\..\Deployment\Debug\bin</OutputPath>
+				<DefineConstants>DEBUG;TRACE</DefineConstants>
+				<PackageOutputPath>..\..\Deployment\Debug\</PackageOutputPath>
+			</PropertyGroup>
+		</When>
+		<When Condition=" '$(Configuration)'=='Release' ">
+			<PropertyGroup>
+				<DebugSymbols>false</DebugSymbols>
+				<Optimize>true</Optimize>
+				<OutputPath>...\..\Deployment\Release\bin</OutputPath>
+				<DefineConstants>TRACE</DefineConstants>
+				<PackageOutputPath>..\..\Deployment\Release\</PackageOutputPath>
+			</PropertyGroup>
+		</When>
+	</Choose>
+
+	<ItemGroup>
+		<None Remove="config\GOPOS.ini" />
+		<None Remove="config\MenuConfig.xml" />
+		<None Remove="Data\res\logo.png" />
+		<None Remove="Data\res\POS-logo_W1.gif" />
+		<None Remove="Data\res\POS-logo_W2.gif" />
+		<None Remove="Data\res\POSlogo.html" />
+		<None Remove="data\sql\AccountSettlement.sql" />
+		<None Remove="data\sql\orderpay.sql" />
+		<None Remove="data\sql\Payment.sql" />
+		<None Remove="Data\sql\PostPay.sql" />
+		<None Remove="data\sql\Printer.sql" />
+		<None Remove="Data\sql\ResetDB.sql" />
+		<None Remove="data\sql\Sales.sql" />
+		<None Remove="libs\firebird4\databases.conf" />
+		<None Remove="libs\firebird4\fbclient.dll" />
+		<None Remove="libs\firebird4\firebird.conf" />
+		<None Remove="libs\firebird4\firebird.msg" />
+		<None Remove="libs\firebird4\ib_util.dll" />
+		<None Remove="libs\firebird4\icudt63.dll" />
+		<None Remove="libs\firebird4\icudt63l.dat" />
+		<None Remove="libs\firebird4\icuin63.dll" />
+		<None Remove="libs\firebird4\icuuc63.dll" />
+		<None Remove="libs\firebird4\intl\fbintl.conf" />
+		<None Remove="libs\firebird4\intl\fbintl.dll" />
+		<None Remove="libs\firebird4\plugins\engine13.dll" />
+		<None Remove="maps\FkMappings.ini" />
+		<None Remove="maps\mst_tableids.txt" />
+		<None Remove="maps\van_list.txt" />
+		<None Remove="Resource\Images\1.png" />
+		<None Remove="Resource\Images\13.png" />
+		<None Remove="Resource\Images\31.png" />
+		<None Remove="Resource\Images\Arrowdown.png" />
+		<None Remove="Resource\Images\Arrowdowned.png" />
+		<None Remove="Resource\Images\Arrowgray.png" />
+		<None Remove="Resource\Images\Arrowgray2.png" />
+		<None Remove="Resource\Images\Arrowup.png" />
+		<None Remove="Resource\Images\Arrowupped.png" />
+		<None Remove="Resource\Images\AuthenticBG.png" />
+		<None Remove="Resource\Images\bar.png" />
+		<None Remove="resource\Images\biz_mng_btn.png" />
+		<None Remove="resource\Images\biz_mng_logo.png" />
+		<None Remove="Resource\Images\blankbtn.png" />
+		<None Remove="Resource\Images\blueBG.png" />
+		<None Remove="Resource\Images\btnPrint.png" />
+		<None Remove="Resource\Images\btnPrint2.png" />
+		<None Remove="Resource\Images\btnUnprint.png" />
+		<None Remove="Resource\Images\btnUnprint2.png" />
+		<None Remove="resource\Images\btn_add.png" />
+		<None Remove="resource\Images\btn_base_blue_70x60.png" />
+		<None Remove="resource\Images\btn_base_gray_71x36.png" />
+		<None Remove="resource\Images\btn_base_green.png" />
+		<None Remove="resource\Images\btn_base_green_62x51.png" />
+		<None Remove="resource\Images\btn_base_green_71x36.png" />
+		<None Remove="resource\Images\btn_base_orange.png" />
+		<None Remove="resource\Images\btn_base_orange_62x51.png" />
+		<None Remove="resource\Images\btn_base_orange_91x95.png" />
+		<None Remove="resource\Images\btn_cal.png" />
+		<None Remove="resource\Images\btn_complex.png" />
+		<None Remove="resource\Images\btn_corptn_dis.png" />
+		<None Remove="resource\Images\btn_corptn_dis_on.png" />
+		<None Remove="resource\Images\btn_corptn_dn.png" />
+		<None Remove="resource\Images\btn_corptn_up.png" />
+		<None Remove="resource\Images\btn_delivery_close.png" />
+		<None Remove="Resource\Images\btn_discount2.png" />
+		<None Remove="resource\Images\btn_duch_d.png" />
+		<None Remove="resource\Images\btn_duch_u.png" />
+		<None Remove="resource\Images\btn_ext_close.png" />
+		<None Remove="resource\Images\btn_ext_left.png" />
+		<None Remove="Resource\Images\btn_ext_lefted.png" />
+		<None Remove="resource\Images\btn_ext_right.png" />
+		<None Remove="Resource\Images\btn_ext_rite.png" />
+		<None Remove="resource\Images\btn_fix_dis.png" />
+		<None Remove="resource\Images\btn_fix_dis2.png" />
+		<None Remove="Resource\Images\btn_fix_discount.png" />
+		<None Remove="resource\Images\btn_fix_lbl.png" />
+		<None Remove="resource\Images\btn_main_arrow_dw.png" />
+		<None Remove="resource\Images\btn_main_arrow_up.png" />
+		<None Remove="resource\Images\btn_main_cal.png" />
+		<None Remove="resource\Images\btn_main_cal2.png" />
+		<None Remove="resource\Images\btn_main_cal_left.png" />
+		<None Remove="resource\Images\btn_main_close.png" />
+		<None Remove="Resource\Images\btn_main_closed.png" />
+		<None Remove="resource\Images\btn_main_right.png" />
+		<None Remove="resource\Images\btn_main_right_on.png" />
+		<None Remove="resource\Images\btn_MenuEnvSetting.png" />
+		<None Remove="resource\Images\btn_MenuOrderMng.png" />
+		<None Remove="resource\Images\btn_MenuOrderPayMng.png" />
+		<None Remove="resource\Images\btn_MenuSalesMng.png" />
+		<None Remove="resource\Images\btn_MenuSalesStatus.png" />
+		<None Remove="resource\Images\btn_MenuShutdown.png" />
+		<None Remove="resource\Images\btn_ord_pay_base.png" />
+		<None Remove="resource\Images\btn_ord_pay_cal.png" />
+		<None Remove="resource\Images\btn_ord_pay_card.png" />
+		<None Remove="resource\Images\btn_ord_pay_card2.png" />
+		<None Remove="resource\Images\btn_ord_pay_cash.png" />
+		<None Remove="resource\Images\btn_ord_pay_cash2.png" />
+		<None Remove="resource\Images\btn_ord_pay_grid_g.png" />
+		<None Remove="resource\Images\btn_ord_pay_grid_o.png" />
+		<None Remove="resource\Images\btn_ord_pay_grid_w.png" />
+		<None Remove="resource\Images\btn_ord_pay_left.png" />
+		<None Remove="resource\Images\btn_ord_pay_left_d.png" />
+		<None Remove="resource\Images\btn_ord_pay_left_d_off.png" />
+		<None Remove="resource\Images\btn_ord_pay_left_m.png" />
+		<None Remove="resource\Images\btn_ord_pay_left_m_off.png" />
+		<None Remove="resource\Images\btn_ord_pay_left_p.png" />
+		<None Remove="resource\Images\btn_ord_pay_left_p_off.png" />
+		<None Remove="resource\Images\btn_ord_pay_left_u.png" />
+		<None Remove="resource\Images\btn_ord_pay_left_u_off.png" />
+		<None Remove="resource\Images\btn_ord_pay_order.png" />
+		<None Remove="resource\Images\btn_ord_pay_order2.png" />
+		<None Remove="resource\Images\btn_ord_pay_right.png" />
+		<None Remove="resource\Images\btn_pop_close.png" />
+		<None Remove="Resource\Images\btn_restart.png" />
+		<None Remove="Resource\Images\btn_restarted.bmp" />
+		<None Remove="Resource\Images\btn_restarted.png" />
+		<None Remove="resource\Images\btn_r_arrow.png" />
+		<None Remove="resource\Images\btn_sales_arrow_dw.png" />
+		<None Remove="resource\Images\btn_sales_arrow_left.png" />
+		<None Remove="resource\Images\btn_sales_arrow_right.png" />
+		<None Remove="resource\Images\btn_sales_arrow_up.png" />
+		<None Remove="resource\Images\btn_search.png" />
+		<None Remove="Resource\Images\btn_search2.png" />
+		<None Remove="Resource\Images\btn_shotdown.bmp" />
+		<None Remove="Resource\Images\btn_shotdown.png" />
+		<None Remove="Resource\Images\btn_shutdown.png" />
+		<None Remove="resource\Images\btn_side_main_off.png" />
+		<None Remove="resource\Images\btn_side_main_on.png" />
+		<None Remove="resource\Images\btn_side_sub.png" />
+		<None Remove="resource\Images\btn_tab_off.png" />
+		<None Remove="resource\Images\btn_tab_on.png" />
+		<None Remove="resource\Images\calendar_bg.png" />
+		<None Remove="Resource\Images\checked.png" />
+		<None Remove="resource\Images\chk_off.png" />
+		<None Remove="resource\Images\chk_on.png" />
+		<None Remove="resource\Images\close.png" />
+		<None Remove="resource\Images\ClosingSettle.png" />
+		<None Remove="Resource\Images\combine.png" />
+		<None Remove="Resource\Images\ConfigSet.png" />
+		<None Remove="resource\Images\ConfigSetup.png" />
+		<None Remove="Resource\Images\ConfigSetupNew.png" />
+		<None Remove="resource\Images\Controls\KeyPadBtnBg.png" />
+		<None Remove="resource\Images\Controls\KeyPadBtnBg2.png" />
+		<None Remove="resource\Images\Controls\KeyPadBtnBg3.png" />
+		<None Remove="Resource\Images\CrCard\card1.png" />
+		<None Remove="Resource\Images\CrCard\card2.png" />
+		<None Remove="Resource\Images\CrCard\card3.png" />
+		<None Remove="Resource\Images\CrCard\card4.png" />
+		<None Remove="Resource\Images\CrCard\card5.png" />
+		<None Remove="Resource\Images\CrCard\card6.png" />
+		<None Remove="Resource\Images\CrCard\card7.png" />
+		<None Remove="Resource\Images\CrCard\card8.png" />
+		<None Remove="resource\Images\DeliveryProcess.png" />
+		<None Remove="Resource\Images\dining.png" />
+		<None Remove="Resource\Images\dining_table.png" />
+		<None Remove="Resource\Images\dining_table_bg.png" />
+		<None Remove="Resource\Images\dining_table_opacity.png" />
+		<None Remove="resource\Images\DriverLicense.png" />
+		<None Remove="Resource\Images\dynamic_island.png" />
+		<None Remove="resource\Images\end.png" />
+		<None Remove="resource\Images\end2.png" />
+		<None Remove="Resource\Images\exchange.png" />
+		<None Remove="Resource\Images\extmenuBtned.png" />
+		<None Remove="Resource\Images\GIF\POS-logo_W1.gif" />
+		<None Remove="Resource\Images\GIF\POS-logo_W2.gif" />
+		<None Remove="Resource\Images\gopos.png" />
+		<None Remove="Resource\Images\goposh.png" />
+		<None Remove="Resource\Images\group-15.png" />
+		<None Remove="Resource\Images\group-4.png" />
+		<None Remove="Resource\Images\group.png" />
+		<None Remove="Resource\Images\Icon\64x64.ico" />
+		<None Remove="Resource\Images\Icon\logo_L.png" />
+		<None Remove="Resource\Images\Icon\logo_m.png" />
+		<None Remove="Resource\Images\Icon\logo_s.png" />
+		<None Remove="Resource\Images\Login\549.png" />
+		<None Remove="Resource\Images\Login\5499.png" />
+		<None Remove="resource\Images\Login\Close.png" />
+		<None Remove="resource\Images\Login\CloseBg.png" />
+		<None Remove="resource\Images\Login\CloseBg_en.png" />
+		<None Remove="resource\Images\Login\CloseBg_vn.png" />
+		<None Remove="Resource\Images\Login\EitNew.png" />
+		<None Remove="resource\Images\Login\KeypadBg.png" />
+		<None Remove="resource\Images\Login\LoginCheckBoxBg.png" />
+		<None Remove="resource\Images\Login\LoginNameIcon.png" />
+		<None Remove="Resource\Images\Login\loginpage-bg-3-x.png" />
+		<None Remove="resource\Images\Login\LoginPWDIcon.png" />
+		<None Remove="resource\Images\Login\LoginRightBack.png" />
+		<None Remove="resource\Images\Login\LoginRightBackBack.png" />
+		<None Remove="resource\Images\Login\LoginTopBanner.png" />
+		<None Remove="resource\Images\logo.ico" />
+		<None Remove="Resource\Images\logo2.png" />
+		<None Remove="resource\Images\MainRightBack.png" />
+		<None Remove="resource\Images\MainRightBack2.png" />
+		<None Remove="Resource\Images\MenuOrdered.png" />
+		<None Remove="resource\Images\message.png" />
+		<None Remove="resource\Images\message_close.png" />
+		<None Remove="Resource\Images\minus.png" />
+		<None Remove="Resource\Images\minused.png" />
+		<None Remove="Resource\Images\orange_cancel.png" />
+		<None Remove="Resource\Images\OrderManagementnew.png" />
+		<None Remove="Resource\Images\OrderPaid.png" />
+		<None Remove="resource\Images\OrderPayLeftPopBack.png" />
+		<None Remove="resource\Images\OrderPayMain - 복사본.png" />
+		<None Remove="resource\Images\OrderPayMain.png" />
+		<None Remove="resource\Images\OrderPayMainCalBack.png" />
+		<None Remove="resource\Images\OrderPayMainCalH.png" />
+		<None Remove="resource\Images\OrderPayMainGridSample.png" />
+		<None Remove="resource\Images\OrderPayMainTotSum.png" />
+		<None Remove="Resource\Images\OrderPayNew.png" />
+		<None Remove="resource\Images\OrderPayRightPopBack.png" />
+		<None Remove="Resource\Images\passwordNew.png" />
+		<None Remove="resource\Images\pinwheel.png" />
+		<None Remove="Resource\Images\plus.png" />
+		<None Remove="Resource\Images\plussed.png" />
+		<None Remove="resource\Images\PopUp_979x529.png" />
+		<None Remove="resource\Images\PopUp_979x653.png" />
+		<None Remove="resource\Images\pr.png" />
+		<None Remove="resource\Images\pr2.png" />
+		<None Remove="resource\Images\pr3.png" />
+		<None Remove="resource\Images\rdo_off.png" />
+		<None Remove="resource\Images\rdo_on.png" />
+		<None Remove="Resource\Images\SaleManaged.png" />
+		<None Remove="resource\Images\SalesElctrnGcctInfo.png" />
+		<None Remove="resource\Images\SalesGiftPayInfo.png" />
+		<None Remove="Resource\Images\SalesManagementNew.png" />
+		<None Remove="resource\Images\SalesMngCalBack.png" />
+		<None Remove="resource\Images\SalesMngMain.png" />
+		<None Remove="resource\Images\SalesMngRight.png" />
+		<None Remove="Resource\Images\SalesStatusNew.png" />
+		<None Remove="Resource\Images\SaleStated.png" />
+		<None Remove="resource\Images\SaleStatusSum.png" />
+		<None Remove="Resource\Images\Shotdown.png" />
+		<None Remove="Resource\Images\ShutdownbtnNew.png" />
+		<None Remove="Resource\Images\uncheck.png" />
+		<None Remove="Resource\Images\userNew.png" />
+		<None Remove="Resource\Images\white_cancel.png" />
+		<None Remove="Resource\Images\wood_background.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="config\MenuConfig.xml">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\res\POS-logo_W1.gif" />
+		<Content Include="Data\res\POS-logo_W2.gif" />
+		<Content Include="Data\res\POSlogo.html" />
+		<Content Include="data\sql\AccountSettlement.sql">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Content>
+		<Content Include="data\sql\Printer.sql">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\sql\ResetDB.sql">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\sql\PostPay.sql">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Content>
+		<Content Include="data\sql\Sales.sql">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Content>
+		<Content Include="data\sql\Payment.sql">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Content>
+		<Content Include="data\sql\OrderPay.sql">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Content>
+		<Content Include="libs\firebird4\databases.conf">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Content>
+		<Content Include="libs\firebird4\fbclient.dll">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Content>
+		<Content Include="libs\firebird4\firebird.conf">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Content>
+		<Content Include="libs\firebird4\firebird.msg">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Content>
+		<Content Include="libs\firebird4\ib_util.dll">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Content>
+		<Content Include="libs\firebird4\icudt63.dll">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Content>
+		<Content Include="libs\firebird4\icudt63l.dat">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Content>
+		<Content Include="libs\firebird4\icuin63.dll">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Content>
+		<Content Include="libs\firebird4\icuuc63.dll">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Content>
+		<Content Include="libs\firebird4\intl\fbintl.conf">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Content>
+		<Content Include="libs\firebird4\intl\fbintl.dll">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="libs\firebird4\plugins\engine13.dll">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Content>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="Data\res\logo.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Resource Include="Resource\Images\1.png" />
+	  <Resource Include="Resource\Images\13.png" />
+	  <Resource Include="Resource\Images\31.png" />
+	  <Resource Include="Resource\Images\Arrowdown.png" />
+	  <Resource Include="Resource\Images\Arrowdowned.png" />
+	  <Resource Include="Resource\Images\Arrowgray.png" />
+	  <Resource Include="Resource\Images\Arrowgray2.png" />
+	  <Resource Include="Resource\Images\Arrowup.png" />
+	  <Resource Include="Resource\Images\Arrowupped.png" />
+	  <Resource Include="Resource\Images\AuthenticBG.png" />
+	  <Resource Include="Resource\Images\bar.png" />
+	  <Resource Include="resource\Images\biz_mng_btn.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\biz_mng_logo.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Resource\Images\blankbtn.png" />
+	  <Resource Include="Resource\Images\blueBG.png" />
+	  <Resource Include="Resource\Images\btnPrint.png" />
+	  <Resource Include="Resource\Images\btnPrint2.png" />
+	  <Resource Include="Resource\Images\btnUnprint.png" />
+	  <Resource Include="Resource\Images\btnUnprint2.png" />
+	  <Resource Include="resource\Images\btn_add.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\btn_base_blue_70x60.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\btn_base_gray_71x36.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\btn_base_green.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\btn_base_green_62x51.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\btn_base_green_71x36.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\btn_base_orange.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\btn_base_orange_62x51.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\btn_base_orange_91x95.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\btn_cal.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\btn_complex.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\btn_corptn_dis.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\btn_corptn_dis_on.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\btn_corptn_dn.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\btn_corptn_up.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\btn_delivery_close.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Resource\Images\btn_discount2.png" />
+	  <Resource Include="resource\Images\btn_duch_d.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\btn_duch_u.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\btn_ext_close.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\btn_ext_left.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Resource\Images\btn_ext_lefted.png" />
+	  <Resource Include="resource\Images\btn_ext_right.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Resource\Images\btn_ext_rite.png" />
+	  <Resource Include="resource\Images\btn_fix_dis.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\btn_fix_dis2.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Resource\Images\btn_fix_discount.png" />
+	  <Resource Include="resource\Images\btn_fix_lbl.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\btn_main_arrow_dw.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\btn_main_arrow_up.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\btn_main_cal.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\btn_main_cal2.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\btn_main_cal_left.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\btn_main_close.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Resource\Images\btn_main_closed.png" />
+	  <Resource Include="resource\Images\btn_main_right.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\btn_main_right_on.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\btn_MenuEnvSetting.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\btn_MenuOrderMng.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\btn_MenuOrderPayMng.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\btn_MenuSalesMng.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\btn_MenuSalesStatus.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\btn_MenuShutdown.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\btn_ord_pay_base.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\btn_ord_pay_cal.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\btn_ord_pay_card.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\btn_ord_pay_card2.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\btn_ord_pay_cash.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\btn_ord_pay_cash2.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\btn_ord_pay_grid_g.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\btn_ord_pay_grid_o.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\btn_ord_pay_grid_w.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\btn_ord_pay_left.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\btn_ord_pay_left_d.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\btn_ord_pay_left_d_off.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\btn_ord_pay_left_m.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\btn_ord_pay_left_m_off.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\btn_ord_pay_left_p.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\btn_ord_pay_left_p_off.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\btn_ord_pay_left_u.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\btn_ord_pay_left_u_off.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\btn_ord_pay_order.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\btn_ord_pay_order2.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\btn_ord_pay_right.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\btn_pop_close.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Resource\Images\btn_restart.png" />
+	  <Resource Include="Resource\Images\btn_restarted.bmp" />
+	  <Resource Include="Resource\Images\btn_restarted.png" />
+	  <Resource Include="resource\Images\btn_r_arrow.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\btn_sales_arrow_dw.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\btn_sales_arrow_left.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\btn_sales_arrow_right.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\btn_sales_arrow_up.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\btn_search.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Resource\Images\btn_search2.png" />
+	  <Resource Include="Resource\Images\btn_shotdown.bmp" />
+	  <Resource Include="Resource\Images\btn_shotdown.png" />
+	  <Resource Include="Resource\Images\btn_shutdown.png" />
+	  <Resource Include="resource\Images\btn_side_main_off.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\btn_side_main_on.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\btn_side_sub.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\btn_tab_off.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\btn_tab_on.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\calendar_bg.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Resource\Images\checked.png" />
+	  <Resource Include="resource\Images\chk_off.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\chk_on.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\close.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\ClosingSettle.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Resource\Images\combine.png" />
+	  <Resource Include="Resource\Images\ConfigSet.png" />
+	  <Resource Include="resource\Images\ConfigSetup.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Resource\Images\ConfigSetupNew.png" />
+	  <Resource Include="resource\Images\Controls\KeyPadBtnBg.png" />
+	  <Resource Include="resource\Images\Controls\KeyPadBtnBg2.png" />
+	  <Resource Include="resource\Images\Controls\KeyPadBtnBg3.png" />
+	  <Resource Include="Resource\Images\CrCard\card1.png" />
+	  <Resource Include="Resource\Images\CrCard\card2.png" />
+	  <Resource Include="Resource\Images\CrCard\card3.png" />
+	  <Resource Include="Resource\Images\CrCard\card4.png" />
+	  <Resource Include="Resource\Images\CrCard\card5.png" />
+	  <Resource Include="Resource\Images\CrCard\card6.png" />
+	  <Resource Include="Resource\Images\CrCard\card7.png" />
+	  <Resource Include="Resource\Images\CrCard\card8.png" />
+	  <Resource Include="resource\Images\DeliveryProcess.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Resource\Images\dining.png" />
+	  <Resource Include="Resource\Images\dining_table.png" />
+	  <Resource Include="Resource\Images\dining_table_bg.png" />
+	  <Resource Include="Resource\Images\dining_table_opacity.png" />
+	  <Resource Include="resource\Images\DriverLicense.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Resource\Images\dynamic_island.png" />
+	  <Resource Include="resource\Images\end.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\end2.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Resource\Images\exchange.png" />
+	  <Resource Include="Resource\Images\extmenuBtned.png" />
+	  <Content Include="Resource\Images\GIF\POS-logo_W1.gif" />
+	  <Resource Include="Resource\Images\GIF\POS-logo_W2.gif" />
+	  <Resource Include="Resource\Images\gopos.png" />
+	  <Resource Include="Resource\Images\goposh.png" />
+	  <Resource Include="Resource\Images\group-15.png" />
+	  <Resource Include="Resource\Images\group-4.png" />
+	  <Resource Include="Resource\Images\group.png" />
+	  <Resource Include="Resource\Images\Icon\64x64.ico" />
+	  <Resource Include="Resource\Images\Icon\logo_L.png" />
+	  <Resource Include="Resource\Images\Icon\logo_m.png" />
+	  <Resource Include="Resource\Images\Icon\logo_s.png" />
+	  <Resource Include="Resource\Images\Login\549.png" />
+	  <Resource Include="Resource\Images\Login\5499.png" />
+	  <Resource Include="resource\Images\Login\Close.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\Login\CloseBg_vn.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\Login\CloseBg_en.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\Login\CloseBg.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Resource\Images\Login\EitNew.png" />
+	  <Resource Include="resource\Images\Login\KeypadBg.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\Login\LoginCheckBoxBg.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\Login\LoginNameIcon.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Resource\Images\Login\loginpage-bg-3-x.png" />
+	  <Resource Include="resource\Images\Login\LoginPWDIcon.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\Login\LoginRightBack.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\Login\LoginRightBackBack.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\Login\LoginTopBanner.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\logo.ico">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Resource\Images\logo2.png" />
+	  <Resource Include="resource\Images\MainRightBack.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\MainRightBack2.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Resource\Images\MenuOrdered.png" />
+	  <Resource Include="resource\Images\message.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\message_close.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Resource\Images\minus.png" />
+	  <Resource Include="Resource\Images\minused.png" />
+	  <Resource Include="Resource\Images\orange_cancel.png" />
+	  <Resource Include="Resource\Images\OrderManagementnew.png" />
+	  <Resource Include="Resource\Images\OrderPaid.png" />
+	  <Resource Include="resource\Images\OrderPayLeftPopBack.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\OrderPayMain - 복사본.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\OrderPayMain.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\OrderPayMainCalBack.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\OrderPayMainCalH.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\OrderPayMainGridSample.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\OrderPayMainTotSum.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Resource\Images\OrderPayNew.png" />
+	  <Resource Include="resource\Images\OrderPayRightPopBack.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\Login\passwordNew.png" />
+	  <Resource Include="resource\Images\pinwheel.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Resource\Images\plus.png" />
+	  <Resource Include="Resource\Images\plussed.png" />
+	  <Resource Include="resource\Images\PopUp_979x529.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\PopUp_979x653.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\pr.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\pr2.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\pr3.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\rdo_off.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\rdo_on.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Resource\Images\SaleManaged.png" />
+	  <Resource Include="resource\Images\SalesElctrnGcctInfo.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\SalesGiftPayInfo.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Resource\Images\SalesManagementNew.png" />
+	  <Resource Include="resource\Images\SalesMngCalBack.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\SalesMngMain.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="resource\Images\SalesMngRight.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Resource\Images\SalesStatusNew.png" />
+	  <Resource Include="Resource\Images\SaleStated.png" />
+	  <Resource Include="resource\Images\SaleStatusSum.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Resource\Images\Shotdown.png" />
+	  <Resource Include="Resource\Images\ShutdownbtnNew.png" />
+	  <Resource Include="resource\Images\Login\userNew.png" />
+	  <Resource Include="Resource\Images\uncheck.png" />
+	  <Resource Include="Resource\Images\white_cancel.png" />
+	  <Resource Include="Resource\Images\wood_background.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<_Libs Include="$(ProjectDir)\libs\**" />
+		<_Config Include="$(ProjectDir)\config\**" />
+		<_Data Include="$(ProjectDir)\data\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <_Data Remove="Data\GoPOS.FDB" />
+	  <_Data Remove="data\GoPOS123 - Copy (2).FDB" />
+	  <_Data Remove="data\GoPOS123 - Copy (3).FDB" />
+	  <_Data Remove="data\GoPOS123 - Copy.FDB" />
+	  <_Data Remove="Data\GoPOS123.FDB" />
+	  <_Data Remove="Data\res\logo.png" />
+	  <_Data Remove="Data\res\POS-logo_W1.gif" />
+	  <_Data Remove="Data\res\POS-logo_W2.gif" />
+	  <_Data Remove="Data\res\POSlogo.html" />
+	  <_Data Remove="data\sql\AccountSettlement.sql" />
+	  <_Data Remove="data\sql\GOPOS.FDB" />
+	  <_Data Remove="data\sql\OrderPay.sql" />
+	  <_Data Remove="data\sql\Payment.sql" />
+	  <_Data Remove="Data\sql\PostPay.sql" />
+	  <_Data Remove="data\sql\Printer.sql" />
+	  <_Data Remove="Data\sql\ProductSalesStatus.sql" />
+	  <_Data Remove="Data\sql\ResetDB.sql" />
+	  <_Data Remove="data\sql\Sales.sql" />
+	  <_Data Remove="Data\update\Add data to table.sql1" />
+	  <_Data Remove="Data\update\add_pre_tables.sql1" />
+	  <_Data Remove="Data\update\Alter tables.sql_done" />
+	  <_Data Remove="Data\update\trn_card.sql_done" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Include="maps\FkMappings.ini" />
+	  <EmbeddedResource Include="maps\mst_tableids.txt" />
+	  <EmbeddedResource Include="maps\van_list.txt" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Properties\Resources.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>Resources.resx</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Update="Properties\Resources.resx">
+	    <Generator>PublicResXFileCodeGenerator</Generator>
+	    <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
+	</ItemGroup>
+
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+		<Exec Command="call build.bat $(ProjectDir) $(PackageOutputPath)" />
+	</Target>
+
+
+</Project>

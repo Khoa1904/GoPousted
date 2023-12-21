@@ -1,0 +1,77 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Remove="Custom\NewFolder1\**" />
+	  <Compile Remove="Custom\NewFolder\**" />
+	  <Compile Remove="Custom\OrderPay\**" />
+	  <EmbeddedResource Remove="Custom\NewFolder1\**" />
+	  <EmbeddedResource Remove="Custom\NewFolder\**" />
+	  <EmbeddedResource Remove="Custom\OrderPay\**" />
+	  <None Remove="Custom\NewFolder1\**" />
+	  <None Remove="Custom\NewFolder\**" />
+	  <None Remove="Custom\OrderPay\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Remove="Custom\Common\CST_POINT.cs" />
+	  <Compile Remove="Custom\Common\POS_CREDIT_IN.cs" />
+	  <Compile Remove="Custom\Common\POS_DLV_CID.cs" />
+	  <Compile Remove="Custom\Common\POS_FN.cs" />
+	  <Compile Remove="Custom\Common\POS_ORDER_NO.cs" />
+	  <Compile Remove="Custom\Common\POS_ORD_ALLIANCE_CARD.cs" />
+	  <Compile Remove="Custom\Common\POS_ORD_CASH.cs" />
+	  <Compile Remove="Custom\Common\POS_ORD_CST_POINT.cs" />
+	  <Compile Remove="Custom\Common\POS_ORD_DETAIL.cs" />
+	  <Compile Remove="Custom\Common\POS_ORD_DLV.cs" />
+	  <Compile Remove="Custom\Common\POS_ORD_MOBILE_COUPON.cs" />
+	  <Compile Remove="Custom\Common\POS_ORD_SEQ.cs" />
+	  <Compile Remove="Custom\Common\PRINTER_M.cs" />
+	  <Compile Remove="Custom\Common\PRINT_DATA.cs" />
+	  <Compile Remove="Custom\Common\PRINT_FORM_M.cs" />
+	  <Compile Remove="Custom\Common\PRODUCT_M.cs" />
+	  <Compile Remove="Custom\Common\PRODUCT_PRINTER_MAP.cs" />
+	  <Compile Remove="Custom\Common\SALE_BILL_NO.cs" />
+	  <Compile Remove="Custom\Common\SALE_CARD.cs" />
+	  <Compile Remove="Custom\Common\SALE_CASH.cs" />
+	  <Compile Remove="Custom\Common\SALE_M.cs" />
+	  <Compile Remove="Custom\Common\SALE_PAY_SEQ.cs" />
+	  <Compile Remove="Custom\Common\SALE_PRODUCT_DETAIL.cs" />
+	  <Compile Remove="Custom\Common\SALE_RETURN_MSG.cs" />
+	  <Compile Remove="Custom\Common\SHOP_ALLIANCE_TARGET_PRODUCT.cs" />
+	  <Compile Remove="Custom\Common\SHOP_ALLIANCE_TARGET_PRODUCT_DETAIL.cs" />
+	  <Compile Remove="Custom\Common\SHOP_CORNER.cs" />
+	  <Compile Remove="Custom\Common\SHOP_ENV.cs" />
+	  <Compile Remove="Custom\Common\SHOP_FOOD_TABLE.cs" />
+	  <Compile Remove="Custom\Common\SHOP_FUNC_KEY.cs" />
+	  <Compile Remove="Custom\Common\SHOP_M.cs" />
+	  <Compile Remove="Custom\Common\SHOP_PRODUCT_SALE_PRICE.cs" />
+	  <Compile Remove="Custom\Common\SHOP_SALE_MARGIN.cs" />
+	  <Compile Remove="Custom\Common\SHOP_TICKET_COUPON.cs" />
+	  <Compile Remove="Custom\Common\SHOP_TOUCH_CLASS2.cs" />
+	  <Compile Remove="Custom\Common\SHOP_TOUCH_PRODUCT2.cs" />
+	  <Compile Remove="Custom\Common\TABLE_GROUP.cs" />
+	  <Compile Remove="Custom\Common\TABLE_INFO_M.cs" />
+	  <Compile Remove="Custom\Common\TABLE_PROPERTY.cs" />
+	  <Compile Remove="Custom\Common\TABLE_STATUS.cs" />
+	  <Compile Remove="Custom\ConfigSetup\PrinterSettings.cs" />
+	  <Compile Remove="Custom\ConfigSetup\TotalPosOptions.cs" />
+	  <Compile Remove="Custom\OrderMng\ORDERPAY_COMPPAY.cs" />
+	  <Compile Remove="Custom\OrderMng\ORDERPAY_DLVR_STTUS.cs" />
+	  <Compile Remove="Custom\OrderMng\ORDER_LIST.cs" />
+	  <Compile Remove="Custom\OrderMng\PAY_STRUCT.cs" />
+	  <Compile Remove="Custom\OrderMng\SHOP_ALLIANCE_TARGET_PRODUCT_GET_SATP_LIST.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\GoShared\GoShared.csproj" />
+		<PackageReference Include="EntityFrameworkCore.FirebirdSQL" Version="2.1.2.2" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.4" />
+	</ItemGroup>
+
+</Project>

@@ -1,0 +1,282 @@
+﻿<views:UCViewBase x:Class="GoPOS.Views.OrderPaySimplePayView" 
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:viewModel="clr-namespace:GoPOS.ViewModels" 
+             xmlns:views="clr-namespace:GoPOS.Common.Views;assembly=GoPOS.Common"
+             xmlns:helpers="clr-namespace:GoPOS.Common.Helpers.Controls;assembly=GoPOS.Common"
+                 
+             d:DataContext="{d:DesignInstance viewModel:OrderPaySimplePayViewModel}" 
+            mc:Ignorable="d" 
+            xmlns:cal="http://www.caliburnproject.org" xmlns:local="clr-namespace:GoPOS.Views" d:DesignHeight="677" d:DesignWidth="486">
+    <UserControl.Resources>
+        <Style TargetType="{x:Type CheckBox}" x:Key="myCheckboxStyle">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type CheckBox}">
+                        <StackPanel Orientation="Horizontal">
+                            <Image x:Name="checkboxImage" Source="pack://application:,,,/GoPOS.Resources;component/resource/images/chk_off.png" Width="27" />
+                            <ContentPresenter />
+                        </StackPanel>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="checkboxImage" Property="Source" Value="pack://application:,,,/GoPOS.Resources;component/resource/images/chk_on.png" />
+                            </Trigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <!--<Condition Property="IsMouseOver" Value="True"/>-->
+                                    <Condition Property="IsChecked" Value="False" />
+                                </MultiTrigger.Conditions>
+                                <Setter TargetName="checkboxImage" Property="Source" Value="pack://application:,,,/GoPOS.Resources;component/resource/images/chk_off.png" />
+                            </MultiTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="33" />
+            <RowDefinition Height="47" />
+            <RowDefinition Height="47" />
+            <RowDefinition Height="80" />
+            <RowDefinition Height="183" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40" />
+            <ColumnDefinition Width="80" />
+            <ColumnDefinition Width="146" />
+            <ColumnDefinition Width="85" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="40" />
+        </Grid.ColumnDefinitions>
+        <Grid.Background>
+            <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/resource/images/OrderPayLeftPopBack.png" />
+        </Grid.Background>
+
+        <!--DOTTED LANE-->
+        <Border Margin="25 0 0 0" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Style="{StaticResource Dotted3}" BorderThickness="0 1 0 1"/>
+        <Border Margin="25 0 0 0" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Style="{StaticResource Dotted3}" BorderThickness="0 0 0 1"/>
+        
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Margin="0,0,0,0">
+            <TextBlock TextWrapping="Wrap"  Text="{StaticResource 0716}" FontFamily="{StaticResource Pretendard}" FontSize="20" Height="23" Margin="40,0,0,0" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" LineHeight="14" TextAlignment="Left" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="6" Margin="0,0,0,0" HorizontalAlignment="Left">
+            <Button 
+                Command="{Binding CloseCommand}"
+                BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="0,0,0,0" Width="31" Height="29" Padding="0,0,0,0" BorderThickness="0,0,0,0">
+                <Button.Background>
+                    <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/resource/images/btn_pop_close.png" />
+                </Button.Background>
+            </Button>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,10,0,0">
+            <Image VerticalAlignment="Center" Width="12" Height="12" Source="pack://application:,,,/GoPOS.Resources;component/resource/images/pr.png" Margin="30,0,0,0" />
+            <TextBlock TextWrapping="Wrap"  VerticalAlignment="Center" Text="{StaticResource 0298}" FontFamily="{StaticResource Pretendard}" FontSize="16" FontStyle="Normal" FontWeight="Bold" Foreground="#FFFA7514" LineHeight="14" TextAlignment="Left" Margin="10,0,0,0" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Margin="0,0,0,0" HorizontalAlignment="Right">
+            <TextBox helpers:TextBoxHelpers.IsNumeric="True" MaxLength="{StaticResource MoneyMaxLen}" x:Name="txtPayAmt" Text="{Binding PayAmount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:#,0}}" HorizontalAlignment="Right"  FontStyle="Normal" HorizontalContentAlignment="Right" 
+                             Style="{StaticResource DarkerGrayTB}" FontWeight="Bold" Width="180" FontSize="16px" Height="25" Margin="0,0,0,0" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,0,0,0">
+            <Image VerticalAlignment="Center" Width="12" Height="12" Source="pack://application:,,,/GoPOS.Resources;component/resource/images/pr.png" Margin="30,0,0,0" />
+            <TextBlock TextWrapping="Wrap"  VerticalAlignment="Center" Text="{StaticResource 0299}" FontFamily="{StaticResource Pretendard}" FontSize="16" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" LineHeight="14" TextAlignment="Left" Margin="10,0,0,0" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" Margin="0,0,0,0">
+            <TextBox x:Name="txtBarcode" Text="{Binding BarCode, Mode=TwoWay}" Style="{StaticResource DarkerGrayTB}" 
+                     FontStyle="Normal" FontWeight="SemiBold" Width="180" FontSize="16px" Height="25" Margin="0,0,0,0" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="3" Grid.Column="4" Grid.RowSpan="2" 
+                    Margin="0,0,0,0"  VerticalAlignment="Center">
+            <Button  
+                Command="{Binding ReqApprCommand}" 
+                    CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}"
+                BorderBrush="#d84d10" Margin="0,0,0,0" Width="70" Height="92" Padding="0,0,0,0" BorderThickness="0,0,0,0">
+                <Button.Background>
+                    <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/resource/images/btn_base_orange_91x95.png"  />
+                </Button.Background>
+                <TextBlock TextWrapping="Wrap"  Text="승인요청" FontFamily="{StaticResource Pretendard}" FontSize="13" FontStyle="Normal" FontWeight="Bold" Foreground="#fff" LineHeight="13" TextAlignment="Center" />
+            </Button>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,0,0,5" VerticalAlignment="Bottom">
+            <Image VerticalAlignment="Center" Width="12" Height="12" Source="pack://application:,,,/GoPOS.Resources;component/resource/images/pr.png" Margin="30,0,0,0" />
+            <TextBlock TextWrapping="Wrap"  Text="결제방식 선택" FontFamily="{StaticResource Pretendard}" FontSize="15" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" LineHeight="14" TextAlignment="Left" Margin="10,0,0,-3" />
+        </StackPanel>
+        <Border BorderBrush="#999999" Grid.Row="6" Grid.Column="0" Grid.RowSpan="1" 
+                Grid.ColumnSpan="6" BorderThickness="2" Margin="76,7,77,9">
+        </Border>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="6" Grid.Column="0" 
+                    Grid.ColumnSpan="6" Margin="67,10,67,0" Grid.RowSpan="1">
+            <Grid HorizontalAlignment="Left" x:Name="gridPayCPList">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="54" />
+                    <RowDefinition Height="0" />
+                    <RowDefinition Height="54" />
+                    <RowDefinition Height="0" />
+                    <RowDefinition Height="54" />
+                    <RowDefinition Height="0" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="82" />
+                    <ColumnDefinition Width="0" />
+                    <ColumnDefinition Width="82" />
+                    <ColumnDefinition Width="0" />
+                    <ColumnDefinition Width="82" />
+                    <ColumnDefinition Width="0" />
+                    <ColumnDefinition Width="82" />
+                </Grid.ColumnDefinitions>
+                <!--Touch Classes-->
+                <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1" Grid.RowSpan="1" Margin="0,0,0,0">
+                    <views:GoButton
+                    Command="{Binding PAYCPSelCommand}" 
+                    CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}"
+                    BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="0,0,0,0" VerticalAlignment="Top" Width="81" Height="53" Padding="0" BorderThickness="0,0,0,0"
+                        Style="{StaticResource SimplePay}">
+                        <TextBlock TextWrapping="Wrap" Padding="1"  FontFamily="{StaticResource Pretendard}" FontSize="12" FontStyle="Normal" FontWeight="ExtraBold" Foreground="Black" LineHeight="14" TextAlignment="Left" />
+                    </views:GoButton>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="1" Grid.RowSpan="1" Margin="0,0,0,0">
+                    <views:GoButton 
+                    Command="{Binding PAYCPSelCommand}" 
+                    CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}"
+                     Margin="0,0,0,0" VerticalAlignment="Top" Width="81" Height="53" Padding="0,0,0,0" BorderThickness="0,0,0,0" 
+                        Style="{StaticResource SimplePay}">
+                        <TextBlock TextWrapping="Wrap" Padding="1"   FontFamily="{StaticResource Pretendard}" FontSize="12" FontStyle="Normal" FontWeight="ExtraBold" Foreground="#000000" LineHeight="14" TextAlignment="Left" />
+                    </views:GoButton>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="4" Grid.ColumnSpan="1" Grid.RowSpan="1" Margin="0,0,0,0">
+                    <views:GoButton 
+                    Command="{Binding PAYCPSelCommand}" 
+                    CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}"
+                    BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="0,0,0,0" VerticalAlignment="Top" Width="81" Height="53" Padding="0,0,0,0" BorderThickness="0,0,0,0"
+                        Style="{StaticResource SimplePay}">
+                        <TextBlock TextWrapping="Wrap" Padding="1"  FontFamily="{StaticResource Pretendard}" FontSize="12" FontStyle="Normal" FontWeight="ExtraBold" Foreground="#000000" LineHeight="14" TextAlignment="Left" />
+                    </views:GoButton>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="6" Grid.ColumnSpan="1" Grid.RowSpan="1" Margin="0,0,0,0">
+                    <views:GoButton 
+                    Command="{Binding PAYCPSelCommand}" 
+                    CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}"
+                    BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="0,0,0,0" VerticalAlignment="Top" Width="81" Height="53" Padding="0,0,0,0" BorderThickness="0,0,0,0"
+                        Style="{StaticResource SimplePay}">
+                        <TextBlock TextWrapping="Wrap" Padding="1"  FontFamily="{StaticResource Pretendard}" FontSize="12" FontStyle="Normal" FontWeight="ExtraBold" Foreground="#000000" LineHeight="14" TextAlignment="Left" />
+                    </views:GoButton>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="1" Grid.RowSpan="1" Margin="0,0,0,0">
+                    <views:GoButton 
+                    Command="{Binding PAYCPSelCommand}" 
+                    CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}"
+                    BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="0,0,0,0" VerticalAlignment="Top" Width="81" Height="53" Padding="0,0,0,0" BorderThickness="0,0,0,0"
+                        Style="{StaticResource SimplePay}">
+                        <TextBlock TextWrapping="Wrap" Padding="1"  FontFamily="{StaticResource Pretendard}" FontSize="12" FontStyle="Normal" FontWeight="ExtraBold" Foreground="#000000" LineHeight="14" TextAlignment="Left" />
+                    </views:GoButton>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="1" Grid.RowSpan="1" Margin="0,0,0,0">
+                    <views:GoButton 
+                    Command="{Binding PAYCPSelCommand}" 
+                    CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}"
+                    BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="0,0,0,0" VerticalAlignment="Top" Width="81" Height="53" Padding="0,0,0,0" BorderThickness="0,0,0,0"
+                        Style="{StaticResource SimplePay}">
+                        <TextBlock TextWrapping="Wrap" Padding="1"  FontFamily="{StaticResource Pretendard}" FontSize="12" FontStyle="Normal" FontWeight="ExtraBold" Foreground="#000000" LineHeight="14" TextAlignment="Left" />
+                    </views:GoButton>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="1" Grid.RowSpan="1" Margin="0,0,0,0">
+                    <views:GoButton 
+                    Command="{Binding PAYCPSelCommand}" 
+                    CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}"
+                    BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="0,0,0,0" VerticalAlignment="Top" Width="81" Height="53" Padding="0,0,0,0" BorderThickness="0,0,0,0"
+                        Style="{StaticResource SimplePay}">
+                        <TextBlock TextWrapping="Wrap" Padding="1"  FontFamily="{StaticResource Pretendard}" FontSize="12" FontStyle="Normal" FontWeight="ExtraBold" Foreground="#000000" LineHeight="14" TextAlignment="Left" />
+                    </views:GoButton>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="6" Grid.ColumnSpan="1" Grid.RowSpan="1" Margin="0,0,0,0">
+                    <views:GoButton 
+                    Command="{Binding PAYCPSelCommand}" 
+                    CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}"
+                    BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="0,0,0,0" VerticalAlignment="Top" Width="81" Height="53" Padding="0,0,0,0" BorderThickness="0,0,0,0"
+                        Style="{StaticResource SimplePay}">
+                        <TextBlock TextWrapping="Wrap" Padding="1"  FontFamily="{StaticResource Pretendard}" FontSize="12" FontStyle="Normal" FontWeight="ExtraBold" Foreground="#000000" LineHeight="14" TextAlignment="Left" />
+                    </views:GoButton>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="1" Grid.RowSpan="1" Margin="0,0,0,0">
+                    <views:GoButton 
+                    Command="{Binding PAYCPSelCommand}" 
+                    CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}"
+                    BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="0,0,0,0" VerticalAlignment="Top" Width="81" Height="53" Padding="0,0,0,0" BorderThickness="0,0,0,0"
+                        Style="{StaticResource SimplePay}">
+                        <TextBlock TextWrapping="Wrap" Padding="1"  FontFamily="{StaticResource Pretendard}" FontSize="12" FontStyle="Normal" FontWeight="ExtraBold" Foreground="#000000" LineHeight="14" TextAlignment="Left" />
+                    </views:GoButton>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="1" Grid.RowSpan="1" Margin="0,0,0,0">
+                    <views:GoButton 
+                    Command="{Binding PAYCPSelCommand}" 
+                    CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}"
+                    BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="0,0,0,0" VerticalAlignment="Top" Width="81" Height="53" Padding="0,0,0,0" BorderThickness="0,0,0,0"
+                        Style="{StaticResource SimplePay}">
+                        <TextBlock TextWrapping="Wrap" Padding="1"  FontFamily="{StaticResource Pretendard}" FontSize="12" FontStyle="Normal" FontWeight="ExtraBold" Foreground="#000000" LineHeight="14" TextAlignment="Left" />
+                    </views:GoButton>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="1" Grid.RowSpan="1" Margin="0,0,0,0">
+                    <views:GoButton 
+                    Command="{Binding PAYCPSelCommand}" 
+                    CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}"
+                    BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="0,0,0,0" VerticalAlignment="Top" Width="81" Height="53" Padding="0,0,0,0" BorderThickness="0,0,0,0"
+                        Style="{StaticResource SimplePay}">
+                        <TextBlock TextWrapping="Wrap" Padding="1"  FontFamily="{StaticResource Pretendard}" FontSize="12" FontStyle="Normal" FontWeight="ExtraBold" Foreground="#000000" LineHeight="14" TextAlignment="Left" />
+                    </views:GoButton>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="6" Grid.ColumnSpan="1" Grid.RowSpan="1" Margin="0,0,0,0">
+                    <views:GoButton 
+                    Command="{Binding PAYCPSelCommand}" 
+                    CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}"
+                    BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="0,0,0,0" VerticalAlignment="Top" Width="81" Height="53" Padding="0,0,0,0" BorderThickness="0,0,0,0"
+                        Style="{StaticResource SimplePay}">
+                        <TextBlock TextWrapping="Wrap" Padding="1"  FontFamily="{StaticResource Pretendard}" FontSize="12" FontStyle="Normal" FontWeight="ExtraBold" Foreground="#000000" LineHeight="14" TextAlignment="Left" />
+                    </views:GoButton>
+                </StackPanel>
+
+            </Grid>
+        </StackPanel>
+
+        <StackPanel Margin="0 5 0 0" Orientation="Horizontal" Grid.Row="7" Grid.Column="3" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <Button Tag="btnUp" Command="{Binding ButtonCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" 
+                    BorderBrush="#cccccc"  Margin="1,0,0,0" Width="50" Height="29"  BorderThickness="1 1 1 1">
+                <Button.Background>
+                    <LinearGradientBrush StartPoint="0,1" EndPoint="0,0">
+                        <GradientStop Color="#FFE5E5E5" Offset="0" />
+                        <GradientStop Color="#FFD7D7D7" Offset="0.3" />
+                        <GradientStop Color="#FFFFFFFF" Offset="1" />
+                    </LinearGradientBrush>
+                </Button.Background>
+                <TextBlock TextWrapping="Wrap"  Text="▲" Foreground="#555555" />
+            </Button>
+            <Button Tag="btnDn" Command="{Binding ButtonCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" 
+                   BorderBrush="#cccccc" Margin="9,0,0,0" Width="50" Height="29" Padding="0,0,0,0" BorderThickness="1 1 1 1">
+                <Button.Background>
+                    <LinearGradientBrush StartPoint="0,1" EndPoint="0,0">
+                        <GradientStop Color="#FFE5E5E5" Offset="0" />
+                        <GradientStop Color="#FFD7D7D7" Offset="0.3" />
+                        <GradientStop Color="#FFFFFFFF" Offset="1" />
+                    </LinearGradientBrush>
+                </Button.Background>
+                <TextBlock TextWrapping="Wrap"  Text="▼" Foreground="#555555" />
+            </Button>
+        </StackPanel>
+    </Grid>
+</views:UCViewBase>

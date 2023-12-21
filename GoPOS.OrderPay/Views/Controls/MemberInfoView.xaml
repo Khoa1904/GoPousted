@@ -1,0 +1,231 @@
+﻿<views:UCViewBase  xmlns:views="clr-namespace:GoPOS.Common.Views;assembly=GoPOS.Common"
+                   x:Class="GoPOS.OrderPay.Views.Controls.MemberInfoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GoPOS.OrderPay.Views.Controls"
+             mc:Ignorable="d" xmlns:viewModel="clr-namespace:GoPOS.OrderPay.ViewModels.Controls" 
+             d:DataContext="{d:DesignInstance viewModel:MemberInfoViewModel}"
+             Background="Transparent"
+             d:DesignHeight="259" d:DesignWidth="231">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="29" />
+            <RowDefinition Height="29" />
+            <RowDefinition Height="29" />
+            <RowDefinition Height="29" />
+            <RowDefinition Height="29" />
+            <RowDefinition Height="29" />
+            <RowDefinition Height="29" />
+            <RowDefinition Height="*" />
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="35" />
+            <ColumnDefinition Width="75" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+
+        <Border Style="{StaticResource GhostDot}"   BorderThickness="0,0,0,1" Grid.Row="0" Grid.Column="0" >
+            <StackPanel Orientation="Horizontal"  Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock  Margin="0,10,0,2" Text="*" FontFamily="{StaticResource Pretendard}" 
+                  FontSize="12" FontStyle="Normal"   Foreground="#FFFFFFFF" VerticalAlignment="Center" 
+                  TextAlignment="Right" />
+            </StackPanel>
+        </Border>
+        <Border Style="{StaticResource GhostDot}"   BorderThickness="0,0,0,1" Grid.Row="0" Grid.Column="1" >
+            <StackPanel Orientation="Horizontal"  Margin="0,0,0,0"  VerticalAlignment="Center" HorizontalAlignment="Right">
+                <TextBlock  Margin="0,0,0,0" Text="회원명 :" FontFamily="{StaticResource Pretendard}" 
+                  FontSize="12" FontStyle="Normal"   Foreground="#FFFFFFFF" VerticalAlignment="Center" 
+                  TextAlignment="Right" />
+            </StackPanel>
+        </Border>
+        <Border Style="{StaticResource GhostDot}"   BorderThickness="0,0,0,1" Grid.Row="0" Grid.Column="2" >
+            <StackPanel Orientation="Horizontal"  Margin="10,0,0,0"  VerticalAlignment="Center">
+                <TextBlock  Margin="0,0,0,0"  Text="{Binding MemberInfo.mbrNm}" FontFamily="{StaticResource Pretendard}" 
+                  FontSize="12" FontStyle="Normal"   Foreground="#FFFFFFFF" VerticalAlignment="Center" 
+                  TextAlignment="Right" />
+            </StackPanel>
+        </Border>
+
+        <Border Style="{StaticResource GhostDot}"   BorderThickness="0,0,0,1" Grid.Row="1" Grid.Column="0" >
+            <StackPanel Orientation="Horizontal"  Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock  Margin="0,10,0,2" Text="*" FontFamily="{StaticResource Pretendard}" 
+                  FontSize="12" FontStyle="Normal"   Foreground="#FFFFFFFF" VerticalAlignment="Center" 
+                  TextAlignment="Right" />
+            </StackPanel>
+        </Border>
+        <Border Style="{StaticResource GhostDot}"   BorderThickness="0,0,0,1" Grid.Row="1" Grid.Column="1" >
+            <StackPanel Orientation="Horizontal"  Margin="0,0,0,0"  VerticalAlignment="Center" HorizontalAlignment="Right">
+                <TextBlock  Margin="0,0,0,0" Text="카드번호 :" FontFamily="{StaticResource Pretendard}" 
+                  FontSize="12" FontStyle="Normal"   Foreground="#FFFFFFFF" VerticalAlignment="Center" 
+                  TextAlignment="Right" />
+            </StackPanel>
+        </Border>
+        <Border Style="{StaticResource GhostDot}"   BorderThickness="0,0,0,1" Grid.Row="1" Grid.Column="2" >
+            <StackPanel Orientation="Horizontal"  Margin="10,0,0,0" VerticalAlignment="Center">
+                <TextBlock  Margin="0,0,0,0" Text="{Binding MemberInfo.mbrCardno}" FontFamily="{StaticResource Pretendard}" 
+                  FontSize="12" FontStyle="Normal"   Foreground="#FFFFFFFF" VerticalAlignment="Center" 
+                  TextAlignment="Right" />
+            </StackPanel>
+        </Border>
+
+        <Border Style="{StaticResource GhostDot}"   BorderThickness="0,0,0,1" Grid.Row="2" Grid.Column="0" >
+            <StackPanel Orientation="Horizontal"  Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock  Margin="0,10,0,2" Text="*" FontFamily="{StaticResource Pretendard}" 
+                  FontSize="12" FontStyle="Normal"   Foreground="#FFFFFFFF" VerticalAlignment="Center" 
+                  TextAlignment="Right" />
+            </StackPanel>
+        </Border>
+        <Border Style="{StaticResource GhostDot}"   BorderThickness="0,0,0,1" Grid.Row="2" Grid.Column="1" >
+            <StackPanel Orientation="Horizontal"  Margin="0,0,0,0"  VerticalAlignment="Center" HorizontalAlignment="Right">
+                <TextBlock  Margin="0,0,0,0" Text="고객등급 :" FontFamily="{StaticResource Pretendard}" 
+                  FontSize="12" FontStyle="Normal"   Foreground="#FFFFFFFF" VerticalAlignment="Center" 
+                  TextAlignment="Right" />
+            </StackPanel>
+        </Border>
+        <Border Style="{StaticResource GhostDot}"   BorderThickness="0,0,0,1" Grid.Row="2" Grid.Column="2" >
+            <StackPanel Orientation="Horizontal"  Margin="10,0,0,0" VerticalAlignment="Center">
+                <TextBlock  Margin="0,0,0,0" Text="{Binding MemberInfo.mbrGrdNm}" FontFamily="{StaticResource Pretendard}" 
+                  FontSize="12" FontStyle="Normal"   Foreground="#FFFFFFFF" VerticalAlignment="Center" 
+                  TextAlignment="Right" />
+            </StackPanel>
+        </Border>
+
+        <Border Style="{StaticResource GhostDot}"   BorderThickness="0,0,0,1" Grid.Row="3" Grid.Column="0" >
+            <StackPanel Orientation="Horizontal"  Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock  Margin="0,10,0,2" Text="*" FontFamily="{StaticResource Pretendard}" 
+                  FontSize="12" FontStyle="Normal"   Foreground="#FFFFFFFF" VerticalAlignment="Center" 
+                  TextAlignment="Right" />
+            </StackPanel>
+        </Border>
+        <Border Style="{StaticResource GhostDot}"   BorderThickness="0,0,0,1" Grid.Row="3" Grid.Column="1" >
+            <StackPanel Orientation="Horizontal"  Margin="0,0,0,0"  VerticalAlignment="Center" HorizontalAlignment="Right">
+                <TextBlock  Margin="0,0,0,0" Text="연락처 :" FontFamily="{StaticResource Pretendard}" 
+                  FontSize="12" FontStyle="Normal"   Foreground="#FFFFFFFF" VerticalAlignment="Center" 
+                  TextAlignment="Right" />
+            </StackPanel>
+        </Border>
+        <Border Style="{StaticResource GhostDot}"   BorderThickness="0,0,0,1" Grid.Row="3" Grid.Column="2" >
+            <StackPanel Orientation="Horizontal"  Margin="10,0,0,0" VerticalAlignment="Center">
+                <TextBlock  Margin="0,0,0,0" Text="{Binding MemberInfo.mbrCelno}" FontFamily="{StaticResource Pretendard}" 
+                  FontSize="12" FontStyle="Normal"   Foreground="#FFFFFFFF" VerticalAlignment="Center" 
+                  TextAlignment="Right" />
+            </StackPanel>
+        </Border>
+
+        <Border Style="{StaticResource GhostDot}"   BorderThickness="0,0,0,1" Grid.Row="4" Grid.Column="0" >
+            <StackPanel Orientation="Horizontal"  Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock  Margin="0,10,0,2" Text="*" FontFamily="{StaticResource Pretendard}" 
+                  FontSize="12" FontStyle="Normal"   Foreground="#FFFFFFFF" VerticalAlignment="Center" 
+                  TextAlignment="Right" />
+            </StackPanel>
+        </Border>
+        <Border Style="{StaticResource GhostDot}"   BorderThickness="0,0,0,1" Grid.Row="4" Grid.Column="1" >
+            <StackPanel Orientation="Horizontal"  Margin="0,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Right">
+                <TextBlock  Margin="0,0,0,0" Text="{Binding MemberAccPoint}" FontFamily="{StaticResource Pretendard}" 
+                  FontSize="12" FontStyle="Normal"   Foreground="#FFFFFFFF" VerticalAlignment="Center" 
+                  TextAlignment="Right" />
+            </StackPanel>
+        </Border>
+        <Border Style="{StaticResource GhostDot}"   BorderThickness="0,0,0,1" Grid.Row="4" Grid.Column="2" >
+            <StackPanel Orientation="Horizontal"  Margin="10,0,0,0" VerticalAlignment="Center">
+                <TextBlock  Margin="0,0,0,0" Text="{Binding MemberInfo.totalPoint, StringFormat={}{0:N0}}" FontFamily="{StaticResource Pretendard}" 
+                  FontSize="12" FontStyle="Normal"   Foreground="#FFFFFFFF" VerticalAlignment="Center" 
+                  TextAlignment="Right" />
+            </StackPanel>
+        </Border>
+
+        <Border Style="{StaticResource GhostDot}"   BorderThickness="0,0,0,1" Grid.Row="5" Grid.Column="0" >
+            <StackPanel Orientation="Horizontal"  Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock  Margin="0,10,0,2" Text="*" FontFamily="{StaticResource Pretendard}" 
+                  FontSize="12" FontStyle="Normal"   Foreground="#FFFFFFFF" VerticalAlignment="Center" 
+                  TextAlignment="Right" />
+            </StackPanel>
+        </Border>
+        <Border Style="{StaticResource GhostDot}"   BorderThickness="0,0,0,1" Grid.Row="5" Grid.Column="1" >
+            <StackPanel Orientation="Horizontal"  Margin="0,0,0,0"  VerticalAlignment="Center" HorizontalAlignment="Right">
+                <TextBlock  Margin="0,0,0,0" Text="{Binding MemberAvailPoint}" FontFamily="{StaticResource Pretendard}" 
+                  FontSize="12" FontStyle="Normal"   Foreground="#FFFFFFFF" VerticalAlignment="Center" 
+                  TextAlignment="Right" />
+            </StackPanel>
+        </Border>
+        <Border Style="{StaticResource GhostDot}"   BorderThickness="0,0,0,1" Grid.Row="5" Grid.Column="2" >
+            <StackPanel Orientation="Horizontal"  Margin="10,0,0,0" VerticalAlignment="Center">
+                <TextBlock  Margin="0,0,0,0" Text="{Binding MemberInfo.avalidPoint, StringFormat={}{0:N0}}" FontFamily="{StaticResource Pretendard}" 
+                  FontSize="12" FontStyle="Normal"   Foreground="#FFFFFFFF" VerticalAlignment="Center" 
+                  TextAlignment="Right" />
+            </StackPanel>
+        </Border>
+
+        <Border   BorderThickness="0,0,0,1" Grid.Row="6" Grid.Column="0" >
+            <StackPanel Orientation="Horizontal"  Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock  Margin="0,10,0,2" Text="*" FontFamily="{StaticResource Pretendard}" 
+                  FontSize="12" FontStyle="Normal"   Foreground="#FFFFFFFF" VerticalAlignment="Center" 
+                  TextAlignment="Right" />
+            </StackPanel>
+        </Border>
+        <Border   BorderThickness="0,0,0,1" Grid.Row="6" Grid.Column="1" >
+            <StackPanel Orientation="Horizontal"  Margin="0,0,0,0"  VerticalAlignment="Center" HorizontalAlignment="Right">
+                <TextBlock  Margin="0,0,0,0" Text="{Binding MemberBalance}" FontFamily="{StaticResource Pretendard}" 
+                  FontSize="12" FontStyle="Normal"   Foreground="#FFFFFFFF" VerticalAlignment="Center" 
+                  TextAlignment="Right" />
+            </StackPanel>
+        </Border>
+        <Border   BorderThickness="0,0,0,1" Grid.Row="6" Grid.Column="2" >
+            <StackPanel Orientation="Horizontal"  Margin="10,0,0,0" VerticalAlignment="Center">
+                <TextBlock  Margin="0,0,0,0" Text="{Binding MemberInfo.balance, StringFormat={}{0:N0}}" FontFamily="{StaticResource Pretendard}" 
+                  FontSize="12" FontStyle="Normal"   Foreground="#FFFFFFFF" VerticalAlignment="Center" 
+                  TextAlignment="Right" />
+            </StackPanel>
+        </Border>
+
+        <Grid Grid.Row="7" Grid.ColumnSpan="3" Margin="0,-5,3,0" VerticalAlignment="top">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="77" />
+                <ColumnDefinition Width="77" />
+                <ColumnDefinition Width="77" />
+            </Grid.ColumnDefinitions>
+            <Border  Grid.Column="0"  >
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                    <views:GoButton Command="{Binding ButtonCommand }" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" 
+                                     Margin="0,6,2,0" Padding="0,0,0,0" Tag="MemberSearch" Click="DenyClick"
+                                      Style="{StaticResource BtnDarkMist}">
+                        <TextBlock   Margin="5,2,0,0"  Text="회원검색 " FontFamily="{StaticResource Pretendard}"  FontStyle="Normal" 
+                                       Foreground="#FFFFFFFF"  VerticalAlignment="Center" FontSize="12"
+                                     TextAlignment="Right" />
+                    </views:GoButton>
+                </StackPanel>
+            </Border>
+            
+            <Border Grid.Column="1"  >
+                <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,0,0,0" HorizontalAlignment="Center">
+                    <views:GoButton Command="{Binding ButtonCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" 
+                                    Margin="0,6,6,0" Tag="MemberDetails" Click="DenyClick"
+                                    Padding="0,0,0,0"  Style="{StaticResource BtnDarkMist}">
+                        <TextBlock   Margin="5,2,0,0"  Text="상세정보 " FontFamily="{StaticResource Pretendard}" FontStyle="Normal" 
+                                       Foreground="#FFFFFFFF" VerticalAlignment="Center" FontSize="12"
+                                     TextAlignment="Right" />
+                    </views:GoButton>
+                </StackPanel>
+            </Border>
+
+            <Border  Grid.Column="2"   >
+                <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,0,0,0" HorizontalAlignment="Center">
+                    <views:GoButton Command="{Binding ButtonCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" 
+                                    Margin="0,6,10,0" Tag="Reset" Click="DenyClick"
+                                    Padding="0,0,0,0"   Style="{StaticResource BtnDarkMist}">
+                        <TextBlock   Margin="5,2,0,0"  Text="초기화 " FontFamily="{StaticResource Pretendard}" FontStyle="Normal" 
+                                       Foreground="#FFFFFFFF"  VerticalAlignment="Center" FontSize="12"
+                                     TextAlignment="Center" />
+                    </views:GoButton>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Grid>
+</views:UCViewBase>

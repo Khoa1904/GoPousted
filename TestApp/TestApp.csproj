@@ -1,0 +1,72 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<BaseOutputPath>test\</BaseOutputPath>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+		<PackageOutputPath>$(OutputPath)\test</PackageOutputPath>
+		<RunPostBuildEvent>Always</RunPostBuildEvent>
+		<PlatformTarget>x64</PlatformTarget>
+		<Platforms>AnyCPU;x86</Platforms>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<Deterministic>true</Deterministic>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+	  <Deterministic>true</Deterministic>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<Deterministic>true</Deterministic>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
+	  <Deterministic>true</Deterministic>
+	</PropertyGroup>
+	<Choose>
+		<When Condition=" '$(Configuration)'=='Debug' ">
+			<PropertyGroup>
+				<DebugSymbols>true</DebugSymbols>
+				<DebugType>full</DebugType>
+				<Optimize>false</Optimize>
+				<OutputPath>..\..\Deployment\Debug\test</OutputPath>
+				<DefineConstants>DEBUG;TRACE</DefineConstants>
+				<PackageOutputPath>..\..\Deployment\Debug</PackageOutputPath>
+			</PropertyGroup>
+		</When>
+		<When Condition=" '$(Configuration)'=='Release' ">
+			<PropertyGroup>
+				<DebugSymbols>false</DebugSymbols>
+				<Optimize>true</Optimize>
+				<OutputPath>...\..\Deployment\Release\test</OutputPath>
+				<DefineConstants>TRACE</DefineConstants>
+				<PackageOutputPath>..\..\Deployment\Release</PackageOutputPath>
+			</PropertyGroup>
+		</When>
+	</Choose>
+	<ItemGroup>
+	  <Compile Remove="bin\**" />
+	  <EmbeddedResource Remove="bin\**" />
+	  <None Remove="bin\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Remove="SampleClass.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="SampleClass.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="EntityFramework.Firebird" Version="9.0.0" />
+		<PackageReference Include="FirebirdSql.Data.FirebirdClient" Version="9.0.2" />
+	</ItemGroup>
+
+</Project>

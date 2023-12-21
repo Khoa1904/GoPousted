@@ -1,0 +1,124 @@
+﻿@using WinFormsBlazor.Model;
+@using WinFormsBlazor.Service;
+@page "/option"
+
+<h3>Split</h3>
+
+<table class="table" border="0" colspacing="5" cellpadding="10">
+    <tr>
+        <td valign="top">
+            <table class="table" border="1" colspacing="5" cellpadding="10">
+                <thead>
+                    <tr>
+                        <th colspan="3">Options</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <input type="radio" class="form-check-input" name="taste" id="taste1" Checked @onclick="@(e => AddOption(1, "required", "고소한 산미"))">
+                            <label for="taste1">고소한 산미 <span class="option_price">+500</span></label>
+                        </td>
+                        <td>
+                            <input type="radio" class="form-check-input" name="taste" id="taste2" @onclick="@(e => AddOption(1, "required", "다크초코"))">
+                            <label for="taste2">다크초코 <span class="option_price">+500</span></label>
+                        </td>
+                        <td>
+                            <input type="radio" class="form-check-input" name="taste" id="taste3" @onclick="@(e => AddOption(1, "required", "강한 산미"))">
+                            <label for="taste3">강한 산미 <span class="option_price">+500</span></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="radio" class="form-check-input" name="temperature" id="temperature1" Checked @onclick="@(e => AddOption(2, "required", "HOT"))">
+                            <label for="temperature1">HOT <span class="option_price">+500</span></label>
+                        </td>
+                        <td>
+                            <input type="radio" class="form-check-input" name="temperature" id="temperature2" @onclick="@(e => AddOption(2, "required", "MIDDLE"))">
+                            <label for="temperature2">MIDDLE <span class="option_price">+0</span></label>
+                        </td>
+                        <td>
+                            <input type="radio" class="form-check-input" name="temperature" id="temperature3" @onclick="@(e => AddOption(2, "required", "ICE"))">
+                            <label for="temperature3">ICE <span class="option_price">+500</span></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="radio" class="form-check-input" name="size" id="size1" Checked @onclick="@(e => AddOption(3, "required", "작은컵"))">
+                            <label for="size1">작은컵 <span class="option_price">+500</span></label>
+                        </td>
+                        <td>
+                            <input type="radio" class="form-check-input" name="size" id="size2" @onclick="@(e => AddOption(3, "required", "중간컵"))">
+                            <label for="size2">중간컵 <span class="option_price">+0</span></label>
+                        </td>
+                        <td>
+                            <input type="radio" class="form-check-input" name="size" id="size3" @onclick="@(e => AddOption(3, "required", "큰컵"))">
+                            <label for="size3">큰컵 <span class="option_price">+500</span></label>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td valign="top">
+            @if (optionList == null)
+            {
+                <p><em>Loading...</em></p>
+            }
+            else
+            {
+                options = "";
+                <table class="table" border="1" colspacing="5" cellpadding="10">
+                    <thead>
+                        <tr>
+                            <th>Selected Options</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var option in optionList)
+                        {
+                            if (options == "")
+                            {
+                                options = option.OptionValue;
+                            }
+                            else
+                            {
+                                options = options + "∬" + option.OptionValue;
+                            }
+                            <tr>
+                                <td>@option.OptionValue</td>
+                            </tr>
+                        }
+                        <tr>
+                            <td>@options</td>
+                        </tr>
+                    </tbody>
+                </table>
+            }
+        </td>
+    </tr>
+</table>
+
+@code {
+    private List<Option>? optionList { get; set; }
+    private static string? options = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        //  초기 옵션 저장
+        OptionService.AddOption(1, "required", "고소한 산미");
+        OptionService.AddOption(2, "required", "HOT");
+        OptionService.AddOption(3, "required", "작은컵");
+        await ShowOption();
+    }
+
+    public async Task AddOption(int optNum, string gubun, string option)
+    {
+        OptionService.AddOption(optNum, gubun, option);
+        await ShowOption();
+    }
+
+    public async Task ShowOption()
+    {
+        optionList = await OptionService.OptionAsync("required");
+    }
+}

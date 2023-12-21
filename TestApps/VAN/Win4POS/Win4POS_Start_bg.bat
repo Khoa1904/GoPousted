@@ -1,0 +1,1 @@
+start Win4POS.exe SKIP

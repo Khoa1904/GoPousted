@@ -1,0 +1,22 @@
+﻿@page "/page3"
+
+
+<h3>Page3</h3>
+
+<p>
+    <input class="form-control" @bind="inputValue" />
+</p>
+
+<p>
+    <input class="form-control" @bind="InputValue" />
+</p>
+
+<ul>
+    <li><code>inputValue</code>: @inputValue</li>
+    <li><code>InputValue</code>: @InputValue</li>
+</ul>
+
+@code {
+    private string? inputValue;
+    private string? InputValue { get; set; }
+}

@@ -1,0 +1,28 @@
+﻿<Application x:Class="Update.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Update"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary>
+                    <!-- 기존 Samples -->
+                    <!--
+                    <local:SamplesBootstrapper x:Key="Bootstrapper" />
+                    -->
+                    <!-- GOPOS -->
+                    <FontFamily x:Key="Pretendard-Black">applicaton:,,,/Fonts/#Pretendard Black</FontFamily>
+                    <FontFamily x:Key="Pretendard">applicaton:,,,/Fonts/#Pretendard</FontFamily>
+                    <FontFamily x:Key="Pretendard-ExtraBold">applicaton:,,,/Fonts/#Pretendard ExtraBold</FontFamily>
+                    <FontFamily x:Key="Pretendard-ExtraLight">applicaton:,,,/Fonts/#Pretendard ExtraLight</FontFamily>
+                    <FontFamily x:Key="Pretendard-Light">applicaton:,,,/Fonts/#Pretendard Light</FontFamily>
+                    <FontFamily x:Key="Pretendard-Medium">applicaton:,,,/Fonts/#Pretendard Medium</FontFamily>
+                    <FontFamily x:Key="Pretendard-Regular">applicaton:,,,/Fonts/#Pretendard Regular</FontFamily>
+                    <FontFamily x:Key="Pretendard-SemiBold">applicaton:,,,/Fonts/#Pretendard SemiBold</FontFamily>
+                    <FontFamily x:Key="Pretendard-Thin">applicaton:,,,/Fonts/#Pretendard Thin</FontFamily>
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

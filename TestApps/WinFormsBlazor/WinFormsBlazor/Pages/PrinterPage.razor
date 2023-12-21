@@ -1,0 +1,22 @@
+﻿@using WinFormsBlazor.Service;
+@page "/printer"
+
+<h3>Printer</h3>
+<br />
+<br />
+
+<button type="button" class="btn btn-success" @onclick="@(e => OpenPort())">포트 연결</button>
+<button type="button" class="btn btn-primary" @onclick="@(e => Print())">프린트</button>
+@code {
+
+	private void OpenPort()
+	{
+		PrintService.OpenPort();
+	}
+
+	private void Print()
+	{
+		PrintService.Print();
+	}
+
+}

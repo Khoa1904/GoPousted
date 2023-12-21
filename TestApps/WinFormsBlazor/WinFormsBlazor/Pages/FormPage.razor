@@ -1,0 +1,43 @@
+﻿@page "/form"
+@using WinFormsBlazor.Model;
+
+<EditForm Model="@formModel" OnValidSubmit="@HandleSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <InputText class="form-control" id="name" @bind-Value="formModel.UserName" placeholder="이름을 입력해 주세요." /><br /><br />
+    <InputText class="form-control" id="mobile" @bind-Value="formModel.UserMobile" placeholder="전화번호를 입력해 주세요." /><br /><br />
+
+    <button type="submit" class="btn btn-success">Submit</button>
+</EditForm>
+<br />
+<p class="text-break">@name</P>
+<p class="text-break">@mobile</P>
+
+@code {
+    private FormModel formModel = new();
+    private EditContext? editContext;
+
+    string? name;
+    string? mobile;
+
+    protected override void OnInitialized()
+    {
+        editContext = new(formModel);
+    }
+
+    private async Task HandleSubmit()
+    {
+        if (editContext != null && editContext.Validate())
+        {
+            name = formModel.UserName;
+            mobile = formModel.UserMobile;
+            //MessageBox.Show(name + " / " + mobile);
+            await Task.CompletedTask;
+        }
+        else
+        {
+            MessageBox.Show("HandleSubmit called: Form is INVALID");
+        }
+    }
+}

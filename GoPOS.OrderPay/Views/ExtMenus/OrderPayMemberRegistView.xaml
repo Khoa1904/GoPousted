@@ -1,0 +1,203 @@
+<views:UCViewBase  xmlns:views="clr-namespace:GoPOS.Common.Views;assembly=GoPOS.Common" 
+                   x:Class="GoPOS.Views.OrderPayMemberRegistView" 
+                   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+                   xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                   xmlns:viewModel="clr-namespace:GoPOS.ViewModels" 
+                   xmlns:helpers="clr-namespace:GoPOS.Common.Helpers.Controls;assembly=GoPOS.Common" 
+                   d:DataContext="{d:DesignInstance viewModel:OrderPayMemberRegistViewModel}"
+                   mc:Ignorable="d" xmlns:local="clr-namespace:GoPOS.Views" 
+                   xmlns:cal="http://www.caliburnproject.org" 
+                   d:DesignHeight="677" d:DesignWidth="490">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="80" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="80" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50" />
+            <ColumnDefinition Width="112" />
+            <ColumnDefinition Width="146" />
+            <ColumnDefinition Width="17" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="49" />
+        </Grid.ColumnDefinitions>
+        <Grid.Background>
+            <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/resource/images/OrderPayLeftPopBack.png" />
+        </Grid.Background>
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Margin="0,0,0,0">
+            <TextBlock Text="{StaticResource 0270}" FontFamily="{StaticResource Pretendard}" FontSize="20" Height="23" Margin="40,0,0,0" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" LineHeight="14" TextAlignment="Left" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="6" Margin="3,0,0,0">
+            <Button Tag="" Command="{Binding CloseCommand}"  Margin="0,0,0,0" Width="31" Height="29" Padding="0,0,0,0" BorderThickness="0,0,0,0"
+              Style="{StaticResource ClozeBtn}"      />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Margin="85,10,0,0">
+            <Image VerticalAlignment="Top" Width="11" Height="11" Source="pack://application:,,,/GoPOS.Resources;component/resource/images/pr.png" Margin="0,0,0,0" />
+            <TextBlock VerticalAlignment="Top" Text="{StaticResource 0271}" FontFamily="{StaticResource Pretendard}" FontSize="16" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" LineHeight="14" TextAlignment="Left" Margin="10,-3,0,0" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="7" Margin="0,0,0,0" HorizontalAlignment="Center">
+            <TextBlock VerticalAlignment="Center" Text="{StaticResource 0272}" FontFamily="{StaticResource Pretendard}" FontSize="12" FontStyle="Normal" FontWeight="Light" Foreground="#999999" LineHeight="14" TextAlignment="Left" Margin="0,25,0,0" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="7" Margin="85,10,0,0">
+            <TextBlock VerticalAlignment="Top" Text="{StaticResource 0013}" FontFamily="{StaticResource Pretendard}" FontSize="16" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" LineHeight="14" TextAlignment="Left" Margin="0,-3,0,0" />
+            <TextBlock VerticalAlignment="Top" Width="64" Text="{StaticResource 0273}" FontFamily="{StaticResource Pretendard}" FontSize="16" FontStyle="Normal" FontWeight="Bold" Foreground="#FFFA7514" LineHeight="14" TextAlignment="Right" Margin="5,-3,0,0" />
+            <TextBlock VerticalAlignment="Top" Text=" : " FontFamily="{StaticResource Pretendard}" FontSize="16" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" LineHeight="14" TextAlignment="Left" Margin="5,-3,0,0" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="4" Margin="20,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <TextBox x:Name="txtMemberGrade" IsReadOnly="True" Text="{Binding MemberGrade.grdNm}" Style="{StaticResource GrayTB}" FontStyle="Normal" FontWeight="SemiBold" Width="130" FontSize="16" Height="25" Margin="0,0,0,0" TextAlignment="Center">
+                <TextBox.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="2"/>
+                    </Style>
+                </TextBox.Resources>
+            </TextBox>
+            <Button Tag="SetRate" Command="{Binding ButtonCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}"
+                    Margin="10,0,0,0" Width="71" Height="31" Padding="0,0,0,0" BorderThickness="0,0,0,0" Click="ButtonClick" >
+                <Button.Background>
+                    <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/resource/images/btn_base_gray_71x36.png" />
+                </Button.Background>
+                <TextBlock Text="{StaticResource 0274}" FontFamily="{StaticResource Pretendard}" FontSize="13" FontStyle="Normal" FontWeight="Bold" Foreground="#FFFFFFFF" LineHeight="13" TextAlignment="Center" />
+            </Button>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="7" Margin="85,10,0,0">
+            <TextBlock VerticalAlignment="Top" Text="{StaticResource 0013}" FontFamily="{StaticResource Pretendard}" FontSize="16" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" LineHeight="14" TextAlignment="Left" Margin="0,-3,0,0" />
+            <TextBlock VerticalAlignment="Top" Width="64" Text="{StaticResource 0275}" FontFamily="{StaticResource Pretendard}" FontSize="16" FontStyle="Normal" FontWeight="Bold" Foreground="#FFFA7514" LineHeight="14" TextAlignment="Right" Margin="5,-3,0,0" />
+            <TextBlock VerticalAlignment="Top" Text=" : " FontFamily="{StaticResource Pretendard}" FontSize="16" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" LineHeight="14" TextAlignment="Left" Margin="5,-3,0,0" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="4" Margin="20,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <TextBox helpers:TextBoxHelpers.IsNumeric="True" x:Name="TxtTelNo" Text="{Binding TEL_NO, Mode=TwoWay, StringFormat='{}{0:C}'}" MaxLength="11" Style="{StaticResource GrayTB}" FontStyle="Normal" FontWeight="SemiBold" Width="130" FontSize="16" Height="25" Margin="0,0,0,0" TextAlignment="Center">
+                <TextBox.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="2"/>
+                    </Style>
+                </TextBox.Resources>
+            </TextBox>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="7" Margin="0,0,0,0" HorizontalAlignment="Center">
+            <TextBlock VerticalAlignment="Center" Text="{StaticResource 0272}" FontFamily="{StaticResource Pretendard}" FontSize="12" FontStyle="Normal" FontWeight="Light" Foreground="#999999" LineHeight="14" TextAlignment="Left" Margin="0,25,0,0" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="3" Margin="0,0,45,0" HorizontalAlignment="Right">
+            <Button Tag="ToSignPad" Command="{Binding ButtonCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" Margin="0,0,0,0" Width="83" Height="31" Padding="0,0,0,0" BorderThickness="0,0,0,0">
+                <Button.Background>
+                    <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/resource/images/btn_base_green.png" />
+                </Button.Background>
+                <TextBlock Text="{StaticResource 0098}" FontFamily="{StaticResource Pretendard}" FontSize="13" FontStyle="Normal" FontWeight="Bold" Foreground="#FFFFFFFF" LineHeight="13" TextAlignment="Center" />
+            </Button>
+            <Button Tag="Register" Command="{Binding ButtonCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}"
+              BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="45,0,0,0" Width="83" Height="31" Padding="0,0,0,0" BorderThickness="0,0,0,0">
+                <Button.Background>
+                    <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/resource/images/btn_base_orange.png" />
+                </Button.Background>
+                <TextBlock Text="{StaticResource 0276}" FontFamily="{StaticResource Pretendard}" FontSize="13" FontStyle="Normal" FontWeight="Bold" Foreground="#FFFFFFFF" LineHeight="13" TextAlignment="Center" />
+            </Button>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="3" Margin="85,10,0,5" VerticalAlignment="Bottom">
+            <Image VerticalAlignment="Top" Width="11" Height="11" Source="pack://application:,,,/GoPOS.Resources;component/resource/images/pr.png" Margin="0,0,0,0" />
+            <TextBlock VerticalAlignment="Top" Text="{StaticResource 0277}" FontFamily="{StaticResource Pretendard}" FontSize="16" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" LineHeight="14" TextAlignment="Left" Margin="10,-3,0,0" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="7" Margin="0,0,0,0" HorizontalAlignment="Center">
+            <TextBlock VerticalAlignment="Center" Text="{StaticResource 0272}" FontFamily="{StaticResource Pretendard}" FontSize="12" FontStyle="Normal" FontWeight="Light" Foreground="#999999" LineHeight="14" TextAlignment="Left" Margin="0,50,0,0" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="7" Margin="85,10,0,0">
+            <TextBlock VerticalAlignment="Top" Text="{StaticResource 0013}" FontFamily="{StaticResource Pretendard}" FontSize="16" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" LineHeight="14" TextAlignment="Left" Margin="0,-3,0,0" />
+            <TextBlock VerticalAlignment="Top" Width="64" Text="{StaticResource 0278}" FontFamily="{StaticResource Pretendard}" FontSize="16" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" LineHeight="14" TextAlignment="Right" Margin="5,-3,0,0" />
+            <TextBlock VerticalAlignment="Top" Text=" : " FontFamily="{StaticResource Pretendard}" FontSize="16" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" LineHeight="14" TextAlignment="Left" Margin="5,-3,0,0" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="4" Margin="20,3,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <TextBox helpers:TextBoxHelpers.IsNumeric="True" x:Name="txtCardNo" Style="{StaticResource GrayTB}" FontStyle="Normal" FontWeight="SemiBold" Width="130" FontSize="16" 
+                     Height="25" Margin="0,0,0,0" TextAlignment="Center" Text="{Binding CARD_NO}" >
+                <TextBox.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="2"/>
+                    </Style>
+                </TextBox.Resources>
+            </TextBox>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="7" Margin="0,0,0,0" HorizontalAlignment="Center">
+            <TextBlock VerticalAlignment="Center" Text="{StaticResource 0272}" FontFamily="{StaticResource Pretendard}" FontSize="12" FontStyle="Normal" FontWeight="Light" Foreground="#999999" LineHeight="14" TextAlignment="Left" Margin="0,25,0,0" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="7" Margin="85,10,0,0">
+            <TextBlock VerticalAlignment="Top" Text="{StaticResource 0013}" FontFamily="{StaticResource Pretendard}" FontSize="16" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" LineHeight="14" TextAlignment="Left" Margin="0,-3,0,0" />
+            <TextBlock VerticalAlignment="Top" Width="64" Text="{StaticResource 0151}" FontFamily="{StaticResource Pretendard}" FontSize="16" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" LineHeight="14" TextAlignment="Right" Margin="5,-3,0,0" />
+            <TextBlock VerticalAlignment="Top" Text=" : " FontFamily="{StaticResource Pretendard}" FontSize="16" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" LineHeight="14" TextAlignment="Left" Margin="5,-3,0,0" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="9" Grid.Column="2" Grid.ColumnSpan="4" Margin="20,3,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <TextBox Text="{Binding MEMBER_NAME}" x:Name="txtMbrName" 
+                     InputMethod.PreferredImeState="On" InputMethod.PreferredImeConversionMode="Native"
+                     Style="{StaticResource GrayTB}" FontStyle="Normal" FontWeight="SemiBold" Width="130" FontSize="16" Height="25" Margin="0,0,0,0" TextAlignment="Center">
+                <TextBox.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="2"/>
+                    </Style>
+                </TextBox.Resources>
+            </TextBox>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="9" Grid.Column="2" Grid.ColumnSpan="2" Margin="16,0,0,0" HorizontalAlignment="Left">
+            <TextBlock VerticalAlignment="Center" Text="{StaticResource 0272}" FontFamily="{StaticResource Pretendard}" FontSize="12" FontStyle="Normal" FontWeight="Light" Foreground="#999999" LineHeight="14" TextAlignment="Left" Margin="0,25,0,0" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="7" Margin="85,10,0,0">
+            <TextBlock VerticalAlignment="Top" Text="{StaticResource 0013}" FontFamily="{StaticResource Pretendard}" FontSize="16" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" LineHeight="14" TextAlignment="Left" Margin="0,-3,0,0" />
+            <TextBlock VerticalAlignment="Top" Width="64" Text="{StaticResource 0279}" FontFamily="{StaticResource Pretendard}" FontSize="16" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" LineHeight="14" TextAlignment="Right" Margin="5,-3,0,0" />
+            <TextBlock VerticalAlignment="Top" Text=" : " FontFamily="{StaticResource Pretendard}" FontSize="16" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" LineHeight="14" TextAlignment="Left" Margin="5,-3,0,0" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="10" Grid.Column="2" Grid.ColumnSpan="4" Margin="20,3,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <TextBox helpers:TextBoxHelpers.IsNumeric="True" x:Name="txtDOB" Text="{Binding DOB}" Style="{StaticResource GrayTB}" FontStyle="Normal" FontWeight="SemiBold" Width="110" FontSize="16" Height="25" Margin="0,0,0,0" TextAlignment="Center" >
+                <TextBox.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="2"/>
+                    </Style>
+                </TextBox.Resources>
+            </TextBox>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="10" Grid.Column="2" Grid.ColumnSpan="4" Margin="140,-10,0,0">
+            <!--<CheckBox Style="{StaticResource myCheckboxStyle}" FontFamily="{StaticResource Pretendard}" IsChecked="{Binding Path=IsChecked1, Mode=TwoWay}" FontSize="16" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" VerticalAlignment="Center" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Left">
+                <TextBlock VerticalAlignment="Center" Text="교환권" FontFamily="{StaticResource Pretendard}" FontSize="16" FontStyle="Normal" FontWeight="Bold" Foreground="#000000" LineHeight="14" TextAlignment="Left" Margin="5,0,0,0" />
+            </CheckBox>
+            <CheckBox Style="{StaticResource myCheckboxStyle}" FontFamily="{StaticResource Pretendard}" FontSize="16" IsChecked="{Binding Path=IsChecked2, Mode=TwoWay}" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" Margin="10,0,0,0">
+                <TextBlock VerticalAlignment="Center" Text="금액권" FontFamily="{StaticResource Pretendard}" FontSize="16" FontStyle="Normal" FontWeight="Bold" Foreground="#000000" LineHeight="14" TextAlignment="Left" Margin="5,0,0,0" />
+            </CheckBox>-->
+            <CheckBox  Tag="SOLAR" x:Name="solar"  Command="{Binding CheckboxCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" Checked="Luna_Solar" 
+          FontFamily="{StaticResource Pretendard}" FontSize="16" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" VerticalAlignment="Center"  HorizontalContentAlignment="Left">
+                <TextBlock VerticalAlignment="Center" Text="{StaticResource 0280}" FontFamily="{StaticResource Pretendard}" FontSize="16" FontStyle="Normal" FontWeight="Bold" Foreground="#000000" LineHeight="14" TextAlignment="Left" Margin="5,0,0,0"  />
+            </CheckBox>
+            <CheckBox Tag="LUNA" x:Name="luna"  Command="{Binding CheckboxCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" Checked="Luna_Solar" 
+          FontFamily="{StaticResource Pretendard}" FontSize="16" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" Margin="10,0,0,0" VerticalAlignment="Center">
+                <TextBlock VerticalAlignment="Center" Text="{StaticResource 0281}" FontFamily="{StaticResource Pretendard}" FontSize="16" FontStyle="Normal" FontWeight="Bold" Foreground="#000000" LineHeight="14" TextAlignment="Left" Margin="5,0,0,0" />
+            </CheckBox>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="7" Margin="0,0,0,0" HorizontalAlignment="Center">
+            <TextBlock VerticalAlignment="Center" Text="{StaticResource 0272}" FontFamily="{StaticResource Pretendard}" FontSize="12" FontStyle="Normal" FontWeight="Light" Foreground="#999999" LineHeight="14" TextAlignment="Left" Margin="0,25,0,0" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="7" Margin="85,10,0,0">
+            <TextBlock VerticalAlignment="Top" Text="{StaticResource 0013}" FontFamily="{StaticResource Pretendard}" FontSize="16" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" LineHeight="14" TextAlignment="Left" Margin="0,-3,0,0" />
+            <TextBlock VerticalAlignment="Top" Width="64" Text="{StaticResource 0282}" FontFamily="{StaticResource Pretendard}" FontSize="16" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" LineHeight="14" TextAlignment="Right" Margin="5,-3,0,0" />
+            <TextBlock VerticalAlignment="Top" Text=" : " FontFamily="{StaticResource Pretendard}" FontSize="16" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" LineHeight="14" TextAlignment="Left" Margin="5,-3,0,0" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="11" Grid.Column="2" Grid.ColumnSpan="3" Margin="20,-10,0,0">
+            <CheckBox x:Name="check1" Tag="MALE" Command="{Binding CheckboxCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" Checked="Radiotic_Checkbox" 
+          Style="{StaticResource CheckboxStyle}" FontFamily="{StaticResource Pretendard}" FontSize="16" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" VerticalAlignment="Center" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Left">
+                <TextBlock VerticalAlignment="Center" Text="{StaticResource 0283}" FontFamily="{StaticResource Pretendard}" FontSize="16" FontStyle="Normal" FontWeight="Bold" Foreground="#000000" LineHeight="14" TextAlignment="Left" Margin="5,0,0,0" />
+            </CheckBox>
+            <CheckBox Tag="FEMALE" x:Name="check2" Command="{Binding CheckboxCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" Checked="Radiotic_Checkbox" 
+          Style="{StaticResource CheckboxStyle}" IsChecked="{Binding Path=FEMALE, Mode=TwoWay}" FontFamily="{StaticResource Pretendard}" FontSize="16" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" Margin="10,0,0,0">
+                <TextBlock VerticalAlignment="Center" Text="{StaticResource 0284}" FontFamily="{StaticResource Pretendard}" FontSize="16" FontStyle="Normal" FontWeight="Bold" Foreground="#000000" LineHeight="14" TextAlignment="Left" Margin="5,0,0,0" />
+            </CheckBox>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="7" Margin="0,0,0,0" HorizontalAlignment="Center">
+            <TextBlock VerticalAlignment="Center" Text="{StaticResource 0272}" FontFamily="{StaticResource Pretendard}" FontSize="12" FontStyle="Normal" FontWeight="Light" Foreground="#999999" LineHeight="14" TextAlignment="Left" Margin="0,25,0,0" />
+        </StackPanel>
+    </Grid>
+</views:UCViewBase>

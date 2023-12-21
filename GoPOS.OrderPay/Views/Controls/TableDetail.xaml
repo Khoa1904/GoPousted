@@ -1,0 +1,74 @@
+﻿<views:UCViewBase x:Class="GoPOS.OrderPay.Views.Controls.TableDetail"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GoPOS.OrderPay.Views.Controls"
+             xmlns:views="clr-namespace:GoPOS.Common.Views;assembly=GoPOS.Common"
+             mc:Ignorable="d" 
+             d:DesignHeight="127" d:DesignWidth="184">
+    <Grid HorizontalAlignment="Left" VerticalAlignment="Top" x:Name="Table0"   MinWidth="184" MinHeight="127" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.Background>
+            <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/Resource/Images/dining_table_bg.png"/>
+        </Grid.Background>
+
+        <Border Grid.RowSpan="3" BorderBrush="#299ad9" CornerRadius="4" BorderThickness="2.5"/>
+        <TextBlock Name="Title0" Text="" Grid.Row="0" HorizontalAlignment="Left" Margin="5 0 0 0"  FontSize="18" FontWeight="Bold" Foreground="#299ad9"/>
+
+        <ListView Grid.Row="1"  Opacity="0.7" Background="#299ad9" BorderThickness="0" Visibility="Visible" Margin="4 0 4 4" >
+            <ListView.Resources>
+                <Style TargetType="GridViewColumnHeader">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                </Style>
+            </ListView.Resources>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="{x:Type ListViewItem}">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    <Setter Property="Margin" Value="0,1,0,0" />
+                </Style>
+            </ListView.ItemContainerStyle>
+
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="150">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border  Margin="-9,-2,-7,-2">
+                                    <DockPanel Margin="5,0,5,0">
+                                        <TextBlock Foreground="#fff" HorizontalAlignment="Left" Height="15">
+                                            <TextBlock.Text>
+                                                <Binding Path="PRD_NAME">
+                                                </Binding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+                                    </DockPanel>
+                                </Border>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn  Width="20">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border  Margin="-7,-2,-7,-2">
+                                    <DockPanel Margin="5,0,5,0">
+                                        <TextBlock Foreground="#fff" HorizontalAlignment="Right" Height="15">
+                                            <TextBlock.Text>
+                                                <Binding Path="SALE_QTY">
+                                                </Binding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+                                    </DockPanel>
+                                </Border>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <TextBlock Name="Total0" FontWeight="SemiBold" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 0 8 5" Foreground="White"/>
+    </Grid>
+</views:UCViewBase>

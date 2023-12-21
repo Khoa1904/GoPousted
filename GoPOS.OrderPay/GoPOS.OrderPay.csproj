@@ -1,0 +1,78 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0-windows</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<UseWPF>true</UseWPF>
+		<EnableDefaultContentItems>false</EnableDefaultContentItems>
+	</PropertyGroup>
+	
+	<ItemGroup>
+		<Compile Remove="Images\**" />
+		<EmbeddedResource Remove="Images\**" />
+		<None Remove="Images\**" />
+		<Page Remove="Images\**" />
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <Compile Remove="ViewModels\OrderPayChildViewModel.cs" />
+	  <Compile Remove="Views\Controls\PrepaidTopControlView.xaml.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Caliburn.Micro" Version="4.0.212" />
+		<PackageReference Include="Caliburn.Micro.Core" Version="4.0.212" />
+		<PackageReference Include="Microsoft.Web.WebView2" Version="1.0.1518.46" />
+		<PackageReference Include="Microsoft.AspNetCore.Owin" Version="6.0.9" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\GoPOS.Common\GoPOS.Common.csproj" />
+		<ProjectReference Include="..\GoPOS.ConfigSetup\GoPOS.ConfigSetup.csproj" />
+		<ProjectReference Include="..\GoPOS.Models\GoPOS.Models.csproj" />
+		<ProjectReference Include="..\GoPOS.Payment\GoPOS.Payment.csproj" />
+		<ProjectReference Include="..\GoPOS.Sales\GoPOS.Sales.csproj" />
+		<ProjectReference Include="..\GoPOS.Service\GoPOS.Service.csproj" />
+		<ProjectReference Include="..\GoPOS.Resources\GoPOS.Resources.csproj" />
+		<ProjectReference Include="..\GoShared\GoShared.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Reference Include="GoPosVanAPI">
+	    <HintPath>..\lib\GoPosVanAPI.dll</HintPath>
+	  </Reference>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Models\dsOrderPay.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>dsOrderPay.xsd</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\Controls\PaymentDetailsView.xaml.cs">
+	    <SubType>Code</SubType>
+	  </Compile>
+	  <Compile Update="Views\Controls\MemberInfoView.xaml.cs">
+	    <SubType>Code</SubType>
+	  </Compile>
+	  <Compile Update="Views\DualScreen\DualScreenMainView.xaml.cs">
+	    <SubType>Code</SubType>
+	  </Compile>
+	  <Compile Update="Views\Table\RePrintBillPopupView.xaml.cs">
+	    <SubType>Code</SubType>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="Models\dsOrderPay.xsd">
+	    <Generator>MSDataSetGenerator</Generator>
+	    <LastGenOutput>dsOrderPay.Designer.cs</LastGenOutput>
+	  </None>
+	</ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Windows.Forms">
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.Windows.Forms.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>

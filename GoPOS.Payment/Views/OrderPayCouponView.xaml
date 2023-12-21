@@ -1,0 +1,423 @@
+<views:UCViewBase  xmlns:views="clr-namespace:GoPOS.Common.Views;assembly=GoPOS.Common"
+                   x:Class="GoPOS.Views.OrderPayCouponView" 
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+                   xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                   xmlns:viewModel="clr-namespace:GoPOS.ViewModels" 
+                   d:DataContext="{d:DesignInstance viewModel:OrderPayCouponViewModel}" 
+                   xmlns:cal="http://www.caliburnproject.org" mc:Ignorable="d" d:DesignHeight="670" d:DesignWidth="490">
+    <Grid>
+        <!--#dcdcdc #313637-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="108" />
+            <RowDefinition Height="37" />
+            <RowDefinition Height="31" />
+            <RowDefinition Height="31" />
+            <RowDefinition Height="31" />
+            <RowDefinition Height="31" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="31" />
+            <RowDefinition Height="220" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="31" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50" />
+            <ColumnDefinition Width="130" />
+            <ColumnDefinition Width="146" />
+            <ColumnDefinition Width="17" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="49" />
+        </Grid.ColumnDefinitions>
+        <Grid.Background>
+            <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/resource/images/OrderPayRightPopBack.png" />
+        </Grid.Background>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Margin="0,0,0,0">
+            <TextBlock Text="{StaticResource 0133}" FontFamily="{StaticResource Pretendard}" FontSize="20" Height="23" Margin="40,0,0,0" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" LineHeight="14" TextAlignment="Left" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="6" Margin="3,0,0,0">
+            <Button Tag="btnClose" Command="{Binding CloseCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}"
+                      BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="10,0,0,0" Width="31" Height="29" Padding="0,0,0,0" BorderThickness="0,0,0,0">
+                <Button.Background>
+                    <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/resource/images/btn_pop_close.png" />
+                </Button.Background>
+            </Button>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="6" Margin="0,0,0,0">
+            <Image VerticalAlignment="Center" Width="11" Height="11" Source="pack://application:,,,/GoPOS.Resources;component/resource/images/pr.png" Margin="20,0,0,0" />
+            <TextBlock VerticalAlignment="Center" Text="{StaticResource 0712}" FontFamily="{StaticResource Pretendard}" FontSize="14" FontStyle="Normal" FontWeight="Bold" 
+                       Foreground="#000000" LineHeight="14" TextAlignment="Left" Margin="10,0,0,0" />
+        </StackPanel>
+
+        <Border BorderBrush="#999999" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="6" BorderThickness="1" CornerRadius="2" Margin="15,0,10,0">
+            <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Background="#999999">
+                <Grid x:Name="form">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="53" />
+                        <RowDefinition Height="53" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2" />
+                        <ColumnDefinition Width="91" />
+                        <ColumnDefinition Width="1" />
+                        <ColumnDefinition Width="91" />
+                        <ColumnDefinition Width="1" />
+                        <ColumnDefinition Width="91" />
+                        <ColumnDefinition Width="1" />
+                        <ColumnDefinition Width="91" />
+                        <ColumnDefinition Width="1" />
+                        <ColumnDefinition Width="91" />
+                        <ColumnDefinition Width="1" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1">
+                        <views:GoButton x:Name="btnCoupon01" 
+                                            Command="{Binding ButtonCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}"
+                                            Width="91" Height="53" Margin="0,0,0,0" Padding="0,0,0,0" BorderThickness="2" BorderBrush="{x:Null}">
+                            <Button.Background>
+                                <RadialGradientBrush RadiusX="1" RadiusY="1" Center="0.5,0.5">
+                                    <GradientStop Color="#F9F9F9" Offset="0" />
+                                    <GradientStop Color="#EAEAEA" Offset="1" />
+                                </RadialGradientBrush>
+                            </Button.Background>
+                            <TextBlock FontFamily="{StaticResource Pretendard}" TextWrapping="Wrap" 
+                                       FontSize="14" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" LineHeight="14" TextAlignment="Center" VerticalAlignment="Center" />
+                        </views:GoButton>
+                    </StackPanel>
+
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="3">
+                        <views:GoButton x:Name="btnCoupon02" 
+                                            Command="{Binding ButtonCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}"
+                                            Width="91" Height="53" Margin="0,0,0,0" Padding="0,0,0,0" BorderThickness="2" BorderBrush="{x:Null}">
+                            <Button.Background>
+                                <RadialGradientBrush RadiusX="1" RadiusY="1" Center="0.5,0.5">
+                                    <GradientStop Color="#F9F9F9" Offset="0" />
+                                    <GradientStop Color="#EAEAEA" Offset="1" />
+                                </RadialGradientBrush>
+                            </Button.Background>
+                            <TextBlock FontFamily="{StaticResource Pretendard}" TextWrapping="Wrap" 
+                                       FontSize="14" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" LineHeight="14" TextAlignment="Center" VerticalAlignment="Center" />
+                        </views:GoButton>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="5">
+                        <views:GoButton x:Name="btnCoupon03" 
+                                            Command="{Binding ButtonCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}"
+                                            Width="91" Height="53" Margin="0,0,0,0" Padding="0,0,0,0" BorderThickness="2" BorderBrush="{x:Null}">
+                            <Button.Background>
+                                <RadialGradientBrush RadiusX="1" RadiusY="1" Center="0.5,0.5">
+                                    <GradientStop Color="#F9F9F9" Offset="0" />
+                                    <GradientStop Color="#EAEAEA" Offset="1" />
+                                </RadialGradientBrush>
+                            </Button.Background>
+                            <TextBlock FontFamily="{StaticResource Pretendard}" TextWrapping="Wrap" 
+                                       FontSize="14" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" LineHeight="14" TextAlignment="Center" VerticalAlignment="Center" />
+                        </views:GoButton>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="7">
+                        <views:GoButton x:Name="btnCoupon04" 
+                                            Command="{Binding ButtonCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}"
+                                            Width="91" Height="53" Margin="0,0,0,0" Padding="0,0,0,0" BorderThickness="2" BorderBrush="{x:Null}">
+                            <Button.Background>
+                                <RadialGradientBrush RadiusX="1" RadiusY="1" Center="0.5,0.5">
+                                    <GradientStop Color="#F9F9F9" Offset="0" />
+                                    <GradientStop Color="#EAEAEA" Offset="1" />
+                                </RadialGradientBrush>
+                            </Button.Background>
+                            <TextBlock FontFamily="{StaticResource Pretendard}" TextWrapping="Wrap" 
+                                       FontSize="14" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" LineHeight="14" TextAlignment="Center" VerticalAlignment="Center" />
+                        </views:GoButton>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="9">
+                        <views:GoButton x:Name="btnCoupon05" 
+                                            Command="{Binding ButtonCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}"
+                                            Width="91" Height="53" Margin="0,0,0,0" Padding="0,0,0,0" BorderThickness="2" BorderBrush="{x:Null}">
+                            <Button.Background>
+                                <RadialGradientBrush RadiusX="1" RadiusY="1" Center="0.5,0.5">
+                                    <GradientStop Color="#F9F9F9" Offset="0" />
+                                    <GradientStop Color="#EAEAEA" Offset="1" />
+                                </RadialGradientBrush>
+                            </Button.Background>
+                            <TextBlock FontFamily="{StaticResource Pretendard}" TextWrapping="Wrap"
+                                       FontSize="14" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" LineHeight="14" TextAlignment="Center" VerticalAlignment="Center" />
+                        </views:GoButton>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
+                        <views:GoButton x:Name="btnCoupon06" 
+                                            Command="{Binding ButtonCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}"
+                                            Width="91" Height="53" Margin="0,0,0,0" Padding="0,0,0,0" BorderThickness="2" BorderBrush="{x:Null}">
+                            <Button.Background>
+                                <RadialGradientBrush RadiusX="1" RadiusY="1" Center="0.5,0.5">
+                                    <GradientStop Color="#F9F9F9" Offset="0" />
+                                    <GradientStop Color="#EAEAEA" Offset="1" />
+                                </RadialGradientBrush>
+                            </Button.Background>
+                            <TextBlock FontFamily="{StaticResource Pretendard}" TextWrapping="Wrap" 
+                                       FontSize="14" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" LineHeight="14" TextAlignment="Center" VerticalAlignment="Center" />
+                        </views:GoButton>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="3">
+                        <views:GoButton x:Name="btnCoupon07" 
+                                            Command="{Binding ButtonCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}"
+                                            Width="91" Height="53" Margin="0,0,0,0" Padding="0,0,0,0" BorderThickness="2" BorderBrush="{x:Null}">
+                            <Button.Background>
+                                <RadialGradientBrush RadiusX="1" RadiusY="1" Center="0.5,0.5">
+                                    <GradientStop Color="#F9F9F9" Offset="0" />
+                                    <GradientStop Color="#EAEAEA" Offset="1" />
+                                </RadialGradientBrush>
+                            </Button.Background>
+                            <TextBlock FontFamily="{StaticResource Pretendard}" TextWrapping="Wrap" 
+                                       FontSize="14" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" LineHeight="14" TextAlignment="Center" VerticalAlignment="Center" />
+                        </views:GoButton>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="5">
+                        <views:GoButton x:Name="btnCoupon08" 
+                                            Command="{Binding ButtonCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}"
+                                            Width="91" Height="53" Margin="0,0,0,0" Padding="0,0,0,0" BorderThickness="2" BorderBrush="{x:Null}">
+                            <Button.Background>
+                                <RadialGradientBrush RadiusX="1" RadiusY="1" Center="0.5,0.5">
+                                    <GradientStop Color="#F9F9F9" Offset="0" />
+                                    <GradientStop Color="#EAEAEA" Offset="1" />
+                                </RadialGradientBrush>
+                            </Button.Background>
+                            <TextBlock FontFamily="{StaticResource Pretendard}"
+                                       TextWrapping="Wrap" FontSize="14" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" LineHeight="14" TextAlignment="Center" VerticalAlignment="Center" />
+                        </views:GoButton>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="7">
+                        <views:GoButton x:Name="btnCoupon09" 
+                                            Command="{Binding ButtonCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}"
+                                            Width="91" Height="53" Margin="0,0,0,0" Padding="0,0,0,0" BorderThickness="2" BorderBrush="{x:Null}">
+                            <Button.Background>
+                                <RadialGradientBrush RadiusX="1" RadiusY="1" Center="0.5,0.5">
+                                    <GradientStop Color="#F9F9F9" Offset="0" />
+                                    <GradientStop Color="#EAEAEA" Offset="1" />
+                                </RadialGradientBrush>
+                            </Button.Background>
+                            <TextBlock FontFamily="{StaticResource Pretendard}" TextWrapping="Wrap"
+                                       FontSize="14" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" LineHeight="14" TextAlignment="Center" VerticalAlignment="Center" />
+                        </views:GoButton>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="9">
+                        <views:GoButton x:Name="btnCoupon10" 
+                                            Command="{Binding ButtonCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}"
+                                            Width="91" Height="53" Margin="0,0,0,0" Padding="0,0,0,0" BorderThickness="2" BorderBrush="{x:Null}">
+                            <Button.Background>
+                                <RadialGradientBrush RadiusX="1" RadiusY="1" Center="0.5,0.5">
+                                    <GradientStop Color="#F9F9F9" Offset="0" />
+                                    <GradientStop Color="#EAEAEA" Offset="1" />
+                                </RadialGradientBrush>
+                            </Button.Background>
+                            <TextBlock FontFamily="{StaticResource Pretendard}" TextWrapping="Wrap" 
+                                       FontSize="14" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" LineHeight="14" TextAlignment="Center" VerticalAlignment="Center" />
+                        </views:GoButton>
+                    </StackPanel>
+
+                </Grid>
+            </StackPanel>
+        </Border>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="3" Margin="0,5,10,0" HorizontalAlignment="Right" VerticalAlignment="Top">
+            <Button Tag="btnUp" Command="{Binding ButtonCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" 
+                    BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="0,0,0,0" Width="50" Height="29" Padding="0,0,0,0" BorderThickness="0,0,0,0">
+                <Button.Background>
+                    <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/resource/images/btn_corptn_up.png" />
+                </Button.Background>
+            </Button>
+            <Button Tag="btnDn" Command="{Binding ButtonCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" 
+                    BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="8,0,0,0" Width="50" Height="29" Padding="0,0,0,0" BorderThickness="0,0,0,0">
+                <Button.Background>
+                    <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/resource/images/btn_corptn_dn.png" />
+                </Button.Background>
+            </Button>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="6" Margin="0,0,0,0">
+            <Image VerticalAlignment="Center" Width="11" Height="11" Source="pack://application:,,,/GoPOS.Resources;component/resource/images/pr.png" Margin="20,0,0,0" />
+            <TextBlock VerticalAlignment="Center" Text="{StaticResource 0137}" FontFamily="{StaticResource Pretendard}" FontSize="15" FontStyle="Normal" FontWeight="Bold" 
+                       Foreground="#FF000000" LineHeight="14" TextAlignment="Left" Margin="10,0,0,0" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="6" Margin="0,-56,0,0">
+            <TextBlock VerticalAlignment="Center" Text="{StaticResource 0423}" FontSize="12" FontStyle="Normal" FontWeight="Light" Foreground="#979797" LineHeight="14" TextAlignment="Left" Margin="5,20,0,0" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="6" Margin="10,0,0,0">
+            <TextBlock VerticalAlignment="Center" Text="{StaticResource 0013}" FontFamily="{StaticResource Pretendard}" FontSize="14" FontStyle="Normal" FontWeight="Bold" Foreground="#000000" LineHeight="14" TextAlignment="Left" Margin="10,0,0,0" />
+            <TextBlock Width="95" VerticalAlignment="Center" Text="{StaticResource 0138}" FontFamily="{StaticResource Pretendard}" FontSize="14" FontStyle="Normal" FontWeight="Bold" Foreground="#000000" LineHeight="14" TextAlignment="Right" Margin="5,0,0,0" />
+            <TextBox x:Name="COUPON_NAME" Text="{Binding COUPON_NAME}" IsReadOnly="True"
+                     Width="344" FontFamily="{StaticResource Pretendard}" FontStyle="Normal" TextAlignment="Left" VerticalContentAlignment="Center" FontWeight="Normal" FontSize="14px" Height="25" Margin="10,0,0,0" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="6" Margin="0,-1,0,0">
+            <TextBlock VerticalAlignment="Center" Text="{StaticResource 0423}" FontSize="12" FontStyle="Normal" FontWeight="Light" Foreground="#979797" LineHeight="14" TextAlignment="Left" Margin="5,20,0,0" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="6" Margin="10,0,0,0">
+            <TextBlock VerticalAlignment="Center" Text="{StaticResource 0013}" FontFamily="{StaticResource Pretendard}" FontSize="14" FontStyle="Normal" FontWeight="Bold" Foreground="#000000" LineHeight="14" TextAlignment="Left" Margin="10,0,0,0" />
+            <TextBlock Width="95" VerticalAlignment="Center" Text="{StaticResource 0139}" FontFamily="{StaticResource Pretendard}" FontSize="14" FontStyle="Normal" FontWeight="Bold" Foreground="#000000" LineHeight="14" TextAlignment="Right" Margin="5,0,0,0" />
+            <TextBox Text="{Binding ProName}" Width="266" FontFamily="{StaticResource Pretendard}" FontStyle="Normal" TextAlignment="Left" IsReadOnly="True"
+                     VerticalContentAlignment="Center" FontWeight="Normal" FontSize="14px" Height="25" Margin="10,0,0,0" />
+            <views:GoButton 
+                Command="{Binding ButtonCommand}" 
+                CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" 
+                Tag="RegDirect" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="7,0,0,0" Width="71" Height="30" Padding="0,0,0,0" BorderThickness="0,0,0,0">
+                <Button.Background>
+                    <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/resource/images/btn_base_gray_71x36.png" />
+                </Button.Background>
+                <TextBlock Text="{StaticResource 0140}" FontFamily="{StaticResource Pretendard}" FontSize="13" FontStyle="Normal" FontWeight="Bold" Foreground="#FFFFFFFF" LineHeight="13" TextAlignment="Center" />
+            </views:GoButton>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="6" Margin="0,-1,0,0">
+            <TextBlock VerticalAlignment="Center" Text="{StaticResource 0423}" FontSize="12" FontStyle="Normal" FontWeight="Light" Foreground="#979797" LineHeight="14" TextAlignment="Left" Margin="5,20,0,0" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="6" Margin="10,0,0,0">
+            <TextBlock VerticalAlignment="Center" Text="{StaticResource 0013}" FontFamily="{StaticResource Pretendard}" FontSize="14" FontStyle="Normal" FontWeight="Bold" Foreground="#000000" LineHeight="14" TextAlignment="Left" Margin="10,0,0,0" />
+            <TextBlock Width="95" VerticalAlignment="Center" Text="{StaticResource 0141}" FontFamily="{StaticResource Pretendard}" FontSize="14" FontStyle="Normal" FontWeight="Bold" Foreground="#000000" LineHeight="14" TextAlignment="Right" Margin="5,0,0,0" />
+            <TextBox Text="{Binding ClassificDiscount}" Width="141" FontFamily="{StaticResource Pretendard}" FontStyle="Normal" TextAlignment="Left" IsReadOnly="True"
+                     VerticalContentAlignment="Center" FontWeight="Normal" FontSize="14px" Height="25" Margin="10,0,0,0" />
+
+            <TextBlock VerticalAlignment="Center" Text="{StaticResource 0013}" FontFamily="{StaticResource Pretendard}" FontSize="14" FontStyle="Normal" FontWeight="Bold" Foreground="#000000" LineHeight="14" TextAlignment="Left" Margin="10,0,0,0" />
+            <TextBlock Width="65" VerticalAlignment="Center" Text="{StaticResource 0142}" FontFamily="{StaticResource Pretendard}" FontSize="14" FontStyle="Normal" FontWeight="Bold" Foreground="#000000" LineHeight="14" TextAlignment="Right" Margin="5,0,0,0" />
+            <TextBox Text="" Width="105" FontFamily="{StaticResource Pretendard}" FontStyle="Normal" TextAlignment="Left" IsReadOnly="True"
+                     VerticalContentAlignment="Center" FontWeight="Normal" FontSize="14px" Height="25" Margin="10,0,0,0" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="6" Margin="0,-1,0,0">
+            <TextBlock VerticalAlignment="Center" Text="{StaticResource 0423}" FontSize="12" FontStyle="Normal" FontWeight="Light" Foreground="#979797" LineHeight="14" TextAlignment="Left" Margin="5,20,0,0" />
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="6" Margin="0,0,0,0">
+            <Image VerticalAlignment="Center" Width="11" Height="11" Source="pack://application:,,,/GoPOS.Resources;component/resource/images/pr.png" Margin="20,0,0,0" />
+            <TextBlock VerticalAlignment="Center" Text="{StaticResource 0713}" FontFamily="{StaticResource Pretendard}" FontSize="15" FontStyle="Normal" FontWeight="Bold" 
+                       Foreground="#FF000000" LineHeight="14" TextAlignment="Left" Margin="10,0,0,0" />
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="6" Margin="10,0,12,0">
+            <ListView Name="ListView" SelectedItem="{Binding SelectedItem}" Grid.Row="0" FontSize="14" Width="457" BorderBrush="#bababa" Padding="-1,-1,-1,0" BorderThickness="1">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListViewItem}">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        <Setter Property="BorderBrush" Value="#bababa" />
+                        <Setter Property="BorderThickness" Value="0,0,1,0" />
+                        <Setter Property="Margin" Value="0,2,-1,0" />
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="No" HeaderContainerStyle="{StaticResource listViewHeaderStyle}" Width="30">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Border BorderBrush="#bababa" BorderThickness="0,0,1,1" Margin="-9,-2,-7,-2">
+                                        <DockPanel Margin="6,2,6,2">
+                                            <TextBlock Foreground="#FF000000" HorizontalAlignment="Center" Height="22">
+                                                <TextBlock.Text>
+                                                    <Binding Path="NO">
+                                                    </Binding>
+                                                </TextBlock.Text>
+                                            </TextBlock>
+                                        </DockPanel>
+                                    </Border>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="쿠폰명" HeaderContainerStyle="{StaticResource listViewHeaderStyle}" Width="150">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Border BorderBrush="#bababa" BorderThickness="0,0,1,1" Margin="-7,-2,-7,-2">
+                                        <DockPanel Margin="6,2,6,2">
+                                            <TextBlock Foreground="#FF000000" HorizontalAlignment="Left" Height="22">
+                                                <TextBlock.Text>
+                                                    <Binding Path="TK_CPN_NAME">
+                                                    </Binding>
+                                                </TextBlock.Text>
+                                            </TextBlock>
+                                        </DockPanel>
+                                    </Border>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="할인구분" HeaderContainerStyle="{StaticResource listViewHeaderStyle}" Width="80">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Border BorderBrush="#bababa" BorderThickness="0,0,1,1" Margin="-7,-2,-7,-2">
+                                        <DockPanel Margin="6,2,6,2">
+                                            <TextBlock Foreground="#FF000000" HorizontalAlignment="Left" Height="22">
+                                                <TextBlock.Text>
+                                                    <Binding Path="CPN_DC_FLAG">
+                                                    </Binding>
+                                                </TextBlock.Text>
+                                            </TextBlock>
+                                        </DockPanel>
+                                    </Border>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="매수" HeaderContainerStyle="{StaticResource listViewHeaderStyle}" Width="80">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Border BorderBrush="#bababa" BorderThickness="0,0,1,1" Margin="-7,-2,-7,-2">
+                                        <DockPanel Margin="6,2,6,2">
+                                            <TextBlock Foreground="#FF000000" HorizontalAlignment="Left" Height="22">
+                                                <TextBlock.Text>
+                                                    <Binding Path="TOT_TK_CPN_UAMT">
+                                                    </Binding>
+                                                </TextBlock.Text>
+                                            </TextBlock>
+                                        </DockPanel>
+                                    </Border>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="비고  " HeaderContainerStyle="{StaticResource listViewHeaderStyle}" Width="100">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Border BorderBrush="#bababa" BorderThickness="0,0,1,1" Margin="-7,-2,-7,-2">
+                                        <DockPanel Margin="6,2,6,2">
+                                            <TextBlock Foreground="#FF000000" HorizontalAlignment="Left" Height="22">
+                                                <TextBlock.Text>
+                                                    <Binding Path="REMARK">
+                                                    </Binding>
+                                                </TextBlock.Text>
+                                            </TextBlock>
+                                        </DockPanel>
+                                    </Border>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="13" Grid.Column="0" Grid.ColumnSpan="6" Margin="0,0,0,0">
+            <Button 
+                Command="{Binding ButtonCommand}" 
+                CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" 
+                Tag="btnRemove" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="317,0,0,0" Width="71" Height="30" Padding="0,0,0,0" BorderThickness="0,0,0,0">
+                <Button.Background>
+                    <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/resource/images/btn_base_green_71x36.png" />
+                </Button.Background>
+                <TextBlock Text="{StaticResource 0714}" FontFamily="{StaticResource Pretendard}" FontSize="13" FontStyle="Normal" FontWeight="Bold" Foreground="#FFFFFFFF" LineHeight="13" TextAlignment="Center" />
+            </Button>
+            <Button Command="{Binding ButtonCommand}" 
+                CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" 
+                Tag="btnResult" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="20,0,0,0" Width="71" Height="28" Padding="0,0,0,0" BorderThickness="0,0,0,0">
+                <Button.Background>
+                    <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/resource/images/btn_base_orange_91x95.png" />
+                </Button.Background>
+                <TextBlock Text="{StaticResource 0144}" FontFamily="{StaticResource Pretendard}" FontSize="13" FontStyle="Normal" FontWeight="Bold" Foreground="#FFFFFFFF" LineHeight="13" TextAlignment="Center" />
+            </Button>
+        </StackPanel>
+
+    </Grid>
+    </views:UCViewBase>

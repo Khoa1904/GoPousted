@@ -1,0 +1,67 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0-windows</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<UseWPF>true</UseWPF>
+		<EnableDefaultContentItems>false</EnableDefaultContentItems>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Caliburn.Micro" Version="4.0.212" />
+		<PackageReference Include="Microsoft.Web.WebView2" Version="1.0.1518.46" />
+		<PackageReference Include="Microsoft.AspNetCore.Owin" Version="6.0.9" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\GoPOS.Common\GoPOS.Common.csproj" />
+		<ProjectReference Include="..\GoPOS.Models\GoPOS.Models.csproj" />
+		<ProjectReference Include="..\GoPOS.Service\GoPOS.Service.csproj" />
+		<ProjectReference Include="..\GoPOS.Resources\GoPOS.Resources.csproj" />
+		<ProjectReference Include="..\GoShared\GoShared.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Views\AuthenticProcessingView.xaml.cs">
+	    <SubType>Code</SubType>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="Views\ConfigMstrRecptnSetupView.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</None>
+		<None Update="Views\ConfigPosConfigSetupView.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</None>
+		<None Update="Views\ConfigPosDataMngView.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</None>
+		<None Update="Views\ConfigScrtyRdrIntgrtyChckView.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</None>
+		<None Update="Views\ConfigSellingDataRecptnView.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</None>
+		<None Update="Views\ConfigSellingDataTrnsmisView.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</None>
+		<None Update="Views\ConfigSetupInfoView.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</None>
+		<None Update="Views\ConfigSetupMainView.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</None>
+		<None Update="Views\ConfigSetupRightView.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</None>
+		<None Update="Views\ConfigSetupTopView.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</None>
+		<None Update="Views\ConfigTrmnlCrtfcView.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</None>
+	</ItemGroup>
+
+</Project>

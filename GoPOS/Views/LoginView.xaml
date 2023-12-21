@@ -1,0 +1,106 @@
+<common:UCViewBase x:Class="GoPOS.Views.LoginView" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                   xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:local="clr-namespace:GoPOS.Views" 
+                   xmlns:w="clr-namespace:GoPOS.Helpers;assembly=GoPOS.Common" 
+                   xmlns:common="clr-namespace:GoPOS.Common.Views;assembly=GoPOS.Common" 
+                   xmlns:cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro.Platform"
+                   xmlns:common1="clr-namespace:GoPOS.Common.Views.Controls;assembly=GoPOS.Common"
+                   xmlns:viewModel="clr-namespace:GoPOS.ViewModels" 
+                   mc:Ignorable="d" 
+                   d:DataContext="{d:DesignInstance viewModel:LoginViewModel}"
+                   d:DesignHeight="650" d:DesignWidth="307">
+    <Border Background="White" CornerRadius="50">
+        <!--<DockPanel.Background>
+            <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/Resource/Images/Login/LoginRightBack.png" />
+        </DockPanel.Background>--> 
+        <DockPanel Margin="17 20 25 25" Background="White" Height="600">
+            <!--<DockPanel.Background>
+                <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/Resource/Images/Login/LoginRightBackBack.png" />
+            </DockPanel.Background>-->
+            <Grid>
+                <!--<DockPanel Margin="210 -550 10 0" Height="40">
+                    <Button x:Name="Close" Tag="Cloze"  Margin="0,0,0,0" VerticalAlignment="Top" Width="35" Height="35" Padding="0,0,0,0" 
+                  BorderThickness="0,0,0,0" Command="{Binding CloseProgram}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" >
+                        <Button.Background>
+                            <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/Resource/Images/Login/Close.png" />
+                        </Button.Background>
+                    </Button>
+                </DockPanel>-->
+                <StackPanel Height="40" VerticalAlignment="Top" Margin="15 60 0 0" >
+                    <Image Margin="0 5 5 0" Height="30" Grid.Row="0" Source="pack://application:,,,/GoPOS.Resources;component/resource/images/icon/logo_L.png"/>
+                    
+                </StackPanel>
+
+                <Border Margin="30,-310,30,0" Panel.ZIndex="-1" Height="36" CornerRadius="18" BorderThickness="1" BorderBrush="#cdcdcd">
+                    <DockPanel Height="30" >
+
+                        <StackPanel Orientation="Horizontal" Height="26">
+                            <Image Margin="8,0,0,0" Source="pack://application:,,,/GoPOS.Resources;component/Resource/Images/Login/userNew.png"/>
+                            <!--<Image Source="pack://application:,,,/GoPOS.Resources;component/Resource/Images/Login/LoginNameIcon.png" Width="46" Height="36" Margin="0 0 7 0" />-->
+                            <TextBox Margin="0,0,0,0" x:Name="EMP_NO" Text="{Binding EMP_NO}" MaxLength="4" TabIndex="0" FontFamily="{StaticResource Pretendard}" FontSize="20" FontStyle="Normal" FontWeight="Medium" Foreground="#FF000000" 
+                            TextAlignment="Center" Width="150" Height="32" Background="White" BorderThickness="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                        </StackPanel>
+                    </DockPanel>
+                </Border>
+
+                <Border Margin="30 -225 30 0" Panel.ZIndex="-1" Height="36" CornerRadius="18" BorderThickness="1" BorderBrush="#cdcdcd">
+                    <DockPanel Height="30">
+                        <StackPanel Orientation="Horizontal" Height="26">
+                            <Image Margin="8,0,0,0" Source="pack://application:,,,/GoPOS.Resources;component/Resource/Images/Login/passwordNew.png"/>
+
+                            <!--<Image Source="pack://application:,,,/GoPOS.Resources;component/Resource/Images/Login/LoginPWDIcon.png" Width="46" Height="36" Margin="0 0 7 0" />-->
+                            <StackPanel>
+                                <PasswordBox x:Name="pPassword" w:PasswordHelper.Attach="True"
+                                       w:PasswordHelper.Password="{Binding Text, ElementName=EMP_PWD, Mode=TwoWay, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True}" MaxLength="4" TabIndex="1"
+                                        FontFamily="{StaticResource Pretendard}" FontSize="20"
+                                        FontStyle="Normal" FontWeight="Medium" Foreground="#FF000000"
+                                        Width="155" Height="25" Background="White" BorderThickness="0"
+                                       BorderBrush="#cdcdcd" HorizontalContentAlignment="Center"
+                                        VerticalContentAlignment="Center"
+                                        Margin="0,-2,4,0"
+                                        PasswordChanged="PasswordBox_PasswordChanged">
+                                </PasswordBox>
+                                <TextBox x:Name="EMP_PWD" Text="{Binding Path=EMP_PWD}" Padding="10,0" Visibility="Hidden" />
+                            </StackPanel>
+
+                        </StackPanel>
+                    
+                </DockPanel>
+                </Border>
+                <DockPanel Height="30" Margin="35 -145 26 0">
+                    <StackPanel Orientation="Horizontal">
+                        <CheckBox IsChecked="{Binding SaveEmpNo}" Style="{StaticResource CheckboxRoundStyle}" FontFamily="{StaticResource Pretendard}" FontSize="16" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" VerticalAlignment="Center" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Left">
+                            <TextBlock VerticalAlignment="Center" Text="{StaticResource 0006}" FontFamily="{StaticResource Pretendard}" FontSize="16" FontStyle="Normal" FontWeight="Bold" Foreground="#000000" LineHeight="14" TextAlignment="Left" Margin="5,7,0,0" />
+                        </CheckBox>
+                    </StackPanel>
+                </DockPanel>
+                <DockPanel Margin="26 250 26 0" Height="350">
+                    <!--<DockPanel.Background>
+            <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/Resource/Images/Login/KeypadBg.png" />
+          </DockPanel.Background>-->
+                    <Grid Margin="0" VerticalAlignment="Center">
+                        <Grid.RowDefinitions>
+                            <!--<RowDefinition Height="58"/>-->
+                            <RowDefinition Height="285" />
+                            <RowDefinition Height="65" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="0" Margin="0,0,0,0">
+                            <common1:InputKeyPadRoundView Height="265" DataContext="{Binding InputKeyPad}">
+                            </common1:InputKeyPadRoundView>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Grid.Row="1" Grid.Column="0" Margin="0,0,0,8" HorizontalAlignment="Center">
+                            <Button Background="#465fff" Command="{Binding LoginCommand}" BorderBrush="{x:Null}" Foreground="{x:Null}" Width="160"
+                      Height="50"  BorderThickness="0,0,0,0"  Style="{StaticResource Zumbotron}">
+                                <TextBlock Text="{StaticResource 0007}" FontFamily="{StaticResource Pretendard}" FontSize="20" FontStyle="Normal" FontWeight="Bold" Foreground="#FFFFFFFF" LineHeight="14" TextAlignment="Center" />
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+                </DockPanel>
+            </Grid>
+        </DockPanel>
+    </Border>
+</common:UCViewBase>

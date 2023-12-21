@@ -1,0 +1,614 @@
+<views:UCViewBase  xmlns:views="clr-namespace:GoPOS.Common.Views;assembly=GoPOS.Common" 
+                   x:Class="GoPOS.Views.OrderPaySaleStatusView" 
+                   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+                   xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                   xmlns:viewModel="clr-namespace:GoPOS.ViewModels"
+                   d:DataContext="{d:DesignInstance viewModel:OrderPaySaleStatusViewModel}"
+                   xmlns:cal="http://www.caliburnproject.org" 
+                   xmlns:local="clr-namespace:GoPOS.Views" 
+                   d:DesignHeight="768" d:DesignWidth="1024" mc:Ignorable="d" >
+    <!--VIEW STYLE-->
+    <views:UCViewBase.Resources>
+        <views:IndexConverter x:Key="IndexConverter" />
+        <Style x:Key="bordered" TargetType="{x:Type Border}">
+            <Setter Property="TextBlock.TextWrapping" Value="Wrap"/>
+            <Setter Property="TextBlock.FontSize" Value="14"/>
+            <Setter Property="TextBlock.FontWeight" Value="Bold"/>
+            <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+            <Setter Property="TextBlock.Foreground" Value="#000"/>
+            <Setter Property="TextBlock.HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        </Style>
+    </views:UCViewBase.Resources>
+
+    <Border BorderBrush="#263043" BorderThickness="1">
+        <Grid Background="#fff">
+            <Grid Background="#cccccc" Margin="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Border BorderBrush="#263043" BorderThickness="1" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Margin="5" CornerRadius="2">
+                    <StackPanel Orientation="Horizontal"  Margin="0,0,0,0">
+                        <StackPanel.Background>
+                            <LinearGradientBrush StartPoint="0 ,0" EndPoint="0,1">
+                                <GradientStop Offset="0.45" Color="#3f4e6d"/>
+                                <GradientStop Offset="0.55" Color="#2c3b5b"/>
+                            </LinearGradientBrush>
+                        </StackPanel.Background>
+                        <Image Source="pack://application:,,,/GoPOS.Resources;component/resource/images/pinwheel.png" Width="23" Height="23" Margin="30 0 0 0" />
+                        <TextBlock Text="{StaticResource 0354}" FontFamily="{StaticResource Pretendard}" FontSize="22" Height="23" Margin="10,0,0,0" FontStyle="Normal" FontWeight="Bold" Foreground="#FFFFFFFF" LineHeight="14" TextAlignment="Left" />
+                        <Button Command="{Binding CloseCommand}" Tag="btnClose" Margin="800,0,0,0" Width="35" Height="35" Padding="0,0,0,0" Style="{StaticResource ClozeBtn}"
+                                HorizontalAlignment="Right">
+                        </Button>
+
+                    </StackPanel>
+                </Border>
+
+
+                <Grid Margin="5"  Grid.Row="1" Background="#fff">
+                    <Border BorderBrush="#afafaf" BorderThickness="0.7" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Margin="5">
+                        <Grid Margin="5" Background="#fff">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="3" />
+                                <RowDefinition Height="1" />
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="210" />
+                                <RowDefinition Height="185" />
+                                <RowDefinition Height="52" />
+                                <RowDefinition Height="120"/>
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20" />
+                                <ColumnDefinition Width="510" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="5" />
+                            </Grid.ColumnDefinitions>
+
+
+                            <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" VerticalAlignment="Top">
+                                <Image VerticalAlignment="Center" Width="14" Height="14" Source="pack://application:,,,/GoPOS.Resources;component/resource/images/pr2.png" Margin="0,0,0,0" />
+                                <TextBlock VerticalAlignment="Center" Text="{StaticResource 0355}" FontFamily="{StaticResource Pretendard}" FontSize="18" FontStyle="Normal" FontWeight="Bold" Foreground="#FF455881" LineHeight="14" TextAlignment="Left" Margin="10,2,0,0" />
+                                <TextBlock VerticalAlignment="Center" Text="{StaticResource 0356}" FontFamily="{StaticResource Pretendard}" FontSize="16" FontStyle="Normal" FontWeight="Bold" Foreground="#FF455881" LineHeight="14" TextAlignment="Left" Margin="2,2,0,0" />
+                                <CheckBox x:Name="Pro_All" Style="{StaticResource CheckboxStyle}" FontFamily="{StaticResource Pretendard}" FontSize="16" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" VerticalAlignment="Center" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Left" Margin="100,0,0,0"
+                                          Checked="Radiotic_Checkbox1" Unchecked="NotNull_Checkbox1" Command="{Binding CheckboxCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}">
+                                    <TextBlock VerticalAlignment="Center" Text="{StaticResource 0186}" FontFamily="{StaticResource Pretendard}" FontSize="16" FontStyle="Normal" FontWeight="Bold" Foreground="#000000" LineHeight="14" TextAlignment="Left" Margin="5,0,0,0" />
+                                </CheckBox>
+                                <CheckBox x:Name="Pro_Undone" Style="{StaticResource CheckboxStyle}" FontFamily="{StaticResource Pretendard}" FontSize="16" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" Margin="10,0,0,0" VerticalAlignment="Center" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Left"
+                                          Checked="Radiotic_Checkbox1" Unchecked="NotNull_Checkbox1" Command="{Binding CheckboxCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}">
+                                    <TextBlock VerticalAlignment="Center" Text="{StaticResource 0357}" FontFamily="{StaticResource Pretendard}" FontSize="16" FontStyle="Normal" FontWeight="Bold" Foreground="#000000" LineHeight="14" TextAlignment="Left" Margin="5,0,0,0" />
+                                </CheckBox>
+                                <CheckBox x:Name="Pro_Done" Style="{StaticResource CheckboxStyle}" FontFamily="{StaticResource Pretendard}" FontSize="16" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" Margin="10,0,0,0"
+                                            Checked="Radiotic_Checkbox1" Unchecked="NotNull_Checkbox1" Command="{Binding CheckboxCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}">
+                                    <TextBlock VerticalAlignment="Center" Text="{StaticResource 0358}" FontFamily="{StaticResource Pretendard}" FontSize="16" FontStyle="Normal" FontWeight="Bold" Foreground="#000000" LineHeight="14" TextAlignment="Left" Margin="5,0,0,0" />
+                                </CheckBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1" Height="220" Grid.RowSpan="2" Margin="0,1,10,90" VerticalAlignment="Top">
+                                <ListView Name="IncListView" Grid.Row="0" FontSize="14" Width="490"  BorderBrush="#bababa" BorderThickness="1" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
+                                    <ListView.ItemContainerStyle>
+                                        <Style TargetType="{x:Type ListViewItem}">
+                                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                            <Setter Property="BorderBrush" Value="#bababa" />
+                                            <Setter Property="BorderThickness" Value="0,0,1,0" />
+                                            <Setter Property="Margin" Value="0,2,-1,0" />
+                                        </Style>
+                                    </ListView.ItemContainerStyle>
+                                    <ListView.View>
+                                        <GridView>
+                                            <GridViewColumn Header="No" HeaderContainerStyle="{StaticResource listViewHeaderStyle}" Width="30">
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <Border BorderBrush="#bababa" BorderThickness="0,0,1,1" Margin="-9,-2,-7,-2">
+                                                            <DockPanel Margin="6,2,6,2">
+                                                                <TextBlock Text="{Binding  RelativeSource={RelativeSource FindAncestor, 
+                                                                 AncestorType={x:Type ListViewItem}}, Converter={StaticResource IndexConverter}}"
+                                                                 Foreground="#FF000000" HorizontalAlignment="Center" Height="22">
+                                                                </TextBlock>
+                                                            </DockPanel>
+                                                        </Border>
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+                                            <GridViewColumn Header="상품명" HeaderContainerStyle="{StaticResource listViewHeaderStyle}" Width="200">
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <Border BorderBrush="#bababa" BorderThickness="0,0,1,1" Margin="-7,-2,-7,-2">
+                                                            <DockPanel Margin="6,2,6,2">
+                                                                <TextBlock Foreground="#FF000000" HorizontalAlignment="Left" Height="22" Text="{Binding ProdName}" />
+                                                            </DockPanel>
+                                                        </Border>
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+                                            <GridViewColumn Header="수량" HeaderContainerStyle="{StaticResource listViewHeaderStyle}" Width="73">
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <Border BorderBrush="#bababa" BorderThickness="0,0,1,1" Margin="-7,-2,-7,-2">
+                                                            <DockPanel Margin="6,2,6,2">
+                                                                <TextBlock Foreground="#FF000000" HorizontalAlignment="Right" Height="22" Text="{Binding Qty}" />
+                                                            </DockPanel>
+                                                        </Border>
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+                                            <GridViewColumn Header="금액" HeaderContainerStyle="{StaticResource listViewHeaderStyle}" Width="180">
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <Border BorderBrush="#bababa" BorderThickness="0,0,1,1" Margin="-7,-2,-7,-2">
+                                                            <DockPanel Margin="6,2,6,2">
+                                                                <TextBlock Foreground="#FF000000" HorizontalAlignment="Right" Height="22" Padding="0 0 14 0" Text="{Binding Sale_amt,StringFormat={}{0:N0}}" />
+                                                            </DockPanel>
+                                                        </Border>
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+                                        </GridView>
+                                    </ListView.View>
+                                </ListView>
+                            </StackPanel>
+                            <Border BorderBrush="#999" BorderThickness="1 0 1 1" Grid.Row="4" Grid.Column="1" Width="234" Height="25" VerticalAlignment="top" HorizontalAlignment="Left" Margin="0.5,11,0,90">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                    <TextBlock Text="합계" Margin="0 0 0 0" TextAlignment="Center" Foreground="CornflowerBlue" FontWeight="SemiBold"/>
+                                </StackPanel>
+                            </Border>
+                            <Border BorderBrush="#999" BorderThickness="0 0 1 1" Grid.Row="4" Grid.Column="1" Width="73" Height="25" VerticalAlignment="top" HorizontalAlignment="Left" Margin="234,11,0,90">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+                                    <TextBlock Text="{Binding TotalProQty,StringFormat={}{0:N0}}" Margin="0 0 5 0" TextAlignment="Right" Foreground="CornflowerBlue" FontWeight="SemiBold"/>
+                                </StackPanel>
+                            </Border>
+                            <Border BorderBrush="#999" BorderThickness="0 0 1 1" Grid.Row="4" Grid.Column="1" Width="187" Height="25" VerticalAlignment="top" HorizontalAlignment="Left" Margin="303,11,0,90">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+                                    <TextBlock Text="{Binding TotalProAmt,StringFormat={}{0:N0}}" Margin="0 0 22 0" TextAlignment="Right" Foreground="CornflowerBlue" FontWeight="SemiBold"/>
+                                </StackPanel>
+                            </Border>
+                            <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="2" Margin="12,0,5,5" Grid.ColumnSpan="2">
+                                <Image VerticalAlignment="Center" Width="14" Height="14" Source="pack://application:,,,/GoPOS.Resources;component/resource/images/pr2.png" Margin="0,0,0,0" />
+                                <TextBlock VerticalAlignment="Center" Text="{StaticResource 0355}" FontFamily="{StaticResource Pretendard}" FontSize="18" FontStyle="Normal" FontWeight="Bold" Foreground="#FF455881" LineHeight="14" TextAlignment="Left" Margin="10,2,0,0" />
+                                <TextBlock VerticalAlignment="Center" Text="{StaticResource 0354}" FontFamily="{StaticResource Pretendard}" FontSize="16" FontStyle="Normal" FontWeight="Bold" Foreground="#FF455881" LineHeight="14" TextAlignment="Left" Margin="2,2,0,0" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="2" Margin="10,0,5,0" Grid.ColumnSpan="2">
+                                <Border BorderThickness="1" BorderBrush="#bababa" >
+                                    <Grid Name="SaleListView"   Width="430" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="30" />
+                                            <RowDefinition Height="30" />
+                                            <RowDefinition Height="30" />
+                                            <RowDefinition Height="30" />
+                                            <RowDefinition Height="30" />
+                                            <RowDefinition Height="30" />
+                                            <RowDefinition Height="30" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="180" />
+                                            <ColumnDefinition Width="70" />
+                                            <ColumnDefinition Width="70" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <!--Row1-->
+                                        <Border Style="{StaticResource bordered}"  Grid.Row="0" Grid.Column="0" BorderThickness="0 0 1 1" BorderBrush="#bababa">
+                                            <TextBlock Text="구분" Foreground="#5370b8" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border Style="{StaticResource bordered}"  Grid.Row="0" Grid.Column="1" BorderThickness="0 0 1 1" BorderBrush="#bababa">
+                                            <TextBlock Text="고객수" Foreground="#5370b8" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border Style="{StaticResource bordered}"  Grid.Row="0" Grid.Column="2" BorderThickness="0 0 1 1" BorderBrush="#bababa">
+                                            <TextBlock Text="건수" Foreground="#5370b8" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border Style="{StaticResource bordered}"  Grid.Row="0" Grid.Column="3" BorderThickness="0 0 0 1" BorderBrush="#bababa">
+                                            <TextBlock Text="금액" Foreground="#5370b8" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <!--Row2-->
+                                        <Border Style="{StaticResource bordered}"  Grid.Row="1" Grid.Column="0" BorderThickness="0 0 1 1" BorderBrush="#bababa">
+                                            <TextBlock Text="미 결 제"  VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border Style="{StaticResource bordered}"  Grid.Row="1" Grid.Column="1" BorderThickness="0 0 1 1" BorderBrush="#bababa">
+                                            <TextBlock Text="{Binding Receivable.Case_Count, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:N0}}" HorizontalAlignment="Right" Padding="0 0 10 0"  VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border Style="{StaticResource bordered}"  Grid.Row="1" Grid.Column="2" BorderThickness="0 0 1 1" BorderBrush="#bababa">
+                                            <TextBlock Text="{Binding Receivable.Customer_Count, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:N0}}" HorizontalAlignment="Right" Padding="0 0 10 0" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border Style="{StaticResource bordered}"  Grid.Row="1" Grid.Column="3" BorderThickness="0 0 0 1" BorderBrush="#bababa">
+                                            <TextBlock Text="{Binding Receivable.Amount, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:N0}}" HorizontalAlignment="Right" Padding="0 0 10 0" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <!--Row3-->
+                                        <Border Style="{StaticResource bordered}"  Grid.Row="2" Grid.Column="0" BorderThickness="0 0 1 1" BorderBrush="#bababa">
+                                            <TextBlock Text="매 출 "  VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border Style="{StaticResource bordered}"  Grid.Row="2" Grid.Column="1" BorderThickness="0 0 1 1" BorderBrush="#bababa">
+                                            <TextBlock Text="{Binding Sales.Case_Count, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Right" Padding="0 0 10 0" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border Style="{StaticResource bordered}"  Grid.Row="2" Grid.Column="2" BorderThickness="0 0 1 1" BorderBrush="#bababa">
+                                            <TextBlock Text="{Binding Sales.Customer_Count, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Right" Padding="0 0 10 0" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border Style="{StaticResource bordered}"  Grid.Row="2" Grid.Column="3" BorderThickness="0 0 0 1" BorderBrush="#bababa">
+                                            <TextBlock Text="{Binding Sales.Amount, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:N0}}" HorizontalAlignment="Right" Padding="0 0 10 0" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <!--Row4-->
+                                        <Border Style="{StaticResource bordered}"  Grid.Row="3" Grid.Column="0" BorderThickness="0 0 1 1" BorderBrush="#bababa">
+                                            <TextBlock Text="반 품 "  VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border Style="{StaticResource bordered}"  Grid.Row="3" Grid.Column="1" BorderThickness="0 0 1 1" BorderBrush="#bababa">
+                                            <TextBlock Text="{Binding Unsale.Case_Count, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Right" Padding="0 0 10 0" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border Style="{StaticResource bordered}"  Grid.Row="3" Grid.Column="2" BorderThickness="0 0 1 1" BorderBrush="#bababa">
+                                            <TextBlock Text="{Binding Unsale.Customer_Count, UpdateSourceTrigger=PropertyChanged}"  VerticalAlignment="Center" HorizontalAlignment="Right" Padding="0 0 10 0"/>
+                                        </Border>
+                                        <Border Style="{StaticResource bordered}"  Grid.Row="3" Grid.Column="3" BorderThickness="0 0 0 1" BorderBrush="#bababa">
+                                            <TextBlock Text="{Binding Unsale.Amount, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:N0}}" HorizontalAlignment="Right" Padding="0 0 10 0" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <!--Row5-->
+                                        <Border Style="{StaticResource bordered}"  Grid.Row="4" Grid.Column="0" Background="#f2f9ef" BorderThickness="0 0 1 1" BorderBrush="#bababa">
+                                            <TextBlock Text="영수건수"  VerticalAlignment="Center" Foreground="#5aa701"/>
+                                        </Border>
+                                        <Border Style="{StaticResource bordered}"  Grid.Row="4"  Grid.Column="1" Background="#f2f9ef"  BorderThickness="0 0 1 1" BorderBrush="#bababa">
+                                            <TextBlock Text="{Binding ReceiptCnt.Case_Count, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Right" Padding="0 0 10 0" VerticalAlignment="Center" Foreground="#5aa701"/>
+                                        </Border>
+                                        <Border Style="{StaticResource bordered}"  Grid.Row="4" Grid.Column="2" Background="#f2f9ef"  BorderThickness="0 0 1 1" BorderBrush="#bababa">
+                                            <TextBlock Text="{Binding ReceiptCnt.Customer_Count, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:N0}}" HorizontalAlignment="Right" Padding="0 0 10 0" VerticalAlignment="Center" Foreground="#5aa701"/>
+                                        </Border>
+                                        <Border Style="{StaticResource bordered}"  Grid.Row="4" Grid.Column="3" Background="#f2f9ef"  BorderThickness="0 0 0 1" BorderBrush="#bababa">
+                                            <TextBlock Text="{Binding ReceiptCnt.Amount, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:N0}}" HorizontalAlignment="Right" Padding="0 0 10 0" VerticalAlignment="Center" Foreground="#5aa701"/>
+                                        </Border>
+                                        <!--Row6-->
+                                        <Border Style="{StaticResource bordered}"  Grid.Row="5" Grid.Column="0" Background="#f6f2fb" BorderThickness="0 0 1 1" BorderBrush="#bababa">
+                                            <TextBlock Text="실 매 출 "  VerticalAlignment="Center" Foreground="#5b2fa3"/>
+                                        </Border>
+                                        <Border Style="{StaticResource bordered}"  Grid.Row="5" Grid.Column="1" Background="#f6f2fb" BorderThickness="0 0 1 1" BorderBrush="#bababa">
+                                            <TextBlock Text="{Binding ActualSale.Case_Count, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Right" Padding="0 0 10 0" VerticalAlignment="Center" Foreground="#5b2fa3"/>
+                                        </Border>
+                                        <Border Style="{StaticResource bordered}"  Grid.Row="5" Grid.Column="2" Background="#f6f2fb" BorderThickness="0 0 1 1" BorderBrush="#bababa">
+                                            <TextBlock Text="{Binding ActualSale.Customer_Count, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Right" Padding="0 0 10 0" VerticalAlignment="Center" Foreground="#5b2fa3"/>
+                                        </Border>
+                                        <Border Style="{StaticResource bordered}"  Grid.Row="5" Grid.Column="3" Background="#f6f2fb" BorderThickness="0 0 0 1" BorderBrush="#bababa">
+                                            <TextBlock Text="{Binding ActualSale.Amount,StringFormat={}{0:N0}, UpdateSourceTrigger=PropertyChanged}" Grid.Row="5" Grid.Column="3" HorizontalAlignment="Right" Padding="0 0 10 0" VerticalAlignment="Center" Foreground="#5b2fa3"/>
+                                        </Border>
+                                        <!--Row7-->
+                                        <Border Style="{StaticResource bordered}"  Grid.Row="6" Grid.Column="0" Background="#fefced" BorderThickness="0 0 1 0" BorderBrush="#bababa">
+                                            <TextBlock Text="(A)소계 (실매출+미결제) "  VerticalAlignment="Center" Foreground="#f43a00"/>
+                                        </Border>
+                                        <Border Style="{StaticResource bordered}"  Grid.Row="6" Grid.Column="1" Background="#fefced" BorderThickness="0 0 1 0" BorderBrush="#bababa">
+                                            <TextBlock Text="{Binding Subtotal.Case_Count, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Right" Padding="0 0 10 0" VerticalAlignment="Center" Foreground="#f43a00"/>
+                                        </Border>
+                                        <Border Style="{StaticResource bordered}"  Grid.Row="6" Grid.Column="2" Background="#fefced" BorderThickness="0 0 1 0" BorderBrush="#bababa">
+                                            <TextBlock Text="{Binding Subtotal.Customer_Count, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Right" Padding="0 0 10 0" VerticalAlignment="Center" Foreground="#f43a00"/>
+                                        </Border>
+                                        <Border Style="{StaticResource bordered}"  Grid.Row="6" Grid.Column="3" Background="#fefced" BorderThickness="0 0 0 0" BorderBrush="#bababa">
+                                            <TextBlock Text="{Binding Subtotal.Amount, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:N0}}" HorizontalAlignment="Right" Padding="0 0 10 0" VerticalAlignment="Center" Foreground="#f43a00"/>
+                                        </Border>
+
+                                    </Grid>
+                                </Border>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="1" Margin="0,65,0,0" VerticalAlignment="Top">
+                                <Image VerticalAlignment="Center" Width="14" Height="14" Source="pack://application:,,,/GoPOS.Resources;component/resource/images/pr3.png" Margin="0,0,0,0" />
+                                <TextBlock VerticalAlignment="Center" Text="{StaticResource 0359}" FontFamily="{StaticResource Pretendard}" FontSize="18" FontStyle="Normal" FontWeight="Bold" Foreground="#FF8A3883" LineHeight="14" TextAlignment="Left" Margin="10,2,0,0" />
+                                <TextBlock VerticalAlignment="Center" Text="{StaticResource 0356}" FontFamily="{StaticResource Pretendard}" FontSize="16" FontStyle="Normal" FontWeight="Bold" Foreground="#FF8A3883" LineHeight="14" TextAlignment="Left" Margin="3,2,0,0" />
+                                <CheckBox Style="{StaticResource CheckboxStyle}"  FontFamily="{StaticResource Pretendard}" FontSize="16" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" VerticalAlignment="Center" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Left" Margin="20,0,0,0"
+                                       x:Name="Stats_all" Checked="Radiotic_Checkbox2" Unchecked="NotNull_Checkbox2" Command="{Binding CheckboxCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" >
+                                    <TextBlock VerticalAlignment="Center" Text="{StaticResource 0186}" FontFamily="{StaticResource Pretendard}" FontSize="16" FontStyle="Normal" FontWeight="Bold" Foreground="#000000" LineHeight="14" TextAlignment="Left" Margin="5,0,0,0" />
+                                </CheckBox>
+                                <CheckBox Style="{StaticResource CheckboxStyle}"  FontFamily="{StaticResource Pretendard}" FontSize="16" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" Margin="5,0,0,0" VerticalAlignment="Center" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Left"
+                                       x:Name="Stats_process" Checked="Radiotic_Checkbox2" Unchecked="NotNull_Checkbox2" Command="{Binding CheckboxCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" >
+                                    <TextBlock VerticalAlignment="Center" Text="{StaticResource 0360}" FontFamily="{StaticResource Pretendard}" FontSize="16" FontStyle="Normal" FontWeight="Bold" Foreground="#000000" LineHeight="14" TextAlignment="Left" Margin="5,0,0,0" />
+                                </CheckBox>
+                                <CheckBox Style="{StaticResource CheckboxStyle}" FontFamily="{StaticResource Pretendard}" FontSize="16" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" Margin="5,0,0,0"
+                                       x:Name="Stats_undone" Checked="Radiotic_Checkbox2" Unchecked="NotNull_Checkbox2" Command="{Binding CheckboxCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}">
+                                    <TextBlock VerticalAlignment="Center" Text="{StaticResource 0361}" FontFamily="{StaticResource Pretendard}" FontSize="16" FontStyle="Normal" FontWeight="Bold" Foreground="#000000" LineHeight="14" TextAlignment="Left" Margin="5,0,0,0" />
+                                </CheckBox>
+                                <CheckBox Style="{StaticResource CheckboxStyle}"  FontFamily="{StaticResource Pretendard}" FontSize="16" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" Margin="5,0,0,0"
+                                       x:Name="Stats_done" Checked="Radiotic_Checkbox2" Unchecked="NotNull_Checkbox2" Command="{Binding CheckboxCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}">
+                                    <TextBlock VerticalAlignment="Center" Text="{StaticResource 0187}" FontFamily="{StaticResource Pretendard}" FontSize="16" FontStyle="Normal" FontWeight="Bold" Foreground="#000000" LineHeight="14" TextAlignment="Left" Margin="5,0,0,0" />
+                                </CheckBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Grid.Row="4" Height="250" Grid.Column="1" Margin="0,90,0,0" Grid.RowSpan="3">
+                                <ListView Name="DlvListView" Grid.Row="0" FontSize="14" Width="490" BorderBrush="#bababa" Padding="-1,-1,-1,0" BorderThickness="1">
+                                    <ListView.ItemContainerStyle>
+                                        <Style TargetType="{x:Type ListViewItem}">
+                                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                            <Setter Property="BorderBrush" Value="#bababa" />
+                                            <Setter Property="BorderThickness" Value="0,0,1,0" />
+                                            <Setter Property="Margin" Value="0,2,-1,0" />
+                                        </Style>
+                                    </ListView.ItemContainerStyle>
+                                    <ListView.View>
+                                        <GridView>
+                                            <GridViewColumn Header="No" HeaderContainerStyle="{StaticResource listViewHeaderStyle}" Width="30">
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <Border BorderBrush="#bababa" BorderThickness="0,0,1,1" Margin="-9,-2,-7,-2">
+                                                            <DockPanel Margin="6,2,6,2">
+                                                                <TextBlock Foreground="#FF000000" HorizontalAlignment="Center" Height="22">
+                                                                    <TextBlock.Text>
+                                                                        <Binding Path="NO">
+                                                                        </Binding>
+                                                                    </TextBlock.Text>
+                                                                </TextBlock>
+                                                            </DockPanel>
+                                                        </Border>
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+                                            <GridViewColumn Header="상품명" HeaderContainerStyle="{StaticResource listViewHeaderStyle}" Width="200">
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <Border BorderBrush="#bababa" BorderThickness="0,0,1,1" Margin="-7,-2,-7,-2">
+                                                            <DockPanel Margin="6,2,6,2">
+                                                                <TextBlock Foreground="#FF000000" HorizontalAlignment="Left" Height="22">
+                                                                    <TextBlock.Text>
+                                                                        <Binding Path="PRD_NAME">
+                                                                        </Binding>
+                                                                    </TextBlock.Text>
+                                                                </TextBlock>
+                                                            </DockPanel>
+                                                        </Border>
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+                                            <GridViewColumn Header="수량" HeaderContainerStyle="{StaticResource listViewHeaderStyle}" Width="73">
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <Border BorderBrush="#bababa" BorderThickness="0,0,1,1" Margin="-7,-2,-7,-2">
+                                                            <DockPanel Margin="6,2,6,2">
+                                                                <TextBlock Foreground="#FF000000" HorizontalAlignment="Right" Height="22">
+                                                                    <TextBlock.Text>
+                                                                        <Binding Path="SALE_QTY">
+                                                                        </Binding>
+                                                                    </TextBlock.Text>
+                                                                </TextBlock>
+                                                            </DockPanel>
+                                                        </Border>
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+                                            <GridViewColumn Header="금액" HeaderContainerStyle="{StaticResource listViewHeaderStyle}" Width="180">
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <Border BorderBrush="#bababa" BorderThickness="0,0,1,1" Margin="-7,-2,-7,-2">
+                                                            <DockPanel Margin="6,2,6,2">
+                                                                <TextBlock Foreground="#FF000000" HorizontalAlignment="Right" Height="22">
+                                                                    <TextBlock.Text>
+                                                                        <Binding Path="NORMAL_UPRC">
+                                                                        </Binding>
+                                                                    </TextBlock.Text>
+                                                                </TextBlock>
+                                                            </DockPanel>
+                                                        </Border>
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+                                        </GridView>
+                                    </ListView.View>
+                                </ListView>
+                            </StackPanel>
+                            <!--배달 판매현황-->
+                            <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="2" Margin="10,5,5,0" VerticalAlignment="Top" Grid.ColumnSpan="2">
+                                <Image VerticalAlignment="Center" Width="14" Height="14" Source="pack://application:,,,/GoPOS.Resources;component/resource/images/pr3.png" Margin="0,0,0,0" />
+                                <TextBlock VerticalAlignment="Center" Text="{StaticResource 0359}" FontFamily="{StaticResource Pretendard}" FontSize="18" FontStyle="Normal" FontWeight="Bold" Foreground="#FF8A3883" LineHeight="14" TextAlignment="Left" Margin="10,2,0,0" />
+                                <TextBlock VerticalAlignment="Center" Text="{StaticResource 0354}" FontFamily="{StaticResource Pretendard}" FontSize="16" FontStyle="Normal" FontWeight="Bold" Foreground="#FF8A3883" LineHeight="14" TextAlignment="Left" Margin="2,2,0,0" />
+                            </StackPanel>
+                            <Border Grid.Row="4" Grid.Column="2" Grid.RowSpan="1" Margin="10 30 7 4" BorderThickness="1" BorderBrush="#bababa">
+                                <Grid Name="Whateverlist" Width="430" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="30" />
+                                        <RowDefinition Height="30" />
+                                        <RowDefinition Height="30" />
+                                        <RowDefinition Height="30" />
+                                        <RowDefinition Height="30" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="180" />
+                                        <ColumnDefinition Width="70" />
+                                        <ColumnDefinition Width="70" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <!--Row1-->
+                                    <Border Style="{StaticResource bordered}"  Grid.Row="0" Grid.Column="0" BorderThickness="0 0 1 1" BorderBrush="#bababa">
+                                        <TextBlock Text="구분" Foreground="#5370b8" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <Border Style="{StaticResource bordered}"  Grid.Row="0" Grid.Column="1" BorderThickness="0 0 1 1" BorderBrush="#bababa">
+                                        <TextBlock Text="고객수" Foreground="#5370b8" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <Border Style="{StaticResource bordered}"  Grid.Row="0" Grid.Column="2" BorderThickness="0 0 1 1" BorderBrush="#bababa">
+                                        <TextBlock Text="건수" Foreground="#5370b8" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <Border Style="{StaticResource bordered}"  Grid.Row="0" Grid.Column="3" BorderThickness="0 0 0 1" BorderBrush="#bababa">
+                                        <TextBlock Text="금액" Foreground="#5370b8" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <!--Row2-->
+                                    <Border Style="{StaticResource bordered}"  Grid.Row="1" Grid.Column="0" BorderThickness="0 0 1 1" BorderBrush="#bababa">
+                                        <TextBlock Text="조 리 중"  VerticalAlignment="Center"/>
+                                    </Border>
+                                    <Border Style="{StaticResource bordered}"  Grid.Row="1" Grid.Column="1" BorderThickness="0 0 1 1" BorderBrush="#bababa">
+                                        <TextBlock Text="0" HorizontalAlignment="Right" Padding="0 0 10 0" VerticalAlignment="Center" />
+                                    </Border>
+                                    <Border Style="{StaticResource bordered}"  Grid.Row="1" Grid.Column="2" BorderThickness="0 0 1 1" BorderBrush="#bababa">
+                                        <TextBlock Text="0" HorizontalAlignment="Right" Padding="0 0 10 0" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <Border Style="{StaticResource bordered}"  Grid.Row="1" Grid.Column="3" BorderThickness="0 0 0 1" BorderBrush="#bababa">
+                                        <TextBlock Text="0" HorizontalAlignment="Right" Padding="0 0 10 0" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <!--Row3-->
+                                    <Border Style="{StaticResource bordered}"  Grid.Row="2" Grid.Column="0" BorderThickness="0 0 1 1" BorderBrush="#bababa">
+                                        <TextBlock Text="미 입 금"  VerticalAlignment="Center"/>
+                                    </Border>
+                                    <Border Style="{StaticResource bordered}"  Grid.Row="2" Grid.Column="1" BorderThickness="0 0 1 1" BorderBrush="#bababa">
+                                        <TextBlock Text="0" HorizontalAlignment="Right" Padding="0 0 10 0" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <Border Style="{StaticResource bordered}"  Grid.Row="2" Grid.Column="2" BorderThickness="0 0 1 1" BorderBrush="#bababa">
+                                        <TextBlock Text="0" HorizontalAlignment="Right" Padding="0 0 10 0" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <Border Style="{StaticResource bordered}"  Grid.Row="2" Grid.Column="3" BorderThickness="0 0 0 1" BorderBrush="#bababa">
+                                        <TextBlock Text="0" HorizontalAlignment="Right" Padding="0 0 10 0" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <!--Row4-->
+                                    <Border Style="{StaticResource bordered}"  Grid.Row="3" Grid.Column="0" BorderThickness="0 0 1 1" BorderBrush="#bababa">
+                                        <TextBlock Text="입금완료"  VerticalAlignment="Center"/>
+                                    </Border>
+                                    <Border Style="{StaticResource bordered}"  Grid.Row="3" Grid.Column="1" BorderThickness="0 0 1 1" BorderBrush="#bababa">
+                                        <TextBlock Text="0" HorizontalAlignment="Right" Padding="0 0 10 0" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <Border Style="{StaticResource bordered}"  Grid.Row="3" Grid.Column="2" BorderThickness="0 0 1 1" BorderBrush="#bababa">
+                                        <TextBlock Text="0" HorizontalAlignment="Right" Padding="0 0 10 0" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <Border Style="{StaticResource bordered}"  Grid.Row="3" Grid.Column="3" BorderThickness="0 0 0 1" BorderBrush="#bababa">
+                                        <TextBlock Text="0" HorizontalAlignment="Right" Padding="0 0 10 0" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <!--Row5-->
+                                    <Border Style="{StaticResource bordered}"  Grid.Row="4" Grid.Column="0" Background="#edfefd" BorderThickness="0 0 1 0" BorderBrush="#bababa">
+                                        <TextBlock Text="(B) 소계"  VerticalAlignment="Center" Foreground="#f63c00"/>
+                                    </Border>
+                                    <Border Style="{StaticResource bordered}"  Grid.Row="4"  Grid.Column="1" Background="#edfefd"  BorderThickness="0 0 1 0" BorderBrush="#bababa">
+                                        <TextBlock Text="0" HorizontalAlignment="Right" Padding="0 0 10 0" VerticalAlignment="Center" Foreground="#f63c00"/>
+                                    </Border>
+                                    <Border Style="{StaticResource bordered}"  Grid.Row="4" Grid.Column="2" Background="#edfefd"  BorderThickness="0 0 1 0" BorderBrush="#bababa">
+                                        <TextBlock Text="0" HorizontalAlignment="Right" Padding="0 0 10 0" VerticalAlignment="Center" Foreground="#f63c00"/>
+                                    </Border>
+                                    <Border Style="{StaticResource bordered}"  Grid.Row="4" Grid.Column="3" Background="#edfefd"  BorderThickness="0 0 0 0" BorderBrush="#bababa">
+                                        <TextBlock Text="0" HorizontalAlignment="Right" Padding="0 0 10 0" VerticalAlignment="Center" Foreground="#f63c00"/>
+                                    </Border>
+                                </Grid>
+                            </Border>
+                            <!--결제수단별 매출현황 420 45-->
+                            <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="2" Margin="10,0,10,0" Width="430" Height="45" VerticalAlignment="Top" Background="#2c3b5d" Grid.RowSpan="2">
+                                <StackPanel.Resources>
+                                    <Style TargetType="{x:Type Border}">
+                                        <Setter Property="CornerRadius" Value="2" />
+                                    </Style>
+                                </StackPanel.Resources>
+                                
+                                <Grid Width="430">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="180" />
+                                        <ColumnDefinition Width="70" />
+                                        <ColumnDefinition Width="70" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Border Style="{StaticResource bordered}" Grid.Column="0"  BorderThickness="0 0 1 0" BorderBrush="#bababa">
+                                        <TextBlock Text="(B) 소계"  VerticalAlignment="Center" Foreground="#ffdf00"/>
+                                    </Border>
+                                    <Border Style="{StaticResource bordered}" Grid.Column="1"  BorderThickness="0 0 1 0" BorderBrush="#bababa">
+                                        <TextBlock Text="{Binding Subtotal.Case_Count, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Right" Padding="0 0 10 0" VerticalAlignment="Center" Foreground="#ffdf00"/>
+                                    </Border>
+                                    <Border Style="{StaticResource bordered}" Grid.Column="2"   BorderThickness="0 0 1 0" BorderBrush="#bababa">
+                                        <TextBlock Text="{Binding Subtotal.Customer_Count, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Right" Padding="0 0 10 0" VerticalAlignment="Center" Foreground="#ffdf00"/>
+                                    </Border>
+                                    <Border Style="{StaticResource bordered}" Grid.Column="3"   BorderThickness="0 0 0 0" BorderBrush="#bababa">
+                                        <TextBlock Text="{Binding Subtotal.Amount, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:N0}}" HorizontalAlignment="Right" Padding="0 0 10 0" VerticalAlignment="Center" Foreground="#ffdf00"/>
+                                    </Border>
+                                </Grid>
+                            </StackPanel>
+
+                            <!--결제수단별 매출현황-->
+                            <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="2" Margin="10,0,5,0" VerticalAlignment="Top" Grid.ColumnSpan="2">
+                                <Image VerticalAlignment="Center" Width="14" Height="14" Source="pack://application:,,,/GoPOS.Resources;component/resource/images/pr2.png" Margin="0,0,0,0" />
+                                <TextBlock VerticalAlignment="Center" Text="{StaticResource 0364}" FontFamily="{StaticResource Pretendard}" FontSize="16" FontStyle="Normal" FontWeight="Bold" Foreground="#FF455881" LineHeight="14" TextAlignment="Left" Margin="10,2,0,0" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="2" Grid.RowSpan="2" Margin="10,22,5,30" Grid.ColumnSpan="2">
+                                <ListView Name="PmdListView" Grid.Row="0" FontSize="14" Width="430" BorderBrush="#bababa" Padding="-1,-1,-1,0" BorderThickness="1"  ScrollViewer.HorizontalScrollBarVisibility="Hidden">
+                                    <ListView.ItemContainerStyle>
+                                        <Style TargetType="{x:Type ListViewItem}">
+                                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                            <Setter Property="BorderBrush" Value="#bababa" />
+                                            <Setter Property="BorderThickness" Value="0,0,1,0" />
+                                            <Setter Property="Margin" Value="0,2,-1,0" />
+                                        </Style>
+                                    </ListView.ItemContainerStyle>
+                                    <ListView.View>
+                                        <GridView>
+                                            <GridViewColumn Header="No" HeaderContainerStyle="{StaticResource listViewHeaderStyle}" Width="50">
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <Border BorderBrush="#bababa" BorderThickness="0,0,1,1" Margin="-9,-2,-7,-2">
+                                                            <DockPanel Margin="6,2,6,2">
+                                                                <TextBlock Text="{Binding  RelativeSource={RelativeSource FindAncestor, 
+                                                                AncestorType={x:Type ListViewItem}}, Converter={StaticResource IndexConverter}}"
+                                                                Foreground="#FF000000" HorizontalAlignment="Center" Height="22">
+                                                                </TextBlock>
+                                                            </DockPanel>
+                                                        </Border>
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+                                            <GridViewColumn Header="결제수단" HeaderContainerStyle="{StaticResource listViewHeaderStyle}" Width="135">
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <Border BorderBrush="#bababa" BorderThickness="0,0,1,1" Margin="-7,-2,-7,-2">
+                                                            <DockPanel Margin="6,2,6,2">
+                                                                <TextBlock Foreground="#FF000000" HorizontalAlignment="Left" Height="22" Text="{Binding PayType}" />
+                                                            </DockPanel>
+                                                        </Border>
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+                                            <GridViewColumn Header="건수" HeaderContainerStyle="{StaticResource listViewHeaderStyle}" Width="80">
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <Border BorderBrush="#bababa" BorderThickness="0,0,1,1" Margin="-7,-2,-7,-2">
+                                                            <DockPanel Margin="6,2,6,2">
+                                                                <TextBlock Foreground="#FF000000" HorizontalAlignment="Right" Height="22" Text="{Binding Qty}" />
+                                                            </DockPanel>
+                                                        </Border>
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+                                            <GridViewColumn Header="금액" HeaderContainerStyle="{StaticResource listViewHeaderStyle}" Width="160">
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <Border BorderBrush="#bababa" BorderThickness="0,0,1,1" Margin="-7,-2,-7,-2">
+                                                            <DockPanel Margin="6,2,6,2">
+                                                                <TextBlock Foreground="#FF000000" HorizontalAlignment="Right" Padding="0 0 14 0" Height="22" Text="{Binding Pay_Amt,StringFormat={}{0:N0}}" />
+                                                            </DockPanel>
+                                                        </Border>
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+                                        </GridView>
+                                    </ListView.View>
+                                </ListView>
+                                
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Grid.Row="7" Grid.Column="2" Height="25" Margin="10,0,15,5" VerticalAlignment="Bottom" Grid.ColumnSpan="2">
+                                <Border BorderBrush="#999" BorderThickness="1 0 1 1" Grid.Row="4" Grid.Column="1" Width="187.5" Height="25" VerticalAlignment="top" HorizontalAlignment="Left" Margin="0.5,0,0,0">
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <TextBlock Text="합계" Margin="0 0 0 0" TextAlignment="Center" Foreground="CornflowerBlue" FontWeight="SemiBold"/>
+                                    </StackPanel>
+                                </Border>
+                                <Border BorderBrush="#999" BorderThickness="0 0 1 1" Grid.Row="4" Grid.Column="1" Width="80" Height="25" VerticalAlignment="top" HorizontalAlignment="Left" Margin="0,0,0,0">
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+                                        <TextBlock Text="{Binding TotalPaytQty,StringFormat={}{0:N0}}" Margin="0 0 10 0" TextAlignment="Right" Foreground="CornflowerBlue" FontWeight="SemiBold"/>
+                                    </StackPanel>
+                                </Border>
+                                <Border BorderBrush="#999" BorderThickness="0 0 1 1" Grid.Row="4" Grid.Column="1" Width="161.5" Height="25" VerticalAlignment="top" HorizontalAlignment="Left" Margin="0,0,0,0">
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+                                        <TextBlock Text="{Binding TotalPaytAmt,StringFormat={}{0:N0}}" Margin="0 0 22 0" TextAlignment="Right" Foreground="CornflowerBlue" FontWeight="SemiBold"/>
+                                    </StackPanel>
+                                </Border>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Grid.Row="7" Grid.Column="1" Margin="0,0,0,0" VerticalAlignment="Top">
+                                <Button Command="{Binding ButtonCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" Tag="btnDetailPrint" Margin="0,0,0,0" Width="83" Height="31" 
+                                        Padding="0,0,0,0"  Style="{StaticResource GreenBtn2}">
+                                    <TextBlock Text="{StaticResource 0365}" FontFamily="{StaticResource Pretendard}" FontSize="13" FontStyle="Normal" FontWeight="Bold" Foreground="#FFFFFFFF" LineHeight="13" TextAlignment="Center" />
+                                </Button>
+                                <Button Command="{Binding ButtonCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" Tag="btnStatusPrint" Margin="230,0,0,0" Width="83" Height="31" 
+                                        Padding="0,0,0,0" Style="{StaticResource GreenBtn2}">
+                                    <TextBlock Text="{StaticResource 0366}" FontFamily="{StaticResource Pretendard}" FontSize="13" FontStyle="Normal" FontWeight="Bold" Foreground="#FFFFFFFF" LineHeight="13" TextAlignment="Center" />
+                                </Button>
+                                <Button Command="{Binding CloseCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" Tag="btnOk" Margin="10,0,0,0" Width="83" Height="31" Padding="0,0,0,0" 
+                                        Style="{StaticResource OrangeBtn}">
+                                    <TextBlock Text="{StaticResource 0172}" FontFamily="{StaticResource Pretendard}" FontSize="13" FontStyle="Normal" FontWeight="Bold" Foreground="#FFFFFFFF" LineHeight="13" TextAlignment="Center" />
+                                </Button>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Border>
+</views:UCViewBase>

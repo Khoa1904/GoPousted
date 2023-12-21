@@ -1,0 +1,38 @@
+﻿@using WinFormsBlazor.Model;
+@using WinFormsBlazor.Service;
+@page "/getvalue"
+
+<h3>Split</h3>
+
+<table class="table" border="1" colspacing="5" cellpadding="10">
+    <thead>
+        <tr>
+            <th colspan="3">Options</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <div class="input-group">
+                    <input type="text" class="form-control" value="@option" @oninput="@((e) => { option=(string?)e.Value; })">
+                    <button type="button" class="btn btn-success" @onclick="GetValue">GetValue</button>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>@inputValue</label>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+@code {
+    private string? option = "강한산미";
+    private string? inputValue { get; set; }
+
+    private void GetValue()
+    {
+        inputValue = option;
+    }
+}

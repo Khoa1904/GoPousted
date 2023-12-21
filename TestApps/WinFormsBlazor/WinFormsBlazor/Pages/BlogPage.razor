@@ -1,0 +1,114 @@
+﻿@using WinFormsBlazor.Model;
+@using WinFormsBlazor.Service;
+@page "/blog/{Category}"
+
+<h1>Blog List Category: @Category</h1>
+
+@if (blogs == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table" border="1" colspacing="5" cellpadding="10">
+        <thead>
+            <tr>
+                <th>BlogId</th>
+                <th>Title</th>
+                <th>SubTitle</th>
+                <th>Num</th>
+                <th>Price</th>
+                <th>Date</th>
+                <th>장바구니</th>
+                <th><button type="button" class="btn btn-success" @onclick="@(e => AddBlogs("Blog 5","Blog 5 subtitle"))">+</button></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var blog in blogs)
+            {
+            <tr>
+                <td>@blog.BlogId</td>
+                <td><a href="/blogview/@Category/@blog.BlogId">@blog.Title</a></td>
+                <td>@blog.SubTitle</td>
+                <td>
+                    <div class="input-group">
+                        @if (@blog.BlogNum > 1)
+                        {
+                            <button type="button" class="btn btn-secondary" @onclick="@(e => CalPrice(@blog.BlogId, @blog.BlogNum, "minus"))">-</button>
+                        }
+                        else
+                        {
+                            <button type="button" class="btn btn-secondary">-</button>
+                        }
+                        <input type="text" class="form-control" id="cnt" name="cnt" value="@blog.BlogNum" readonly>
+                        <button type="button" class="btn btn-success" @onclick="@(e => CalPrice(@blog.BlogId, @blog.BlogNum, "plus"))">+</button>
+                    </div>
+                </td>
+                <td>
+                    @{
+                        var Price1 = @blog.BlogNum * 2500;
+                        var Price2 = String.Format("{0:#,0}", Price1);
+                    }
+                    <input type="text" class="form-control" id="cnt" name="cnt" value="@Price2" readonly>
+                </td>
+                <td>@blog.DateTimeAdd.ToShortDateString()</td>
+                <td><button type="button" class="btn btn-success" @onclick="@(e => AddCart(@blog.BlogId, @blog.Title, @blog.SubTitle, @blog.BlogNum, 2500))">+</button></td>
+                <td><button type="button" class="btn btn-danger" @onclick="@(e => DeleteBlogs(@blog.BlogId))">-</button></td>
+            </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    [Parameter]
+    public string? Category { get; set; }
+    private List<Blog>? blogs { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await ShowBlogs();
+    }
+
+    protected override void OnParametersSet()
+    {
+        Category = Category ?? "All";
+    }
+
+    public async Task ShowBlogs()
+    {
+        blogs = await BlogService.GetBlogAsync();
+    }
+
+    public async Task AddBlogs(string title, string subTitle)
+    {
+        await BlogService.AddBlog(title, subTitle);
+        await ShowBlogs();
+    }
+
+    public async Task DeleteBlogs(int id)
+    {
+        await BlogService.DeleteBlog(id);
+        await ShowBlogs();
+    }
+
+    private async Task CalPrice(int id, int num, string gubun)
+    {
+        int cnt;
+        if (gubun == "minus")
+        {
+            cnt = num - 1;
+        }
+        else
+        {
+            cnt = num + 1;
+        }
+        await BlogService.UpdateBlog(id, cnt);
+        await ShowBlogs();
+    }
+
+    private void AddCart(int id, string title, string sTitle, int num, int price)
+    {
+        CartService.AddToCart(id, title, sTitle, num, price);
+    }
+}

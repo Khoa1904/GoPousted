@@ -1,0 +1,74 @@
+﻿<common:UCViewBase x:Class="GoPOS.Views.PermissionMngView" 
+                   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                   xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                   xmlns:local="clr-namespace:GoPOS.Views" 
+                   xmlns:w="clr-namespace:GoPOS.Helpers;assembly=GoPOS.Common" 
+                   xmlns:common="clr-namespace:GoPOS.Common.Views;assembly=GoPOS.Common" 
+                   xmlns:cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro.Platform"
+                   xmlns:common1="clr-namespace:GoPOS.Common.Views.Controls;assembly=GoPOS.Common"
+                   xmlns:viewModel="clr-namespace:GoPOS.ViewModels" 
+                   mc:Ignorable="d" 
+                   d:DataContext="{d:DesignInstance viewModel:PermissionMngViewModel}"
+                   d:DesignHeight="410" d:DesignWidth="255">
+    <DockPanel Background="white">
+
+        <DockPanel Margin="10 10 10 10" Background="gray" Height="395" >
+            <Grid>
+                <DockPanel Height="45" Background="black" VerticalAlignment="Top" HorizontalAlignment="Center" Width="236">
+                    <TextBlock VerticalAlignment="Center" Text="사용자권한 관리" FontFamily="{StaticResource Pretendard}" FontSize="18" FontStyle="Normal" FontWeight="ExtraBold" Foreground="DarkOrange" LineHeight="14" TextAlignment="Left" Margin="15,0,0,0" />
+                    <common:GoButton Command="{Binding ButtonCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" 
+                           Width="30" Height="30" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,5,0" Tag="Close">
+                        <Button.Background>
+                            <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/Resource/Images/btn_pop_close.png" />
+                        </Button.Background>
+                        <TextBlock Text="" FontFamily="{StaticResource Pretendard}" FontSize="20" FontStyle="Normal" FontWeight="Bold" Foreground="#FFFFFFFF" LineHeight="14" TextAlignment="Left" />
+                    </common:GoButton>
+                </DockPanel>
+                <DockPanel Margin="24 65 24 0" VerticalAlignment="top">
+                    <StackPanel Orientation="Horizontal" Height="40" VerticalAlignment="Center">
+                        <StackPanel Width="202">
+                            <PasswordBox w:PasswordHelper.Attach="True" w:PasswordHelper.Password="{Binding Text, ElementName=EMP_PWD, Mode=TwoWay, NotifyOnSourceUpdated=True, 
+                  NotifyOnTargetUpdated=True}" MaxLength="4" TabIndex="1" FontFamily="{StaticResource Pretendard}" FontSize="20"
+                  FontStyle="Normal" FontWeight="Medium" Foreground="White" Width="177" Height="34" Background="Black" BorderThickness="1" 
+                  BorderBrush="#cdcdcd" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,0,15,0" > 
+                            </PasswordBox>
+                            <TextBox x:Name="EMP_PWD" Text="{Binding Path=EMP_PWD}" Padding="10,0" Visibility="Hidden" />
+                        </StackPanel>
+                    </StackPanel>
+                </DockPanel>
+                <Grid Margin="0,110,0,0" VerticalAlignment="Top">
+                    <Grid.RowDefinitions>
+                        <!--<RowDefinition Height="58"/>-->
+                        <RowDefinition Height="220" />
+                        <RowDefinition Height="55" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="top" Grid.Row="0" Grid.Column="0" Margin="0,0,0,0">
+                        <common1:NumericKeyPadView Height="215">
+                        </common1:NumericKeyPadView>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Grid.Row="1" Grid.Column="0" Margin="0,7,0,0" HorizontalAlignment="Center">
+                        <Button Tag="OK" Command="{Binding ButtonCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" 
+                                BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="0,0,0,0" VerticalAlignment="Top" Width="75" Height="40" Padding="0,0,0,0" BorderThickness="0,0,0,0">
+                            <Button.Background>
+                                <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/Resource/Images/btn_fix_dis.png" />
+                            </Button.Background>
+                            <TextBlock  Text="확인" FontFamily="{StaticResource Pretendard}" FontSize="16" FontStyle="Normal" FontWeight="Bold" Foreground="#FFFFFFFF" LineHeight="14" TextAlignment="Left" />
+                        </Button>
+                        <Button Tag="Cancel" Command="{Binding ButtonCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" 
+                                BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="20,0,0,0" VerticalAlignment="Top" Width="75" Height="40" Padding="0,0,0,0" BorderThickness="0,0,0,0">
+                            <Button.Background>
+                                <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/Resource/Images/btn_fix_dis.png" />
+                            </Button.Background>
+                            <TextBlock  Text="취소" FontFamily="{StaticResource Pretendard}" FontSize="16" FontStyle="Normal" FontWeight="Bold" Foreground="#FFFFFFFF" LineHeight="14" TextAlignment="Left" />
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </DockPanel>
+    </DockPanel>
+</common:UCViewBase>

@@ -1,0 +1,54 @@
+<views:UCViewBase  xmlns:views="clr-namespace:GoPOS.Common.Views" 
+                   x:Class="GoPOS.Views.BasicHeaderControlView" 
+                   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                   xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                   xmlns:local="clr-namespace:GoPOS.Views.Controls" 
+                   xmlns:viewModel="clr-namespace:GoPOS.ViewModels"
+                   d:DataContext="{d:DesignInstance viewModel:BasicHeaderControlViewModel}" 
+                   mc:Ignorable="d" d:DesignHeight="55" d:DesignWidth="1000">
+    <Grid>
+        <DockPanel Grid.Row="0" Grid.Column="0" Background="#FFFFFF">
+            <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="1000">
+                <DockPanel.Background>
+                    <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/Resource/Images/Login/LoginTopBanner.png" />
+                </DockPanel.Background>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="6" />
+                        <RowDefinition Height="10" />
+                        <RowDefinition Height="1" />
+                        <RowDefinition Height="10" />
+                        <RowDefinition Height="6" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50" />
+                        <ColumnDefinition Width="230" />
+                        <ColumnDefinition Width="230" />
+                        <ColumnDefinition Width="290" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <!-- TODO : VER, VAN DB 조회로 변경해야 함.-->
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" Grid.RowSpan="3"  VerticalAlignment="Center">
+                        <TextBlock Text="S/W   :   " FontFamily="{StaticResource Pretendard}" FontSize="13" FontStyle="Normal" FontWeight="SemiBold" Foreground="#FFFFFFFF" LineHeight="14" TextAlignment="Left" />
+                        <TextBlock Text="{Binding VersionName}" FontFamily="{StaticResource Pretendard}" FontSize="13" FontStyle="Normal" FontWeight="SemiBold" Foreground="#FFFFFFFF" LineHeight="14" TextAlignment="Left" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="3" Grid.RowSpan="3"  VerticalAlignment="Center">
+                        <TextBlock Text="대리점명  :  " FontFamily="{StaticResource Pretendard}" FontSize="13" FontStyle="Normal" FontWeight="SemiBold" Foreground="#FFFFFFFF" LineHeight="14" TextAlignment="Left" />
+                        <TextBlock Text="{Binding CorpName}" FontFamily="{StaticResource Pretendard}" FontSize="13" FontStyle="Normal" FontWeight="SemiBold" Foreground="#FFFFFFFF" LineHeight="14" TextAlignment="Left" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="2" Grid.RowSpan="3"  VerticalAlignment="Center">
+                        <TextBlock Text="VAN  :  " FontFamily="{StaticResource Pretendard}" FontSize="13" FontStyle="Normal" FontWeight="SemiBold" Foreground="#FFFFFFFF" LineHeight="14" TextAlignment="Left" />
+                        <TextBlock Text="{Binding VANName}" FontFamily="{StaticResource Pretendard}" FontSize="13" FontStyle="Normal" FontWeight="SemiBold" Foreground="#FFFFFFFF" LineHeight="14" TextAlignment="Left" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="4" Grid.RowSpan="3"  VerticalAlignment="Center">
+                        <TextBlock Text="연 락 처 : " FontFamily="{StaticResource Pretendard}" FontSize="13" FontStyle="Normal" FontWeight="SemiBold" Foreground="#FFFFFFFF" LineHeight="14" TextAlignment="Left" />
+                        <TextBlock Text="{Binding CorpTelNo}" FontFamily="{StaticResource Pretendard}" FontSize="13" FontStyle="Normal" FontWeight="SemiBold" Foreground="#FFFFFFFF" LineHeight="14" TextAlignment="Left" />
+                    </StackPanel>
+                    <!-- TODO : VER, VAN DB 조회로 변경해야 함.-->
+                </Grid>
+            </DockPanel>
+        </DockPanel>
+    </Grid>
+</views:UCViewBase>

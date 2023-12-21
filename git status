@@ -1,0 +1,457 @@
+[1mdiff --git a/GoPOS.Common/GoPOS.Common.csproj b/GoPOS.Common/GoPOS.Common.csproj[m
+[1mindex bac1825..25eecbe 100644[m
+[1m--- a/GoPOS.Common/GoPOS.Common.csproj[m
+[1m+++ b/GoPOS.Common/GoPOS.Common.csproj[m
+[36m@@ -1,4 +1,4 @@[m
+[31m-﻿<Project Sdk="Microsoft.NET.Sdk">[m
+[32m+[m[32m<Project Sdk="Microsoft.NET.Sdk">[m
+ [m
+ 	<PropertyGroup>[m
+ 		<ImplicitUsings>enable</ImplicitUsings>[m
+[36m@@ -27,7 +27,6 @@[m
+ 		<ProjectReference Include="..\GoPOS.Service\GoPOS.Service.csproj" />[m
+ 		<ProjectReference Include="..\GoPOS.Resources\GoPOS.Resources.csproj" />[m
+ 		<ProjectReference Include="..\GoShared\GoShared.csproj" />[m
+[31m-		<ProjectReference Include="..\ReceiptPrinterTestApp-master\ReceiptPrinterLib\ReceiptPrinterLib.csproj" />[m
+ 	</ItemGroup>[m
+ 	<ItemGroup>[m
+ 	  <Compile Update="Views\Controls\InputBoxKeyPadView.xaml.cs">[m
+[1mdiff --git a/GoPOS.Common/Helpers/ResourceHelpers.cs b/GoPOS.Common/Helpers/ResourceHelpers.cs[m
+[1mindex 74311da..09f5c73 100644[m
+[1m--- a/GoPOS.Common/Helpers/ResourceHelpers.cs[m
+[1m+++ b/GoPOS.Common/Helpers/ResourceHelpers.cs[m
+[36m@@ -44,6 +44,46 @@[m [mnamespace GoPOS.Common.Helpers[m
+             }[m
+         }[m
+ [m
+[32m+[m[32m        static MasterTableIdInfo[] _masterTableIdInfos = null;[m
+[32m+[m[32m        public static MasterTableIdInfo[] MasterTableIds[m
+[32m+[m[32m        {[m
+[32m+[m[32m            get[m
+[32m+[m[32m            {[m
+[32m+[m[32m                if (_masterTableIdInfos == null)[m
+[32m+[m[32m                {[m
+[32m+[m[32m                    LoadMasterTableIds();[m
+[32m+[m[32m                }[m
+[32m+[m
+[32m+[m[32m                return _masterTableIdInfos;[m
+[32m+[m[32m            }[m
+[32m+[m[32m        }[m
+[32m+[m
+[32m+[m[32m        private static void LoadMasterTableIds()[m
+[32m+[m[32m        {[m
+[32m+[m[32m            var list = new List<MasterTableIdInfo>();[m
+[32m+[m[32m            var assembly = Assembly.LoadFile(Environment.CurrentDirectory + "\\GoPOS.Resources.dll");[m
+[32m+[m[32m            var resourceName = "GoPOS.Resources.maps.mst_tableids.txt";[m
+[32m+[m
+[32m+[m[32m            using (Stream stream = assembly.GetManifestResourceStream(resourceName))[m
+[32m+[m[32m            using (StreamReader reader = new StreamReader(stream))[m
+[32m+[m[32m            {[m
+[32m+[m[32m                string result = reader.ReadToEnd();[m
+[32m+[m[32m                var lines = result.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).ToList();[m
+[32m+[m[32m                lines.ForEach(l =>[m
+[32m+[m[32m                {[m
+[32m+[m[32m                    var ps = l.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);[m
+[32m+[m[32m                    list.Add(new MasterTableIdInfo()[m
+[32m+[m[32m                    {[m
+[32m+[m[32m                        MST_ID = ps[0],[m
+[32m+[m[32m                        MST_TLNAME = ps[1],[m
+[32m+[m[32m                        MST_TPNAME = ps[2][m
+[32m+[m[32m                    });[m
+[32m+[m[32m                });[m
+[32m+[m[32m            }[m
+[32m+[m
+[32m+[m[32m            _masterTableIdInfos = list.ToArray();[m
+[32m+[m[32m        }[m
+[32m+[m
+         public static string LoadSqlCommand(SQLFileTypes sqlType, string commandName)[m
+         {[m
+             string directory = string.Empty + Directory.GetParent(Environment.CurrentDirectory);[m
+[1mdiff --git a/GoPOS.Common/PrinterLib/GeneralPrinter.cs b/GoPOS.Common/PrinterLib/GeneralPrinter.cs[m
+[1mdeleted file mode 100644[m
+[1mindex 9a06958..0000000[m
+[1m--- a/GoPOS.Common/PrinterLib/GeneralPrinter.cs[m
+[1m+++ /dev/null[m
+[36m@@ -1,424 +0,0 @@[m
+[31m-﻿using CommunityToolkit.Diagnostics;[m
+[31m-using GoPOS.Common.PrinterLib.protocol;[m
+[31m-using Microsoft.AspNetCore.SignalR.Protocol;[m
+[31m-using Microsoft.Extensions.Logging;[m
+[31m-using Newtonsoft.Json.Linq;[m
+[31m-using System;[m
+[31m-using System.Collections.Generic;[m
+[31m-using System.Diagnostics;[m
+[31m-using System.Drawing;[m
+[31m-using System.IO.Ports;[m
+[31m-using System.Linq;[m
+[31m-using System.Runtime.ConstrainedExecution;[m
+[31m-using System.Text;[m
+[31m-using System.Text.RegularExpressions;[m
+[31m-using System.Threading.Tasks;[m
+[31m-using GoShared;[m
+[31m-[m
+[31m-using static GoPOS.Common.PrinterLib.protocol.BasicProtocol;[m
+[31m-using GoShared.DeviceLib.Printer.Models;[m
+[31m-using GoShared.DeviceLib;[m
+[31m-[m
+[31m-namespace GoPOS.Common.PrinterLib[m
+[31m-{[m
+[31m-    /// <summary>[m
+[31m-    /// SEWOO SLK-TS100 Printer[m
+[31m-    /// </summary>[m
+[31m-    public class GeneralPrinter : IPrinterBase, IDisposable[m
+[31m-    {[m
+[31m-        //20230612 add by phong[m
+[31m-        private string Status = "Offline";[m
+[31m-[m
+[31m-        readonly ILogger<GeneralPrinter> log;[m
+[31m-        readonly BasicProtocol sewooProtocol = new BasicProtocol();[m
+[31m-[m
+[31m-        SerialPortWrapper? serialPort;[m
+[31m-[m
+[31m-        public GeneralPrinter(ILogger<GeneralPrinter> log)[m
+[31m-        {[m
+[31m-            this.log = log;[m
+[31m-        }[m
+[31m-[m
+[31m-        public bool TryOpen(int portNo, int bitrate)[m
+[31m-        {[m
+[31m-            serialPort = new SerialPortWrapper(log);[m
+[31m-            bool openOk = serialPort.Open(portNo, bitrate);[m
+[31m-            serialPort.OnRead += SerialPort_OnRead;[m
+[31m-[m
+[31m-            if (openOk)[m
+[31m-            {[m
+[31m-                log.LogInformation("프린터 포트=[" + portNo + "] 접속");[m
+[31m-                AfterConnect();[m
+[31m-            }[m
+[31m-            GetPrinterStatus();[m
+[31m-            return openOk;[m
+[31m-        }[m
+[31m-[m
+[31m-        AutoResetEvent receiveSignal = new AutoResetEvent(false);[m
+[31m-[m
+[31m-        byte lastReceivedData;[m
+[31m-        private void SerialPort_OnRead(object sender, byte[] buffer)[m
+[31m-        {[m
+[31m-            log.LogInformation("buffer length = " + buffer.Length);[m
+[31m-            foreach (byte b in buffer)[m
+[31m-                lastReceivedData = b;[m
+[31m-            receiveSignal.Set();[m
+[31m-        }[m
+[31m-[m
+[31m-        void AfterConnect()[m
+[31m-        {[m
+[31m-            serialPort?.Write(sewooProtocol.InitializePrinter());[m
+[31m-            //serialPort?.Write(sewooProtocol.SelectHRICharacter(SewooProtocol.HRIPrintPositionEnum.BelowTheBarcode));[m
+[31m-            //serialPort?.Write(sewooProtocol.SetKoreanCharset());[m
+[31m-            serialPort?.Write(sewooProtocol.SelectJustification(BasicProtocol.Justification.Left));[m
+[31m-            SetPrinterMode(PrinterModeEnum.StandardMode);[m
+[31m-[m
+[31m-            /*[m
+[31m-            serialPort?.Write(sewooProtocol.TransmitRealtimeStatus( RealTimeStatusCodeEnum.PrinterStatus));[m
+[31m-            bool received = receiveSignal.WaitOne(100);[m
+[31m-            byte printerStatus = received ? lastReceivedData : (byte)0;[m
+[31m-[m
+[31m-            serialPort?.Write(sewooProtocol.TransmitRealtimeStatus(RealTimeStatusCodeEnum.OfflineStatus));[m
+[31m-            received = receiveSignal.WaitOne(100);[m
+[31m-            byte offlineStatus = received ? lastReceivedData : (byte)0;[m
+[31m-[m
+[31m-            serialPort?.Write(sewooProtocol.TransmitRealtimeStatus(RealTimeStatusCodeEnum.ErrorStatus));[m
+[31m-            received = receiveSignal.WaitOne(100);[m
+[31m-            byte errorStatus = received ? lastReceivedData : (byte)0;[m
+[31m-[m
+[31m-            var printStatus = received ? sewooProtocol.ParsePrinterStatus(printerStatus, offlineStatus, errorStatus) : null;[m
+[31m-            log.LogInformation("프린터 상태 :: " + printStatus);[m
+[31m-            */[m
+[31m-            Status = "Offline";[m
+[31m-        }[m
+[31m-[m
+[31m-        public enum PrinterModeEnum [m
+[31m-        {[m
+[31m-            StandardMode,[m
+[31m-            PageMode[m
+[31m-        }[m
+[31m-[m
+[31m-        void SetPrinterMode(PrinterModeEnum printerMode)[m
+[31m-        {[m
+[31m-            Debug.Assert(printerMode == PrinterModeEnum.StandardMode || printerMode == PrinterModeEnum.PageMode);[m
+[31m-[m
+[31m-            if(printerMode == PrinterModeEnum.StandardMode)[m
+[31m-            {[m
+[31m-                serialPort?.Write(sewooProtocol.SelectStandardMode());[m
+[31m-            }[m
+[31m-            else if(printerMode == PrinterModeEnum.PageMode)[m
+[31m-            {[m
+[31m-                serialPort?.Write(sewooProtocol.SelectPageMode());[m
+[31m-            }[m
+[31m-        }[m
+[31m-        public bool SetDownloadImage(Bitmap src)[m
+[31m-        {[m
+[31m-            var downloadOk = false;[m
+[31m-            try[m
+[31m-            {[m
+[31m-                Guard.IsBetween(src.Width, 1, 255);[m
+[31m-                Guard.IsBetween(src.Height, 1, 48);[m
+[31m-                Guard.IsBetween(src.Width * src.Height, 1, 912);[m
+[31m-[m
+[31m-                serialPort?.Write(sewooProtocol.DefineDownloadBitImage(src));[m
+[31m-                downloadOk = true;[m
+[31m-            }[m
+[31m-            catch (Exception e)[m
+[31m-            {[m
+[31m-                log.LogError(e, "다운로드 이미지 등록 중 오류");[m
+[31m-            }[m
+[31m-            return downloadOk;[m
+[31m-        }[m
+[31m-[m
+[31m-        public bool PrintDownloadImage()[m
+[31m-        {[m
+[31m-            serialPort?.Write(sewooProtocol.PrintDownloadBitImage(BasicProtocol.ImagePrintMode.Normal));[m
+[31m-            return true;[m
+[31m-        }[m
+[31m-[m
+[31m-        public bool PrintNvImage(int imageNo)[m
+[31m-        {[m
+[31m-            var cmd1 = sewooProtocol.PrintNvImage(imageNo, BasicProtocol.ImagePrintMode.Normal);[m
+[31m-            serialPort.Write(cmd1);[m
+[31m-            serialPort.Write(sewooProtocol.InitializePrinter());[m
+[31m-            return true;[m
+[31m-        }[m
+[31m-[m
+[31m-        readonly Encoding TextEncoder = Encoding.GetEncoding(949);[m
+[31m-        public bool PrintText(string text)[m
+[31m-        {[m
+[31m-            serialPort?.Write(TextEncoder.GetBytes(text));[m
+[31m-            serialPort?.Write(new byte[] { 0x0d, 0x0a });[m
+[31m-            return true;[m
+[31m-        }[m
+[31m-[m
+[31m-        public bool CutPaper()[m
+[31m-        {[m
+[31m-            serialPort?.Write(sewooProtocol.SelectCutModeAndCutPaper(CutModeEnum.PartialCut));[m
+[31m-            return true;[m
+[31m-        }[m
+[31m-[m
+[31m-        public void FeedLines(int lines)[m
+[31m-        {[m
+[31m-            serialPort.Write(sewooProtocol.FeedLines(lines));[m
+[31m-        }[m
+[31m-        public void FeedPaper(int feed)[m
+[31m-        {[m
+[31m-            serialPort?.Write(sewooProtocol.SelectCutModeAndCutPaper(CutModeEnum.FeedsPaper, feed));            [m
+[31m-        }[m
+[31m-[m
+[31m-        public bool PrintBarcode(string data)[m
+[31m-        {[m
+[31m-            serialPort?.Write(sewooProtocol.PrintBarcode(BasicProtocol.BarcodeSystemEnum.CODE128, data));[m
+[31m-            return true;[m
+[31m-        }[m
+[31m-        public bool PrintBarcodeWithHeight(string data)[m
+[31m-        {[m
+[31m-            serialPort?.Write(sewooProtocol.SetBarcodeHeight(81));[m
+[31m-            serialPort?.Write(sewooProtocol.PrintBarcode(BasicProtocol.BarcodeSystemEnum.CODE128, data));[m
+[31m-            return true;[m
+[31m-        }[m
+[31m-        public bool PrintBarcodeWithHeight(string data, int height)[m
+[31m-        {[m
+[31m-            serialPort?.Write(sewooProtocol.SetBarcodeHeight(height));[m
+[31m-            serialPort?.Write(sewooProtocol.PrintBarcode(BasicProtocol.BarcodeSystemEnum.CODE128, data));[m
+[31m-            return true;[m
+[31m-        }[m
+[31m-[m
+[31m-        public void Dispose()[m
+[31m-        {[m
+[31m-            serialPort?.Close();[m
+[31m-            serialPort = null;[m
+[31m-        }[m
+[31m-[m
+[31m-        public void UploadNvImage(int imageNo, Bitmap src)[m
+[31m-        {[m
+[31m-            var data = sewooProtocol.DefineNvImage(imageNo, src);[m
+[31m-            serialPort?.Write(data);[m
+[31m-        }[m
+[31m-[m
+[31m-        public void PrintRasterImage(Bitmap src, ImagePrintMode mode)[m
+[31m-        {[m
+[31m-            var data = sewooProtocol.PrintRasterImage(src, mode);[m
+[31m-            serialPort?.Write(data);[m
+[31m-        }[m
+[31m-        [m
+[31m-        public void SetCharacterSize(SizeEnlargeEnum size)[m
+[31m-        {[m
+[31m-            var data = sewooProtocol.SelectCharacterSize((size == SizeEnlargeEnum.DoubleWidth || size == SizeEnlargeEnum.BothDouble) ? 1 : 0,[m
+[31m-                                                            (size == SizeEnlargeEnum.DoubleHeight || size == SizeEnlargeEnum.BothDouble) ? 1 : 0);[m
+[31m-            serialPort?.Write(data);[m
+[31m-        }[m
+[31m-        public void SetCharacterSize(int width, int height)[m
+[31m-        {[m
+[31m-            var data = sewooProtocol.SelectCharacterSize(width, height);[m
+[31m-            serialPort?.Write(data);[m
+[31m-        }[m
+[31m-[m
+[31m-        public void SetPrintHRI(BasicProtocol.HRIPrintPositionEnum position = HRIPrintPositionEnum.BelowTheBarcode)[m
+[31m-        {[m
+[31m-            serialPort?.Write(sewooProtocol.SelectHRICharacter(position));[m
+[31m-        }[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-        #region //20230612 add by phong begin[m
+[31m-        /// <summary>[m
+[31m-        /// phong add[m
+[31m-        /// </summary>[m
+[31m-        /// <param name="sender"></param>[m
+[31m-        /// <param name="e"></param>[m
+[31m-        public void PrintDataWithTemplate(string data, string template)[m
+[31m-        {[m
+[31m-            HandlingTemplate.jsonData = data;[m
+[31m-            HandlingTemplate.Template = template;[m
+[31m-            HandlingTemplate.ReplaceTemplate(HandlingTemplate.jsonData, HandlingTemplate.Template);[m
+[31m-[m
+[31m-            string[] lines = HandlingTemplate._newTemplate.Split(new string[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);[m
+[31m-[m
+[31m-            for (int i = 0; i < lines.Length; i++)[m
+[31m-            {[m
+[31m-                List<string> elements = new List<string>();[m
+[31m-[m
+[31m-                Regex regex = new Regex(@"\{([^{}]+)\}|([^{}]+)");[m
+[31m-[m
+[31m-                MatchCollection matches = regex.Matches(lines[i]);[m
+[31m-[m
+[31m-                string left = "";[m
+[31m-                string center = "";[m
+[31m-                string right = "";[m
+[31m-                Boolean font3 = false;[m
+[31m-                Boolean feedLine = false;[m
+[31m-                Align _align = Align.Left;[m
+[31m-                foreach (Match match in matches)[m
+[31m-                {[m
+[31m-                    string element = match.Groups[1].Success ? match.Groups[0].Value : match.Groups[2].Value;[m
+[31m-[m
+[31m-                    if (element == "{FONT1}" || element == "{FONT2}")[m
+[31m-                    {[m
+[31m-                        SetCharacterSize(0, 0);[m
+[31m-                    }[m
+[31m-                    else if (element == "{FONT3}" || element == "{FONT4}")[m
+[31m-                    {[m
+[31m-                        font3 = true;[m
+[31m-                        SetCharacterSize(1, 1);[m
+[31m-                    }[m
+[31m-                    else if (element == "{CUT}")[m
+[31m-                    {[m
+[31m-                        FeedLines(5);[m
+[31m-                        CutPaper();[m
+[31m-                    }[m
+[31m-                    else if (element.Length >= 3 && element.Substring(1, 1) == ":")[m
+[31m-                    {[m
+[31m-                        string str = element.Substring(2, 1);[m
+[31m-                        if (str == "C")[m
+[31m-                        {[m
+[31m-                            _align = Align.Center;[m
+[31m-                        }[m
+[31m-                        else if (str == "R")[m
+[31m-                        {[m
+[31m-                            _align = Align.Right;[m
+[31m-                        }[m
+[31m-                        else if (str == "L")[m
+[31m-                        {[m
+[31m-                            _align = Align.Center;[m
+[31m-                        }[m
+[31m-                    }[m
+[31m-                    else if (element.Length >= 3 && element.Substring(1, 1) == "/")[m
+[31m-                    {   [m
+[31m-                        _align = Align.Left;[m
+[31m-                    }[m
+[31m-                    else if (element == "{CRLF}")[m
+[31m-                    {[m
+[31m-                        feedLine = true;[m
+[31m-                    }[m
+[31m-                    else if (element == "{BARCODE}")[m
+[31m-                    {[m
+[31m-                        PrintBarcode("BARCODE");[m
+[31m-                    }[m
+[31m-                    else if (element == "{LOG}")[m
+[31m-                    {[m
+[31m-                        PrintLogo();[m
+[31m-                    }[m
+[31m-                    else[m
+[31m-                    {[m
+[31m-                        if (_align == Align.Left)[m
+[31m-                        {[m
+[31m-                            left += element;[m
+[31m-                        }[m
+[31m-                        else if (_align == Align.Right)[m
+[31m-                        {[m
+[31m-                            right += element;[m
+[31m-                        }[m
+[31m-                        else if (_align == Align.Center)[m
+[31m-                        {[m
+[31m-                            center += element;[m
+[31m-                        }[m
+[31m-                    }[m
+[31m-                }[m
+[31m-[m
+[31m-                if (font3)[m
+[31m-                {[m
+[31m-[m
+[31m-                    SetCharacterSize(1, 1);[m
+[31m-                    PrintText(HandlingTemplate.ProcessTextLine(left, center, right).TrimEnd());[m
+[31m-[m
+[31m-                }[m
+[31m-                else[m
+[31m-                {[m
+[31m-                    string strdfds = HandlingTemplate.ProcessTextLine(left, center, right);[m
+[31m-                    PrintText(HandlingTemplate.ProcessTextLine(left, center, right));[m
+[31m-                }[m
+[31m-[m
+[31m-                if (feedLine)[m
+[31m-                {[m
+[31m-                    FeedLines(1);[m
+[31m-                }[m
+[31m-[m
+[31m-                font3 = false;[m
+[31m-                feedLine = false;[m
+[31m-                _align = Align.Left;[m
+[31m-                SetCharacterSize(0, 0);[m
+[31m-            }[m
+[31m-        }[m
+[31m-[m
+[31m-        Bitmap? bitmap = null;[m
+[31m-        private void PrintLogo()[m
+[31m-        {[m
+[31m-            if (bitmap == null)[m
+[31m-                return;[m
+[31m-            JObject jsonObject = JObject.Parse(HandlingTemplate.jsonData);[m
+[31m-[m
+[31m-            string FileName = (string)jsonObject["LOG"];[m
+[31m-[m
+[31m-            if (FileName == "")[m
+[31m-                return;[m
+[31m-            PrintRasterImage(bitmap,BasicProtocol.ImagePrintMode.Normal);[m
+[31m-        }[m
+[31m-[m
+[31m-        private void ProcessBarcode(string key)[m
+[31m-        {[m
+[31m-            JObject jsonObject = JObject.Parse(HandlingTemplate.jsonData);[m
+[31m-[m
+[31m-            string barcodeValue = (string)jsonObject["BARCODE"];[m
+[31m-[m
+[31m-            if (string.IsNullOrEmpty(barcodeValue))[m
+[31m-                return;[m
+[31m-            SetPrintHRI(BasicProtocol.HRIPrintPositionEnum.BelowTheBarcode);[m
+[31m-            int size = 0;[m
+[31m-            int.TryParse(barcodeValue, out size);[m
+[31m-            if (size < 1 || size > 255)[m
+[31m-            {[m
+[31m-                return;[m
+[31m-            }[m
+[31m-            PrintBarcodeWithHeight(barcodeValue, size);[m
+[31m-        }[m
+[31m-[m
+[31m-        private enum Align[m
+[31m-        {[m
+[31m-            Left,[m
+[31m-            Right,[m
+[31m-            Center[m
+[31m-        }[m

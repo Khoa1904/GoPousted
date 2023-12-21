@@ -1,0 +1,16 @@
+<ns:UCViewBase x:Class="GoPOS.Common.Views.Controls.WebBrowserControlView" 
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GoPOS.Views.Controls" 
+             xmlns:ns="clr-namespace:GoPOS.Common.Views" 
+              xmlns:Wpf="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
+             mc:Ignorable="d" d:DesignHeight="695" d:DesignWidth="717">
+    <Grid >
+        <DockPanel Margin="0, 0, 0, 0">
+            <Wpf:WebView2 Name="MyWebView" Source="{Binding BrowserUrl}" NavigationCompleted="WebView2_NavigationCompleted" HorizontalAlignment="Stretch" 
+                    VerticalAlignment="Stretch" />
+        </DockPanel>
+  </Grid>
+</ns:UCViewBase>

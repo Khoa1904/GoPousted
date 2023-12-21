@@ -1,0 +1,39 @@
+﻿@page "/page1"
+
+<h3>Page1</h3>
+
+<div class="input-group">
+	<button type="button" class="btn btn-success" @onclick="@(e => CalPrice(e, 1, "minus"))">-</button>
+	<input type="text" class="form-control" id="cnt1" name="cnt" value="@cnt" readonly>
+	<button type="button" class="btn btn-success" @onclick="@(e => CalPrice(e, 1, "plus"))">+</button>
+</div>
+
+
+@code {
+	private int cnt = 1;
+
+	Dictionary<int, string> inputCnt = new Dictionary<int, string>();
+
+	protected override void OnInitialized()
+	{
+		inputCnt.Add(1, "cnt1");
+		inputCnt.Add(2, "cnt2");
+		base.OnInitialized();
+	}
+
+
+	private void CalPrice(MouseEventArgs e, int num, string gubun)
+	{
+		if (gubun == "plus")
+		{
+			cnt++;
+		}
+		else
+		{
+			if (cnt > 0)
+			{
+				cnt--;
+			}
+		}
+	}
+}

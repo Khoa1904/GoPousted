@@ -1,0 +1,53 @@
+<views:UCViewBase  xmlns:views="clr-namespace:GoPOS.Common.Views;assembly=GoPOS.Common"
+                   x:Class="GoPOS.Views.ConfigSetupMainView" 
+                   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+                   xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                   xmlns:b="http://schemas.microsoft.com/xaml/behaviors" 
+                   xmlns:helpers="clr-namespace:GoPOS.Common.Helpers.Controls;assembly=GoPOS.Common"                      
+                   xmlns:viewModel="clr-namespace:GoPOS.ViewModels" 
+                   d:DataContext="{d:DesignInstance viewModel:ConfigSetupMainViewModel}" 
+                   xmlns:local="clr-namespace:GoPOS.Views" 
+                   xmlns:cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro.Platform"
+                   xmlns:controls="clr-namespace:GoPOS.Common.Views.Controls;assembly=GoPOS.Common"
+                   mc:Ignorable="d" Width="1024" Height="768">
+    <Grid Style="{DynamicResource baseGrid}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25" />
+            <RowDefinition Height="73" />
+            <RowDefinition Height="12" />
+            <RowDefinition Height="618" />
+            <RowDefinition Height="17" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="27" />
+            <ColumnDefinition Width="15" />
+            <ColumnDefinition Width="737" />
+            <ColumnDefinition Width="13" />
+            <ColumnDefinition Width="9" />
+            <ColumnDefinition Width="199" />
+            <ColumnDefinition Width="24" />
+        </Grid.ColumnDefinitions>
+        <Grid.Background>
+            <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/resource/images/SalesMngMain.png" />
+        </Grid.Background>
+        <DockPanel Grid.Row="1" Grid.Column="0" Background="{x:Null}" Grid.ColumnSpan="3" helpers:EnableDragHelper.EnableDrag="True">
+            <ContentControl x:Name="ActiveItemTop" Width="700" />
+            <views:GoButton Command="{Binding ButtonCommand}" Style="{StaticResource ClozeBtn}"
+                            CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" 
+                            Tag="ButtonClose"
+                            Margin="20,0,0,0" VerticalAlignment="center" Width="40" Height="40" Padding="0,0,0,0" BorderThickness="0,0,0,0">
+
+            </views:GoButton>
+        </DockPanel>
+        <DockPanel Grid.Row="3" Grid.Column="2" >
+            <ContentControl  x:Name="ActiveItemM" Width="737" Height="618" />
+            <!--cal:View.Model="{Binding WebBrowser}"-->
+        </DockPanel>
+        <DockPanel Grid.Row="1" Grid.Column="5" Background="{x:Null}" Grid.RowSpan="4">
+            <ContentControl x:Name="ActiveItemR" Width="199" />
+        </DockPanel>
+    </Grid>
+</views:UCViewBase>

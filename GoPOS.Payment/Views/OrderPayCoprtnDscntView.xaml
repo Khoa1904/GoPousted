@@ -1,0 +1,344 @@
+<views:UCViewBase  x:Class="GoPOS.Views.OrderPayCoprtnDscntView" 
+                   xmlns:views="clr-namespace:GoPOS.Common.Views;assembly=GoPOS.Common"
+                   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+                   xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                   xmlns:viewModel="clr-namespace:GoPOS.ViewModels" 
+                   xmlns:helpers="clr-namespace:GoPOS.Common.Helpers.Controls;assembly=GoPOS.Common" 
+                   d:DataContext="{d:DesignInstance viewModel:OrderPayCoprtnDscntViewModel}" 
+                   xmlns:cal="http://www.caliburnproject.org" mc:Ignorable="d"
+                   xmlns:local="clr-namespace:GoPOS.Views" 
+                   d:DesignHeight="670" d:DesignWidth="490">
+    <views:UCViewBase.Resources>
+        <views:IndexConverter x:Key="IndexConverter" />
+    </views:UCViewBase.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="33" />
+            <RowDefinition Height="108" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="33" />
+            <RowDefinition Height="33" />
+            <RowDefinition Height="33" />
+            <RowDefinition Height="33" />
+            <RowDefinition Height="33" />
+            <RowDefinition Height="33" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="150" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50" />
+            <ColumnDefinition Width="112" />
+            <ColumnDefinition Width="146" />
+            <ColumnDefinition Width="17" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="49" />
+        </Grid.ColumnDefinitions>
+        <Grid.Background>
+            <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/resource/images/OrderPayLeftPopBack.png" />
+        </Grid.Background>
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Margin="0,0,0,0">
+            <TextBlock Text="{StaticResource 0117}" FontFamily="{StaticResource Pretendard}" FontSize="20" Height="23" Margin="40,0,0,0" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" LineHeight="14" TextAlignment="Left" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="6" Margin="3,0,0,0">
+            <views:GoButton Command="{Binding CloseCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}"
+                    BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="10,0,0,0" Width="31" Height="29" Padding="0,0,0,0" BorderThickness="0,0,0,0">
+                <Button.Background>
+                    <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/Resource/Images/btn_pop_close.png" />
+                </Button.Background>
+            </views:GoButton>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="5" Margin="0,0,0,0">
+            <Image VerticalAlignment="Center" Width="11" Height="11" Source="pack://application:,,,/GoPOS.Resources;component/resource/images/pr.png" Margin="20,0,0,0" />
+            <TextBlock VerticalAlignment="Center" Text="{StaticResource 0118}" FontFamily="{StaticResource Pretendard}" FontSize="15" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" LineHeight="14" TextAlignment="Left" Margin="10,0,0,0" />
+        </StackPanel>
+        <Border BorderBrush="#999999" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="6" BorderThickness="1" CornerRadius="2" Margin="13,0,10,0">
+            <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Background="#999999">
+                <Grid x:Name="tabel">
+                    <!--#dcdcdc #313637-->
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="53" />
+                        <RowDefinition Height="53" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1" />
+                        <ColumnDefinition Width="91" />
+                        <ColumnDefinition Width="1" />
+                        <ColumnDefinition Width="91" />
+                        <ColumnDefinition Width="1" />
+                        <ColumnDefinition Width="91" />
+                        <ColumnDefinition Width="1" />
+                        <ColumnDefinition Width="91" />
+                        <ColumnDefinition Width="1" />
+                        <ColumnDefinition Width="91" />
+                        <ColumnDefinition Width="1" />
+                    </Grid.ColumnDefinitions>
+                    <views:GoButton x:Name="btnPromo01"
+                        Command="{Binding JoinCardButtonCommand}" 
+                        CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}"
+                        Tag="btnPromo01" Grid.Row="0" Grid.Column="1" BorderBrush="{x:Null}" Foreground="{x:Null}" 
+                        Margin="0,1,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="91" Height="51" Padding="0,0,0,0" BorderThickness="0,0,0,0">
+                        <Button.Background>
+                            <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/resource/images/btn_corptn_dis_on.png" />
+                        </Button.Background>
+                        <TextBlock x:Name="txtPromo01" Text="" FontFamily="{StaticResource Pretendard}"  TextWrapping="Wrap"
+                       FontSize="12" FontStyle="Normal" FontWeight="Normal" Foreground="#FF000000" LineHeight="13" TextAlignment="Center" />
+                    </views:GoButton>
+                    <views:GoButton x:Name="btnPromo02" Command="{Binding JoinCardButtonCommand}" 
+                        CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" 
+                                    Tag="btnPromo02" Grid.Row="0" Grid.Column="3" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="0,1,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="91" Height="51" Padding="0,0,0,0" BorderThickness="0,0,0,0">
+                        <Button.Background>
+                            <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/resource/images/btn_corptn_dis.png" />
+                        </Button.Background>
+                        <TextBlock x:Name="txtPromo02" Text="" FontFamily="{StaticResource Pretendard}" FontSize="12" FontStyle="Normal"  TextWrapping="Wrap"
+                                   FontWeight="Normal" Foreground="#FF000000" LineHeight="13" TextAlignment="Center" />
+                    </views:GoButton>
+                    <views:GoButton x:Name="btnPromo03" Command="{Binding JoinCardButtonCommand}" 
+                        CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" Tag="btnPromo03" 
+                                    Grid.Row="0" Grid.Column="5" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="0,1,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="91" Height="51" Padding="0,0,0,0" BorderThickness="0,0,0,0">
+                        <Button.Background>
+                            <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/resource/images/btn_corptn_dis.png" />
+                        </Button.Background>
+                        <TextBlock x:Name="txtPromo03" Text="" FontFamily="{StaticResource Pretendard}" FontSize="12" FontStyle="Normal"  TextWrapping="Wrap"
+                                   FontWeight="Normal" Foreground="#FF000000" LineHeight="13" TextAlignment="Center" />
+                    </views:GoButton>
+                    <views:GoButton x:Name="btnPromo04" Command="{Binding JoinCardButtonCommand}" 
+                        CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" Tag="btnPromo04" Grid.Row="0" Grid.Column="7" 
+                                    BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="0,1,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" 
+                                    Width="91" Height="51" Padding="0,0,0,0" BorderThickness="0,0,0,0">
+                        <Button.Background>
+                            <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/resource/images/btn_corptn_dis.png" />
+                        </Button.Background>
+                        <TextBlock x:Name="txtPromo4" Text="" FontFamily="{StaticResource Pretendard}" FontSize="12" FontStyle="Normal"  TextWrapping="Wrap"
+                                   FontWeight="Normal" Foreground="#FF000000" LineHeight="13" TextAlignment="Center" />
+                    </views:GoButton>
+                    <views:GoButton x:Name="btnPromo05" Command="{Binding JoinCardButtonCommand}" 
+                        CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" Tag="btnPromo05" Grid.Row="0" Grid.Column="9" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="0,1,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="91" Height="51" Padding="0,0,0,0" BorderThickness="0,0,0,0">
+                        <Button.Background>
+                            <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/resource/images/btn_corptn_dis.png" />
+                        </Button.Background>
+                        <TextBlock x:Name="txtPromo5" Text="" FontFamily="{StaticResource Pretendard}" FontSize="12" FontStyle="Normal"  TextWrapping="Wrap"
+                                   FontWeight="Normal" Foreground="#FF000000" LineHeight="13" TextAlignment="Center" />
+                    </views:GoButton>
+                    <views:GoButton x:Name="btnPromo06" Command="{Binding JoinCardButtonCommand}" 
+                        CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" Tag="btnPromo06" Grid.Row="1" Grid.Column="1" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="0,1,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="91" Height="51" Padding="0,0,0,0" BorderThickness="0,0,0,0">
+                        <Button.Background>
+                            <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/resource/images/btn_corptn_dis.png" />
+                        </Button.Background>
+                        <TextBlock x:Name="txtPromo6" Text="" FontFamily="{StaticResource Pretendard}" FontSize="12" FontStyle="Normal" FontWeight="Normal"  TextWrapping="Wrap"
+                                   Foreground="#FF000000" LineHeight="13" TextAlignment="Center" />
+                    </views:GoButton>
+                    <views:GoButton x:Name="btnPromo07" Command="{Binding JoinCardButtonCommand}" 
+                        CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" Tag="btnPromo07" Grid.Row="1" Grid.Column="3" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="0,1,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="91" Height="51" Padding="0,0,0,0" BorderThickness="0,0,0,0">
+                        <Button.Background>
+                            <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/resource/images/btn_corptn_dis.png" />
+                        </Button.Background>
+                        <TextBlock x:Name="txtPromo7" Text="" FontFamily="{StaticResource Pretendard}" FontSize="12" FontStyle="Normal" FontWeight="Normal"  TextWrapping="Wrap"
+                                   Foreground="#FF000000" LineHeight="13" TextAlignment="Center" />
+                    </views:GoButton>
+                    <views:GoButton x:Name="btnPromo08" Command="{Binding JoinCardButtonCommand}" 
+                        CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" Tag="btnPromo08" Grid.Row="1" Grid.Column="5" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="0,1,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="91" Height="51" Padding="0,0,0,0" BorderThickness="0,0,0,0">
+                        <Button.Background>
+                            <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/resource/images/btn_corptn_dis.png" />
+                        </Button.Background>
+                        <TextBlock x:Name="txtPromo8" Text="" FontFamily="{StaticResource Pretendard}" FontSize="12" FontStyle="Normal" FontWeight="Normal"  TextWrapping="Wrap"
+                                   Foreground="#FF000000" LineHeight="13" TextAlignment="Center" />
+                    </views:GoButton>
+                    <views:GoButton x:Name="btnPromo09" Command="{Binding JoinCardButtonCommand}" 
+                        CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" Tag="btnPromo09" Grid.Row="1" Grid.Column="7" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="0,1,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="91" Height="51" Padding="0,0,0,0" BorderThickness="0,0,0,0">
+                        <Button.Background>
+                            <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/resource/images/btn_corptn_dis.png" />
+                        </Button.Background>
+                        <TextBlock x:Name="txtPromo9" Text="" FontFamily="{StaticResource Pretendard}" FontSize="12" FontStyle="Normal" FontWeight="Normal"  TextWrapping="Wrap"
+                                   Foreground="#FF000000" LineHeight="13" TextAlignment="Center" />
+                    </views:GoButton>
+                    <views:GoButton x:Name="btnPromo10" Command="{Binding JoinCardButtonCommand}" 
+                        CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" Tag="btnPromo10" Grid.Row="1" Grid.Column="9" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="0,1,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="91" Height="51" Padding="0,0,0,0" BorderThickness="0,0,0,0">
+                        <Button.Background>
+                            <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/resource/images/btn_corptn_dis.png" />
+                        </Button.Background>
+                        <TextBlock x:Name="txtPromo10" Text="" FontFamily="{StaticResource Pretendard}" FontSize="12" FontStyle="Normal" FontWeight="Normal"  TextWrapping="Wrap"
+                                   Foreground="#FF000000" LineHeight="13" TextAlignment="Center" />
+                    </views:GoButton>
+                </Grid>
+            </StackPanel>
+        </Border>
+        <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="2" Margin="0,5,18,0" HorizontalAlignment="Right" VerticalAlignment="Top">
+            <views:GoButton Command="{Binding ButtonCommand}" 
+                            CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" 
+                            Tag="Prev"
+                            BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="0,0,0,0" Width="50" Height="29" Padding="0,0,0,0" BorderThickness="0,0,0,0">
+                <Button.Background>
+                    <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/resource/images/btn_corptn_up.png" />
+                </Button.Background>
+            </views:GoButton>
+            <views:GoButton Command="{Binding ButtonCommand}" 
+                            CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" 
+                            Tag="Next"
+                            BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="8,0,0,0" Width="50" Height="29" Padding="0,0,0,0" BorderThickness="0,0,0,0">
+                <Button.Background>
+                    <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/resource/images/btn_corptn_dn.png" />
+                </Button.Background>
+            </views:GoButton>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,10,0,0">
+            <Image VerticalAlignment="Center" Width="11" Height="11" Source="pack://application:,,,/GoPOS.Resources;component/resource/images/pr.png" Margin="17,0,0,0" />
+            <TextBlock VerticalAlignment="Center" Text="{StaticResource 0120}" FontFamily="{StaticResource Pretendard}" FontSize="16" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" LineHeight="14" TextAlignment="Left" Margin="10,0,0,0" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="6" Margin="0,0,0,0">
+            <TextBlock VerticalAlignment="Center" Text="{StaticResource 0121}" FontFamily="{StaticResource Pretendard}" FontSize="12" FontStyle="Normal" FontWeight="Light" Foreground="#999999" LineHeight="14" TextAlignment="Left" Margin="15,25,0,0" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="6" Margin="0,0,0,0">
+            <TextBlock VerticalAlignment="Center" Text="{StaticResource 0013}" FontFamily="{StaticResource Pretendard}" FontSize="14" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" LineHeight="14" TextAlignment="Left" Margin="15,0,0,0" />
+            <TextBlock VerticalAlignment="Center" Text="승인처리여부 : " Width="95" FontFamily="{StaticResource Pretendard}" FontSize="14" FontStyle="Normal" FontWeight="Normal" Foreground="#FF000000" LineHeight="14" TextAlignment="Right" Margin="0,0,0,0" />
+            <TextBox Text="{Binding SelectedItem.APPR_PROC_FLAG_NAME, Mode=OneWay}" IsReadOnly="True" FontStyle="Normal" FontWeight="SemiBold" Width="115" FontSize="13px" Height="25" Margin="0,0,0,0" TextAlignment="Center" >                
+            </TextBox>
+            <TextBlock VerticalAlignment="Center" Text="{StaticResource 0013}" FontFamily="{StaticResource Pretendard}" FontSize="14" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" LineHeight="14" TextAlignment="Left" Margin="5,0,0,0" />
+            <TextBlock VerticalAlignment="Center" Text="제휴카드번호 : " Width="95" FontFamily="{StaticResource Pretendard}" FontSize="14" FontStyle="Normal" FontWeight="Normal" Foreground="#FF000000" LineHeight="14" TextAlignment="Right" Margin="0,0,0,0" />
+            <TextBox helpers:TextBoxHelpers.IsNumeric="True" x:Name="txtApprCardNo" Text="{Binding JOIN_CARD_NO, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontStyle="Normal" TextAlignment="Left" FontWeight="Bold" Width="135" FontSize="13px" Height="25" Margin="0,0,0,0" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="6" Margin="0,0,0,0">
+            <TextBlock VerticalAlignment="Center" Text="{StaticResource 0121}" FontFamily="{StaticResource Pretendard}" FontSize="12" 
+                 FontStyle="Normal" FontWeight="Light" Foreground="#999999" LineHeight="14" TextAlignment="Left" Margin="15,25,0,0" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="6" Margin="0,0,0,0">
+            <TextBlock VerticalAlignment="Center" Text="{StaticResource 0013}" FontFamily="{StaticResource Pretendard}" FontSize="14" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" LineHeight="14" TextAlignment="Left" Margin="15,0,0,0" />
+            <TextBlock VerticalAlignment="Center" Text="할인율 : " Width="95" FontFamily="{StaticResource Pretendard}" FontSize="14" FontStyle="Normal" FontWeight="Normal" Foreground="#FF000000" LineHeight="14" TextAlignment="Right" Margin="0,0,0,0" />
+            <TextBox x:Name="txtDcRate" Text="{Binding SelectedItem.DC_RATE, Mode=OneWay, StringFormat={}{0:N0}}" IsReadOnly="True" FontStyle="Normal" FontWeight="SemiBold" Width="115" FontSize="13px" Height="25" Margin="0,0,0,0" TextAlignment="Right" />
+            <TextBlock VerticalAlignment="Center" Text="{StaticResource 0013}" FontFamily="{StaticResource Pretendard}" FontSize="14" FontStyle="Normal" FontWeight="Normal" Foreground="#FF000000" LineHeight="14" TextAlignment="Left" Margin="5,0,0,0" />
+            <TextBlock VerticalAlignment="Center" Text="승인번호 : " Width="95" FontFamily="{StaticResource Pretendard}" FontSize="14" FontStyle="Normal" FontWeight="Normal" Foreground="#FF000000" LineHeight="14" TextAlignment="Right" Margin="0,0,0,0" />
+            <TextBox x:Name="ApprNo" Text="{Binding APPR_NO}" IsReadOnly="True" FontStyle="Normal" TextAlignment="Center" FontWeight="Bold" Width="135" FontSize="13px" Height="25" Margin="0,0,0,0" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="6" Margin="0,0,0,0">
+            <TextBlock VerticalAlignment="Center" Text="{StaticResource 0121}" FontFamily="{StaticResource Pretendard}" FontSize="12" FontStyle="Normal" FontWeight="Light" Foreground="#999999" LineHeight="14" TextAlignment="Left" Margin="15,25,0,0" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="6" Margin="0,0,0,0">
+            <TextBlock VerticalAlignment="Center" Text="{StaticResource 0013}" FontFamily="{StaticResource Pretendard}" FontSize="14" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" LineHeight="14" TextAlignment="Left" Margin="15,0,0,0" />
+            <TextBlock VerticalAlignment="Center" Text="한도금액 : " Width="95" FontFamily="{StaticResource Pretendard}" FontSize="14" FontStyle="Normal" FontWeight="Normal" Foreground="#FF000000" LineHeight="14" TextAlignment="Right" Margin="0,0,0,0" />
+            <TextBox x:Name="txtLimitMoney" Text="{Binding SelectedItem.DC_LIMIT_AMT_APPLY, Mode=OneWay}" IsReadOnly="True" FontStyle="Normal" FontWeight="SemiBold" Width="115" FontSize="13px" Height="25" Margin="0,0,0,0" TextAlignment="Right" />
+            <TextBlock VerticalAlignment="Center" Text="{StaticResource 0013}" FontFamily="{StaticResource Pretendard}" FontSize="14" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" LineHeight="14" TextAlignment="Left" Margin="5,0,0,0" />
+            <TextBlock VerticalAlignment="Center" Text="할인대상금액 : " Width="95" FontFamily="{StaticResource Pretendard}" FontSize="14" FontStyle="Normal" FontWeight="Normal" Foreground="#FF000000" LineHeight="14" TextAlignment="Right" Margin="0,0,0,0" />
+            <TextBox x:Name="txtDcTargerMoney" Text="{Binding PAY_AMT, Mode=OneWay, StringFormat={}{0:N0}}" IsReadOnly="True" FontStyle="Normal" FontWeight="Bold" Width="135" FontSize="13px" Height="25" Margin="0,0,0,0" TextAlignment="Right" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="6" Margin="0,0,0,0">
+            <TextBlock VerticalAlignment="Center" Text="{StaticResource 0121}" FontFamily="{StaticResource Pretendard}" FontSize="12" FontStyle="Normal" FontWeight="Light" Foreground="#999999" LineHeight="14" TextAlignment="Left" Margin="15,25,0,0" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="6" Margin="0,0,0,0">
+            <TextBlock VerticalAlignment="Center" Text="{StaticResource 0013}" FontFamily="{StaticResource Pretendard}" FontSize="14" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" LineHeight="14" TextAlignment="Left" Margin="15,0,0,0" />
+            <TextBlock VerticalAlignment="Center" Text="대상상품구분 : " Width="95" FontFamily="{StaticResource Pretendard}" FontSize="14" FontStyle="Normal" FontWeight="Normal" Foreground="#FF000000" LineHeight="14" TextAlignment="Right" Margin="0,0,0,0" />
+            <TextBox IsReadOnly="True" FontStyle="Normal" FontWeight="SemiBold" Width="115" FontSize="13px" Height="25" Margin="0,0,0,0" TextAlignment="Center">
+                <TextBox.Style>
+                    <Style TargetType="TextBox">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding SelectedItem.DC_PRD_FLAG}" Value="A">
+                                <Setter Property="Text"  Value="전체상품" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding SelectedItem.DC_PRD_FLAG}" Value="P">
+                                <Setter Property="Text" Value="특정상품" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
+            <TextBlock VerticalAlignment="Center" Text="{StaticResource 0013}" FontFamily="{StaticResource Pretendard}" FontSize="14" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" LineHeight="14" TextAlignment="Left" Margin="5,0,0,0" />
+            <TextBlock VerticalAlignment="Center" Text="할인액 : " Width="95" FontFamily="{StaticResource Pretendard}" FontSize="14" FontStyle="Normal" FontWeight="Normal" Foreground="#FF000000" LineHeight="14" TextAlignment="Right" Margin="0,0,0,0" />
+            <TextBox x:Name="txtDcMoney" Text="{Binding DISC_AMT, StringFormat={}{0:N0}}" IsReadOnly="True" FontStyle="Normal" FontWeight="Bold" Width="135" FontSize="13px" Height="25" Margin="0,0,0,0" TextAlignment="Right" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="6" Margin="0,0,0,0">
+            <TextBlock VerticalAlignment="Center" Text="{StaticResource 0121}" FontFamily="{StaticResource Pretendard}" FontSize="12" FontStyle="Normal" FontWeight="Light" Foreground="#999999" LineHeight="14" TextAlignment="Left" Margin="15,25,0,0" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="6" Margin="0,0,0,0">
+            <TextBlock VerticalAlignment="Center" Text="{StaticResource 0013}" FontFamily="{StaticResource Pretendard}" FontSize="14" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" LineHeight="14" TextAlignment="Left" Margin="236,0,0,0" />
+            <TextBlock VerticalAlignment="Center" Text="비밀번호 : " Width="95" FontFamily="{StaticResource Pretendard}" FontSize="14" FontStyle="Normal" FontWeight="Normal" Foreground="#FF000000" LineHeight="14" TextAlignment="Right" Margin="0,0,0,0" />
+            <PasswordBox x:Name="txtPW" HorizontalAlignment="Center" PasswordChar="*"  Width="135" Height="25" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,10,0,0">
+            <Image VerticalAlignment="Center" Width="11" Height="11" Source="pack://application:,,,/GoPOS.Resources;component/resource/images/pr.png" Margin="17,0,0,0" />
+            <TextBlock VerticalAlignment="Center" Text="{StaticResource 0131}" FontFamily="{StaticResource Pretendard}" FontSize="16" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" LineHeight="14" TextAlignment="Left" Margin="10,0,0,0" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="12" Grid.Column="0" Grid.ColumnSpan="6" Margin="15,0,12,0">
+            <ListView ItemsSource="{Binding DiscTargetItems}" Grid.Row="0" FontSize="14" Width="457" BorderBrush="#bababa" Padding="-1,-1,-1,0" BorderThickness="1">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListViewItem}">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        <Setter Property="BorderBrush" Value="#bababa" />
+                        <Setter Property="BorderThickness" Value="0,0,1,1" />
+                        <Setter Property="Margin" Value="0,2,-1,0" />
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="No" 
+                                        HeaderContainerStyle="{StaticResource listViewHeaderStyle}" Width="52"
+                                        DisplayMemberBinding="{Binding RelativeSource={RelativeSource FindAncestor, 
+                                         AncestorType={x:Type ListViewItem}},
+                                         Converter={StaticResource IndexConverter}}">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Border BorderBrush="#bababa" BorderThickness="0,0,1,1" Margin="-9,-2,-7,-2">
+                                        <DockPanel Margin="6,2,6,2">
+                                            <TextBlock Foreground="#FF000000" HorizontalAlignment="Center" Height="22">
+                                            </TextBlock>
+                                        </DockPanel>
+                                    </Border>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="{Binding DISC_ITEM_TYPE}" HeaderContainerStyle="{StaticResource listViewHeaderStyle}" Width="380">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Border BorderBrush="#bababa" BorderThickness="1,0,1,1" Margin="-6,-2,-7,-2">
+                                        <DockPanel Margin="6,2,6,2">
+                                            <TextBlock Foreground="#FF000000" HorizontalAlignment="Left" Height="22">
+                                                <TextBlock.Text>
+                                                    <Binding Path="STYLE_PRD_NAME">
+                                                    </Binding>
+                                                </TextBlock.Text>
+                                            </TextBlock>
+                                        </DockPanel>
+                                    </Border>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </StackPanel>
+        <!--<StackPanel Orientation="Horizontal" Grid.Row="13" Grid.Column="0" Grid.ColumnSpan="2" Margin="20,8,0,0" VerticalAlignment="Top">
+            <views:GoButton Command="{Binding ButtonCommand}" 
+                        CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" Tag="btnSearch" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="0,0,0,0" Width="83" Height="31" Padding="0,0,0,0" BorderThickness="0,0,0,0">
+        <Button.Background>
+          <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/resource/images/btn_base_orange.png" />
+        </Button.Background>
+        <TextBlock Text="{StaticResource 0022}" FontFamily="{StaticResource Pretendard}" FontSize="13" FontStyle="Normal" FontWeight="Bold" Foreground="#FFFFFFFF" LineHeight="13" TextAlignment="Center" />
+      </views:GoButton>
+    </StackPanel>-->
+        <StackPanel Orientation="Horizontal" Grid.Row="13" Grid.Column="2" Grid.ColumnSpan="4" Margin="0,8,20,0" VerticalAlignment="Top" HorizontalAlignment="Right">
+            <!--<views:GoButton Command="{Binding ButtonCommand}" 
+                        CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" Tag="btnDiscreReg" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="0,0,0,0" Width="83" Height="31" Padding="0,0,0,0" BorderThickness="0,0,0,0">
+        <Button.Background>
+          <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/resource/images/btn_base_green.png" />
+        </Button.Background>
+        <TextBlock Text="{StaticResource 0076}" FontFamily="{StaticResource Pretendard}" FontSize="13" FontStyle="Normal" FontWeight="Bold" Foreground="#FFFFFFFF" LineHeight="13" TextAlignment="Center" />
+      </views:GoButton>-->
+            <!--<views:GoButton Command="{Binding ButtonCommand}" 
+                        CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" Tag="btnInputReq" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="5,0,0,0" Width="83" Height="31" Padding="0,0,0,0" BorderThickness="0,0,0,0">
+        <Button.Background>
+          <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/resource/images/btn_base_green.png" />
+        </Button.Background>
+        <TextBlock Text="{StaticResource 0098}" FontFamily="{StaticResource Pretendard}" FontSize="13" FontStyle="Normal" FontWeight="Bold" Foreground="#FFFFFFFF" LineHeight="13" TextAlignment="Center" />
+      </views:GoButton>-->
+            <views:GoButton Command="{Binding ButtonCommand}" 
+                        CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" 
+                            Tag="btnDcProc" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="5,0,0,0" Width="83" Height="31" Padding="0,0,0,0" BorderThickness="0,0,0,0">
+                <Button.Background>
+                    <ImageBrush ImageSource="pack://application:,,,/GoPOS.Resources;component/resource/images/btn_base_orange.png" />
+                </Button.Background>
+                <TextBlock Text="{StaticResource 0132}" FontFamily="{StaticResource Pretendard}" FontSize="13" FontStyle="Normal" FontWeight="Bold" Foreground="#FFFFFFFF" LineHeight="13" TextAlignment="Center" Width="77" />
+            </views:GoButton>
+        </StackPanel>
+    </Grid>
+</views:UCViewBase>

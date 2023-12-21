@@ -1,0 +1,159 @@
+﻿<UserControl  xmlns:views="clr-namespace:GoPOS.Common.Views;assembly=GoPOS.Common" 
+                   x:Class="GoPOS.Views.OrderPayCashReceiptPopupView" 
+                   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+                   xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                   xmlns:viewModel="clr-namespace:GoPOS.ViewModels"
+                   d:DataContext="{d:DesignInstance viewModel:OrderPayCashReceiptPopupViewModel}"	
+                   xmlns:cal="http://www.caliburnproject.org" 
+                   xmlns:local="clr-namespace:GoPOS.Views" 
+              xmlns:controls="clr-namespace:GoPOS.Common.Views.Controls"
+              d:DesignHeight="450" d:DesignWidth="600" mc:Ignorable="d" >
+
+    <!--VIEW STYLE-->
+    <Border BorderBrush="#263043" BorderThickness="1">
+        <Grid Background="#fff">
+            <Grid Background="#cccccc" Margin="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Border BorderBrush="#263043" BorderThickness="1" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Margin="5" CornerRadius="2">
+                    <StackPanel Orientation="Horizontal"  Margin="0,0,0,0">
+                        <StackPanel.Background>
+                            <LinearGradientBrush StartPoint="0 ,0" EndPoint="0,1">
+                                <GradientStop Offset="0.45" Color="#3f4e6d"/>
+                                <GradientStop Offset="0.55" Color="#2c3b5b"/>
+                            </LinearGradientBrush>
+                        </StackPanel.Background>
+                        <Image Source="pack://application:,,,/GoPOS.Resources;component/resource/images/pinwheel.png" Width="23" Height="23" Margin="30 0 0 0" />
+                        <TextBlock Text="현금영수증" FontFamily="{StaticResource Pretendard}" FontSize="22" Height="23" Margin="10,0,0,0" FontStyle="Normal" FontWeight="Bold" Foreground="#FFFFFFFF" LineHeight="14" TextAlignment="Left" />
+                        <Button Command="{Binding CloseCommand}" Tag="btnClose" Margin="350,0,0,0" Width="35" Height="35" Padding="0,0,0,0" Style="{StaticResource ClozeBtn}"
+                                HorizontalAlignment="Right">
+                        </Button>
+
+                    </StackPanel>
+                </Border>
+
+
+                <Grid Margin="5"  Grid.Row="1" Background="#fff">
+                    <Border BorderBrush="#afafaf" BorderThickness="0.7" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Margin="5">
+                        <Grid Margin="5" Background="#fff">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="3" />
+                                <RowDefinition Height="1" />
+                                <RowDefinition Height="55" />
+                                <RowDefinition Height="40" />
+                                <RowDefinition Height="40" />
+                                <RowDefinition Height="40" />
+                                <RowDefinition Height="40"/>
+                                <RowDefinition Height="80"/>
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40" />
+                                <ColumnDefinition Width="25"/>
+                                <ColumnDefinition Width="75"/>
+                                <ColumnDefinition Width="85"/>
+                                <ColumnDefinition Width="85"/>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="15" />
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="1" VerticalAlignment="Center" HorizontalAlignment="Left" Height="14" Width="15">
+                                <Image Source="pack://application:,,,/GoPOS.Resources;component/resource/images/pr.png" Height="12" Width="12" Margin="2 2 0 0"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Left" >
+                                <TextBlock Text="현금영수증처리" FontSize="16" FontWeight="Bold" Margin="0 0 0 0"></TextBlock>
+                            </StackPanel>
+
+
+                            <StackPanel Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="1" VerticalAlignment="Center" HorizontalAlignment="Left" Height="36" Margin="16,0,0,0" Width="9">
+                                <TextBlock Text="*" FontSize="20" FontWeight="Bold" Margin="0 7 0 0" Foreground="#999999"></TextBlock>
+                            </StackPanel>
+                            <StackPanel Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="1" VerticalAlignment="Center" HorizontalAlignment="Left"  >
+                                <TextBlock Width="70" TextAlignment="Right" Text="확인번호 :" FontSize="14" FontWeight="Bold" Margin="5 0 0 0" Foreground="#999999"></TextBlock>
+                            </StackPanel>
+                            <StackPanel Grid.Column="3" Grid.Row="4" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Left" Height="26" Width="170">
+                                <TextBox x:Name="txtInviNo" Focusable="True" Text="{Binding InvidualNo, Mode=TwoWay}" Style="{StaticResource OrangeTB}" Width="160" FontSize="16" FontWeight="Bold" Foreground="#999999">
+                                    <TextBox.Resources>
+                                        <Style TargetType="{x:Type Border}">
+                                            <Setter Property="CornerRadius" Value="2" />
+                                        </Style>
+                                    </TextBox.Resources>
+                                </TextBox>
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="1" VerticalAlignment="Center" HorizontalAlignment="Left" Height="36" Margin="16,0,0,0" Width="9">
+                                <TextBlock Text="*" FontSize="20" FontWeight="Bold" Margin="0 7 0 0" Foreground="#999999"></TextBlock>
+                            </StackPanel>
+                            <StackPanel Grid.Column="2" Grid.Row="5" Grid.ColumnSpan="1" VerticalAlignment="Center" HorizontalAlignment="Left"  >
+                                <TextBlock Width="70" TextAlignment="Right" Text=" 사용구분 :" FontSize="14" FontWeight="Bold" Margin="5 0 0 0" Foreground="#999999"></TextBlock>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Grid.Column="3" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                <CheckBox x:Name="check1" Margin="5 0 0 0" Style="{StaticResource CheckboxStyle}"
+                                          IsChecked="{Binding PrivateChecked, Mode=TwoWay}" 
+                                          Checked="Radiotic_Checkbox" Unchecked="NotNull_Checkbox" />
+                                <TextBlock Text="개인" VerticalAlignment="Center" FontSize="14" FontWeight="Bold" Margin="10 0 0 0" Foreground="#000"></TextBlock>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Grid.Column="4" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                <CheckBox x:Name="check2" Style="{StaticResource CheckboxStyle}" 
+                                          IsChecked="{Binding CompanyChecked, Mode=TwoWay}"
+                                          Checked="Radiotic_Checkbox" Unchecked="NotNull_Checkbox" />
+                                <TextBlock Text="사업자" FontSize="14" FontWeight="Bold" Margin="10 0 0 0" VerticalAlignment="Center" Foreground="#000"></TextBlock>
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="1" VerticalAlignment="Center" HorizontalAlignment="Left" Height="36" Margin="16,0,0,0" Width="9">
+                                <TextBlock Text="*" FontSize="20" FontWeight="Bold" Margin="0 7 0 0" Foreground="#999999"></TextBlock>
+                            </StackPanel>
+                            <StackPanel Grid.Column="2" Grid.Row="6" Grid.ColumnSpan="1" VerticalAlignment="Center" HorizontalAlignment="Left"  >
+                                <TextBlock Width="70" TextAlignment="Right" Text="승인금액 :" FontSize="14" FontWeight="Bold" Margin="5 0 0 0" Foreground="#999999"></TextBlock>
+                            </StackPanel>
+                            <StackPanel Grid.Column="3" Grid.Row="6" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Left" Height="26" Width="170">
+                                <TextBox Text="{Binding PaidMoney, Mode=TwoWay, StringFormat={}{0:#,0}}" IsReadOnly="True" 
+                                         Style="{StaticResource GrayTB}" Width="160" FontSize="16" FontWeight="Bold" Foreground="#999999"
+                                         TextAlignment="Right">
+                                    <TextBox.Resources>
+                                        <Style TargetType="{x:Type Border}">
+                                            <Setter Property="CornerRadius" Value="2" />
+                                        </Style>
+                                    </TextBox.Resources>
+                                </TextBox>
+                                
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="6" Grid.Row="3" Grid.RowSpan="5" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                <controls:NumericKeyPadView />
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Grid.Row="7" Grid.Column="3"  VerticalAlignment="Center" >
+                                <Button 
+                                        Command="{Binding ButtonCommand}" 
+                                        CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" 
+                                        Tag="InputRequest"
+                                        Width="80" Height="35" 
+                                        Padding="0,0,0,0"  Style="{StaticResource GreenBtn2}">
+                                    <TextBlock Text="입력요청" FontFamily="{StaticResource Pretendard}" FontSize="13" FontStyle="Normal" FontWeight="Bold" Foreground="#FFFFFFFF" LineHeight="13" TextAlignment="Center" />
+                                </Button>
+                            </StackPanel>
+                            <StackPanel Grid.Row="7" Grid.Column="4"  VerticalAlignment="Center"  >
+                                <Button 
+                                        Command="{Binding ButtonCommand}" 
+                                        CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" 
+                                        Tag="CashRecApprRequest"
+                                        Width="80" Height="35" Padding="0,0,0,0" 
+                                        Style="{StaticResource OrangeBtn}">
+                                    <TextBlock Text="승인요청" FontFamily="{StaticResource Pretendard}" FontSize="13" FontStyle="Normal" FontWeight="Bold" Foreground="#FFFFFFFF" LineHeight="13" TextAlignment="Center" />
+                                </Button>
+                            </StackPanel>
+
+                        </Grid>
+                    </Border>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Border>
+</UserControl>
