@@ -244,6 +244,7 @@ public partial class OrderPayMainViewModel : MainBasePageViewModel, IOrderPayMai
     {
         _view = (IOrderPayMainView)view;
         return false;
+        ///
     }
 
     #region Event handling
