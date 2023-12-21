@@ -101,12 +101,6 @@ namespace GoPOS.Views
             var tablews = tables.Where(z => z.SHAPE_FLAG == "1" || z.SHAPE_FLAG == "2").ToList();
         }
 
-        private void StackPanel_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            MessageBox.Show("StackPanel clicked!");
-            // Handle the "click" event here
-        }
-
         private void BeginOrder(object sender, MouseButtonEventArgs e)
         {
             string tableCode = ((Grid)sender).Tag.ToString();

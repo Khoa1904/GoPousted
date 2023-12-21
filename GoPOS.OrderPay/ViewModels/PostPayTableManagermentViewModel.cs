@@ -265,6 +265,7 @@ namespace GoPOS.ViewModels
         public Task HandleAsync(OrderReceived message, CancellationToken cancellationToken)
         {
             var TableReceived = Tablethr.FirstOrDefault(z => z.TABLE_CODE == message.tableCode);
+            TableReceived.ORDER_ITEMS.Clear();
             foreach (var t in message.OrderItems)
             {
                 ORDER_GRID_ITEM oRDER = new ORDER_GRID_ITEM()
